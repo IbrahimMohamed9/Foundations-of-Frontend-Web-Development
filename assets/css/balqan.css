@@ -252,53 +252,52 @@ header .icons span {
 }
 /* End New packages */
 /* Start Info */
-.info .container {
+.info .info-container {
   display: grid;
   gap: 50px;
 }
 .info .row {
-  display: flex;
-  gap: 50px;
-  min-height: 300px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 47%;
+  gap: 20px;
 }
 @media (max-width: 768px) {
   .info .row {
-    flex-direction: column;
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
+}
+.info .row:nth-child(2n) {
+  direction: rtl;
 }
 .info .row .image {
-  position: relative;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+.info .row .wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info .row .wrap .content {
+  margin-right: 20px;
+}
+.info .row:nth-child(2n) .wrap .content {
+  margin-left: 20px;
+  margin-right: 0;
 }
 @media (max-width: 768px) {
-  .info .row .image {
-    min-height: 220px;
+  .info .row .wrap .content {
+    margin-left: 20px;
+    margin-right: 20px;
   }
-}
-.info .row .image img {
-  position: absolute;
-  max-width: 100%;
-  min-width: 100%;
-  min-height: 300px;
-  max-height: 300px;
-  top: 50%;
-  left: 0;
-  transform: translateY(-50%);
-}
-@media (max-width: 768px) {
-  .info .row .image img {
-    max-height: 100%;
-    min-height: 100%;
-  }
-}
-.info .row .content {
-  max-width: calc(55% - 50px);
-  min-width: calc(55% - 50px);
-  text-align: center;
-}
-@media (max-width: 768px) {
-  .info .row .content {
-    max-width: 100%;
+  .info .row:nth-child(2n) .wrap .content {
+    margin-right: 20px;
   }
 }
 .info .row .content .text p {
@@ -318,16 +317,9 @@ header .icons span {
 .info .row .content .paragraph {
   display: none;
 }
-.info .row .content button:hover + .paragraph {
+.info .row .content button:hover ~ .paragraph {
   display: block;
 }
-/* ========= Delete This ========= */
-/* .info .row .content button span {
-  display: none;
-}
-.info .row .content button + .paragraph {
-  display: block;
-} */
 /* End Info */
 /* Start Animation */
 @keyframes bouncing {
