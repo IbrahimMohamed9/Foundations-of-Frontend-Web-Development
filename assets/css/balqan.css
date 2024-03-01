@@ -1,3 +1,9 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
 /* 
 ====================================================================
 ====================================================================
@@ -201,8 +207,6 @@ header .title-words li a::before {
   background-color: var(--main-color);
   top: -15px;
   left: -100%;
-  -webkit-transition: var(--main-transition);
-  -o-transition: var(--main-transition);
   transition: var(--main-transition) linear;
 }
 header .title-words li:hover a::before {
