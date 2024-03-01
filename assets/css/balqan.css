@@ -13,11 +13,22 @@
 */
 :root {
   --main-color: #f7af01;
-  --secondary-color: #bb8501;
+  --secondary-color: #dba012;
+  --main-background-color: #ececec;
+  --secondary-background-color: white;
+  --font-color: black;
+  --scrollbar-color: #77777736;
+
   --main-transition: 0.3s;
   --main-padding: 100px;
-  --font-color: #777;
-  --fonor: #231901;
+}
+
+.dark-theme {
+  --main-color: #f7af01;
+  --secondary-color: #bb8501;
+  --main-background-color: #202528;
+  --secondary-background-color: black;
+  --font-color: white;
 }
 /* 
 ====================================================================
@@ -37,17 +48,19 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: white;
 }
 html {
   scroll-behavior: smooth;
 }
 body {
   font-family: "Prompt", "Marcellus", sans-serif;
-  background-color: #202528;
+  background-color: var(--main-background-color);
+  color: var(--font-color);
+  transition: background-color var(--main-transition),
+    color var(--main-transition);
 }
 body::-webkit-scrollbar {
-  background-color: var(--fonor);
+  background-color: var(--scrollbar-color);
   width: 15px;
 }
 body::-webkit-scrollbar-thumb {
@@ -108,7 +121,7 @@ a {
 .main-title {
   text-transform: capitalize;
   text-align: center;
-  border: 2px solid white;
+  border: 2px solid var(--font-color);
   font-weight: normal;
   width: fit-content;
   padding: 10px 20px;
@@ -116,8 +129,12 @@ a {
   position: relative;
   margin: 0 auto 50px;
   z-index: 1;
-
   transition: var(--main-transition);
+}
+.main-title:hover {
+  border-color: var(--main-color);
+  color: var(--secondary-background-color);
+  transition-delay: 0.5s;
 }
 .main-title::before,
 .main-title::after {
@@ -137,11 +154,6 @@ a {
 .main-title::after {
   right: 0;
   animation: right-move-reverse 0.5s linear forwards;
-}
-.main-title:hover {
-  border-color: black;
-  color: black;
-  transition-delay: 0.5s;
 }
 .main-title:hover::before {
   z-index: -1;
@@ -165,24 +177,24 @@ a {
 ====================================================================
 */
 header {
-  background-color: black;
-}
-header .container {
+  background-color: var(--secondary-background-color);
+  max-height: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 50px;
+  padding: 0 10px;
 }
-header .container .logo img {
+header .logo img {
   height: 35px;
+  /* padding: 7.5px 0; */
 }
 @media (min-width: 368px) and (max-width: 768px) {
-  header .container .logo img {
+  header .logo img {
     height: 30px;
   }
 }
 @media (max-width: 368px) {
-  header .container .logo img {
+  header .logo img {
     height: 25px;
   }
 }
@@ -194,6 +206,13 @@ header ul {
 header ul.title-words li {
   margin: 0 20px;
   position: relative;
+  overflow: hidden;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+}
+header .title-words li a {
+  color: var(--font-color);
 }
 header .title-words li:hover a {
   color: var(--main-color);
@@ -205,9 +224,9 @@ header .title-words li a::before {
   width: 120%;
   height: 2px;
   background-color: var(--main-color);
-  top: -15px;
-  left: -100%;
-  transition: var(--main-transition) linear;
+  top: 0;
+  left: -80%;
+  transition: left var(--main-transition) linear;
 }
 header .title-words li:hover a::before {
   z-index: 0;
@@ -246,22 +265,24 @@ header .icons .cart-shopping:hover {
 }
 header .icons .cart-shopping::after {
   content: attr(data-counter);
-  background-color: white;
-  color: black;
-  font-size: 8px;
+  background-color: var(--font-color);
+  color: var(--secondary-background-color);
+  font-size: 9px;
   position: absolute;
   border-radius: 50%;
-  height: 10px;
-  width: 10px;
+  border: 1px solid var(--font-color);
+  height: 14px;
+  width: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  top: -6px;
-  left: -6px;
+  top: -10px;
+  left: -10px;
 }
 header .icons .cart-shopping:hover::after {
-  color: white;
+  color: var(--font-color);
   background-color: var(--main-color);
+  border-color: var(--main-color);
 }
 @media (max-width: 768px) {
   header .icons .cart-shopping {
@@ -284,6 +305,40 @@ header .icons span {
 header .icons span:hover {
   color: var(--main-color);
 }
+.toggle {
+  background-color: #f7af01;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 0 50px 20px rgba(0, 0, 0, 0.1);
+  line-height: 1;
+}
+.input {
+  display: none;
+}
+.icon {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  transition: transform 500ms;
+}
+.icon--moon {
+  transition-delay: 200ms;
+  color: #475969;
+}
+.icon--sun {
+  transform: scale(0);
+  color: yellow;
+}
+#switch:checked + .icon--moon {
+  transform: rotate(360deg) scale(0);
+}
+#switch:checked ~ .icon--sun {
+  transition-delay: 200ms;
+  transform: scale(1) rotate(360deg);
+}
 /* 
 ====================================================================
 ====================================================================
@@ -297,6 +352,9 @@ header .icons span:hover {
 ====================================================================
 ====================================================================
 */
+.video {
+  mask: linear-gradient(0deg, transparent, white 10%);
+}
 .video video {
   min-width: 100%;
   max-width: 100%;
@@ -327,15 +385,25 @@ header .icons span:hover {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
 }
-.new-packages .package:hover {
+.new-packages .package {
   transition: var(--main-transition);
+  background-color: var(--secondary-background-color);
+
+  border: 15px solid var(--secondary-background-color);
+  border-left-width: 10px;
+  border-right-width: 10px;
+  border-radius: 10px;
+}
+.new-packages .package:hover {
   transform: translateY(-10px);
 }
 .new-packages .package img {
   width: 100%;
+  border-radius: 8px;
 }
 .new-packages .package .text {
   margin: 15px 5px;
+  text-align: center;
 }
 .new-packages .package .text h3 {
   font-weight: normal;
@@ -360,7 +428,7 @@ header .icons span:hover {
   transition: var(--main-transition);
 }
 .new-packages .package button:hover::before {
-  top: -25px;
+  top: -15px;
   opacity: 0;
 }
 .new-packages .package button::after {
@@ -370,8 +438,7 @@ header .icons span:hover {
   position: absolute;
   transform: translate(-50%, -50%);
   left: 50%;
-  top: 30px;
-  color: white;
+  top: 15px;
   opacity: 0;
   transition: var(--main-transition);
 }
@@ -395,7 +462,7 @@ header .icons span:hover {
 .info {
   display: grid;
   gap: 50px;
-  background-color: black;
+  background-color: var(--secondary-background-color);
   padding: 50px 0;
 }
 .info .row {

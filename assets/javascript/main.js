@@ -45,3 +45,17 @@ heartIcon.addEventListener("mouseleave", () => {
   heartIcon.classList.remove("fa-solid");
   heartIcon.classList.add("fa-regular");
 });
+
+const icon = document.getElementById("switch");
+if (icon) {
+  icon.addEventListener("click", function () {
+    const body = document.body;
+    if (body.classList.contains("dark-theme")) {
+      body.classList.remove("dark-theme");
+    } else {
+      body.classList.add("dark-theme");
+    }
+  });
+} else {
+  console.error("The element with ID 'switch' was not found.");
+}
