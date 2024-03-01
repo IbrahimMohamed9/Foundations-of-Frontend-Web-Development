@@ -56,8 +56,8 @@ body {
   font-family: "Prompt", "Marcellus", sans-serif;
   background-color: var(--main-background-color);
   color: var(--font-color);
-  transition: background-color var(--main-transition),
-    color var(--main-transition);
+  transition: background-color 0.5s,
+    color 0.5s;
 }
 body::-webkit-scrollbar {
   background-color: var(--scrollbar-color);
@@ -104,7 +104,7 @@ a {
 /* Extra Extra large devices */
 @media (min-width: 1200px) {
   .container {
-    width: 1170px; 
+    width: 1170px;
   }
 }
 /* 
@@ -276,7 +276,7 @@ header .title-words li:hover a::before {
     margin: 0 2px;
   }
 }
-header .icons{
+header .icons {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -303,7 +303,6 @@ header .icons .cart-shopping::after {
   font-size: 9px;
   position: absolute;
   border-radius: 50%;
-  /* border: 1px solid var(--font-color); */
   height: 14px;
   width: 14px;
   display: flex;
@@ -408,12 +407,12 @@ header .icons span:hover {
 ====================================================================
 ====================================================================
 */
-@media (max-width:305px) {
+@media (max-width: 305px) {
   .main-title {
     --position: -20px;
   }
 }
-@media (max-width:280px) {
+@media (max-width: 280px) {
   .main-title {
     --position: -15px;
   }
