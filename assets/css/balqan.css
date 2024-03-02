@@ -184,29 +184,155 @@ a {
 */
 header {
   background-color: var(--secondary-background-color);
+  transition: background-color 0.5s, color 0.3s;
 }
 header .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-header .logo img {
+header .logo {
   height: 35px;
+  width: 150px;
+  position: relative;
+  --height: 40px;
+  cursor: pointer;
+  caret-color: transparent;
+  --dot-animation-duration: 0.3s;
 }
-@media (min-width: 368px) and (max-width: 768px) {
-  header .logo img {
+@media (max-width: 768.8px) {
+  header .logo {
+    width: 115px;
     height: 30px;
+    --height: 30px;
   }
 }
 @media (max-width: 368px) {
-  header .logo img {
+  header .logo {
+    width: 105px;
     height: 25px;
+    --height: 25px;
   }
 }
 @media (max-width: 331px) {
-  header .logo img {
+  header .logo {
     height: 20px;
   }
+}
+header .logo .letter {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  height: var(--height);
+}
+header .logo .b {
+  left: 0;
+}
+header .logo .a-f {
+  left: 16%;
+}
+header .logo .l {
+  left: 32%;
+}
+header .logo .q {
+  left: 42%;
+  top: 50%;
+  transform-origin: 50% 50%;
+}
+header .logo .letter-image {
+  height: var(--height);
+}
+header .logo .letter-image img {
+  max-height: 100%;
+}
+header .logo:hover .letter-image {
+  animation: q-rotate 0.5s linear var(--dot-animation-duration) forwards;
+  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+}
+header .logo .dot {
+  --size: 6px;
+  background-color: #f9c163;
+  position: absolute;
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  left: 44%;
+  top: -15%;
+  transition: var(--main-transition);
+  animation: logo-left-dot-reverse var(--dot-animation-duration) linear forwards;
+}
+
+@media (max-width: 768.8px) {
+  header .logo .dot {
+    --size: 5px;
+    top: -9%;
+  }
+}
+@media (max-width: 368px) {
+  header .logo .dot {
+    --size: 4px;
+  }
+}
+@media (max-width: 335px) {
+  header .logo .dot {
+    top: -10%;
+  }
+}
+@media (max-width: 332px) {
+  header .logo .dot {
+    top: -20%;
+  }
+}
+header .logo .dot.right {
+  left: 50%;
+  animation: logo-right-dot-reverse var(--dot-animation-duration) linear
+    forwards;
+}
+header .logo:hover .dot {
+  animation: logo-dots var(--dot-animation-duration) linear forwards;
+}
+/* 
+====================================================================
+====================================================================
+===========================End Components===========================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+============================Start Header============================
+====================================================================
+====================================================================
+*/ /* 
+====================================================================
+====================================================================
+===========================End Components===========================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+============================Start Header============================
+====================================================================
+====================================================================
+*/ /* 
+====================================================================
+====================================================================
+===========================End Components===========================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+============================Start Header============================
+====================================================================
+====================================================================
+*/
+header .logo .a-s {
+  left: 58%;
+}
+header .logo .n {
+  left: 75%;
 }
 header ul {
   display: flex;
@@ -242,7 +368,7 @@ header .title-words li:hover a::before {
   z-index: 0;
   left: -10%;
 }
-@media (min-width: 380px) and (max-width: 768px) {
+@media (max-width: 768px) {
   header ul li {
     font-size: 15px;
   }
@@ -250,7 +376,7 @@ header .title-words li:hover a::before {
     margin: 0 10px;
   }
 }
-@media (max-width: 380px) {
+@media (max-width: 397px) {
   header ul li {
     font-size: 15px;
   }
@@ -258,7 +384,7 @@ header .title-words li:hover a::before {
     margin: 0 5px;
   }
 }
-@media (max-width: 331px) {
+@media (max-width: 357px) {
   header ul li {
     font-size: 14px;
   }
@@ -266,7 +392,7 @@ header .title-words li:hover a::before {
     margin: 0 3px;
   }
 }
-@media (max-width: 292px) {
+@media (max-width: 340px) {
   header ul li {
     font-size: 13px;
   }
@@ -274,15 +400,26 @@ header .title-words li:hover a::before {
     margin: 0 2px;
   }
 }
+@media (max-width: 320px) {
+  header ul.title-words li:nth-child(2) {
+    display: none;
+  }
+  header ul.title-words li {
+    margin: 0 3px;
+  }
+}
 header .icons {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+header .icons .heart {
+  cursor: pointer;
+}
 header .icons .heart:hover {
   color: var(--main-color);
 }
-@media (max-width: 450px) {
+@media (max-width: 460px) {
   header .icons .heart {
     display: none;
   }
@@ -290,6 +427,7 @@ header .icons .heart:hover {
 header .icons .cart-shopping {
   margin: 0 3px 0 15px;
   position: relative;
+  cursor: pointer;
 }
 header .icons .cart-shopping:hover {
   color: var(--main-color);
@@ -308,6 +446,7 @@ header .icons .cart-shopping::after {
   justify-content: center;
   top: -10px;
   left: -10px;
+  transition: background-color 0.3s, color 0.3s;
 }
 header .icons .cart-shopping:hover::after {
   color: var(--font-color);
@@ -319,18 +458,19 @@ header .icons .cart-shopping:hover::after {
     margin-left: 7px;
   }
 }
-@media (max-width: 416px) {
+@media (max-width: 435px) {
   header .icons .cart-shopping {
     display: none;
   }
 }
 header .icons span {
   font-size: 10px;
+  cursor: default;
 }
 header .icons span:hover {
   color: var(--main-color);
 }
-@media (max-width: 497px) {
+@media (max-width: 510px) {
   header .icons span {
     display: none;
   }
@@ -497,11 +637,6 @@ header .icons span:hover {
     flex-basis: 190px;
   }
 }
-/* @media (max-width: 470px) {
-  .new-packages .package .box {
-    flex-basis: 400px;
-  }
-} */
 @media (max-width: 470.8px) {
   .new-packages .package .box {
     flex-basis: 190px;
@@ -967,6 +1102,69 @@ header .icons span:hover {
     right: 0;
     width: 100%;
     height: 103%;
+  }
+}
+@keyframes logo-dots {
+  30% {
+    top: -15%;
+    left: 48%;
+    opacity: 1;
+  }
+  95% {
+    opacity: 0.9;
+  }
+  100% {
+    top: 8%;
+    left: 48%;
+    opacity: 0;
+  }
+}
+@keyframes logo-right-dot-reverse {
+  0% {
+    top: 8%;
+    left: 48%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.5;
+  }
+  50% {
+    top: -15%;
+    left: 48%;
+    opacity: 1;
+  }
+  100% {
+    top: -15%;
+    left: 50%;
+    opacity: 1;
+  }
+}
+@keyframes logo-left-dot-reverse {
+  0% {
+    top: 8%;
+    left: 48%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.5;
+  }
+  50% {
+    top: -15%;
+    left: 48%;
+    opacity: 1;
+  }
+  100% {
+    top: -15%;
+    left: 44%;
+    opacity: 1;
+  }
+}
+@keyframes q-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 /* 
