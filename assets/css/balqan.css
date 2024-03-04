@@ -1165,7 +1165,7 @@ header .icons span:hover {
 }
 .articles .container .article .card .read:hover::after {
   opacity: 1;
-  animation: move-ellipsis 0.5s linear infinite;
+  animation: move-ellipsis 0.5s linear 1;
 }
 .articles .container .article .card .read:hover {
   transform: translateX(-10px);

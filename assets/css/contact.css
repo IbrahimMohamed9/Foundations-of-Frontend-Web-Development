@@ -71,18 +71,7 @@
 */
 .form {
   background-color: var(--secondary-background-color);
-  padding: var(--main-padding) 0;
-}
-@media (max-width: 480px) {
-  .form .main-title {
-    --position: -20px;
-  }
-}
-@media (max-width: 440px) {
-  .form .main-title {
-    max-width: 90%;
-    --position: -15px;
-  }
+  padding: 75px 0 var(--main-padding);
 }
 .form .main-title {
   position: relative;
@@ -101,6 +90,11 @@
 .form .main-title:hover span {
   transition-delay: var(--main-transition);
   color: var(--main-color);
+}
+.form .prag {
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 /* 
 ====================================================================
