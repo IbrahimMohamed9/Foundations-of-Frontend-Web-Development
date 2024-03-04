@@ -907,6 +907,7 @@ header .icons span:hover {
   min-height: 15px;
   padding: 2px 25px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 .info .row .content .paragraph.big {
   --font-duration: 0.6s;
@@ -987,6 +988,7 @@ header .icons span:hover {
 .articles {
   background-color: var(--secondary-background-color);
   padding: var(--main-padding) 0;
+  mask: linear-gradient(0deg, transparent, white 5%);
 }
 .articles .container {
   display: flex;
@@ -1186,9 +1188,11 @@ footer .container {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 footer .row .image img {
-  max-width: 150px;
+  max-width: 220px;
 }
 footer .container .row:first-child {
   display: flex;
@@ -1197,7 +1201,7 @@ footer .container .row:first-child {
   flex-direction: column;
 }
 footer .row .icons {
-  margin: 5px 0 0;
+  margin: 15px 0;
   display: flex;
   gap: 10px;
   align-items: center;
@@ -1231,16 +1235,19 @@ footer .row.location {
 }
 footer ul {
   display: flex;
-  margin: 10px 0 0;
   gap: 10px;
 }
 footer ul li a {
   color: var(--font-color);
   font-size: 20px;
+  transition: color var(--main-transition);
+}
+footer ul li:hover a {
+  color: var(--main-color);
 }
 footer p {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 /* 
 ====================================================================

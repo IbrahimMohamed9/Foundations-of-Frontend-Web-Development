@@ -1,0 +1,111 @@
+/* 
+====================================================================
+====================================================================
+============================ Start Touch ===========================
+====================================================================
+====================================================================
+*/
+.touch .container {
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .touch .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+}
+.touch .container .col {
+  text-align: center;
+  max-width: 30%;
+  min-width: 30%;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .touch .container .col {
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
+.touch .container .col i {
+  --width-height: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--width-height);
+  height: var(--width-height);
+  background-color: var(--footer-icon);
+  color: var(--footer-font);
+  border-radius: 50%;
+  font-size: 35px;
+  transition: background-color var(--main-transition),
+    color var(--main-transition);
+}
+.touch .container .col i:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+.touch .container .col h3 {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 90px 0 15px;
+}
+/* 
+====================================================================
+====================================================================
+============================ End Touch =============================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+============================ Start Form ============================
+====================================================================
+====================================================================
+*/
+.form {
+  background-color: var(--secondary-background-color);
+  padding: var(--main-padding) 0;
+}
+@media (max-width: 480px) {
+  .form .main-title {
+    --position: -20px;
+  }
+}
+@media (max-width: 440px) {
+  .form .main-title {
+    max-width: 90%;
+    --position: -15px;
+  }
+}
+.form .main-title {
+  position: relative;
+}
+.form .main-title span {
+  max-width: 110%;
+  min-width: 110%;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: var(--font-color);
+  transition: var(--main-transition);
+}
+.form .main-title:hover span {
+  transition-delay: var(--main-transition);
+  color: var(--main-color);
+}
+/* 
+====================================================================
+====================================================================
+============================= End Form =============================
+====================================================================
+====================================================================
+*/
