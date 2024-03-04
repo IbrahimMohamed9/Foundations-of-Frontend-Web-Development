@@ -17,18 +17,23 @@
   --main-background-color: #ececec;
   --secondary-background-color: white;
   --font-color: black;
+  --secondary-font-color: #696969;
   --scrollbar-color: #77777736;
-
   --main-transition: 0.3s;
-  --main-padding: 100px;
+  --main-padding: 50px;
+  --footer-icon: #fff;
+  --footer-font: #000;
 }
 
 .dark-theme {
   --main-color: #f7af01;
   --secondary-color: #bb8501;
-  --main-background-color: #202528;
+  --main-background-color: #1a1a1a;
   --secondary-background-color: black;
+  --secondary-font-color: #e2e2e2;
   --font-color: white;
+  --footer-icon: #313131;
+  --footer-font: #b9b9b9;
 }
 /* 
 ====================================================================
@@ -53,7 +58,7 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  font-family: "Prompt", "Marcellus", sans-serif;
+  font-family: "Marcellus", "Prompt", sans-serif;
   background-color: var(--main-background-color);
   color: var(--font-color);
   transition: background-color 0.5s, color 0.5s;
@@ -122,7 +127,6 @@ a {
 .new-section {
   margin: 50px 0;
 }
-
 .main-title {
   text-transform: capitalize;
   text-align: center;
@@ -131,43 +135,47 @@ a {
   width: fit-content;
   padding: 10px 20px;
   font-size: 30px;
+  letter-spacing: -1px;
+  word-spacing: -2px;
   position: relative;
   margin: 0 auto 50px;
   z-index: 1;
   transition: var(--main-transition);
   --position: -30px;
+  --left-animation: ;
+  --right-animation: ;
+  --animation-duration: 0.5s;
 }
 .main-title:hover {
   border-color: var(--main-color);
   color: var(--secondary-background-color);
-  transition-delay: 0.5s;
+  transition-delay: calc(var(--animation-duration) + 0.01s);
 }
 .main-title::before,
 .main-title::after {
   content: "";
   position: absolute;
   background-color: var(--main-color);
-  border-radius: 0;
-  width: 100%;
-  height: 103%;
   top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  z-index: -1;
   transform: translateY(-50%);
 }
 .main-title::before {
-  animation: left-move-reverse 0.5s linear forwards;
-  left: 0;
+  animation: var(--left-animation);
+  left: var(--position);
 }
 .main-title::after {
-  right: 0;
-  animation: right-move-reverse 0.5s linear forwards;
+  right: var(--position);
+  animation: var(--right-animation);
 }
 .main-title:hover::before {
-  z-index: -1;
-  animation: left-move 0.5s linear forwards;
+  animation: left-move var(--animation-duration) linear forwards;
 }
 .main-title:hover::after {
-  z-index: -1;
-  animation: right-move 0.5s linear forwards;
+  animation: right-move var(--animation-duration) linear forwards;
 }
 /* 
 ====================================================================
@@ -195,10 +203,12 @@ header .logo {
   height: 35px;
   width: 150px;
   position: relative;
-  --height: 40px;
   cursor: pointer;
   caret-color: transparent;
+  --height: 40px;
   --dot-animation-duration: 0.3s;
+  --q-position: 42%;
+  --animation: move-letter 0.5s linear var(--dot-animation-duration) forwards;
 }
 @media (max-width: 768.8px) {
   header .logo {
@@ -225,6 +235,9 @@ header .logo .letter {
   transform: translateY(-60%);
   height: var(--height);
 }
+header .logo:hover .letter:not(.q) {
+  animation: var(--animation);
+}
 header .logo .b {
   left: 0;
 }
@@ -246,8 +259,7 @@ header .logo .letter-image img {
   max-height: 100%;
 }
 header .logo:hover .letter-image {
-  animation: q-rotate 0.5s linear var(--dot-animation-duration) forwards;
-  /* animation: name duration timing-function delay iteration-count direction fill-mode; */
+  animation: q-rotate 0.5s linear 0.6s forwards;
 }
 header .logo .dot {
   --size: 6px;
@@ -291,43 +303,6 @@ header .logo .dot.right {
 header .logo:hover .dot {
   animation: logo-dots var(--dot-animation-duration) linear forwards;
 }
-/* 
-====================================================================
-====================================================================
-===========================End Components===========================
-====================================================================
-====================================================================
-
-====================================================================
-====================================================================
-============================Start Header============================
-====================================================================
-====================================================================
-*/ /* 
-====================================================================
-====================================================================
-===========================End Components===========================
-====================================================================
-====================================================================
-
-====================================================================
-====================================================================
-============================Start Header============================
-====================================================================
-====================================================================
-*/ /* 
-====================================================================
-====================================================================
-===========================End Components===========================
-====================================================================
-====================================================================
-
-====================================================================
-====================================================================
-============================Start Header============================
-====================================================================
-====================================================================
-*/
 header .logo .a-s {
   left: 58%;
 }
@@ -787,21 +762,17 @@ header .icons span:hover {
   background-color: rgb(193, 163, 98);
   transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .new-packages .package .box .back .button:hover::before {
   scale: 3;
 }
-
 .new-packages .package .box .back .button:hover {
   color: #212121;
   scale: 1.1;
   box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
 }
-
 .new-packages .package .box .back .button:active {
   scale: 1;
 }
-
 .new-packages .package .box .image img {
   width: 100%;
   display: block;
@@ -874,7 +845,7 @@ header .icons span:hover {
   display: grid;
   gap: 50px;
   background-color: var(--secondary-background-color);
-  padding: 50px 0;
+  padding: var(--main-padding) 0;
 }
 .info .row {
   text-align: center;
@@ -922,8 +893,12 @@ header .icons span:hover {
     margin-right: 20px;
   }
 }
+.info .row .content .text h2 {
+  word-spacing: -3px;
+}
 .info .row .content .text p {
   margin: 20px 0;
+  line-height: 1.4;
 }
 .info .row .content button {
   border: 0;
@@ -939,6 +914,7 @@ header .icons span:hover {
 .info .row .content .paragraph {
   font-size: 0;
   transition: font-size var(--font-duration) linear;
+  line-height: 1.3;
 }
 .info .row .content .paragraph.show {
   font-size: initial;
@@ -969,10 +945,22 @@ header .icons span:hover {
   overflow: hidden;
   mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
 }
+@media (max-width: 768px) {
+  .tourist .scroller[data-animated="true"] {
+    overflow: hidden;
+    mask: linear-gradient(
+      90deg,
+      transparent,
+      white 10%,
+      white 90%,
+      transparent
+    );
+  }
+}
 .tourist .scroller[data-animated="true"] .scroller__inner {
   flex-wrap: nowrap;
   width: max-content;
-  animation: scroll 25s linear infinite;
+  animation: scroll 40s linear infinite;
 }
 .tourist .images .tag-list li {
   width: 250px;
@@ -992,7 +980,278 @@ header .icons span:hover {
 
 ====================================================================
 ====================================================================
-==========================Start Animation ==========================
+========================== Start Articles ==========================
+====================================================================
+====================================================================
+*/
+.articles {
+  background-color: var(--secondary-background-color);
+  padding: var(--main-padding) 0;
+}
+.articles .container {
+  display: flex;
+  gap: 4%;
+  overflow: hidden;
+}
+@media (max-width: 1000px) {
+  .articles .container {
+    flex-direction: column;
+  }
+}
+.articles .container .article {
+  max-width: 48%;
+  min-width: 48%;
+  height: 330px;
+  position: relative;
+}
+@media (max-width: 1000px) {
+  .articles .container .article {
+    max-width: 100%;
+    min-width: 100%;
+    height: 330px;
+    position: relative;
+  }
+}
+@media (max-width: 440px) {
+}
+.articles .container .article .image {
+  max-height: 315px;
+  min-height: 315px;
+  max-width: 60%;
+  background-color: var(--main-background-color);
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: 15px solid var(--main-background-color);
+  border-left-width: 10px;
+  border-right-width: 10px;
+  border-radius: 10px;
+}
+@media (max-width: 440px) {
+  .articles .container .article .image {
+    max-width: 70%;
+  }
+}
+.articles .container .article .image img {
+  width: 100%;
+  min-height: 290px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+.articles .container .article .card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(calc(-50% - 7.5px));
+  max-width: 50%;
+  text-align: center;
+  min-height: 80%;
+  background-color: var(--main-background-color);
+  border: 15px solid var(--main-background-color);
+  border-left-width: 10px;
+  border-right-width: 10px;
+  border-radius: 10px;
+}
+@media (max-width: 440px) {
+  .articles .container .article .card {
+    max-width: 60%;
+  }
+}
+@media (max-width: 300px) {
+  .articles .container .article .card {
+    max-width: 70%;
+  }
+}
+.articles .container .article .card h3 {
+  color: var(--main-color);
+  word-spacing: -2px;
+  line-height: 0.95;
+}
+@media (max-width: 370px) {
+  .articles .container .article .card h3 {
+    font-size: 15px;
+  }
+}
+.articles .container .article .card .icons {
+  margin: 15px 0 10px;
+}
+@media (max-width: 440px) {
+  .articles .container .article .card .icons {
+    margin: 10px 0 5px;
+  }
+}
+.articles .container .article .card .icons i {
+  margin: 0 5px;
+}
+.articles .container .article .card p {
+  color: var(--secondary-font-color);
+  line-height: 1.3;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+@media (max-width: 370px) {
+  .articles .container .article .card p {
+    font-size: 13px;
+  }
+}
+.articles .container .article .card .icons {
+  position: relative;
+}
+.articles .container .article .card .content .icons .font-share-icons {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--font-color);
+  border: 10px solid var(--font-color);
+  border-left-width: 8px;
+  border-right-width: 8px;
+  border-radius: 10px;
+  transition: var(--main-transition);
+}
+.articles .article .card .content .icons .font-share-icons::before {
+  content: "";
+  border: 10px solid var(--font-color);
+  border-color: var(--font-color) transparent transparent transparent;
+  position: absolute;
+  bottom: -27px;
+}
+.articles .article .card .content .icons .font-share-icons a {
+  color: var(--secondary-background-color);
+  font-size: 20px;
+}
+.articles .article .card .content .icons .font-share-icons a:hover {
+  color: var(--main-color);
+}
+.articles .container .article .card .icons .share {
+  padding: 5px;
+  cursor: pointer;
+}
+.articles .container .article .card .read {
+  width: fit-content;
+  margin: auto;
+  color: var(--font-color);
+  position: relative;
+  transition: var(--main-transition);
+}
+@media (max-width: 370px) {
+  .articles .container .article .card .read {
+    font-size: 14px;
+  }
+}
+@media (max-width: 325px) {
+  .articles .container .article .card .read {
+    font-size: 13px;
+  }
+}
+.articles .container .article .card .read::after {
+  content: "\f141";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  font-size: 12px;
+  position: absolute;
+  bottom: -2px;
+  right: -13px;
+  opacity: 0;
+  transition: opacity var(--main-transition);
+}
+.articles .container .article .card .read:hover::after {
+  opacity: 1;
+  animation: move-ellipsis 0.5s linear infinite;
+}
+.articles .container .article .card .read:hover {
+  transform: translateX(-10px);
+}
+
+/* 
+====================================================================
+====================================================================
+=========================== End Articles ===========================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+========================== Start Footer =========================
+====================================================================
+====================================================================
+*/
+footer .container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+footer .row .image img {
+  max-width: 150px;
+}
+footer .container .row:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+footer .row .icons {
+  margin: 5px 0 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+footer .row .icons .instagram {
+  --hover-color: #cc39a4;
+}
+footer .row .icons .snapchat {
+  --hover-color: yellow;
+}
+footer .row .icons .whatsapp {
+  --hover-color: #128c7e;
+}
+footer .row .icons a {
+  background-color: var(--footer-icon);
+  color: var(--footer-font);
+  border-radius: 15px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  transition: var(--main-transition);
+}
+footer .row .icons a:hover {
+  background-color: var(--hover-color);
+}
+footer .row.location {
+  max-width: 25%;
+}
+footer ul {
+  display: flex;
+  margin: 10px 0 0;
+  gap: 10px;
+}
+footer ul li a {
+  color: var(--font-color);
+  font-size: 20px;
+}
+footer p {
+  text-align: center;
+  margin-top: 20px;
+}
+/* 
+====================================================================
+====================================================================
+============================ End Footer ============================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+========================== Start Animation =========================
 ====================================================================
 ====================================================================
 */
@@ -1010,9 +1269,9 @@ header .icons span:hover {
     transform: translateY(-20px);
   }
 }
-@keyframes move-arrow {
+@keyframes move-ellipsis {
   100% {
-    transform: translateX(10px);
+    transform: translateX(4px);
   }
 }
 @keyframes flashing {
@@ -1043,23 +1302,33 @@ header .icons span:hover {
     left: 0;
     width: 12px;
     height: 12px;
+    border-radius: 50%;
+  }
+  50.5% {
+    border-radius: 50%;
   }
   100% {
     left: 0;
-    width: 100%;
+    width: 52%;
     height: 103%;
+    border-radius: 0;
   }
 }
 @keyframes left-move-reverse {
   0% {
     left: 0;
-    width: 100%;
+    width: 52%;
     height: 103%;
+    border-radius: 0;
   }
-  50% {
+  50.5% {
     left: 0;
     width: 12px;
     height: 12px;
+    border-radius: 0;
+  }
+  51% {
+    border-radius: 50%;
   }
   100% {
     left: var(--position);
@@ -1071,13 +1340,18 @@ header .icons span:hover {
 @keyframes right-move-reverse {
   0% {
     right: 0;
-    width: 100%;
+    width: 52%;
     height: 103%;
+    border-radius: 0;
   }
-  50% {
+  50.5% {
     right: 0;
     width: 12px;
     height: 12px;
+    border-radius: 0;
+  }
+  51% {
+    border-radius: 50%;
   }
   100% {
     right: var(--position);
@@ -1097,11 +1371,13 @@ header .icons span:hover {
     right: 0;
     width: 12px;
     height: 12px;
+    border-radius: 50%;
   }
   100% {
     right: 0;
-    width: 100%;
+    width: 52%;
     height: 103%;
+    border-radius: 0;
   }
 }
 @keyframes logo-dots {
@@ -1165,6 +1441,12 @@ header .icons span:hover {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+@keyframes move-letter {
+  100% {
+    left: var(--q-position);
+    opacity: 0;
   }
 }
 /* 
