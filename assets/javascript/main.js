@@ -19,20 +19,27 @@ mainTitles.forEach((mainTitle) => {
 const shareIcons = document.querySelectorAll(".fa-solid.fa-share");
 
 shareIcons.forEach((shareIcon, index) => {
-  shareIcon.addEventListener("click", () => {
+  shareIcon.addEventListener("mouseenter", () => {
     const parentDiv = shareIcon.parentElement;
     const shareList = parentDiv.querySelector(".font-share-icons");
-    if (shareList.style.display === "flex") {
-      shareList.style.display = "none";
-    } else {
-      shareList.style.display = "flex";
-    }
+    shareList.style.display = "grid";
 
     shareIcons.forEach((shareIcon1, index1) => {
       if (index1 !== index) {
         removeOpenShare(index1);
       }
     });
+  });
+});
+shareIcons.forEach((shareIcon, index) => {
+  shareIcon.addEventListener("click", () => {
+    const parentDiv = shareIcon.parentElement;
+    const shareList = parentDiv.querySelector(".font-share-icons");
+    if (shareList.style.display === "grid") {
+      shareList.style.display = "none";
+    } else {
+      shareList.style.display = "grid";
+    }
   });
 });
 
