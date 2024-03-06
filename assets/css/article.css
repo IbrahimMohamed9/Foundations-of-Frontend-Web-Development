@@ -202,12 +202,3 @@ article .article-container header + section .icons .font-share-icons a:hover {
 .more-articles .container .col:hover h3 a {
   text-decoration: underline;
 }
-/* .more-articles .container .col .footer .category {
-  position: relative;
-}
-.more-articles .container .col .footer .category::after {
-  content: "|";
-  position: absolute;
-  right: -12px;
-  top: -2px;
-} */
