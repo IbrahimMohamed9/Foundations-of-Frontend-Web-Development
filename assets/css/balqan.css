@@ -1233,22 +1233,6 @@ a {
 .articles {
   background-color: var(--secondary-background-color);
   padding: var(--main-padding) 0;
-  -webkit-mask: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(transparent),
-    color-stop(5%, white)
-  );
-  -webkit-mask: linear-gradient(0deg, transparent, white 5%);
-  mask: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(transparent),
-    color-stop(5%, white)
-  );
-  mask: linear-gradient(0deg, transparent, white 5%);
 }
 .articles .container {
   display: -webkit-box;
