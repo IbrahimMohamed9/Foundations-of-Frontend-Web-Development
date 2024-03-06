@@ -19,27 +19,20 @@ mainTitles.forEach((mainTitle) => {
 const shareIcons = document.querySelectorAll(".fa-solid.fa-share");
 
 shareIcons.forEach((shareIcon, index) => {
-  shareIcon.addEventListener("mouseenter", () => {
+  shareIcon.addEventListener("click", () => {
     const parentDiv = shareIcon.parentElement;
     const shareList = parentDiv.querySelector(".font-share-icons");
-    shareList.style.display = "grid";
+    if (shareList.style.display === "flex") {
+      shareList.style.display = "none";
+    } else {
+      shareList.style.display = "flex";
+    }
 
     shareIcons.forEach((shareIcon1, index1) => {
       if (index1 !== index) {
         removeOpenShare(index1);
       }
     });
-  });
-});
-shareIcons.forEach((shareIcon, index) => {
-  shareIcon.addEventListener("click", () => {
-    const parentDiv = shareIcon.parentElement;
-    const shareList = parentDiv.querySelector(".font-share-icons");
-    if (shareList.style.display === "grid") {
-      shareList.style.display = "none";
-    } else {
-      shareList.style.display = "grid";
-    }
   });
 });
 
@@ -124,57 +117,3 @@ if (icon) {
 } else {
   console.error("The element with ID 'switch' was not found.");
 }
-
-function validateCoupon(input) {
-  if (input.value.trim() === "") {
-    input.setCustomValidity("Invalid coupon");
-  } else {
-    input.setCustomValidity("");
-  }
-}
-
-var btn = document.querySelectorAll(".package-btn");
-
-// Add click event listener to each button
-btn.forEach(function (button, index) {
-  button.addEventListener("click", function () {
-    // Add .fix class to body
-    document.body.classList.add("fix");
-
-    // Find the corresponding master-container
-    var masterContainers = document.querySelectorAll(".master-container");
-    var masterContainer = masterContainers[index];
-
-    // Adjust the left position of the master-container to 50%
-    masterContainer.style.left = "50%";
-  });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // Add event listener to .head i elements
-  var headIcons = document.querySelectorAll(".master-container .head i");
-  headIcons.forEach(function (icon) {
-    icon.addEventListener("click", function () {
-      resetPositionAndClass();
-    });
-  });
-
-  // Add event listeners to all .checkout-btn elements
-  var checkoutBtns = document.querySelectorAll(".checkout .checkout-btn");
-  checkoutBtns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      resetPositionAndClass();
-    });
-  });
-
-  function resetPositionAndClass() {
-    // Remove .fix class from body
-    document.body.classList.remove("fix");
-
-    // Find all .master-container elements and reset their position
-    var masterContainers = document.querySelectorAll(".master-container");
-    masterContainers.forEach(function (container) {
-      container.style.left = "-200%";
-    });
-  }
-});
