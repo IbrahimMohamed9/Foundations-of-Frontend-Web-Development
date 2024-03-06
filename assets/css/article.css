@@ -1,0 +1,60 @@
+article .article-container {
+  margin-top: 30px;
+  --container-padding: 110px;
+  padding: 0 var(--container-padding);
+}
+article .article-container header .category span:first-child {
+  color: var(--secondary-font-color);
+  position: relative;
+}
+article .article-container header .category span:first-child::after {
+  content: "|";
+  position: absolute;
+  right: -12px;
+}
+article .article-container header .category span:last-child {
+  margin-left: 10px;
+  color: var(--secondary-font-color);
+}
+article .article-container header h1 {
+  color: var(--main-color);
+  margin: 5px 0 10px;
+}
+article .article-container header h1 + time {
+  display: block;
+  color: var(--secondary-font-color);
+}
+article .article-container header h1 + time + p {
+  margin: 10px 0;
+}
+
+article .article-container figure {
+  max-width: calc(100% + var(--container-padding) * 2);
+  min-width: calc(100% + var(--container-padding) * 2);
+  margin-left: calc(0px - var(--container-padding));
+  background-color: var(--secondary-background-color);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+article .article-container figure picture {
+  position: relative;
+}
+article .article-container figure picture img {
+  max-width: 100%;
+}
+article .article-container figure figcaption {
+  padding: 10px 15px;
+}
+/* 
+====================================================================
+====================================================================
+=========================== End Articles ===========================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+======================= Start More Articles ========================
+====================================================================
+====================================================================
+*/
