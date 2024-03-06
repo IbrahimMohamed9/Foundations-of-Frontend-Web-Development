@@ -146,61 +146,40 @@
             <h3>4 Days</h3>
             <p>Price: 0.00 KM</p>
           </div>
-          <button></button>
+          <button class="package-btn"></button>
         </div>
         <!--  -->
         <div class="master-container">
           <div class="card cart">
-            <label class="title">Your cart</label>
+            <div class="head">
+              <label class="title">Your cart</label>
+              <i class="fa-solid fa-xmark"></i>
+            </div>
             <div class="products">
               <div class="product">
-                <img src="assets/images/package/en/package-10.jpg" alt="" />
+                <img src="assets/images/package/en/package-4.jpg" alt="" />
                 <div>
                   <span>Package</span>
                   <p>4 Days</p>
-                  <label for="plan"></label>
-                  <select name="plan" id="plan">
-                    <option value="plan1">plan 1</option>
-                    <option value="plan2">plan 2</option>
-                    <option value="plan3">plan 3</option>
-                    <option value="plan4">plan 4</option>
-                  </select>
+                  <div class="select-container">
+                    <select name="plan" id="plan" class="select-box">
+                      <option value="plan1">plan 1</option>
+                      <option value="plan2">plan 2</option>
+                      <option value="plan3">plan 3</option>
+                      <option value="plan4">plan 4</option>
+                    </select>
+                    <div class="icon-container">
+                      <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                  </div>
                 </div>
                 <div class="quantity">
                   <button>
-                    <svg
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      height="14"
-                      width="14"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linejoin="round"
-                        stroke-linecap="round"
-                        stroke-width="2.5"
-                        stroke="#47484b"
-                        d="M20 12L4 12"
-                      ></path>
-                    </svg>
+                    <i class="fa-solid fa-minus"></i>
                   </button>
                   <label>2</label>
                   <button>
-                    <svg
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      height="14"
-                      width="14"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        stroke-linejoin="round"
-                        stroke-linecap="round"
-                        stroke-width="2.5"
-                        stroke="#47484b"
-                        d="M12 4V20M20 12H4"
-                      ></path>
-                    </svg>
+                    <i class="fa-solid fa-plus"></i>
                   </button>
                 </div>
                 <label class="price small">0.00 KM</label>
@@ -215,24 +194,23 @@
                 type="text"
                 placeholder="Apply your coupon"
                 class="input_field"
+                oninput="validateCoupon(this)"
               />
               <button>Apply</button>
             </form>
           </div>
 
           <div class="card checkout">
-            <label class="title">Checkout</label>
+            <label class="title">Total</label>
             <div class="details">
               <span>Your cart subtotal:</span>
               <span>47.99 KM</span>
               <span>Discount through applied coupons:</span>
               <span>3.99 KM</span>
-              <!-- <span>Shipping fees:</span>
-              <span>4.99$</span> -->
             </div>
             <div class="checkout--footer">
               <label class="price"><sup>KM</sup>57.99</label>
-              <button class="checkout-btn">Checkout</button>
+              <button class="checkout-btn">Add to cart</button>
             </div>
           </div>
         </div>
@@ -253,8 +231,75 @@
             <h3>7 Days</h3>
             <p>Price: 0.00 KM</p>
           </div>
-          <button></button>
+          <button class="package-btn"></button>
         </div>
+        <!--  -->
+        <div class="master-container">
+          <div class="card cart">
+            <div class="head">
+              <label class="title">Your cart</label>
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="products">
+              <div class="product">
+                <img src="assets/images/package/en/package-7.jpg" alt="" />
+                <div>
+                  <span>Package</span>
+                  <p>7 Days</p>
+                  <div class="select-container">
+                    <select name="plan" id="plan" class="select-box">
+                      <option value="plan1">plan 1</option>
+                      <option value="plan2">plan 2</option>
+                      <option value="plan3">plan 3</option>
+                      <option value="plan4">plan 4</option>
+                    </select>
+                    <div class="icon-container">
+                      <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="quantity">
+                  <button>
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <label>2</label>
+                  <button>
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <label class="price small">0.00 KM</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card coupons">
+            <label class="title">Apply coupons</label>
+            <form class="form">
+              <input
+                type="text"
+                placeholder="Apply your coupon"
+                class="input_field"
+                oninput="validateCoupon(this)"
+              />
+              <button>Apply</button>
+            </form>
+          </div>
+
+          <div class="card checkout">
+            <label class="title">Total</label>
+            <div class="details">
+              <span>Your cart subtotal:</span>
+              <span>47.99 KM</span>
+              <span>Discount through applied coupons:</span>
+              <span>3.99 KM</span>
+            </div>
+            <div class="checkout--footer">
+              <label class="price"><sup>KM</sup>57.99</label>
+              <button class="checkout-btn">Add to cart</button>
+            </div>
+          </div>
+        </div>
+        <!--  -->
         <div class="package">
           <div class="box">
             <div class="back face">
@@ -271,8 +316,75 @@
             <h3>10 Days</h3>
             <p>Price: 0.00 KM</p>
           </div>
-          <button></button>
+          <button class="package-btn"></button>
         </div>
+        <!--  -->
+        <div class="master-container">
+          <div class="card cart">
+            <div class="head">
+              <label class="title">Your cart</label>
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="products">
+              <div class="product">
+                <img src="assets/images/package/en/package-10.jpg" alt="" />
+                <div>
+                  <span>Package</span>
+                  <p>10 Days</p>
+                  <div class="select-container">
+                    <select name="plan" id="plan" class="select-box">
+                      <option value="plan1">plan 1</option>
+                      <option value="plan2">plan 2</option>
+                      <option value="plan3">plan 3</option>
+                      <option value="plan4">plan 4</option>
+                    </select>
+                    <div class="icon-container">
+                      <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="quantity">
+                  <button>
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <label>2</label>
+                  <button>
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <label class="price small">0.00 KM</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card coupons">
+            <label class="title">Apply coupons</label>
+            <form class="form">
+              <input
+                type="text"
+                placeholder="Apply your coupon"
+                class="input_field"
+                oninput="validateCoupon(this)"
+              />
+              <button>Apply</button>
+            </form>
+          </div>
+
+          <div class="card checkout">
+            <label class="title">Total</label>
+            <div class="details">
+              <span>Your cart subtotal:</span>
+              <span>47.99 KM</span>
+              <span>Discount through applied coupons:</span>
+              <span>3.99 KM</span>
+            </div>
+            <div class="checkout--footer">
+              <label class="price"><sup>KM</sup>57.99</label>
+              <button class="checkout-btn">Add to cart</button>
+            </div>
+          </div>
+        </div>
+        <!--  -->
         <div class="package">
           <div class="box">
             <div class="back face">
@@ -289,8 +401,75 @@
             <h3>14 Days</h3>
             <p>Price: 0.00 KM</p>
           </div>
-          <button></button>
+          <button class="package-btn"></button>
         </div>
+        <!--  -->
+        <div class="master-container">
+          <div class="card cart">
+            <div class="head">
+              <label class="title">Your cart</label>
+              <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="products">
+              <div class="product">
+                <img src="assets/images/package/en/package-14.jpg" alt="" />
+                <div>
+                  <span>Package</span>
+                  <p>14 Days</p>
+                  <div class="select-container">
+                    <select name="plan" id="plan" class="select-box">
+                      <option value="plan1">plan 1</option>
+                      <option value="plan2">plan 2</option>
+                      <option value="plan3">plan 3</option>
+                      <option value="plan4">plan 4</option>
+                    </select>
+                    <div class="icon-container">
+                      <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="quantity">
+                  <button>
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <label>2</label>
+                  <button>
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+                <label class="price small">0.00 KM</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="card coupons">
+            <label class="title">Apply coupons</label>
+            <form class="form">
+              <input
+                type="text"
+                placeholder="Apply your coupon"
+                class="input_field"
+                oninput="validateCoupon(this)"
+              />
+              <button>Apply</button>
+            </form>
+          </div>
+
+          <div class="card checkout">
+            <label class="title">Total</label>
+            <div class="details">
+              <span>Your cart subtotal:</span>
+              <span>47.99 KM</span>
+              <span>Discount through applied coupons:</span>
+              <span>3.99 KM</span>
+            </div>
+            <div class="checkout--footer">
+              <label class="price"><sup>KM</sup>57.99</label>
+              <button class="checkout-btn">Add to cart</button>
+            </div>
+          </div>
+        </div>
+        <!--  -->
       </div>
     </div>
     <!-- End New packages -->
