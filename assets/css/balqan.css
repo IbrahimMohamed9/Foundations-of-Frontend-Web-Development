@@ -240,9 +240,10 @@ a {
   cursor: pointer;
   caret-color: transparent;
   --height: 40px;
-  --dot-animation-duration: 0.3s;
+  --dot-animation-duration: 0.5s;
+  --dot-animation-duration-reverse: 0.7s;
   --q-position: 42%;
-  --animation: move-letter 0.5s linear var(--dot-animation-duration) forwards;
+  --animation: move-letter 0.5s linear 0.4s forwards;
 }
 @media (max-width: 768.8px) {
   .main-header .logoo {
@@ -272,7 +273,7 @@ a {
   height: var(--height);
 }
 .main-header .logoo .letter:not(.letter-div) {
-  animation: move-letter-reverse 0.9s linear forwards;
+  animation: move-letter-reverse 1s linear forwards;
 }
 .main-header .logoo:hover .letter:not(.letter-div) {
   -webkit-animation: var(--animation);
@@ -301,7 +302,7 @@ a {
 }
 .main-header .logoo .letter-q-div {
   height: var(--height);
-  animation: q-rotate-reverse 0.3s linear forwards;
+  animation: q-rotate-reverse 0.5s linear forwards;
   z-index: 10;
 }
 .main-header .logoo .letter-q-div img {
@@ -324,9 +325,10 @@ a {
   -webkit-transition: var(--main-transition);
   -o-transition: var(--main-transition);
   transition: var(--main-transition);
-  -webkit-animation: logo-left-dot-reverse var(--dot-animation-duration) linear
+  -webkit-animation: logo-left-dot-reverse var(--dot-animation-duration-reverse)
+    linear forwards;
+  animation: logo-left-dot-reverse var(--dot-animation-duration-reverse) linear
     forwards;
-  animation: logo-left-dot-reverse var(--dot-animation-duration) linear forwards;
 }
 
 @media (max-width: 768.8px) {
@@ -352,9 +354,9 @@ a {
 }
 .main-header .logoo .dot.right {
   left: 50%;
-  -webkit-animation: logo-right-dot-reverse var(--dot-animation-duration) linear
-    forwards;
-  animation: logo-right-dot-reverse var(--dot-animation-duration) linear
+  -webkit-animation: logo-right-dot-reverse
+    var(--dot-animation-duration-reverse) linear forwards;
+  animation: logo-right-dot-reverse var(--dot-animation-duration-reverse) linear
     forwards;
 }
 .main-header .logoo:hover .dot {
@@ -712,9 +714,9 @@ a {
   flex-basis: 280px;
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-transition: 1s;
-  -o-transition: 1s;
-  transition: 1s;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
   -webkit-transform-origin: center center;
   -ms-transform-origin: center center;
   transform-origin: center center;
@@ -825,12 +827,6 @@ a {
   .new-packages .package .box {
     -ms-flex-preferred-size: 232px;
     flex-basis: 232px;
-  }
-}
-@media (max-width: px) {
-  .new-packages .package .box {
-    -ms-flex-preferred-size: px;
-    flex-basis: px;
   }
 }
 .new-packages .package:hover .box {
@@ -1153,7 +1149,7 @@ a {
   color: var(--secondary-product-color);
   margin: 0 0 0.2rem;
 }
-.cart .products .product .select-container {
+.cart .select-container {
   position: relative;
   max-width: 80px;
   height: var(--height);
@@ -1161,16 +1157,16 @@ a {
   overflow: hidden;
 }
 @media (max-width: 360px) {
-  .cart .products .product .select-container {
+  .cart .select-container {
     min-width: 65px;
   }
 }
 @media (max-width: 360px) {
-  .cart .products .product .select-container {
+  .cart .select-container {
     min-width: 55px;
   }
 }
-.cart .products .product .select-container select {
+.cart .select-container select {
   border: none;
   appearance: none;
   background: linear-gradient(
@@ -1186,15 +1182,15 @@ a {
   font-size: var(--font-size);
   font-weight: var(--font-weight);
 }
-.cart .products .product .select-container select option {
+.cart .select-container select option {
   background-color: var(--main-color);
 }
 @media (max-width: 360px) {
-  .cart .products .product .select-container {
+  .cart .select-container {
     min-width: 55px;
   }
 }
-.cart .products .product .select-container i {
+.cart .select-container i {
   position: absolute;
   right: 1px;
   max-height: 100%;
@@ -1204,12 +1200,12 @@ a {
   pointer-events: none;
 }
 @media (max-width: 360px) {
-  .cart .products .product .select-container i {
+  .cart .select-container i {
     font-size: 13px;
   }
 }
 @media (max-width: 360px) {
-  .cart .products .product .select-container i {
+  .cart .select-container i {
     font-size: 10px;
   }
 }
@@ -1218,14 +1214,9 @@ a {
   display: grid;
   grid-template-columns: 30px 20px 30px;
   margin: auto;
-  background: linear-gradient(
-    90deg,
-    var(--secondary-color) 33%,
-    var(--main-color) 33% 66%,
-    var(--secondary-color) 66%
-  );
   border-radius: 7px;
   color: black;
+  overflow: hidden;
 }
 @media (max-width: 315px) {
   .cart .quantity {
@@ -1241,6 +1232,7 @@ a {
   font-size: var(--font-size);
   font-weight: var(--font-weight);
   color: black;
+  background-color: var(--main-color);
 }
 .cart .quantity button {
   height: 30px;
@@ -1251,6 +1243,7 @@ a {
   outline: none;
   background-color: transparent;
   padding-bottom: 2px;
+  background-color: var(--secondary-color);
 }
 @media (max-width: 315px) {
   .cart .quantity button {
@@ -2257,33 +2250,19 @@ footer p {
     opacity: 0;
   }
 }
-@-webkit-keyframes logo-right-dot-reverse {
-  0% {
-    top: 8%;
-    left: 48%;
-    opacity: 0;
-  }
-  5% {
-    opacity: 0.5;
-  }
-  50% {
-    top: -15%;
-    left: 48%;
-    opacity: 1;
-  }
-  100% {
-    top: -15%;
-    left: 50%;
-    opacity: 1;
-  }
-}
+
 @keyframes logo-right-dot-reverse {
   0% {
     top: 8%;
     left: 48%;
     opacity: 0;
   }
-  5% {
+  33% {
+    top: 8%;
+    left: 48%;
+    opacity: 0;
+  }
+  37% {
     opacity: 0.5;
   }
   50% {
@@ -2294,26 +2273,6 @@ footer p {
   100% {
     top: -15%;
     left: 50%;
-    opacity: 1;
-  }
-}
-@-webkit-keyframes logo-left-dot-reverse {
-  0% {
-    top: 8%;
-    left: 48%;
-    opacity: 0;
-  }
-  5% {
-    opacity: 0.5;
-  }
-  50% {
-    top: -15%;
-    left: 48%;
-    opacity: 1;
-  }
-  100% {
-    top: -15%;
-    left: 44%;
     opacity: 1;
   }
 }
@@ -2323,7 +2282,12 @@ footer p {
     left: 48%;
     opacity: 0;
   }
-  5% {
+  33% {
+    top: 8%;
+    left: 48%;
+    opacity: 0;
+  }
+  37% {
     opacity: 0.5;
   }
   50% {
