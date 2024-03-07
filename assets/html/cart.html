@@ -118,10 +118,59 @@
       </div>
     </header>
     <!-- End Header -->
+    <div class="container">
+      <div class="right-corner">
+        <a href="../../index.html">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <a href="#">Your Cart</a>
+      </div>
+    </div>
     <!-- Start Cart -->
-    <div class="new-section cart">
-      <h1>Your Cart (2 items)</h1>
-      <div class="container"></div>
+    <div class="cart">
+      <div class="container">
+        <h1>Your Shopping Cart</h1>
+        <div class="products">
+          <div class="head row">
+            <p>Products</p>
+            <p>Price</p>
+            <p>Quantity</p>
+            <p>Total</p>
+          </div>
+          <div class="row">
+            <div class="image">
+              <img src="../images/package/en/package-4.jpg" alt="" />
+            </div>
+            <div class="name-plan">
+              <h2>5 Days</h2>
+              <div class="select-container">
+                <select name="plans" id="plans">
+                  <option value="plan1">Plan 1</option>
+                  <option value="plan2">Plan 2</option>
+                  <option value="plan3">Plan 3</option>
+                  <option value="plan4">Plan 4</option>
+                </select>
+                <i class="fa-solid fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="price">
+              <p><sup>$</sup>47.98 <sup>.00</sup></p>
+            </div>
+            <div class="quantity">
+              <button>
+                <i class="fa-solid fa-minus"></i>
+              </button>
+              <label>2</label>
+              <button>
+                <i class="fa-solid fa-plus"></i>
+              </button>
+            </div>
+            <div class="total">
+              <p><sup>$</sup>47.98 <sup>.00</sup></p>
+              <i class="fa-solid fa-trash"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- End Cart -->
     <!-- Start Footer -->
@@ -171,3 +220,112 @@
     <script src="../javascript/main.js"></script>
   </body>
 </html>
+
+<!-- <div class="master-container">
+  <div class="card cart">
+    <div class="top-title">
+      <label class="title">Cart Items</label>
+      <i class="fa-solid fa-xmark x"></i>
+    </div>
+    <div class="products">
+      <div class="product">
+        <img src="assets/images/package/en/package-7.jpg" alt="" />
+        <div>
+          <span>Package</span>
+          <p>7 Days</p>
+          <div class="select-container">
+            <select name="plans" id="plans">
+              <option value="plan1">Plan 1</option>
+              <option value="plan2">Plan 2</option>
+              <option value="plan3">Plan 3</option>
+              <option value="plan4">Plan 4</option>
+            </select>
+            <i class="fa-solid fa-chevron-down"></i>
+          </div>
+        </div>
+        <div class="quantity">
+          <button>
+            <svg
+              fill="none"
+              viewBox="0 0 24 24"
+              height="14"
+              width="14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="2.5"
+                stroke="black"
+                d="M20 12L4 12"
+              ></path>
+            </svg>
+          </button>
+          <label>2</label>
+          <button>
+            <svg
+              fill="none"
+              viewBox="0 0 24 24"
+              height="14"
+              width="14"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linejoin="round"
+                stroke-linecap="round"
+                stroke-width="2.5"
+                stroke="black"
+                d="M12 4V20M20 12H4"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <label class="price small">$23.99</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="card coupons">
+    <label class="title top-title">Apply coupons</label>
+    <!- 
+
+
+
+      
+      Edit here importan 
+
+
+
+      
+    ->
+    <div class="form">
+      <input type="text" placeholder="Apply your coupons" class="input_field" />
+      <button>Apply</button>
+    </div>
+    <!-
+
+
+
+
+      Edit here importan 
+
+
+
+
+    ->
+  </div>
+
+  <div class="card checkout">
+    <label class="title top-title">Total</label>
+    <div class="details">
+      <span>Your subtotal:</span>
+      <span>47.98$</span>
+      <span>Discount through applied coupons:</span>
+      <span>3.99$</span>
+    </div>
+    <div class="checkout--footer">
+      <label class="price"><sup>$</sup>47.98</label>
+      <button class="checkout-btn">Add to cart</button>
+    </div>
+  </div>
+</div> -->

@@ -1229,7 +1229,7 @@ a {
 }
 @media (max-width: 315px) {
   .cart .quantity {
-    grid-template-columns: 20px 10px 20px;
+    grid-template-columns: 15px 20px 15px;
   }
 }
 .cart .quantity label {
@@ -1251,6 +1251,11 @@ a {
   outline: none;
   background-color: transparent;
   padding-bottom: 2px;
+}
+@media (max-width: 315px) {
+  .cart .quantity button {
+    font-size: 12px;
+  }
 }
 .card .small {
   font-size: 15px;

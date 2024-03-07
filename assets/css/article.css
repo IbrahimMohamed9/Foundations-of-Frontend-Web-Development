@@ -124,7 +124,7 @@ article .article-container header + section .icons .font-share-icons {
   max-width: 150px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (30px) [5];
+  /* -ms-grid-columns: (30px) [5]; */
   grid-template-columns: repeat(5, 30px);
   padding-left: 0;
   -webkit-box-pack: center;
