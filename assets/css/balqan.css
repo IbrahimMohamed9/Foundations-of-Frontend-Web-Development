@@ -271,33 +271,44 @@ a {
   transform: translateY(-60%);
   height: var(--height);
 }
-.main-header .logoo:hover .letter:not(.q) {
+.main-header .logoo .letter:not(.letter-div) {
+  animation: move-letter-reverse 0.9s linear forwards;
+}
+.main-header .logoo:hover .letter:not(.letter-div) {
   -webkit-animation: var(--animation);
   animation: var(--animation);
 }
 .main-header .logoo .b {
-  left: 0;
+  --left: 0;
+  left: var(--left);
 }
 .main-header .logoo .a-f {
-  left: 16%;
+  --left: 16%;
+  left: var(--left);
 }
 .main-header .logoo .l {
-  left: 32%;
+  --left: 32%;
+  left: var(--left);
 }
-.main-header .logoo .q {
-  left: 42%;
+.main-header .logoo .letter-div {
+  --left: 42%;
+  left: var(--left);
   top: 50%;
   -webkit-transform-origin: 50% 50%;
   -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
+  z-index: 10;
 }
-.main-header .logoo .letter-image {
+.main-header .logoo .letter-q-div {
   height: var(--height);
+  animation: q-rotate-reverse 0.3s linear forwards;
+  z-index: 10;
 }
-.main-header .logoo .letter-image img {
+.main-header .logoo .letter-q-div img {
   max-height: 100%;
+  z-index: 10;
 }
-.main-header .logoo:hover .letter-image {
+.main-header .logoo:hover .letter-q-div {
   -webkit-animation: q-rotate 0.5s linear 0.6s forwards;
   animation: q-rotate 0.5s linear 0.6s forwards;
 }
@@ -351,10 +362,12 @@ a {
   animation: logo-dots var(--dot-animation-duration) linear forwards;
 }
 .main-header .logoo .a-s {
-  left: 58%;
+  --left: 58%;
+  left: var(--left);
 }
 .main-header .logoo .n {
-  left: 75%;
+  --left: 75%;
+  left: var(--left);
 }
 .main-header ul {
   display: -webkit-box;
@@ -381,8 +394,6 @@ a {
   margin: 0 20px;
   position: relative;
   overflow: hidden;
-  min-height: 50px;
-  max-height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -392,6 +403,11 @@ a {
 }
 .main-header .tile-wrds li a {
   color: var(--font-color);
+  min-height: 50px;
+  max-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .main-header .tile-wrds li:hover a {
   color: var(--main-color);
@@ -2336,6 +2352,16 @@ footer p {
     transform: rotate(360deg);
   }
 }
+@keyframes q-rotate-reverse {
+  0% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+}
 @-webkit-keyframes move-letter {
   100% {
     left: var(--q-position);
@@ -2346,6 +2372,20 @@ footer p {
   100% {
     left: var(--q-position);
     opacity: 0;
+  }
+}
+@keyframes move-letter-reverse {
+  0% {
+    left: var(--q-position);
+    opacity: 0;
+  }
+  33% {
+    left: var(--q-position);
+    opacity: 0;
+  }
+  100% {
+    left: var(--left);
+    opacity: 1;
   }
 }
 /* 
