@@ -26,6 +26,7 @@
   --box-shadow: rgba(0, 0, 0, 0.2);
   --product-color: #47484b;
   --secondary-product-color: #7a7c81;
+  --cart-color: #0c0c0d1a;
 }
 .dark-theme {
   --main-color: #f7af01;
@@ -39,6 +40,7 @@
   --box-shadow: rgba(255, 255, 255, 0.4);
   --product-color: #e7e7e7;
   --secondary-product-color: #dbdbdb;
+  --cart-color: #0c0c0d85;
 }
 /* 
 ====================================================================
@@ -1104,7 +1106,7 @@ a {
   font-size: 11px;
 }
 /* cart */
-.cart {
+.master-container .cart {
   border-radius: 19px 19px 7px 7px;
 }
 .cart .products {
@@ -1119,6 +1121,12 @@ a {
   --height: 30px;
   --font-weight: 700;
   --font-size: 15px;
+  background-color: var(--secondary-background-color);
+  padding: 5px;
+  border-radius: 8px;
+}
+.cart .products .product:not(:last-child) {
+  margin-bottom: 10px;
 }
 @media (max-width: 360px) {
   .cart .products .product {
@@ -1223,15 +1231,15 @@ a {
     grid-template-columns: 15px 20px 15px;
   }
 }
-.cart .quantity label {
+.cart .quantity span {
   height: 30px;
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   padding-bottom: 2px;
   font-size: var(--font-size);
   font-weight: var(--font-weight);
-  color: black;
+  color: black !important;
   background-color: var(--main-color);
 }
 .cart .quantity button {
