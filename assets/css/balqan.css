@@ -205,6 +205,16 @@ a {
   -webkit-animation: right-move var(--animation-duration) linear forwards;
   animation: right-move var(--animation-duration) linear forwards;
 }
+@media (max-width: 305px) {
+  .main-title {
+    --position: -20px;
+  }
+}
+@media (max-width: 280px) {
+  .main-title {
+    --position: -15px;
+  }
+}
 /* 
 ====================================================================
 ====================================================================
@@ -659,16 +669,6 @@ a {
 ====================================================================
 ====================================================================
 */
-@media (max-width: 305px) {
-  .main-title {
-    --position: -20px;
-  }
-}
-@media (max-width: 280px) {
-  .main-title {
-    --position: -15px;
-  }
-}
 .new-packages .container {
   display: -ms-grid;
   display: grid;
@@ -1040,7 +1040,6 @@ a {
 .modal.active {
   opacity: 1;
   z-index: 500;
-  /* pointer-events: auto; allows clicks to interact with the modal */
 }
 .master-container {
   display: grid;
@@ -1299,7 +1298,6 @@ a {
   background-color: var(--secondary-background-color);
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
   color: var(--font-color);
-  /* border: 2px solid #242424; */
 }
 .input_field:focus {
   background-color: transparent;

@@ -42,7 +42,7 @@ header + .cart {
   color: var(--secondary-product-color);
   font-size: 11px;
 }
-.cart .containerr .right-corner a {
+.containerr .right-corner a {
   color: var(--secondary-product-color);
   font-size: 13px;
   text-transform: uppercase;
