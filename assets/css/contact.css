@@ -221,7 +221,9 @@
   pointer-events: none;
   min-width: 33px;
 }
-.form-control #email + label {
+.form-control #email + label,
+.form-control #emailcreate + label,
+.form-control #emailsignin + label{
   min-width: 47px;
 }
 .form-control label span {
