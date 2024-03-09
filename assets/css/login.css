@@ -182,8 +182,7 @@
   transform: translateX(-100%);
 }
 .overlay {
-  background: var(--main-color);
-  background: linear-gradient(to right, var(--main-color), var(--main-color));
+  background-color: var(--secondary-color);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

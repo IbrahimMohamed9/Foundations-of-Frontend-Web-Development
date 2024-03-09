@@ -110,18 +110,12 @@
   position: absolute;
   top: -40px;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   font-size: 24px;
   color: var(--font-color);
-  -webkit-transition: var(--main-transition);
-  -o-transition: var(--main-transition);
   transition: var(--main-transition);
 }
 .form-section .main-title:hover span {
-  -webkit-transition-delay: var(--main-transition);
-  -o-transition-delay: var(--main-transition);
   transition-delay: var(--main-transition);
   color: var(--main-color);
 }
@@ -132,7 +126,6 @@
 }
 .form-section .form {
   max-width: 70%;
-  -webkit-box-shadow: 0 0 15px 2px var(--box-shadow);
   box-shadow: 0 0 15px 2px var(--box-shadow);
   border-radius: 1rem;
   margin: 40px auto;
@@ -150,30 +143,19 @@
 .form-section form .inputs {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 50% 45px 50%;
   grid-template-columns: 50% 50%;
   row-gap: 20px;
-  -webkit-column-gap: 45px;
-  -moz-column-gap: 45px;
   column-gap: 45px;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
   padding: 20px;
 }
 @media (max-width: 992px) {
   .form-section form .inputs {
-    -webkit-column-gap: 20px;
-    -moz-column-gap: 20px;
     column-gap: 20px;
   }
 }
 .form-section form .inputs .full {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
   grid-column: 1 / span 2;
 }
 .form-control {
@@ -189,8 +171,6 @@
   padding: 0.5rem 1rem;
   font-size: 1rem;
   color: var(--font-color);
-  -webkit-transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  -o-transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 100%;
 }
@@ -201,8 +181,6 @@
 }
 @media (max-width: 555px) {
   .form-section form .inputs .form-control {
-    -ms-grid-column: 1;
-    -ms-grid-column-span: 2;
     grid-column: 1 / span 2;
   }
 }
@@ -214,8 +192,6 @@
 .form-control label {
   position: absolute;
   top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   left: 25px;
   pointer-events: none;
@@ -223,7 +199,7 @@
 }
 .form-control #email + label,
 .form-control #emailcreate + label,
-.form-control #emailsignin + label{
+.form-control #emailsignin + label {
   min-width: 47px;
 }
 .form-control label span {
@@ -232,9 +208,34 @@
   font-size: 18px;
   border-left: 1px solid var(--main-background-color);
   color: var(--font-color);
-  -webkit-transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  -o-transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.form-control label span:first-child {
+  transition-delay: 0ms;
+}
+.form-control label span:nth-child(2) {
+  transition-delay: 50ms;
+}
+.form-control label span:nth-child(3) {
+  transition-delay: 150ms;
+}
+.form-control label span:nth-child(4) {
+  transition-delay: 200ms;
+}
+.form-control label span:nth-child(5) {
+  transition-delay: 250ms;
+}
+.form-control label span:nth-child(6) {
+  transition-delay: 300ms;
+}
+.form-control label span:nth-child(7) {
+  transition-delay: 350ms;
+}
+.form-control label span:nth-child(8) {
+  transition-delay: 400ms;
+}
+.form-control label span:nth-child(9) {
+  transition-delay: 450ms;
 }
 .form-control label span:not(:first-of-type) {
   margin-left: -6px;
@@ -242,8 +243,6 @@
 .form-control input:focus + label span,
 .form-control input:valid + label span {
   color: var(--main-color);
-  -webkit-transform: translateY(-22.5px);
-  -ms-transform: translateY(-22.5px);
   transform: translateY(-22.5px);
 }
 textarea {
@@ -256,8 +255,6 @@ textarea {
   background-color: transparent;
   font-size: 1rem;
   color: var(--font-color);
-  -webkit-transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  -o-transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
   transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 100%;
 }
@@ -269,14 +266,10 @@ textarea {
 .form-control textarea:focus + label span,
 .form-control textarea:valid + label span {
   color: var(--main-color);
-  -webkit-transform: translateY(-22.5px);
-  -ms-transform: translateY(-22.5px);
   transform: translateY(-22.5px);
 }
 .form-control textarea + label {
   top: 10px;
-  -webkit-transform: translateY(0);
-  -ms-transform: translateY(0);
   transform: translateY(0);
 }
 form .submit {
