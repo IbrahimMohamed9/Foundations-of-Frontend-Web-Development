@@ -219,7 +219,10 @@
   transform: translateY(-50%);
   left: 25px;
   pointer-events: none;
-  min-width: 46px;
+  min-width: 33px;
+}
+.form-control #email + label {
+  min-width: 47px;
 }
 .form-control label span {
   background-color: var(--main-background-color);

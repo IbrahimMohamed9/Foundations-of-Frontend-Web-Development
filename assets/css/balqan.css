@@ -22,11 +22,11 @@
   --main-transition: 0.3s;
   --main-padding: 50px;
   --footer-icon: #fff;
-  --footer-font: #000;
+  --footer-font: #333;
   --box-shadow: rgba(0, 0, 0, 0.2);
   --product-color: #47484b;
   --secondary-product-color: #7a7c81;
-  --cart-color: #0c0c0d1a;
+  --third-background-color: #0c0c0d1a;
 }
 .dark-theme {
   --main-color: #f7af01;
@@ -40,7 +40,7 @@
   --box-shadow: rgba(255, 255, 255, 0.4);
   --product-color: #e7e7e7;
   --secondary-product-color: #dbdbdb;
-  --cart-color: #0c0c0d85;
+  --third-background-color: #0c0c0d85;
 }
 /* 
 ====================================================================
@@ -554,6 +554,9 @@ a {
   }
 }
 .main-header .icons a + span {
+  /*  */
+  display: none;
+  /*  */
   font-size: 10px;
   cursor: default;
 }

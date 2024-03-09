@@ -10,7 +10,8 @@
     />
     <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/balqan.css" />
-    <link rel="stylesheet" href="../css/cart.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+    <link rel="stylesheet" href="../css/contact.css" />
     <!-- Font Awesome Library -->
     <link rel="stylesheet" href="../css/all.min.css" />
     <!-- Google Font -->
@@ -44,7 +45,7 @@
     />
     <!-- <link rel="manifest" href="../favicon_io/site.webmanifest" /> -->
 
-    <title>Balqan: shopping cart</title>
+    <title>Balqan: Login</title>
   </head>
   <body class="dark-theme">
     <!-- Start Header -->
@@ -75,7 +76,7 @@
             <!-- <i class="fa-regular fa-heart heart"></i> -->
             <i class="fa-regular fa-bell heart"></i>
           </a>
-          <a href="#">
+          <a href="../html/cart.html">
             <i class="fa-solid fa-cart-shopping cart-shopping" data-counter="2">
             </i>
           </a>
@@ -119,203 +120,158 @@
       </div>
     </header>
     <!-- End Header -->
-
-    <!-- Start Cart -->
-    <div class="cart">
-      <div id="myModal" class="modal">
-        <div class="master-container">
-          <div class="card cart">
-            <div class="top-title">
-              <span class="title">Cart Items</span>
-              <i class="fa-solid fa-xmark x"></i>
-            </div>
-            <div class="products">
-              <div class="product">
-                <img src="../images/package/en/package-14.jpg" alt="" />
-                <div>
-                  <span>Package</span>
-                  <p>14 Days</p>
-                  <p>Plain 1</p>
-                </div>
-                <div class="quantity">
-                  <button>
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <span>2</span>
-                  <button>
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-                <span class="price small">KM23.99</span>
-              </div>
-              <div class="product">
-                <img src="../images/package/en/package-4.jpg" alt="" />
-                <div>
-                  <span>Package</span>
-                  <p>4 Days</p>
-                  <p>Plain 1</p>
-                </div>
-                <div class="quantity">
-                  <button>
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <span>2</span>
-                  <button>
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-                <span class="price small">KM23.99</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card coupons">
-            <span class="title top-title">Apply coupons</span>
-            <!-- 
-      
-      
-      
-            
-            Edit here importan 
-      
-      
-      
-            
-          -->
-            <div class="form">
-              <input
-                type="text"
-                placeholder="Apply your coupons"
-                class="input_field"
-                id="coupon"
-              />
-              <button>Apply</button>
-            </div>
-            <!--
-      
-      
-      
-      
-            Edit here importan 
-      
-      
-      
-      
-          --></div>
-
-          <div class="card checkout">
-            <span class="title top-title">Total</span>
-            <div class="details">
-              <span>Your subtotal:</span>
-              <span>47.98KM</span>
-              <span>Discount through applied coupons:</span>
-              <span>3.99KM</span>
-            </div>
-            <div class="checkout--footer">
-              <span class="price"><sup>KM</sup>47.98</span>
-              <button class="checkout-btn">Register</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="containerr">
-        <div class="right-corner">
-          <a href="../../index.html">Home</a>
-          <i class="fa-solid fa-chevron-right"></i>
-          <a href="#">Your Cart</a>
-        </div>
-      </div>
+    <!-- Start login -->
+    <div class="login">
       <div class="container">
-        <h1>Your Shopping Cart</h1>
-      </div>
-      <div class="containerr">
-        <div class="products">
-          <div class="head row">
-            <p>Products</p>
-            <p></p>
-            <p>Price</p>
-            <p>Persons</p>
-            <p>Total</p>
+        <div class="container" id="container">
+          <div class="form-container sign-up-container">
+            <form action="#">
+              <h1>Create Account</h1>
+              <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"
+                  ><i class="fab fa-google-plus-g"></i
+                ></a>
+                <a href="#" class="social"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+              <span>or use your email for registration</span>
+              <div class="inputs">
+                <div class="form-control">
+                  <input
+                    type="text"
+                    id="fullname"
+                    name="fullname"
+                    required=""
+                  />
+                  <label for="fullname">
+                    <span style="transition-delay: 0ms">F</span>
+                    <span style="transition-delay: 50ms">u</span>
+                    <span style="transition-delay: 100ms">l</span>
+                    <span style="transition-delay: 150ms">l</span>
+                    <span style="transition-delay: 200ms">n</span>
+                    <span style="transition-delay: 250ms">a</span>
+                    <span style="transition-delay: 300ms">m</span>
+                    <span style="transition-delay: 350ms">e</span>
+                  </label>
+                </div>
+                <div class="form-control full">
+                  <input
+                    type="emailcreate"
+                    id="emailcreate"
+                    name="emailcreate"
+                    required=""
+                  />
+                  <label for="emailcreate">
+                    <span style="transition-delay: 0ms">E</span>
+                    <span style="transition-delay: 50ms">m</span>
+                    <span style="transition-delay: 100ms">a</span>
+                    <span style="transition-delay: 200ms">i</span>
+                    <span style="transition-delay: 250ms">l</span>
+                  </label>
+                </div>
+                <div class="form-control full">
+                  <input
+                    type="passwordcreate"
+                    id="passwordcreate"
+                    name="passwordcreate"
+                    required=""
+                  />
+                  <label for="passwordcreate">
+                    <span style="transition-delay: 0ms">P</span>
+                    <span style="transition-delay: 50ms">a</span>
+                    <span style="transition-delay: 100ms">s</span>
+                    <span style="transition-delay: 200ms">s</span>
+                    <span style="transition-delay: 250ms">w</span>
+                    <span style="transition-delay: 300ms">o</span>
+                    <span style="transition-delay: 350ms">r</span>
+                    <span style="transition-delay: 400ms">d</span>
+                  </label>
+                </div>
+              </div>
+              <button>Sign Up</button>
+              <div class="app-register have-account">
+                Do have an account? <span class="end" id="have">Sign In</span>
+              </div>
+            </form>
           </div>
-          <div class="row">
-            <div class="image">
-              <img src="../images/package/en/package-14.jpg" alt="" />
-            </div>
-            <div class="name-plan">
-              <h2>14 Days</h2>
-              <div class="select-container">
-                <select name="plans" id="plans-cart">
-                  <option value="plan1">Plan 1</option>
-                  <option value="plan2">Plan 2</option>
-                  <option value="plan3">Plan 3</option>
-                  <option value="plan4">Plan 4</option>
-                </select>
-                <i class="fa-solid fa-chevron-down"></i>
+          <div class="form-container sign-in-container">
+            <form action="#">
+              <h1>Sign in</h1>
+              <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"
+                  ><i class="fab fa-google-plus-g"></i
+                ></a>
+                <a href="#" class="social"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+              </div>
+              <span>or use your account</span>
+              <div class="inputs">
+                <div class="form-control full">
+                  <input
+                    type="emailsignin"
+                    id="emailsignin"
+                    name="emailsignin"
+                    required=""
+                  />
+                  <label for="emailsignin">
+                    <span style="transition-delay: 0ms">E</span>
+                    <span style="transition-delay: 50ms">m</span>
+                    <span style="transition-delay: 100ms">a</span>
+                    <span style="transition-delay: 200ms">i</span>
+                    <span style="transition-delay: 250ms">l</span>
+                  </label>
+                </div>
+                <div class="form-control full">
+                  <input
+                    type="passwordsignin"
+                    id="passwordsignin"
+                    name="passwordsignin"
+                    required=""
+                  />
+                  <label for="passwordsignin">
+                    <span style="transition-delay: 0ms">P</span>
+                    <span style="transition-delay: 50ms">a</span>
+                    <span style="transition-delay: 100ms">s</span>
+                    <span style="transition-delay: 200ms">s</span>
+                    <span style="transition-delay: 250ms">w</span>
+                    <span style="transition-delay: 300ms">o</span>
+                    <span style="transition-delay: 350ms">r</span>
+                    <span style="transition-delay: 400ms">d</span>
+                  </label>
+                </div>
+              </div>
+              <a href="#">Forgot your password?</a>
+              <button>Sign In</button>
+              <div class="app-register have-account">
+                Don't have an account?
+                <span class="end" id="have-not">Sign Up</span>
+              </div>
+            </form>
+          </div>
+          <div class="overlay-container">
+            <div class="overlay">
+              <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>
+                  To keep connected with us please login with your personal info
+                </p>
+                <button class="ghost" id="signIn">Sign In</button>
+              </div>
+              <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Enter your personal details and start journey with us</p>
+                <button class="ghost" id="signUp">Sign Up</button>
               </div>
             </div>
-            <div class="price">
-              <p><sup>KM</sup>47<sup class="down">.98</sup></p>
-            </div>
-            <div class="quantity">
-              <button>
-                <i class="fa-solid fa-minus"></i>
-              </button>
-              <span>2</span>
-              <button>
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-            <div class="total">
-              <p>
-                <sup>KM</sup>47<sup class="down">.98</sup>
-                <i class="fa-solid fa-trash trash"></i>
-                <i class="fa-solid fa-circle-minus circle-minus"></i>
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="image">
-              <img src="../images/package/en/package-4.jpg" alt="" />
-            </div>
-            <div class="name-plan">
-              <h2>4 Days</h2>
-              <div class="select-container">
-                <select name="plans" id="plans">
-                  <option value="plan1">Plan 1</option>
-                  <option value="plan2">Plan 2</option>
-                  <option value="plan3">Plan 3</option>
-                  <option value="plan4">Plan 4</option>
-                </select>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="price">
-              <p><sup>KM</sup>47<sup>.98</sup></p>
-            </div>
-            <div class="quantity">
-              <button>
-                <i class="fa-solid fa-minus"></i>
-              </button>
-              <span>2</span>
-              <button>
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-            <div class="total">
-              <p>
-                <sup>KM</sup>47<sup class="down">.98</sup>
-                <i class="fa-solid fa-trash trash"></i>
-                <i class="fa-solid fa-circle-minus circle-minus"></i>
-              </p>
-            </div>
-          </div>
-          <div class="footer">
-            <button class="btn-pay pckbtn">Proceed to checkout</button>
           </div>
         </div>
       </div>
     </div>
-    <!-- End Cart -->
+    <!-- End login -->
     <!-- Start Footer -->
     <footer>
       <div class="container">
@@ -360,7 +316,7 @@
     <!-- End Footer -->
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/login.js"></script>
     <script src="../js/main.js"></script>
-    <script src="../js/popup.js"></script>
   </body>
 </html>

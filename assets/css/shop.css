@@ -79,7 +79,7 @@
 }
 .packages {
   padding: 20px 0 100px;
-  background-color: var(--cart-color);
+  background-color: var(--third-background-color);
 }
 .cars {
   padding: 50px 0;
