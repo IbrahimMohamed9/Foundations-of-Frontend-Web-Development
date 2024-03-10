@@ -1,0 +1,256 @@
+:root {
+  --main-color: #f7af01;
+  --secondary-color: #c1a362;
+  --main-background-color: #ececec;
+  --secondary-background-color: white;
+  --font-color: black;
+  --secondary-font-color: #686565;
+  --third-font-color: #8b898b21;
+  --scrollbar-color: #77777736;
+  --main-transition: 0.3s;
+  --main-padding: 50px;
+  --footer-icon: #fff;
+  --footer-font: #333;
+  --box-shadow: rgba(0, 0, 0, 0.2);
+  --product-color: #47484b;
+  --secondary-product-color: #7a7c81;
+  --third-background-color: #0c0c0d1a;
+  --grey-color: grey;
+}
+.dark-theme {
+  --main-color: #f7af01;
+  --secondary-color: #bb8501;
+  --main-background-color: #212121;
+  --secondary-background-color: black;
+  --secondary-font-color: #e2e2e2;
+  --third-font-color: #313131;
+  --font-color: white;
+  --footer-icon: #313131;
+  --footer-font: #b9b9b9;
+  --box-shadow: rgba(255, 255, 255, 0.4);
+  --product-color: #e7e7e7;
+  --secondary-product-color: #dbdbdb;
+  --third-background-color: #38383a;
+}
+* {
+  outline: 0;
+}
+.sidebar-250px {
+  --sidebar-width: 250px;
+}
+.sidebar-58px {
+  --sidebar-width: 58px;
+}
+body .page + .content + footer {
+  max-width: calc(100% - var(--sidebar-width));
+  min-width: calc(100% - var(--sidebar-width));
+  position: relative;
+  left: calc(var(--sidebar-width));
+  background-color: var(--main-background-color);
+}
+body .page + .content + footer .container {
+  max-width: 100%;
+}
+@media (max-width: 300px) {
+  body .page + .content + footer {
+    z-index: 3;
+    max-width: calc(100%);
+    min-width: calc(100%);
+    position: relative;
+    left: 0;
+    bottom: 0;
+    background-color: var(--main-background-color);
+  }
+  body .page + .content + footer .container {
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: var(--main-background-color);
+  }
+}
+.page {
+  min-height: 100vh;
+  background-color: var(--main-background-color);
+  position: relative;
+  right: 0;
+  max-width: var(--sidebar-width);
+}
+.dash .main-header .bar {
+  position: relative;
+}
+.dash .main-header .bar .bar-icon {
+  position: absolute;
+  left: 8px;
+  top: 5px;
+  border-radius: 50%;
+  padding: 21px 12px;
+  cursor: pointer;
+}
+.dash .main-header .bar .bar-icon:hover {
+  background-color: var(--third-font-color);
+}
+@media (min-width: 768px) {
+  .dash .main-header .container {
+    margin-left: 50px;
+    margin-right: 50px;
+    min-width: calc(100% - 100px);
+    max-width: calc(100% - 100px);
+  }
+}
+/* 
+====================================================================
+====================================================================
+=========================== Start Sidebar ==========================
+====================================================================
+====================================================================
+*/
+.sidebar {
+  width: var(--sidebar-width);
+  box-shadow: 0 4px 10px var(--box-shadow);
+  position: fixed;
+  min-height: calc(100vh);
+  z-index: 101;
+}
+.sidebar ul {
+}
+.sidebar ul li {
+}
+.sidebar ul li a {
+  transition: var(--main-transition);
+  margin-bottom: 5px;
+  width: 100%;
+}
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background-color: var(--third-font-color);
+}
+@media (max-width: 768px) {
+  .sidebar-250px {
+    --sidebar-width: 58px;
+  }
+  .dash .main-header .bar {
+    display: none;
+  }
+  .sidebar {
+    padding: 10px;
+  }
+}
+@media (max-width: 300px) {
+  body {
+    --sidebar-width: 46px;
+  }
+  .sidebar {
+    padding: 3px;
+  }
+}
+/* 
+====================================================================
+====================================================================
+============================ End Sidebar ===========================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+============================ Start Content ===========================
+====================================================================
+====================================================================
+*/
+.content {
+  max-width: calc(100% - var(--sidebar-width));
+  position: relative;
+  top: -100vh;
+  left: var(--sidebar-width);
+}
+.content .head {
+  background-color: var(--third-font-color);
+}
+.content .head .search {
+  position: relative;
+}
+.content .head .search::before {
+  content: "\f002";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: var(--grey-color);
+}
+.content .head .search input {
+  border: 1px solid #ccc;
+  width: 180px;
+  transition: width var(--main-transition);
+}
+.content .head .search input:focus {
+  width: 210px;
+}
+@media (max-width: 360px) {
+  .content .head .search input {
+    width: 130px;
+  }
+  .content .head .search input:focus {
+    width: 150px;
+  }
+}
+@media (max-width: 320px) {
+  .content .head .search input {
+    width: 90px;
+  }
+  .content .head .search input:focus {
+    width: 115px;
+  }
+}
+.content .head .search input:focus::placeholder {
+  opacity: 0;
+}
+.content .head .icons .notification::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 50%;
+  right: -3px;
+  top: -6px;
+}
+.content .head .icons img {
+  width: 32px;
+  height: 32px;
+}
+.content h1 {
+  margin: 20px 20px 40px;
+  font-weight: bold;
+}
+.content h1::before,
+.content h1::after {
+  content: "";
+  height: 3px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
+.content h1::before {
+  background-color: white;
+  width: 120px;
+}
+.content h1::after {
+  background-color: black;
+  width: 40px;
+}
+.wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  background-color: var(--third-background-color);
+}
+@media (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: minmax(150px, 1fr);
+    margin-left: 10px;
+    margin-right: 10px;
+    gap: 10px;
+  }
+}

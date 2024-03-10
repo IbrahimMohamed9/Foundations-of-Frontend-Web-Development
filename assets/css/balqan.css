@@ -18,6 +18,7 @@
   --secondary-background-color: white;
   --font-color: black;
   --secondary-font-color: #696969;
+  --third-font-color: #a09ba03d;
   --scrollbar-color: #77777736;
   --main-transition: 0.3s;
   --main-padding: 50px;
@@ -27,6 +28,7 @@
   --product-color: #47484b;
   --secondary-product-color: #7a7c81;
   --third-background-color: #0c0c0d1a;
+  --grey-color: grey;
 }
 .dark-theme {
   --main-color: #f7af01;
@@ -34,6 +36,7 @@
   --main-background-color: #212121;
   --secondary-background-color: black;
   --secondary-font-color: #e2e2e2;
+  --third-font-color: #313131;
   --font-color: white;
   --footer-icon: #313131;
   --footer-font: #b9b9b9;
@@ -148,8 +151,6 @@ a {
   text-align: center;
   border: 2px solid var(--font-color);
   font-weight: normal;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   padding: 10px 20px;
   font-size: 30px;
@@ -158,8 +159,6 @@ a {
   position: relative;
   margin: 0 auto 50px;
   z-index: 1;
-  -webkit-transition: var(--main-transition);
-  -o-transition: var(--main-transition);
   transition: var(--main-transition);
   --position: -30px;
   --left-animation: ;
@@ -169,8 +168,6 @@ a {
 .main-title:hover {
   border-color: var(--main-color);
   color: var(--secondary-background-color);
-  -webkit-transition-delay: calc(var(--animation-duration) + 0.01s);
-  -o-transition-delay: calc(var(--animation-duration) + 0.01s);
   transition-delay: calc(var(--animation-duration) + 0.01s);
 }
 .main-title::before,
@@ -183,26 +180,20 @@ a {
   height: 12px;
   border-radius: 50%;
   z-index: -1;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 .main-title::before {
-  -webkit-animation: var(--left-animation);
   animation: var(--left-animation);
   left: var(--position);
 }
 .main-title::after {
   right: var(--position);
-  -webkit-animation: var(--right-animation);
   animation: var(--right-animation);
 }
 .main-title:hover::before {
-  -webkit-animation: left-move var(--animation-duration) linear forwards;
   animation: left-move var(--animation-duration) linear forwards;
 }
 .main-title:hover::after {
-  -webkit-animation: right-move var(--animation-duration) linear forwards;
   animation: right-move var(--animation-duration) linear forwards;
 }
 @media (max-width: 305px) {
@@ -231,10 +222,12 @@ a {
 .main-header {
   background-color: var(--secondary-background-color);
   transition: background-color 0.5s, color 0.3s;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 0 1.5px var(--box-shadow);
 }
 .main-header .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -396,16 +389,16 @@ a {
 .main-header .tile-wrds li a::before {
   content: "";
   position: absolute;
-  z-index: -2;
+  opacity: 0;
   width: 120%;
   height: 2px;
   background-color: var(--main-color);
   top: 0;
-  left: -80%;
+  left: -120%;
   transition: left var(--main-transition) linear;
 }
 .main-header .tile-wrds li:hover a::before {
-  z-index: 0;
+  opacity: 1;
   left: -10%;
 }
 @media (max-width: 768px) {
@@ -560,29 +553,17 @@ a {
 ====================================================================
 ====================================================================
 */
+.video-wraper {
+  background-color: var(--secondary-background-color);
+}
 .video {
-  -webkit-mask: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(transparent),
-    color-stop(10%, white)
-  );
-  -webkit-mask: linear-gradient(0deg, transparent, white 10%);
-  mask: -webkit-gradient(
-    linear,
-    left bottom,
-    left top,
-    from(transparent),
-    color-stop(10%, white)
-  );
+  background-color: var(--secondary-background-color);
   mask: linear-gradient(0deg, transparent, white 10%);
 }
 .video video {
   min-width: 100%;
   max-width: 100%;
   max-height: calc(100vh - 50px);
-  -o-object-fit: fill;
   object-fit: fill;
   overflow: hidden;
 }
@@ -599,8 +580,11 @@ a {
 ====================================================================
 ====================================================================
 */
+.new-packages {
+  padding: 50px 0;
+  background-color: var(--secondary-background-color);
+}
 .new-packages .container {
-  display: -ms-grid;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
@@ -1334,10 +1318,11 @@ a {
 ====================================================================
 */
 .info {
+  padding: 50px 0;
   display: -ms-grid;
   display: grid;
   gap: 50px;
-  background-color: var(--secondary-background-color);
+  background-color: var(--third-background-color);
   padding: var(--main-padding) 0;
   overflow: hidden;
 }
@@ -1345,7 +1330,6 @@ a {
   text-align: center;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 20px 47%;
   grid-template-columns: 1fr 47%;
   gap: 20px;
 }
@@ -1555,7 +1539,7 @@ a {
 ====================================================================
 */
 .articles {
-  background-color: var(--secondary-background-color);
+  background-color: var(--third-background-color);
   padding: var(--main-padding) 0;
 }
 .articles .main-title {
