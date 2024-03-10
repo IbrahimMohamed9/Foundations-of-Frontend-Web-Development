@@ -15,7 +15,7 @@
   --product-color: #47484b;
   --secondary-product-color: #7a7c81;
   --third-background-color: #0c0c0d1a;
-  --grey-color: grey;
+  --grey-color: #606060;
 }
 .dark-theme {
   --main-color: #f7af01;
@@ -31,6 +31,7 @@
   --product-color: #e7e7e7;
   --secondary-product-color: #dbdbdb;
   --third-background-color: #38383a;
+  --grey-color: #ccc;
 }
 * {
   outline: 0;
@@ -113,10 +114,6 @@ body .page + .content + footer .container {
   min-height: calc(100vh);
   z-index: 101;
 }
-.sidebar ul {
-}
-.sidebar ul li {
-}
 .sidebar ul li a {
   transition: var(--main-transition);
   margin-bottom: 5px;
@@ -154,7 +151,7 @@ body .page + .content + footer .container {
 
 ====================================================================
 ====================================================================
-============================ Start Content ===========================
+=========================== Start Content ==========================
 ====================================================================
 ====================================================================
 */
@@ -244,7 +241,6 @@ body .page + .content + footer .container {
 }
 .wrapper {
   grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
-  background-color: var(--third-background-color);
 }
 @media (max-width: 768px) {
   .wrapper {
@@ -253,4 +249,85 @@ body .page + .content + footer .container {
     margin-right: 10px;
     gap: 10px;
   }
+}
+/* 
+====================================================================
+====================================================================
+============================ End Content ===========================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+=========================== Start Welcome ==========================
+====================================================================
+====================================================================
+*/
+.welcome {
+  overflow: hidden;
+}
+.welcome .avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: var(--fourth-background-color) solid 2px;
+  padding: 2px;
+  box-shadow: 0 0 3px var(--box-shadow);
+  margin-left: 20px;
+  margin-top: -32px;
+}
+.welcome .intro img {
+  width: 200px;
+  margin-bottom: -10px;
+}
+@media (max-width: 768px) {
+  .welcome .avatar {
+    margin-left: 0;
+  }
+  .welcome .intro {
+    padding-bottom: 0px;
+    padding-top: 10px;
+  }
+  .welcome .intro img {
+    display: none;
+  }
+}
+.welcome .body {
+  border-top: 1px solid var(--third-background-color);
+  border-bottom: 1px solid var(--third-background-color);
+}
+@media (max-width: 768px) {
+  .welcome .body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+.welcome .body > div {
+  flex: 1;
+}
+/* 
+====================================================================
+====================================================================
+============================ End Welcome ===========================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+========================= Start Quick Draft ========================
+====================================================================
+====================================================================
+*/
+.quick-draft .textarea {
+  overflow: hidden;
+  min-height: 180px;
+  max-height: 180px;
+}
+.quick-draft textarea {
+  resize: none;
+  min-height: 180px;
+}
+.quick-draft .save {
+  margin-left: auto;
+  cursor: pointer;
 }

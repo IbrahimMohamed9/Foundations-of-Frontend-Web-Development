@@ -1,3 +1,38 @@
+:root {
+  --main-color: #f7af01;
+  --secondary-color: #c1a362;
+  --main-background-color: #ececec;
+  --secondary-background-color: white;
+  --font-color: black;
+  --secondary-font-color: #686565;
+  --third-font-color: #8b898b21;
+  --scrollbar-color: #77777736;
+  --main-transition: 0.3s;
+  --main-padding: 50px;
+  --footer-icon: #fff;
+  --footer-font: #333;
+  --box-shadow: rgba(0, 0, 0, 0.2);
+  --product-color: #47484b;
+  --secondary-product-color: #7a7c81;
+  --third-background-color: #0c0c0d1a;
+  --grey-color: #606060;
+}
+.dark-theme {
+  --main-color: #f7af01;
+  --secondary-color: #bb8501;
+  --main-background-color: #212121;
+  --secondary-background-color: black;
+  --secondary-font-color: #e2e2e2;
+  --third-font-color: #313131;
+  --font-color: white;
+  --footer-icon: #313131;
+  --footer-font: #b9b9b9;
+  --box-shadow: rgba(255, 255, 255, 0.4);
+  --product-color: #e7e7e7;
+  --secondary-product-color: #dbdbdb;
+  --third-background-color: #38383a;
+  --grey-color: #ccc;
+}
 /* 
 ====================================================================
 ====================================================================
@@ -14,10 +49,10 @@
 .space-between {
   justify-content: space-between;
 }
-@media (max-width: 768px) {
-  .txt-c-mobile {
-    text-align: center;
-  }
+.between-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .d-grid {
   display: grid;
@@ -35,16 +70,37 @@
     display: none;
   }
 }
+.w-fit {
+  width: fit-content;
+}
+.w-full {
+  width: 100%;
+}
+.btn-shape {
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: var(--main-transition);
+  bottom: 20px;
+  right: 20px;
+  position: absolute;
+}
+.btn-shape:hover {
+  background-color: var(--secondary-color);
+  font-size: 15px;
+}
+.d-block {
+  display: block;
+}
 /* 
 ====================================================================
 ====================================================================
-=========================== End Box ===========================
+============================= End Box ==============================
 ====================================================================
 ====================================================================
 
 ====================================================================
 ====================================================================
-================= Start Padding + Margin + Border ==================
+====================== Start Padding + Margin ======================
 ====================================================================
 ====================================================================
 */
@@ -63,17 +119,48 @@
 .pl-30 {
   padding-left: 30px;
 }
+.pb-60 {
+  padding-bottom: 60px;
+}
+@media (max-width: 330px) {
+  .pr-10-f {
+    padding-right: 10px;
+  }
+}
+@media (max-width: 330px) {
+  .pl-10-f {
+    padding-left: 10px;
+  }
+}
+.m-0 {
+  margin: 0px;
+}
 .m-20 {
   margin: 20px;
 }
 .mt-0 {
   margin-top: 0;
 }
+.mt-5 {
+  margin-top: 5px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.mt-20 {
+  margin-top: 20px;
+}
 .mr-10 {
   margin-right: 10px;
 }
 .mr-20 {
   margin-right: 20px;
+}
+.mb-10 {
+  margin-bottom: 10px;
+}
+.mb-20 {
+  margin-bottom: 20px;
 }
 .ml-5 {
   margin-left: 5px;
@@ -87,13 +174,11 @@
 .ml-20 {
   margin-left: 20px;
 }
-.rad-10 {
-  border-radius: 10px;
-}
+
 /* 
 ====================================================================
 ====================================================================
-================== End Padding + Margin + Border ===================
+======================= End Padding + Margin =======================
 ====================================================================
 ====================================================================
 
@@ -112,15 +197,24 @@
 .bg-black-s {
   background-color: var(--secondary-background-color);
 }
+.bg-third {
+  background-color: var(--third-background-color);
+}
+.bg-main-color {
+  background-color: var(--main-color);
+}
 .c-main-font {
   color: var(--font-color);
 }
 .c-secondary-font {
   color: var(--secondary-font-color);
 }
-/* 
- */
-
+.c-grey {
+  color: var(--grey-color);
+}
+.c-white {
+  color: white;
+}
 /* 
 ====================================================================
 ====================================================================
@@ -156,10 +250,23 @@
 .fs-14 {
   font-size: 14px;
 }
-.between-flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.fs-15 {
+  font-size: 15px;
+}
+@media (max-width: 768px) {
+  .txt-c-mobile {
+    text-align: center;
+  }
+}
+@media (max-width: 330px) {
+  .fs-10-f {
+    font-size: 10px;
+  }
+}
+@media (max-width: 330px) {
+  .fs-13-f {
+    font-size: 13px;
+  }
 }
 /* 
 ====================================================================
@@ -174,8 +281,14 @@
 ====================================================================
 ====================================================================
 */
+.b-none {
+  border: none;
+}
 .rad-6 {
   border-radius: 6px;
+}
+.rad-10 {
+  border-radius: 10px;
 }
 /* 
 ====================================================================

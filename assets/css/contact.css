@@ -245,10 +245,15 @@
   color: var(--main-color);
   transform: translateY(-22.5px);
 }
-textarea {
-  resize: vertical;
+.textarea {
+  min-width: 100%;
+  min-height: 205px;
+  max-width: 100%;
+  max-height: 205px;
+  overflow: hidden;
+  border-radius: 1rem;
 }
-.form-control textarea {
+.form-control .textarea textarea {
   border: solid 1.5px #9e9e9e;
   border-radius: 1rem;
   padding: 0.5rem 1rem;
@@ -256,20 +261,23 @@ textarea {
   font-size: 1rem;
   color: var(--font-color);
   transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  resize: none;
   min-width: 100%;
+  min-height: 200px;
+  max-width: 100%;
+  max-height: 200px;
 }
 .form-control textarea:focus,
 .form-control textarea:valid {
   outline: 0;
   border-color: var(--main-color);
 }
-.form-control textarea:focus + label span,
-.form-control textarea:valid + label span {
+.form-control label.txtar-la.active span {
   color: var(--main-color);
   transform: translateY(-22.5px);
 }
-.form-control textarea + label {
-  top: 10px;
+.form-control label.txtar-la {
+  top: 5px;
   transform: translateY(0);
 }
 form .submit {

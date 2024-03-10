@@ -76,14 +76,14 @@ body {
   -o-transition: background-color 0.5s, color 0.5s;
   transition: background-color 0.5s, color 0.5s;
 }
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
   background-color: var(--scrollbar-color);
   width: 15px;
 }
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: var(--main-color);
 }
-body::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background-color: var(--secondary-color);
 }
 body.fix {

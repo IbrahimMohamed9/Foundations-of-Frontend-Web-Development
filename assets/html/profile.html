@@ -176,6 +176,7 @@
             class="p-10 rad-10 ml-5 pl-30"
             type="search"
             placeholder="Type A Keyword"
+            name="search"
           />
         </div>
         <div class="icons d-flex align-center">
@@ -187,9 +188,71 @@
       </div>
       <h1 class="p-relative">Dashbord</h1>
       <div class="wrapper d-grid gap-20 mr-20 ml-20">
-        <div class="welcome rad-10 block-mobile txt-c-mobile">
-          <h2>Welcome</h2>
+        <!-- Start Welcome Widget -->
+        <div
+          class="welcome bg-fourth pb-60 rad-10 block-mobile txt-c-mobile p-relative"
+        >
+          <div class="intro p-20 d-flex space-between bg-third pl-10-f pr-10-f">
+            <div>
+              <h2 class="m-0">Welcom</h2>
+              <p class="c-grey mt-5"></p>
+            </div>
+            <img src="../images/profile/welcome.png" alt="" />
+          </div>
+          <img src="../images/profile/avatar.png " alt="" class="avatar" />
+          <div
+            class="body txt-c d-flex p-20 mt-20 mb-20 bg-fourth pl-10-f pr-10-f"
+          >
+            <div class="fs-13-f">
+              Ibrahim Mohamed
+              <span class="d-block c-grey fs-14 mt-10 fs-10-f">Maneger</span>
+            </div>
+            <div class="fs-13-f">
+              90
+              <span class="d-block c-grey fs-14 fs-10-f mt-10">Projects</span>
+            </div>
+            <div class="fs-13-f">
+              $1500
+              <span class="d-block c-grey fs-14 fs-10-f mt-10">Earned</span>
+            </div>
+          </div>
+          <a
+            href=""
+            class="vistit d-block fs-14 rad-6 bg-main-color c-white w-fit btn-shape"
+          >
+            Profile
+          </a>
         </div>
+        <!-- End Welcome Widget -->
+        <!-- Start Quick Draft Widget -->
+        <div
+          class="quick-draft pb-60 bg-fourth rad-10 block-mobil p-20 p-relative pl-10-f pr-10-f"
+        >
+          <h2 class="mt-0 mb-10">Quick Draft</h2>
+          <p class="mt-0 mb-20 fs-15 c-grey">Write A Draft For Your Ideas</p>
+          <form action="">
+            <input
+              class="d-block rad-6 w-full p-10 b-none bg-third c-main-font"
+              type="text"
+              name="draft-title"
+              placeholder="Title"
+            />
+            <div class="textarea mt-20 rad-6 w-full b-none">
+              <textarea
+                class="d-block mt-20 rad-6 w-full p-10 b-none bg-third c-main-font"
+                name="draft-body"
+                placeholder="Your Thought"
+              ></textarea>
+            </div>
+
+            <input
+              class="save b-none d-block mt-20 fs-14 rad-6 bg-main-color c-white w-fit btn-shape"
+              type="submit"
+              value="Save"
+            />
+          </form>
+        </div>
+        <!-- End Quick Draft Widget -->
       </div>
     </div>
     <!-- End Dashbord -->
