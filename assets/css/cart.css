@@ -128,6 +128,7 @@ header + .cart {
   position: absolute;
   right: 10%;
   color: #969696;
+  cursor: pointer;
 }
 .cart .containerr .products .row p .circle-minus {
   display: none;
@@ -187,6 +188,9 @@ header + .cart {
 .cart .containerr .products .row:first-child {
   padding: 0;
   max-height: 27px;
+}
+.cart .containerr .products .row .select-container select {
+  cursor: pointer;
 }
 @media (max-width: 580px) {
   .cart .containerr .products .row .name-plan {
@@ -299,7 +303,7 @@ header + .cart {
 .cart .containerr .products .footer {
   position: relative;
 }
-.cart .containerr .products .footer .btn-pay {
+.footer .btn-pay {
   padding: 10px 15px;
   border-radius: 8px;
   background-color: var(--main-color);

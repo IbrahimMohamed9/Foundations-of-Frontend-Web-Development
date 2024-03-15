@@ -35,13 +35,9 @@ function removeOpenShare(index) {
 
 //images in example
 const scrollers = document.querySelectorAll(".scroller");
-if (!window.matchMedia("(prefers-reduced-motion: reduce").matches) {
-  addAnimation();
-}
+addAnimation();
 function addAnimation() {
   scrollers.forEach((scroller) => {
-    scroller.setAttribute("data-animated", true);
-
     const scrollerInner = scroller.querySelector(".scroller__inner");
     const scrollerConternt = Array.from(scrollerInner.children);
 

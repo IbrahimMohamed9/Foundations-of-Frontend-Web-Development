@@ -184,8 +184,7 @@
     grid-column: 1 / span 2;
   }
 }
-.form-control input:focus,
-.form-control input:valid {
+.form-control input.active {
   outline: 0;
   border-color: var(--main-color);
 }
@@ -200,7 +199,11 @@
 .form-control #email + label,
 .form-control #emailcreate + label,
 .form-control #emailsignin + label {
-  min-width: 47px;
+  min-width: 100px;
+  justify-content: left;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .form-control label span {
   background-color: var(--main-background-color);
@@ -240,10 +243,9 @@
 .form-control label span:not(:first-of-type) {
   margin-left: -6px;
 }
-.form-control input:focus + label span,
-.form-control input:valid + label span {
-  color: var(--main-color);
-  transform: translateY(-22.5px);
+.form-control input.active + label span {
+  color: var(--main-color) !important;
+  transform: translateY(-22.5px) !important;
 }
 .textarea {
   min-width: 100%;
@@ -267,8 +269,7 @@
   max-width: 100%;
   max-height: 200px;
 }
-.form-control textarea:focus,
-.form-control textarea:valid {
+.form-control textarea.active {
   outline: 0;
   border-color: var(--main-color);
 }
