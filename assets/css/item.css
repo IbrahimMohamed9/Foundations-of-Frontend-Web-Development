@@ -225,12 +225,6 @@ header + .cart.item {
   max-height: 330px;
   max-width: 430px;
 }
-.cart.item .item-container .images .span-container {
-  margin-top: 10px;
-  min-height: 40px;
-  min-width: 429px;
-  max-width: 429px;
-}
 @media (max-width: 500px) {
   .cart.item .item-container .images .main {
     max-height: 30vh;
@@ -246,7 +240,11 @@ header + .cart.item {
     display: none;
   }
 }
-.cart.item .item-container .images .span-container .images-span {
+.cart.item .item-container .images .images-span {
+  text-align: center;
+  display: block;
+  padding: 8px;
+  min-width: 100%;
   word-spacing: -1.5px;
 }
 .cart.item .item-container .images .list-container {
