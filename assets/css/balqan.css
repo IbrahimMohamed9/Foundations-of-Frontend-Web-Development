@@ -1569,7 +1569,7 @@ a {
   border-bottom: 1px solid transparent;
   position: absolute;
   left: calc(50% - 10px);
-  bottom: -19px;
+  bottom: -10px;
   transition: var(--main-transition);
 }
 .icons .font-share-icons li {
@@ -1589,14 +1589,10 @@ a {
   cursor: pointer;
 }
 .articles .container .article .card .read {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   margin: auto;
   color: var(--font-color);
   position: relative;
-  -webkit-transition: var(--main-transition);
-  -o-transition: var(--main-transition);
   transition: var(--main-transition);
 }
 @media (max-width: 370px) {

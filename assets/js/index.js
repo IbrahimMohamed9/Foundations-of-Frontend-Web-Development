@@ -2,19 +2,6 @@
 const shareIcons = document.querySelectorAll(".share");
 
 shareIcons.forEach((shareIcon, index) => {
-  shareIcon.addEventListener("mouseenter", () => {
-    const parentDiv = shareIcon.parentElement;
-    const shareList = parentDiv.querySelector(".font-share-icons");
-    shareList.style.display = "grid";
-
-    shareIcons.forEach((shareIcon1, index1) => {
-      if (index1 !== index) {
-        removeOpenShare(index1);
-      }
-    });
-  });
-});
-shareIcons.forEach((shareIcon, index) => {
   shareIcon.addEventListener("click", () => {
     const parentDiv = shareIcon.parentElement;
     const shareList = parentDiv.querySelector(".font-share-icons");
@@ -22,6 +9,12 @@ shareIcons.forEach((shareIcon, index) => {
       shareList.style.display = "none";
     } else {
       shareList.style.display = "grid";
+
+      shareIcons.forEach((shareIcon1, index1) => {
+        if (index1 !== index) {
+          removeOpenShare(index1);
+        }
+      });
     }
   });
 });
