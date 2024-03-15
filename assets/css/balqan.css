@@ -818,7 +818,7 @@ a {
 .new-packages .package .box .back .button:hover {
   color: black;
   scale: 1.1;
-  box-shadow: 0 0px 20px var(--box-shadow);
+  box-shadow: 0 0px 20px var(--main-color);
 }
 .new-packages .package .box .back .button:active {
   scale: 1;
@@ -1558,9 +1558,7 @@ a {
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--font-color);
-  border: 10px solid var(--font-color);
-  border-left-width: 8px;
-  border-right-width: 8px;
+  padding: 10px 8px;
   border-radius: 10px;
   transition: var(--main-transition);
 }

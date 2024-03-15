@@ -1,5 +1,5 @@
 //share icon in article
-const shareIcons = document.querySelectorAll(".fa-solid.fa-share");
+const shareIcons = document.querySelectorAll(".share");
 
 shareIcons.forEach((shareIcon, index) => {
   shareIcon.addEventListener("mouseenter", () => {
