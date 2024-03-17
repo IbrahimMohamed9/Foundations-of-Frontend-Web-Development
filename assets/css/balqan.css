@@ -165,9 +165,9 @@ a {
   transition: var(--main-transition);
   --position: -30px;
   --animation-duration: 0.5s;
-}
-.main-title:hover {
-  transition-delay: calc(var(--animation-duration) + 0.01s);
+  --time-function-in: cubic-bezier(0.6, -0.28, 0.74, 0.05);
+  --time-function-out: cubic-bezier(0.67, 0.32, 0.57, 1);
+  transition-delay: var(--animation-duration);
 }
 .main-title::before,
 .main-title::after {
@@ -198,22 +198,28 @@ a {
     --position: -15px;
   }
 }
-.main-title.unhovered::before {
-  animation: left-move-reverse var(--animation-duration) linear forwards;
-}
-.main-title.unhovered::after {
-  animation: right-move-reverse var(--animation-duration) linear forwards;
-}
-
 .main-title.hovered::before {
-  animation: left-move var(--animation-duration) linear forwards;
+  animation: left-move 1s forwards var(--time-function-in);
 }
 .main-title.hovered::after {
-  animation: right-move var(--animation-duration) linear forwards;
+  animation: right-move 1s forwards var(--time-function-in);
 }
 .main-title.hovered {
-  border-color: var(--main-color);
   color: var(--secondary-background-color);
+  border-color: var(--main-color);
+}
+.main-title.unhovered {
+  border-color: var(--font-color);
+  color: var(--font-color);
+  transition-delay: 0s;
+}
+.main-title.unhovered::before {
+  animation: left-move-reverse 1s var(--time-function-out)
+    forwards;
+}
+.main-title.unhovered::after {
+  animation: right-move-reverse 1s var(--time-function-out)
+    forwards;
 }
 /* 
 ====================================================================
@@ -1627,8 +1633,6 @@ footer .row .image img {
   max-width: 220px;
 }
 footer .container .row:first-child {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1636,7 +1640,6 @@ footer .container .row:first-child {
 }
 footer .row .icons {
   margin: 15px 0;
-  display: -ms-grid;
   display: grid;
   grid-template-columns: repeat(3, 50px);
   gap: 10px;
@@ -1769,134 +1772,71 @@ footer p {
     left: var(--position);
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   50% {
     left: 0;
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
-  50.5% {
+  /* 50.5% {
     border-radius: 50%;
-  }
+  } */
   100% {
     left: 0;
-    width: 52%;
+    /* width: 52%; */
+    width: 100%;
     height: 103%;
-    border-radius: 0;
-  }
-}
-@-webkit-keyframes left-move-reverse {
-  0% {
-    left: 0;
-    width: 52%;
-    height: 103%;
-    border-radius: 0;
-  }
-  50.5% {
-    left: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 0;
-  }
-  51% {
-    border-radius: 50%;
-  }
-  100% {
-    left: var(--position);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+    /* border-radius: 0; */
   }
 }
 @keyframes left-move-reverse {
   0% {
     left: 0;
-    width: 52%;
+    width: 100%;
+    /* width: 52%; */
     height: 103%;
-    border-radius: 0;
+    /* border-radius: 0; */
   }
   50.5% {
     left: 0;
     width: 12px;
     height: 12px;
-    border-radius: 0;
+    /* border-radius: 0; */
   }
-  51% {
+  /* 51% {
     border-radius: 50%;
-  }
+  } */
   100% {
     left: var(--position);
     width: 12px;
     height: 12px;
-    border-radius: 50%;
-  }
-}
-@-webkit-keyframes right-move-reverse {
-  0% {
-    right: 0;
-    width: 52%;
-    height: 103%;
-    border-radius: 0;
-  }
-  50.5% {
-    right: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 0;
-  }
-  51% {
-    border-radius: 50%;
-  }
-  100% {
-    right: var(--position);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
 }
 @keyframes right-move-reverse {
   0% {
     right: 0;
-    width: 52%;
+    width: 100%;
+    /* width: 52%; */
     height: 103%;
-    border-radius: 0;
+    /* border-radius: 0; */
   }
   50.5% {
     right: 0;
     width: 12px;
     height: 12px;
-    border-radius: 0;
+    /* border-radius: 0; */
   }
-  51% {
+  /* 51% {
     border-radius: 50%;
-  }
+  } */
   100% {
     right: var(--position);
     width: 12px;
     height: 12px;
     border-radius: 50%;
-  }
-}
-@-webkit-keyframes right-move {
-  0% {
-    right: var(--position);
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-  50% {
-    right: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-  100% {
-    right: 0;
-    width: 52%;
-    height: 103%;
-    border-radius: 0;
   }
 }
 @keyframes right-move {
@@ -1904,34 +1844,20 @@ footer p {
     right: var(--position);
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   50% {
     right: 0;
     width: 12px;
     height: 12px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
   }
   100% {
     right: 0;
-    width: 52%;
+    /* width: 52%; */
+    width: 100%;
     height: 103%;
-    border-radius: 0;
-  }
-}
-@-webkit-keyframes logo-dots {
-  30% {
-    top: -15%;
-    left: 48%;
-    opacity: 1;
-  }
-  95% {
-    opacity: 0.9;
-  }
-  100% {
-    top: 8%;
-    left: 48%;
-    opacity: 0;
+    /* border-radius: 0; */
   }
 }
 @keyframes logo-dots {

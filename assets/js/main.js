@@ -45,11 +45,12 @@ mainTitles.forEach((mainTitle) => {
   });
 });
 function mainTitleAnimation(title) {
+  title.classList.remove("unhovered");
   title.classList.add("hovered");
   setTimeout(() => {
     title.classList.remove("hovered");
     title.classList.add("unhovered");
-  }, 800);
+  }, 1500);
 }
 //change heart in hover header
 const heartIcon = document.querySelector(".heart.fa-regular");

@@ -1,9 +1,4 @@
 const barIcon = document.querySelector(".dash .main-header .bar .bar-icon");
-const body = document.body;
-const hideMobileSpans = document.querySelectorAll(
-  ".page .sidebar ul li span i + span.hide-mobile"
-);
-
 barIcon.addEventListener("click", function () {
   if (body.classList.contains("sidebar-250")) {
     body.classList.remove("sidebar-250");
@@ -19,6 +14,10 @@ barIcon.addEventListener("click", function () {
     });
   }
 });
+
+const hideMobileSpans = document.querySelectorAll(
+  ".page .sidebar ul li span i + span.hide-mobile"
+);
 
 const dashPages = document.querySelectorAll(".content .screen");
 const dashIcons = document.querySelectorAll(
