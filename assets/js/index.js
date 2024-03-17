@@ -1,30 +1,32 @@
 //share icon in article
 const shareIcons = document.querySelectorAll(".share");
-
+const shareLists = document.querySelectorAll(".icons .font-share-icons");
+var previous = null;
 shareIcons.forEach((shareIcon, index) => {
   shareIcon.addEventListener("click", () => {
-    const parentDiv = shareIcon.parentElement;
-    const shareList = parentDiv.querySelector(".font-share-icons");
-    if (shareList.style.display === "grid") {
-      shareList.style.display = "none";
+    if (shareLists[index].style.display === "grid") {
+      shareLists[index].style.animation =
+        "hidden var(--main-transition) linear forwards";
+      setTimeout(() => {
+        shareLists[index].style.display = "none";
+      }, 300);
     } else {
-      shareList.style.display = "grid";
-
-      shareIcons.forEach((shareIcon1, index1) => {
-        if (index1 !== index) {
-          removeOpenShare(index1);
-        }
-      });
+      shareLists[index].style.display = "grid";
+      shareLists[index].style.animation =
+        "appear var(--main-transition) linear forwards";
+      if (previous !== null && index != previous) {
+        shareLists[previous].style.animation =
+          "hidden var(--main-transition) linear forwards";
+        setTimeout(() => {
+          shareLists[previous].style.display = "none";
+        }, 300);
+      }
+      setTimeout(() => {
+        previous = index;
+      }, 301);
     }
   });
 });
-
-function removeOpenShare(index) {
-  const shareIcon = shareIcons[index];
-  const parentDiv = shareIcon.parentElement;
-  const shareList = parentDiv.querySelector(".font-share-icons");
-  shareList.style.display = "none";
-}
 
 //images in example
 const scrollers = document.querySelectorAll(".scroller");
