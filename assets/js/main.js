@@ -44,3 +44,5 @@ if (icon) {
 } else {
   console.error("The element with ID 'switch' was not found.");
 }
+
+

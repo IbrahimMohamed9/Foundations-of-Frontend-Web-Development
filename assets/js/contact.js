@@ -21,7 +21,7 @@ inputs.forEach((input) => {
   });
 
   input.addEventListener("blur", () => {
-    if (input.value == "") {
+    if (input.value === "") {
       input.classList.remove("active");
       console.log(inputs);
     }

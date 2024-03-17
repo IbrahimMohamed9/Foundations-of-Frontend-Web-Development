@@ -94,3 +94,9 @@ document.querySelector(".checkout-btn").addEventListener("click", function () {
   modal.classList.remove("active");
   document.body.classList.remove("fix");
 });
+
+//redirect plan 1
+document.getElementById("p-1-4").addEventListener("click", redirect);
+function redirect() {
+  window.location = "assets/html/item.html";
+}
