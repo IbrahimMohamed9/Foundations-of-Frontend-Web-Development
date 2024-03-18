@@ -55,6 +55,9 @@ article .article-container {
     --container-padding: 15px;
   }
 }
+.category {
+  font-size: 12px;
+}
 .category span:first-child {
   color: var(--secondary-font-color);
   position: relative;
@@ -156,14 +159,14 @@ article .article-container header + section .icons .font-share-icons a:hover {
 }
 .more-articles .container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
-  column-gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+  column-gap: 20px;
 }
 @media (max-width: 510px) {
   .more-articles .container {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 10px;
+    row-gap: 20px;
   }
 }
 .more-articles .container .col {

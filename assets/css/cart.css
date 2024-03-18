@@ -34,7 +34,7 @@ header + .cart {
   }
 }
 .right-corner {
-  margin: -10px 0 10px;
+  margin: 5px 0 10px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
