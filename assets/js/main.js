@@ -107,11 +107,17 @@ headerMenu.addEventListener("click", () => {
     headerWords.classList.remove("active");
     globalModal.classList.remove("active");
     document.body.classList.remove("fix");
+    setTimeout(() => {
+      headerWords.style.display = "none";
+    }, 300);
   } else {
-    headerWords.classList.add("active");
-    globalModal.style.top = "50px";
-    globalModal.classList.add("active");
-    document.body.classList.add("fix");
+    headerWords.style.display = "block";
+    setTimeout(() => {
+      headerWords.classList.add("active");
+      globalModal.style.top = "50px";
+      globalModal.classList.add("active");
+      document.body.classList.add("fix");
+    }, 5);
   }
 });
 globalModal.addEventListener("click", () => {
@@ -120,17 +126,17 @@ globalModal.addEventListener("click", () => {
   document.body.classList.remove("fix");
 });
 
-// Go Up 
+// Go Up
 function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 // Show/hide the go-up box based on scroll position
-window.addEventListener('scroll', function() {
-  var goUpBox = document.getElementById('goUpBox');
+window.addEventListener("scroll", function () {
+  var goUpBox = document.getElementById("goUpBox");
   if (window.scrollY > 100) {
-      goUpBox.classList.add('active');
+    goUpBox.classList.add("active");
   } else {
-      goUpBox.classList.remove('active');
+    goUpBox.classList.remove("active");
   }
 });

@@ -372,7 +372,7 @@ a {
 @media (max-width: 500px) {
   .main-header ul.tile-wrds {
     flex-direction: column;
-    display: block;
+    display: none;
     position: absolute;
     background-color: var(--secondary-background-color);
     left: 0;
