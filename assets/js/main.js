@@ -149,3 +149,9 @@ window.addEventListener("scroll", function () {
     goUpBox.classList.remove("active");
   }
 });
+goUpBox.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+});

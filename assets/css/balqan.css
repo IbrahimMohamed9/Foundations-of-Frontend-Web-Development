@@ -1322,6 +1322,7 @@ p {
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
 }
 .go-up-box {
+  cursor: pointer;
   --dimantion: 40px;
   width: var(--dimantion);
   height: var(--dimantion);
@@ -1337,7 +1338,7 @@ p {
 .go-up-box.active {
   left: 20px;
 }
-.go-up-box a {
+.go-up-box i {
   color: black;
   position: relative;
   top: 50%;
