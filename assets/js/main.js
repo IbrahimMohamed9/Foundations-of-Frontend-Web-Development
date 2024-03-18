@@ -26,15 +26,15 @@ function logoAnimation() {
     letter.style.animation = "move-letter 0.5s linear 0.25s forwards";
     setTimeout(() => {
       letter.style.animation = "move-letter-reverse 0.5s  linear forwards";
-    }, 1900);
+    }, 1950);
   });
 
   setTimeout(() => {
     rightDot.style.animation = "logo-right-dot-reverse 0.3s linear forwards";
-  }, 1800);
+  }, 1950);
   setTimeout(() => {
     leftDot.style.animation = "logo-left-dot-reverse 0.3s linear forwards";
-  }, 1800);
+  }, 1950);
 }
 
 //dots in main-title
@@ -111,7 +111,7 @@ headerMenu.addEventListener("click", () => {
       headerWords.style.display = "none";
     }, 300);
   } else {
-    headerWords.style.display = "block";
+    headerWords.style.display = "grid";
     setTimeout(() => {
       headerWords.classList.add("active");
       globalModal.style.top = "50px";
