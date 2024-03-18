@@ -1248,14 +1248,28 @@ a {
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
 }
 .go-up-box {
+  --dimantion: 40px;
+  width: var(--dimantion);
+  height: var(--dimantion);
   position: fixed;
   bottom: 20px;
   left: -100px;
   transition: left 0.3s;
   z-index: 1000;
+  display: block;
+  background-color: var(--main-color);
+  border-radius: 50%;
 }
 .go-up-box.active {
-  left: 20px; /* Move the box to the left when active */
+  left: 20px;
+}
+.go-up-box a {
+  color: black;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
 }
 /* 
 ====================================================================

@@ -127,14 +127,10 @@ globalModal.addEventListener("click", () => {
 });
 
 // Go Up
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+const goUpBox = document.querySelector(".go-up-box");
 
-// Show/hide the go-up box based on scroll position
 window.addEventListener("scroll", function () {
-  var goUpBox = document.getElementById("goUpBox");
-  if (window.scrollY > 100) {
+  if (window.scrollY > 200) {
     goUpBox.classList.add("active");
   } else {
     goUpBox.classList.remove("active");
