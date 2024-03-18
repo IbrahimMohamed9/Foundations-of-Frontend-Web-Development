@@ -88,9 +88,10 @@ function applyThemeFromLocalStorage() {
   const savedTheme = localStorage.getItem("theme");
   if (savedTheme === "dark") {
     body.classList.add("dark-theme");
+    icon.checked = true;
   } else {
     body.classList.remove("dark-theme");
-    icon.checked = true;
+    icon.checked = false;
   }
 }
 applyThemeFromLocalStorage();
@@ -113,7 +114,7 @@ headerMenu.addEventListener("click", () => {
 globalModal.addEventListener("click", () => {
   closeNav();
 });
-if (currentPage) {
+if (currentPage && window.matchMedia("(max-width:1000px)").matches) {
   currentPage.addEventListener("click", closeNav);
 }
 

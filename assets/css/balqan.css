@@ -72,8 +72,6 @@ body {
   font-family: "Marcellus", "Prompt", sans-serif;
   background-color: var(--main-background-color);
   color: var(--font-color);
-  -webkit-transition: background-color 0.5s, color 0.5s;
-  -o-transition: background-color 0.5s, color 0.5s;
   transition: background-color 0.5s, color 0.5s;
 }
 ::-webkit-scrollbar {
@@ -102,6 +100,10 @@ a {
   text-decoration: none;
   display: block;
   width: fit-content;
+}
+p {
+  word-spacing: -2px;
+  letter-spacing: 1px;
 }
 .container {
   margin-left: auto;
@@ -526,14 +528,12 @@ a {
   }
 }
 .toggle {
-  background-color: var(--main-color);
   width: 30px;
   height: 30px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   cursor: pointer;
-  box-shadow: 0 0 50px 20px rgba(0, 0, 0, 0.1);
   line-height: 1;
   margin-left: 10px;
 }
@@ -552,11 +552,11 @@ a {
 }
 .icon--moon {
   transition-delay: 200ms;
-  color: #475969;
+  color: #4984b7;
 }
 .icon--sun {
   transform: scale(0);
-  color: yellow;
+  color: rgb(255, 255, 0);
 }
 #switch:checked + .icon--moon {
   transform: rotate(360deg) scale(0);
@@ -1435,8 +1435,6 @@ a {
 }
 .info .row .content .paragraph {
   font-size: 0;
-  -webkit-transition: font-size var(--font-duration) linear;
-  -o-transition: font-size var(--font-duration) linear;
   transition: font-size var(--font-duration) linear;
   line-height: 1.3;
 }

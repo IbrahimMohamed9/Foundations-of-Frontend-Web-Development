@@ -111,7 +111,7 @@ header + .cart.item {
   border-radius: 50%;
   left: var(--left);
   z-index: 100;
-  background-color: var(--secondary-background-color);
+  background-color: var(--main-background-color);
 }
 .dark-theme .cart.item .item-container .icons .share {
   background-image: url(../images/shareIcons/share-white.svg);
@@ -297,6 +297,8 @@ header + .cart.item {
 .add .wrapper select.btn {
   background-color: #cc9a59;
   max-width: 100%;
+  text-align: center;
+  /* appearance: none; */
 }
 .add .wrapper .price + label {
   text-align: left;
