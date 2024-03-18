@@ -568,17 +568,58 @@ a {
 .main-header .container button.menu:last-of-type {
   max-width: 35px;
   min-width: 35px;
-  background-color: var(--main-color);
-  color: black;
+  min-height: 35px;
+  background-color: transparent;
   display: none;
   padding: 7px;
   border-radius: 8px;
   border: none;
   margin-left: 10px;
+  flex-direction: column;
+  position: relative;
+}
+.main-header .container button.menu:last-of-type:focus {
+  background-color: var(--main-background-color);
+}
+.main-header .container button.menu:last-of-type span {
+  position: absolute;
+  width: 90%;
+  height: 2px;
+  background-color: var(--font-color);
+  transition: var(--main-transition);
+}
+.main-header .container button.menu:last-of-type span:first-child {
+  transform: translateY(-8px);
+}
+.main-header .container button.menu:last-of-type span:nth-child(2) {
+}
+.main-header .container button.menu:last-of-type span:nth-child(3) {
+  transform: translateY(8px);
+}
+.main-header .container button.menu:last-of-type.active span:not(.close) {
+  width: 0;
+}
+.main-header .container button.menu:last-of-type.active span.close {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.main-header
+  .container
+  button.menu:last-of-type.active
+  span.close:nth-child(4) {
+  transform: rotate(50deg);
+}
+.main-header
+  .container
+  button.menu:last-of-type.active
+  span.close:nth-of-type(5) {
+  transform: rotate(-50deg);
 }
 @media (max-width: 1000px) {
   .main-header .container button.menu:last-of-type {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     grid-area: menu;
   }
 }
