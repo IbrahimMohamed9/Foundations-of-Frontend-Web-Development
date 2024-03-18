@@ -1,3 +1,5 @@
+// Main image
+
 const mainImage = document.querySelector(".item-container .images .main img");
 const imageList = document.querySelectorAll(
   ".item-container .images .list-container .img-container"
@@ -45,41 +47,69 @@ function scrollItems() {
 const leftArrowItems = document.querySelector(".more-items .left-arrow");
 const rightArrowItems = document.querySelector(".more-items .right-arrow");
 
-leftArrowItems.addEventListener("click", () => {
-  containerItems.style.transform = "translateX(-225px)";
-  leftArrowItems.style.outlineColor = "var(--secondary-color)";
+leftArrowItems.addEventListener("focus", () => {
+  leftArrowItems.classList.add("active");
+});
+leftArrowItems.addEventListener("blur", () => {
+  leftArrowItems.classList.remove("active");
 });
 
-rightArrowItems.addEventListener("click", () => {
-  containerItems.style.transform = "translateX(125px)";
-  rightArrowItems.style.outlineColor = "var(--secondary-color)";
+rightArrowItems.addEventListener("focus", () => {
+  rightArrowItems.classList.add("active");
+});
+rightArrowItems.addEventListener("blur", () => {
+  rightArrowItems.classList.remove("active");
 });
 
-const shareIcons = document.querySelectorAll(".share");
+//share icon
+const shareIcon = document.querySelector(".share");
+const shareLists = document.querySelectorAll(".icons .font-share-icons");
 
-shareIcons.forEach((shareIcon, index) => {
-  shareIcon.addEventListener("click", () => {
-    if (window.matchMedia("(max-width:500px)").matches) {
-      if (navigator.share) {
-        navigator
-          .share({
-            title: "10 Days",
-            text: "Come to stay with the best 10 Days",
-            url: "https://ibrahimmoatazmohamed.github.io/IT-207-Introduction-to-Web-Programming/assets/html/item.html",
-          })
-          .then(() => console.log("Successful share"))
-          .catch((error) => console.log("Error sharing", error));
-      } else {
-        console.log("Share not supported on this browser, do it the old way.");
-      }
-    } else {
-      const parentDiv = shareIcon.parentElement;
-      const shareList = parentDiv.querySelector(".font-share-icons");
-      if (shareList.style.display === "grid") {
-        shareList.style.display = "none";
-      } else {
-        shareList.style.display = "grid";
-      }
+shareIcon.addEventListener("click", () => {
+  if (window.matchMedia("(max-width:500px)").matches) {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "10 Days",
+          text: "Come to stay with the best 10 Days",
+          url: "https://ibrahimmoatazmohamed.github.io/IT-207-Introduction-to-Web-Programming/assets/html/item.html",
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
     }
-  });
+  } else {
+    if (shareLists[0].style.display === "grid") {
+      shareLists[0].style.animation =
+        "hidden var(--main-transition) linear forwards";
+      setTimeout(() => {
+        shareLists[0].style.display = "none";
+      }, 300);
+    } else {
+      shareLists[0].style.display = "grid";
+      shareLists[0].style.animation =
+        "appear var(--main-transition) linear forwards";
+    }
+  }
+});
+
+//add to cart
+var modal = document.getElementById("myModal");
+
+var btns = document.querySelectorAll(".pckbtn");
+
+function handleClick() {
+  modal.classList.add("active");
+  document.body.classList.add("fix");
+}
+
+btns.forEach((button) => button.addEventListener("click", handleClick));
+
+document.querySelector(".x").addEventListener("click", function () {
+  modal.classList.remove("active");
+  document.body.classList.remove("fix");
+});
+
+document.querySelector(".checkout-btn").addEventListener("click", function () {
+  modal.classList.remove("active");
+  document.body.classList.remove("fix");
 });

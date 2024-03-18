@@ -98,7 +98,9 @@ document.querySelector(".checkout-btn").addEventListener("click", function () {
 });
 
 //redirect plan 1
-document.getElementById("p-1-4").addEventListener("click", redirect);
-function redirect() {
-  window.location = "assets/html/item.html";
+if (document.getElementById("p-1-4")) {
+  document.getElementById("p-1-4").addEventListener("click", redirect);
+  function redirect() {
+    window.location = "assets/html/item.html";
+  }
 }

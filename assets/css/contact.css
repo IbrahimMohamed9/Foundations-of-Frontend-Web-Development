@@ -16,18 +16,11 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
 }
 @media (max-width: 768px) {
   .touch .container {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
     flex-direction: column;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
     align-items: center;
     gap: 40px;
   }
@@ -49,17 +42,11 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
   align-items: center;
   position: absolute;
   top: 0;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   width: var(--width-height);
   height: var(--width-height);
@@ -67,10 +54,6 @@
   color: var(--footer-font);
   border-radius: 50%;
   font-size: 35px;
-  -webkit-transition: background-color var(--main-transition),
-    color var(--main-transition);
-  -o-transition: background-color var(--main-transition),
-    color var(--main-transition);
   transition: background-color var(--main-transition),
     color var(--main-transition);
 }
@@ -211,33 +194,45 @@
   font-size: 18px;
   border-left: 1px solid var(--main-background-color);
   color: var(--font-color);
+}
+.form-control .field.delay + label span,
+.form-control label.txtar-la.delay span {
   transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.form-control label span:first-child {
+.form-control .field.delay + label span:first-child,
+.form-control label.txtar-la.delay span:first-child {
   transition-delay: 0ms;
 }
-.form-control label span:nth-child(2) {
+.form-control .field.delay + label span:nth-child(2),
+.form-control label.txtar-la.delay span:nth-child(2) {
   transition-delay: 50ms;
 }
-.form-control label span:nth-child(3) {
+.form-control .field.delay + label span:nth-child(3),
+.form-control label.txtar-la.delay span:nth-child(3) {
   transition-delay: 150ms;
 }
-.form-control label span:nth-child(4) {
+.form-control .field.delay + label span:nth-child(4),
+.form-control label.txtar-la.delay span:nth-child(4) {
   transition-delay: 200ms;
 }
-.form-control label span:nth-child(5) {
+.form-control .field.delay + label span:nth-child(5),
+.form-control label.txtar-la.delay span:nth-child(5) {
   transition-delay: 250ms;
 }
-.form-control label span:nth-child(6) {
+.form-control .field.delay + label span:nth-child(6),
+.form-control label.txtar-la.delay span:nth-child(6) {
   transition-delay: 300ms;
 }
-.form-control label span:nth-child(7) {
+.form-control .field.delay + label span:nth-child(7),
+.form-control label.txtar-la.delay span:nth-child(7) {
   transition-delay: 350ms;
 }
-.form-control label span:nth-child(8) {
+.form-control .field.delay + label span:nth-child(8),
+.form-control label.txtar-la.delay span:nth-child(8) {
   transition-delay: 400ms;
 }
-.form-control label span:nth-child(9) {
+.form-control .field.delay + label span:nth-child(9),
+.form-control label.txtar-la.delay span:nth-child(9) {
   transition-delay: 450ms;
 }
 .form-control label span:not(:first-of-type) {

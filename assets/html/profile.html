@@ -51,9 +51,6 @@
   <body class="dark-theme dash sidebar-250">
     <!-- Start Header -->
     <header class="main-header">
-      <div class="bar">
-        <i class="fa-solid fa-bars fa-lg bar-icon"></i>
-      </div>
       <div class="container">
         <a href="../../index.html">
           <div class="logoo">
@@ -73,9 +70,18 @@
           </div>
         </a>
         <ul class="tile-wrds">
-          <li><a href="../../index.html">Home</a></li>
-          <li><a href="../html/contact-us.html">Contact</a></li>
-          <li><a href="../html/shop.html">Shop</a></li>
+          <li>
+            <a href="../html/contact-us.html">Contact </a>
+          </li>
+          <li>
+            <a href="#">Profile</a>
+          </li>
+          <li>
+            <a href="../html/shop.html">Shop</a>
+          </li>
+          <li>
+            <a href="../../index.html">Home</a>
+          </li>
         </ul>
         <div class="icons">
           <a href="">
@@ -87,6 +93,7 @@
             </i>
           </a>
           <span>KM 0.00</span>
+
           <div class="dark-mode-icon">
             <label for="switch" class="toggle">
               <input type="checkbox" class="input" id="switch" />
@@ -105,6 +112,7 @@
                   ></path>
                 </svg>
               </div>
+
               <div class="icon icon--sun">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -121,6 +129,10 @@
             </label>
           </div>
         </div>
+        <button class="menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="modal" id="headerModal"></div>
       </div>
     </header>
     <!-- End Header -->
@@ -826,7 +838,7 @@
         </div>
         <!-- End Settings Box -->
         <!-- Start Settings Box -->
-        <div class="p-20 bg-fourth rad-10 p-10-f p-relative">
+        <div class="p-20 pb-60-f bg-fourth rad-10 p-10-f p-relative">
           <h2 class="mt-0 mb-10">Security Info</h2>
           <p class="mt-0 mb-20 c-grey fs-15">
             Security Information About Your Account

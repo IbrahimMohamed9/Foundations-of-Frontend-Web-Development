@@ -69,11 +69,22 @@
             <img src="../images/logo/n.png" alt="" class="n letter" />
           </div>
         </a>
-        <ul class="tile-wrds">
-          <li><a href="../../index.html">Home</a></li>
-          <li><a href="../html/profile.html">Profile</a></li>
-          <li><a href="../html/shop.html">Shop</a></li>
-        </ul>
+        <div class="modal" id="headerModal">
+          <ul class="tile-wrds">
+            <li>
+              <a href="../html/contact-us.html">Contact </a>
+            </li>
+            <li>
+              <a href="../html/profile.html">Profile</a>
+            </li>
+            <li>
+              <a href="../html/shop.html">Shop</a>
+            </li>
+            <li>
+              <a href="#">Home</a>
+            </li>
+          </ul>
+        </div>
         <div class="icons">
           <a href="">
             <!-- <i class="fa-regular fa-heart heart"></i> -->
@@ -120,6 +131,9 @@
             </label>
           </div>
         </div>
+        <button class="menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
       </div>
     </header>
     <!-- End Header -->
@@ -147,6 +161,7 @@
                     id="fullname"
                     name="fullname"
                     required=""
+                    class="field"
                   />
                   <label for="fullname">
                     <span>F</span>
@@ -166,6 +181,7 @@
                     id="emailcreate"
                     name="emailcreate"
                     required=""
+                    class="field"
                   />
                   <label for="emailcreate">
                     <span>E</span>
@@ -181,6 +197,7 @@
                     id="passwordcreate"
                     name="passwordcreate"
                     required=""
+                    class="field"
                   />
                   <label for="passwordcreate">
                     <span>P</span>
@@ -220,6 +237,7 @@
                     id="emailsignin"
                     name="emailsignin"
                     required=""
+                    class="field"
                   />
                   <label for="emailsignin">
                     <span>E</span>
@@ -235,6 +253,7 @@
                     id="passwordsignin"
                     name="passwordsignin"
                     required=""
+                    class="field"
                   />
                   <label for="passwordsignin">
                     <span>P</span>

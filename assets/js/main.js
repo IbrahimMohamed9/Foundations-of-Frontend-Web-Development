@@ -10,6 +10,7 @@ letters.splice(3, 3);
 
 window.addEventListener("load", logoAnimation);
 logo.addEventListener("mouseenter", logoAnimation);
+logo.addEventListener("click", logoAnimation);
 
 function logoAnimation() {
   leftDot.style.animation =
@@ -43,6 +44,9 @@ mainTitles.forEach((mainTitle) => {
   mainTitle.addEventListener("mouseenter", () => {
     mainTitleAnimation(mainTitle);
   });
+  mainTitle.addEventListener("click", () => {
+    mainTitleAnimation(mainTitle);
+  });
 });
 function mainTitleAnimation(title) {
   title.classList.remove("unhovered");
@@ -67,14 +71,66 @@ heartIcon.addEventListener("mouseleave", () => {
 
 //dark theme
 const icon = document.getElementById("switch");
-if (icon) {
-  icon.addEventListener("click", function () {
-    if (body.classList.contains("dark-theme")) {
-      body.classList.remove("dark-theme");
-    } else {
-      body.classList.add("dark-theme");
-    }
-  });
-} else {
-  console.error("The element with ID 'switch' was not found.");
+
+function toggleTheme() {
+  if (body.classList.contains("dark-theme")) {
+    body.classList.remove("dark-theme");
+    localStorage.setItem("theme", "light");
+  } else {
+    body.classList.add("dark-theme");
+    localStorage.setItem("theme", "dark");
+  }
 }
+
+icon.addEventListener("click", toggleTheme);
+
+function applyThemeFromLocalStorage() {
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") {
+    body.classList.add("dark-theme");
+  } else {
+    body.classList.remove("dark-theme");
+    icon.checked = true;
+  }
+}
+applyThemeFromLocalStorage();
+
+// header
+const headerMenu = document.querySelector(
+  ".main-header .container button.menu:last-of-type"
+);
+const headerWords = document.querySelector(".main-header ul.tile-wrds");
+const globalModal = document.getElementById("headerModal");
+
+headerMenu.addEventListener("click", () => {
+  if (headerWords.classList.contains("active")) {
+    headerWords.classList.remove("active");
+    globalModal.classList.remove("active");
+    document.body.classList.remove("fix");
+  } else {
+    headerWords.classList.add("active");
+    globalModal.style.top = "50px";
+    globalModal.classList.add("active");
+    document.body.classList.add("fix");
+  }
+});
+globalModal.addEventListener("click", () => {
+  globalModal.classList.remove("active");
+  headerWords.classList.remove("active");
+  document.body.classList.remove("fix");
+});
+
+// Go Up 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Show/hide the go-up box based on scroll position
+window.addEventListener('scroll', function() {
+  var goUpBox = document.getElementById('goUpBox');
+  if (window.scrollY > 100) {
+      goUpBox.classList.add('active');
+  } else {
+      goUpBox.classList.remove('active');
+  }
+});

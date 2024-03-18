@@ -131,7 +131,7 @@ body .page + .content + footer .container {
 .sidebar ul li span.active {
   background-color: var(--third-font-color);
 }
-@media (max-width: 768px) {
+@media (max-width: 790px) {
   .sidebar-250 {
     --sidebar-width: 58px;
   }

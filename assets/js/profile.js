@@ -1,19 +1,21 @@
 const barIcon = document.querySelector(".dash .main-header .bar .bar-icon");
-barIcon.addEventListener("click", function () {
-  if (body.classList.contains("sidebar-250")) {
-    body.classList.remove("sidebar-250");
-    body.classList.add("sidebar-58");
-    hideMobileSpans.forEach((span) => {
-      span.classList.add("d-none");
-    });
-  } else {
-    body.classList.remove("sidebar-58");
-    body.classList.add("sidebar-250");
-    hideMobileSpans.forEach((span) => {
-      span.classList.remove("d-none");
-    });
-  }
-});
+if (barIcon) {
+  barIcon.addEventListener("click", function () {
+    if (body.classList.contains("sidebar-250")) {
+      body.classList.remove("sidebar-250");
+      body.classList.add("sidebar-58");
+      hideMobileSpans.forEach((span) => {
+        span.classList.add("d-none");
+      });
+    } else {
+      body.classList.remove("sidebar-58");
+      body.classList.add("sidebar-250");
+      hideMobileSpans.forEach((span) => {
+        span.classList.remove("d-none");
+      });
+    }
+  });
+}
 
 const hideMobileSpans = document.querySelectorAll(
   ".page .sidebar ul li span i + span.hide-mobile"

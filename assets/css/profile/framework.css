@@ -155,13 +155,18 @@
   }
 }
 @media (max-width: 330px) {
-  .pr-10-f {
-    padding-right: 10px;
+  .pl-10-f {
+    padding-left: 10px;
   }
 }
 @media (max-width: 330px) {
-  .pl-10-f {
-    padding-left: 10px;
+  .pb-60-f {
+    padding-bottom: 60px;
+  }
+}
+@media (max-width: 330px) {
+  .pr-10-f {
+    padding-right: 10px;
   }
 }
 .m-0 {
