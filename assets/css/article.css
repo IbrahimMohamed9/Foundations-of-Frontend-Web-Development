@@ -55,6 +55,14 @@ article .article-container {
     --container-padding: 15px;
   }
 }
+article .article-container h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+article .article-container p {
+  padding: 0 0;
+  margin-bottom: 20px;
+}
 .category {
   font-size: 12px;
 }
@@ -100,6 +108,7 @@ article .article-container figure picture img {
 }
 article .article-container figure figcaption {
   padding: 10px 15px;
+  margin-bottom: 20px;
 }
 article .article-container header + section .icons {
   margin: 15px 0 10px;

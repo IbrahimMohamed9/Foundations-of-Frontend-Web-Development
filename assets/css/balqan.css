@@ -223,6 +223,19 @@ p {
 .main-title.unhovered::after {
   animation: right-move-reverse 1s var(--time-function-out) forwards;
 }
+.alert.alert-success.add-item {
+  right: 10px;
+  position: fixed;
+  z-index: 100;
+  top: 60px;
+  /* transition: opacity var(--main-transition); */
+  /* animation: ; */
+}
+.change-me {
+  display: inline;
+  color: var(--font-color);
+  cursor: auto;
+}
 /* 
 ====================================================================
 ====================================================================
@@ -591,8 +604,6 @@ p {
 .main-header .container button.menu:last-of-type span:first-child {
   transform: translateY(-8px);
 }
-.main-header .container button.menu:last-of-type span:nth-child(2) {
-}
 .main-header .container button.menu:last-of-type span:nth-child(3) {
   transform: translateY(8px);
 }
@@ -920,19 +931,16 @@ p {
   border: 20px solid var(--main-color);
   border-radius: 15px;
   position: relative;
+  cursor: pointer;
 }
 .new-packages .package .text + button::before {
   content: "Add to cart";
   position: absolute;
+  width: 100%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   transition: var(--main-transition);
-}
-@media (max-width: 391.8px) {
-  .new-packages .package .text + button::before {
-    font-size: 13px;
-  }
 }
 .new-packages .package .text + button:hover::before {
   top: -15px;
@@ -963,12 +971,15 @@ p {
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
-  z-index: 100;
   opacity: 0;
   transition: opacity var(--main-transition) ease;
 }
 .modal.active {
-  display: block;
+  opacity: 1;
+  z-index: 650;
+}
+.modal#headerModal.active {
+  top: 50px;
   opacity: 1;
   z-index: 500;
 }
@@ -1320,19 +1331,21 @@ p {
   font-size: 13px;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
+  cursor: pointer;
 }
 .go-up-box {
   cursor: pointer;
-  --dimantion: 40px;
+  --dimantion: 39px;
   width: var(--dimantion);
   height: var(--dimantion);
   position: fixed;
   bottom: 20px;
   left: -100px;
   transition: left 0.3s;
-  z-index: 1000;
+  z-index: 599;
   display: block;
   background-color: var(--main-color);
+  border: 1px solid var(--secondary-color);
   border-radius: 50%;
 }
 .go-up-box.active {
@@ -1341,7 +1354,7 @@ p {
 .go-up-box i {
   color: black;
   position: relative;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 16px;
@@ -2061,6 +2074,20 @@ footer p {
     opacity: 0;
   }
 }
+@keyframes alert {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 /* 
 ====================================================================
 ====================================================================
@@ -2074,8 +2101,3 @@ footer p {
 ====================================================================
 ====================================================================
 */
-.change-me {
-  display: inline;
-  color: var(--font-color);
-  cursor: auto;
-}

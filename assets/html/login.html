@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/normalize.css" />
     <link rel="stylesheet" href="../css/balqan.css" />
     <link rel="stylesheet" href="../css/login.css" />
     <link rel="stylesheet" href="../css/contact.css" />
@@ -163,7 +162,7 @@
     <!-- Start login -->
     <div class="login">
       <div class="container">
-        <div class="container" id="container">
+        <div class="container sign-component" id="container">
           <div class="form-container sign-up-container">
             <form action="#">
               <h1>Create Account</h1>
@@ -236,7 +235,8 @@
               </div>
               <button>Sign Up</button>
               <div class="app-register have-account">
-                Do have an account? <span class="end" id="have">Sign In</span>
+                Do have an account?
+                <span class="end sign-component">Sign In</span>
               </div>
             </form>
           </div>
@@ -294,7 +294,7 @@
               <button>Sign In</button>
               <div class="app-register have-account">
                 Don't have an account?
-                <span class="end" id="have-not">Sign Up</span>
+                <span class="end sign-component">Sign Up</span>
               </div>
             </form>
           </div>
@@ -305,12 +305,16 @@
                 <p>
                   To keep connected with us please login with your personal info
                 </p>
-                <button class="ghost" id="signIn">Sign In</button>
+                <button class="ghost sign-component" id="signIn">
+                  Sign In
+                </button>
               </div>
               <div class="overlay-panel overlay-right">
                 <h1>Hello, Friend!</h1>
                 <p>Enter your personal details and start journey with us</p>
-                <button class="ghost" id="signUp">Sign Up</button>
+                <button class="ghost sign-component" id="signUp">
+                  Sign Up
+                </button>
               </div>
             </div>
           </div>

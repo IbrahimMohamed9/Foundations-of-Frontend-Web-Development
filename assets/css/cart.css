@@ -1,7 +1,8 @@
-header + .go-up-box + .cart {
+header ~ .shopping.cart {
   background-color: var(--third-background-color);
   padding: 5px 0 100px;
 }
+
 .containerr {
   margin-left: auto;
   margin-right: auto;

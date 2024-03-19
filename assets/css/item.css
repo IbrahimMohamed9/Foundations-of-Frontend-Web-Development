@@ -54,14 +54,11 @@
 ====================================================================
 ====================================================================
 */
-.p-relative {
+/* .p-relative {
   position: relative;
-}
-@media (max-width: 1000px) {
-  .p-relative-c-m {
-    left: 50%;
-    transform: translateX(-50%);
-  }
+} */
+.right-corner {
+  margin: 10px 0 20px;
 }
 .center {
   position: absolute;
@@ -154,6 +151,12 @@ header + .cart.item {
   max-width: 429px;
   min-height: 270px;
   min-width: 429px;
+}
+@media (max-width: 1000px) {
+  .cart.item .item-container .images .main {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 .cart.item .item-container .images .main img {
   max-height: 330px;
@@ -395,18 +398,19 @@ header + .cart.item {
 }
 .more-items .container .col {
   margin: 10px 0;
-  max-width: 14.28%;
-  min-width: 14.28%;
+  max-width: 210px;
+  min-width: 210px;
+  /* max-height: 300px; */
+  min-height: fit-content;
   display: flex;
   flex-direction: column;
   border: 10px solid transparent;
-  border-left-width: 5px;
-  border-right-width: 5px;
+  border-width: 5px 10px;
   border-radius: 8px;
   box-shadow: -5px 5px 9px -3px var(--box-shadow),
     4px -5px 9px -3px var(--box-shadow);
 }
-@media (max-width: 993px) {
+/* @media (max-width: 993px) {
   .more-items .container .col {
     max-width: 20%;
     min-width: 20%;
@@ -447,17 +451,17 @@ header + .cart.item {
     max-width: 58.8%;
     min-width: 58.8%;
   }
-}
+} */
 .more-items .container .col h2 {
   color: var(--secondary-font-color);
   font-size: 1rem;
   margin-bottom: 3px;
 }
 .more-items .container .col .image {
+  max-width: 200px;
   max-width: 100%;
-  overflow: hidden;
   border-radius: 6px;
-  max-height: 130px;
+  min-height: 200px;
 }
 .more-items .container .col .image img {
   min-width: 100%;

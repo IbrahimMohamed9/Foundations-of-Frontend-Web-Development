@@ -12,6 +12,7 @@
   --footer-icon: #fff;
   --footer-font: #333;
   --box-shadow: rgba(0, 0, 0, 0.2);
+  --box-shadow-2: rgba(0, 0, 0, 0.08);
   --product-color: #47484b;
   --secondary-product-color: #7a7c81;
   --third-background-color: #0c0c0d1a;
@@ -29,6 +30,7 @@
   --footer-icon: #313131;
   --footer-font: #b9b9b9;
   --box-shadow: rgba(255, 255, 255, 0.4);
+  --box-shadow-2: rgba(255, 255, 255, 0.1);
   --product-color: #e7e7e7;
   --secondary-product-color: #dbdbdb;
   --third-background-color: #38383a;
@@ -50,6 +52,7 @@ body.sidebar-58 {
 }
 body.sidebar-250 header.main-header,
 body.sidebar-58 header.main-header {
+  box-shadow: none;
   position: fixed;
   width: 100%;
 }
@@ -131,6 +134,9 @@ body .page + .content + footer .container {
 .sidebar ul li span.active {
   background-color: var(--third-font-color);
 }
+.sidebar ul li span.active {
+  box-shadow: inset 0px 20px 25px 0px var(--box-shadow-2);
+}
 @media (max-width: 790px) {
   .sidebar-250 {
     --sidebar-width: 58px;
@@ -145,9 +151,6 @@ body .page + .content + footer .container {
 @media (max-width: 300px) {
   body {
     --sidebar-width: 46px;
-  }
-  .sidebar {
-    padding: 3px;
   }
 }
 /* 
