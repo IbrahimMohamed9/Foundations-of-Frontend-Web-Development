@@ -32,31 +32,24 @@ document.addEventListener("DOMContentLoaded", () => {
     return isOverflowing;
   }
 
-  const parentItems = document.getElementById("more-items-parent"),
-    containerItems = document.getElementById("more-items-container");
+  const wrapper = document.getElementById("wrapper"),
+    carousel = document.getElementById("carousel");
 
   scrollItems();
   function scrollItems() {
-    if (checkOverf(parentItems)) {
-      parentItems.style.setProperty("--display", "flex");
-      containerItems.style.justifyContent = "left";
+    if (checkOverf(wrapper)) {
+      wrapper.style.setProperty("--display", "flex");
+      carousel.style.justifyContent = "left";
     }
   }
-  const leftArrowItems = document.querySelector(".more-items .left-arrow"),
-    rightArrowItems = document.querySelector(".more-items .right-arrow");
-
-  leftArrowItems.addEventListener("focus", () => {
-    leftArrowItems.classList.add("active");
-  });
-  leftArrowItems.addEventListener("blur", () => {
-    leftArrowItems.classList.remove("active");
-  });
-
-  rightArrowItems.addEventListener("focus", () => {
-    rightArrowItems.classList.add("active");
-  });
-  rightArrowItems.addEventListener("blur", () => {
-    rightArrowItems.classList.remove("active");
+  const arrows = document.querySelectorAll(".wrapper button");
+  arrows.forEach((arrow) => {
+    arrow.addEventListener("focus", () => {
+      arrow.classList.add("active");
+    });
+    arrow.addEventListener("blur", () => {
+      arrow.classList.remove("active");
+    });
   });
 
   //share icon

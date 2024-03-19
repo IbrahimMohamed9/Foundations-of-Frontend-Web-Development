@@ -336,6 +336,7 @@ header + .cart.item {
 ====================================================================
 */
 .more-items {
+  border: none;
   padding: 30px 0;
   background-color: var(--secondary-background-color);
   position: relative;
@@ -346,7 +347,6 @@ header + .cart.item {
 .more-items .left-arrow::before {
   font-family: "Font Awesome 6 Free";
   font-weight: 900;
-  z-index: 1000 !important;
   font-size: 20px;
 }
 .more-items .right-arrow::before {
@@ -375,12 +375,12 @@ header + .cart.item {
   color: black;
   z-index: 5;
   font-size: 16px;
+  transition: var(--main-transition);
 }
 .more-items .right-arrow.active,
 .more-items .left-arrow.active {
   box-shadow: 0 0 15px var(--main-color);
   background-color: var(--main-color);
-  transition: var(--main-transition);
 }
 .more-items .right-arrow {
   right: var(--position);
