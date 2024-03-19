@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
           container.classList.add("right-panel-active");
           break;
         default:
-          console.log("You add new sign-btn");
+          console.log("You add new sign-btn without event");
           break;
       }
     });

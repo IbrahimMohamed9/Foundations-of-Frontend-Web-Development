@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Main image
+  var previous = 0;
+
   const mainImage = document.querySelector(".item-container .images .main img"),
     imageList = document.querySelectorAll(
       ".item-container .images .list-container .img-container"
@@ -10,27 +12,23 @@ document.addEventListener("DOMContentLoaded", () => {
       mainImage.src = imgElement.src;
       image.classList.add("active");
       removeActive(index);
+      previous = index;
     });
   });
 
   function removeActive(hoverdIndex) {
-    imageList.forEach((image, index) => {
-      if (!(hoverdIndex === index)) {
-        image.classList.remove("active");
-      }
-    });
+    if (hoverdIndex != previous) {
+      imageList[previous].classList.remove("active");
+    }
   }
 
-  function check(el) {
-    const curOverf = el.style.overflow;
-
-    if (!curOverf || curOverf === "visible") el.style.overflow = "hidden";
-
+  // scroll
+  function checkOverf(el) {
+    const elOverf = el.style.overflow;
+    if (!elOverf || elOverf === "visible") el.style.overflow = "hidden";
     const isOverflowing =
       el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight;
-
-    el.style.overflow = curOverf;
-
+    el.style.overflow = elOverf;
     return isOverflowing;
   }
 
@@ -39,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   scrollItems();
   function scrollItems() {
-    if (check(parentItems)) {
+    if (checkOverf(parentItems)) {
       parentItems.style.setProperty("--display", "flex");
       containerItems.style.justifyContent = "left";
     }

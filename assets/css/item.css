@@ -400,7 +400,6 @@ header + .cart.item {
   margin: 10px 0;
   max-width: 210px;
   min-width: 210px;
-  /* max-height: 300px; */
   min-height: fit-content;
   display: flex;
   flex-direction: column;
@@ -410,48 +409,6 @@ header + .cart.item {
   box-shadow: -5px 5px 9px -3px var(--box-shadow),
     4px -5px 9px -3px var(--box-shadow);
 }
-/* @media (max-width: 993px) {
-  .more-items .container .col {
-    max-width: 20%;
-    min-width: 20%;
-  }
-}
-@media (max-width: 770px) {
-  .more-items .container .col {
-    max-width: 25%;
-    min-width: 25%;
-  }
-}
-@media (max-width: 600px) {
-  .more-items .container .col {
-    max-width: 28.57%;
-    min-width: 28.57%;
-  }
-}
-@media (max-width: 500px) {
-  .more-items .container .col {
-    max-width: 33.33%;
-    min-width: 33.33%;
-  }
-}
-@media (max-width: 450px) {
-  .more-items .container .col {
-    max-width: 40%;
-    min-width: 40%;
-  }
-}
-@media (max-width: 400px) {
-  .more-items .container .col {
-    max-width: 50%;
-    min-width: 50%;
-  }
-}
-@media (max-width: 300px) {
-  .more-items .container .col {
-    max-width: 58.8%;
-    min-width: 58.8%;
-  }
-} */
 .more-items .container .col h2 {
   color: var(--secondary-font-color);
   font-size: 1rem;
