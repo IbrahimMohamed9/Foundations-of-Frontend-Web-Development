@@ -5,7 +5,7 @@
 .login .container .form-container .inputs .form-control {
   margin-top: 15px;
 }
-@media (min-width: 430px) and (max-width: 470px) {
+@media (min-width: 430px) and (max-width: 500px) {
   .login .container .form-container .inputs .form-control input {
     min-width: 85%;
     max-width: 85%;
@@ -93,7 +93,7 @@
   transform-style: preserve-3d;
   transform-origin: center center;
 }
-@media (max-width: 430px) {
+@media (max-width: 500px) {
   #container {
     overflow: initial;
   }
@@ -133,7 +133,10 @@
   z-index: 2;
   position: absolute;
 }
-@media (max-width: 430px) {
+@media (max-width: 500px) {
+  #container {
+    transition: 0.8s;
+  }
   .sign-in-container {
     width: 100%;
     z-index: 1;
@@ -143,7 +146,7 @@
 .container.right-panel-active .sign-in-container {
   transform: translateX(100%);
 }
-@media (max-width: 430px) {
+@media (max-width: 500px) {
   .container.right-panel-active .sign-in-container {
     transform: translateX(0);
   }
@@ -154,7 +157,7 @@
   opacity: 0;
   z-index: 1;
 }
-@media (max-width: 430px) {
+@media (max-width: 500px) {
   .sign-up-container {
     transform: translateX(0);
     width: 100%;
@@ -173,7 +176,7 @@
   font-size: 12px;
   bottom: -20px;
 }
-@media (min-width: 430px) {
+@media (min-width: 500px) {
   .container .container .form-container .have-account {
     display: none;
   }
@@ -195,7 +198,7 @@
   transition: transform 0.6s ease-in-out;
   z-index: 100;
 }
-@media (max-width: 430px) {
+@media (max-width: 500px) {
   .overlay-container {
     display: none;
   }
@@ -258,5 +261,35 @@
   100% {
     opacity: 1;
     z-index: 5;
+  }
+}
+
+@media (max-width: 992px) {
+  .inputs .form-control.full > input {
+    max-width: 95%;
+    min-width: 90%;
+  }
+}
+@media (max-width: 500px) {
+  .inputs {
+    min-width: 90%;
+  }
+  .form-control label {
+    padding-left: 20px;
+  }
+}
+@media (max-width: 450px) {
+  .form-control label {
+    padding-left: 5%;
+  }
+}
+@media (max-width: 415px) {
+  .form-control label {
+    padding-left: 1%;
+  }
+}
+@media (max-width: 400px) {
+  .form-control label {
+    padding-left: 0;
   }
 }
