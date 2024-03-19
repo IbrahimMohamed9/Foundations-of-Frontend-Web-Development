@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const body = document.body;
   const barIcon = document.querySelector(".dash .main-header .bar .bar-icon");
   if (barIcon) {
     barIcon.addEventListener("click", function () {

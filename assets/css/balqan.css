@@ -590,6 +590,7 @@ p {
   margin-left: 10px;
   flex-direction: column;
   position: relative;
+  cursor: pointer;
 }
 .main-header .container button.menu:last-of-type:focus {
   background-color: var(--main-background-color);
