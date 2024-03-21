@@ -25,6 +25,7 @@
   --footer-icon: #fff;
   --footer-font: #333;
   --box-shadow: rgba(0, 0, 0, 0.2);
+  --box-shadow-2: rgba(0, 0, 0, 0.08);
   --product-color: #47484b;
   --secondary-product-color: #7a7c81;
   --third-background-color: #ffffff1a;
@@ -41,6 +42,7 @@
   --footer-icon: #313131;
   --footer-font: #b9b9b9;
   --box-shadow: rgba(255, 255, 255, 0.4);
+  --box-shadow-2: rgba(255, 255, 255, 0.1);
   --product-color: #e7e7e7;
   --secondary-product-color: #dbdbdb;
   --third-background-color: #0c0c0d85;
@@ -457,6 +459,9 @@ p {
   display: none;
 }
 @media (max-width: 1000px) {
+  .main-header ul.tile-wrds {
+    padding: 10px 5px;
+  }
   .main-header ul.tile-wrds li {
     margin: 0 0;
     overflow: hidden;
@@ -467,13 +472,31 @@ p {
     display: flex;
     justify-content: flex-start;
     line-height: 24px;
-    padding: 10px 25px;
+    padding: 10px;
     min-width: 100%;
     font-size: 16px;
     gap: 10px;
+    border-radius: 6px;
   }
   .main-header ul.tile-wrds li a i {
     display: initial;
+  }
+  .main-header ul.tile-wrds li a:first-child {
+    transition: var(--main-transition);
+    width: 100%;
+    min-height: 41px;
+  }
+  .main-header ul.tile-wrds li a:hover,
+  .main-header ul.tile-wrds li#current-page a {
+    background-color: var(--third-font-color);
+    color: var(--main-color);
+  }
+  .main-header ul.tile-wrds li#current-page a {
+    box-shadow: inset 0px 20px 25px 0px var(--box-shadow-2);
+  }
+  .main-header .tile-wrds li a::before,
+  .main-header .tile-wrds li a::after {
+    display: none;
   }
 }
 .main-header .icons {
@@ -618,13 +641,13 @@ p {
 .main-header
   .container
   button.menu:last-of-type.active
-  span.close:nth-child(4) {
+  span.close:nth-child(3) {
   transform: rotate(50deg);
 }
 .main-header
   .container
   button.menu:last-of-type.active
-  span.close:nth-of-type(5) {
+  span.close:nth-of-type(4) {
   transform: rotate(-50deg);
 }
 @media (max-width: 1000px) {
@@ -1744,13 +1767,10 @@ p {
 ====================================================================
 */
 footer .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  padding: 30px 0;
 }
 footer .row .image img {
   max-width: 220px;

@@ -75,7 +75,7 @@
   display: block !important;
 }
 .d-none {
-  display: none;
+  display: none !important;
 }
 @media (max-width: 330px) {
   .center-f {
@@ -90,11 +90,6 @@
 @media (max-width: 768px) {
   .block-mobile {
     display: block;
-  }
-}
-@media (max-width: 780px) {
-  .hide-mobile {
-    display: none;
   }
 }
 /* 
@@ -459,6 +454,7 @@
   bottom: 20px;
   right: 20px;
   position: absolute;
+  border: none;
 }
 .btn-shape.btn-position:hover {
   background-color: var(--secondary-color);
