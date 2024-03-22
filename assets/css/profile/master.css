@@ -465,10 +465,6 @@ textarea {
 .tickets .box {
   width: calc(50% - 10px);
 }
-@media (max-width: 768px) {
-  .tickets .box {
-  }
-}
 .tickets > div .box:first-of-type {
   --row-color: 0 255 0;
 }

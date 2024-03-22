@@ -136,15 +136,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function closeNav() {
+    headerMenu.classList.remove("active");
     headerWords.classList.remove("active");
     disappearModal();
-    headerMenu.classList.remove("active");
 
     setTimeout(() => {
       headerWords.style.display = "none";
     }, 300);
   }
   function openNav() {
+    headerMenu.classList.add("active");
+
     headerWords.style.display = "grid";
     setTimeout(() => {
       headerWords.classList.add("active");

@@ -9,9 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     textarea.addEventListener("blur", () => {
-      if (textarea.value == "") {
+      if (textarea.value.trim() == "") {
         label.classList.remove("active");
         textarea.classList.remove("active");
+        textarea.value = textarea.value.trim();
         setTimeout(() => {
           label.classList.remove("delay");
         }, 500);
@@ -21,16 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fields.forEach((field) => {
     inputs = field.children;
-    inputs[0].addEventListener("focus", (input) => {
+    fieldAnimation(inputs[0]);
+  });
+
+  function fieldAnimation(field) {
+    field.addEventListener("focus", (input) => {
       input.target.classList.add("active", "delay");
     });
-    inputs[0].addEventListener("blur", (input) => {
-      if (input.target.value == "") {
+    field.addEventListener("blur", (input) => {
+      if (input.target.value.trim() == "") {
         input.target.classList.remove("active");
+        input.target.value = input.target.value.trim();
         setTimeout(() => {
           input.target.classList.remove("delay");
         }, 500);
       }
     });
-  });
+  }
 });
