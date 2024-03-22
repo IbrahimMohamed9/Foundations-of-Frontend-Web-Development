@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       title.classList.add("unhovered");
     }, 1500);
   }
+
   //change heart in hover header
   const heartIcon = document.querySelector(".heart.fa-regular");
 
@@ -99,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // header
   const headerMenu = document.querySelector(
-      ".main-header .container button.menu:last-of-type"
+      ".main-header .container button.menu"
     ),
     headerWords = document.querySelector(".main-header ul.tile-wrds"),
     globalModal = document.getElementById("headerModal"),
@@ -124,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
       globalModal.classList.add("active");
       body.classList.add("fix");
-    }, 1);
+    }, 2);
   }
   function disappearModal() {
     globalModal.classList.remove("active");
@@ -145,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   function openNav() {
     headerWords.style.display = "grid";
-    headerMenu.classList.add("active");
     setTimeout(() => {
       headerWords.classList.add("active");
       appearModal();

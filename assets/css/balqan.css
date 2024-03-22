@@ -25,7 +25,7 @@
   --footer-icon: #fff;
   --footer-font: #333;
   --box-shadow: rgba(0, 0, 0, 0.2);
-  --box-shadow-2: rgba(0, 0, 0, 0.08);
+  --box-shadow-2: rgb(255 254 254/ 90%);
   --product-color: #47484b;
   --secondary-product-color: #7a7c81;
   --third-background-color: #ffffff1a;
@@ -486,13 +486,24 @@ p {
     width: 100%;
     min-height: 41px;
   }
-  .main-header ul.tile-wrds li a:hover,
-  .main-header ul.tile-wrds li#current-page a {
+  .main-header ul.tile-wrds li a:hover {
     background-color: var(--third-font-color);
+    color: var(--font-color);
+  }
+  .main-header ul.tile-wrds li#current-page a {
     color: var(--main-color);
   }
   .main-header ul.tile-wrds li#current-page a {
+    box-shadow: inset 0px 9px 20px 3px var(--box-shadow-2);
+    color: var(--main-color);
+    background-color: #00000025;
+  }
+  .main-header ul.tile-wrds li#current-page:hover a {
+    background-color: #00000035;
+  }
+  .dark-theme .main-header ul.tile-wrds li#current-page a {
     box-shadow: inset 0px 20px 25px 0px var(--box-shadow-2);
+    background-color: var(--third-font-color);
   }
   .main-header .tile-wrds li a::before,
   .main-header .tile-wrds li a::after {
@@ -676,7 +687,6 @@ p {
 }
 .video {
   background-color: var(--secondary-background-color);
-  mask: linear-gradient(0deg, transparent, white 10%);
 }
 .video video {
   min-width: 100%;
@@ -998,14 +1008,21 @@ p {
   opacity: 0;
   transition: opacity var(--main-transition) ease;
 }
+.modal#headerModal,
+.modal.animation {
+  left: -100%;
+  transition: 0.3s ease;
+}
 .modal.active {
   opacity: 1;
   z-index: 650;
 }
-.modal#headerModal.active {
+.modal#headerModal.active,
+.modal.animation.active {
   top: 50px;
   opacity: 1;
   z-index: 500;
+  left: 0;
 }
 .master-container {
   display: grid;
@@ -1373,7 +1390,7 @@ p {
   border-radius: 50%;
 }
 .go-up-box.active {
-  left: 20px;
+  left: 10px;
 }
 .go-up-box i {
   color: black;
@@ -1399,7 +1416,7 @@ p {
 .new-packages + .info {
   display: grid;
   gap: 50px;
-  background-color: var(--third-background-color);
+  background-color: var(--secondary-background-color);
   padding: var(--main-padding) 0;
   overflow: hidden;
 }
@@ -1493,6 +1510,10 @@ p {
 ====================================================================
 ====================================================================
 */
+.tourist {
+  padding: 50px 0;
+  background-color: var(--secondary-background-color);
+}
 .tourist .scroller {
   max-width: 98vw;
   margin: 0 auto;
@@ -1545,7 +1566,7 @@ p {
 ====================================================================
 */
 .articles {
-  background-color: var(--third-background-color);
+  background-color: var(--secondary-background-color);
   padding: var(--main-padding) 0;
 }
 .articles .main-title {
@@ -1766,6 +1787,9 @@ p {
 ====================================================================
 ====================================================================
 */
+footer {
+  background-color: var(--third-background-color);
+}
 footer .container {
   display: flex;
   align-items: center;
