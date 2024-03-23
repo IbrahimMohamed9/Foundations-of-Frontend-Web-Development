@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // scroll
+  // check overflow
   function checkOverf(el) {
     const elOverf = el.style.overflow;
     if (!elOverf || elOverf === "visible") el.style.overflow = "hidden";
@@ -32,18 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return isOverflowing;
   }
 
-  const wrapper = document.getElementById("wrapper"),
-    carousel = document.getElementById("carousel");
+  //arrows design
+  const carousel = document.getElementById("carousel"),
+    arrows = document.querySelectorAll(".wrapper button.arrow");
 
-  scrollItems();
-  function scrollItems() {
-    if (checkOverf(wrapper)) {
-      wrapper.style.setProperty("--display", "flex");
-      carousel.style.justifyContent = "left";
-    }
+  if (checkOverf(carousel)) {
+    arrows[0].parentNode.style.setProperty("--display", "block");
   }
-  const arrows = document.querySelectorAll(".wrapper button");
-  arrows.forEach((arrow) => {
+
+  arrows.forEach((arrow, index) => {
     arrow.addEventListener("focus", () => {
       arrow.classList.add("active");
     });

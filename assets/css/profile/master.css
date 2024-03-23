@@ -164,25 +164,32 @@ body .content + footer .container {
   width: 100%;
   min-height: 41px;
 }
-.sidebar ul li a.files {
-  font-size: 17px;
-  padding-left: 7px;
-}
-.sidebar-58 .sidebar ul li a.files {
-  padding: 12px;
-  padding-left: 12px;
-}
 .sidebar ul li a span {
-  transition: var(--main-transition);
+  transition: font-size var(--main-transition);
 }
 .sidebar-58 .sidebar ul li a span {
   font-size: 0;
 }
+.sidebar-58 .sidebar ul li a i {
+  position: relative;
+  top: 0px;
+  left: 2px;
+}
+.sidebar-58 .sidebar ul li a i.friends {
+  left: 0.7px;
+}
+.sidebar-58 .sidebar ul li a i.projects {
+  top: 1px;
+}
+.sidebar ul li a i.files {
+  font-size: 18px;
+}
+.sidebar-250 .sidebar ul li a i.files {
+  position: relative;
+  left: -4px;
+}
 .sidebar ul li a:hover {
   background-color: var(--third-font-color);
-}
-.sidebar ul li a.active {
-  color: var(--main-color);
 }
 .sidebar ul li a.active {
   box-shadow: inset 0px 9px 20px 3px var(--box-shadow-2);
