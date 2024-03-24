@@ -22,33 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // check overflow
-  function checkOverf(el) {
-    const elOverf = el.style.overflow;
-    if (!elOverf || elOverf === "visible") el.style.overflow = "hidden";
-    const isOverflowing =
-      el.clientWidth < el.scrollWidth || el.clientHeight < el.scrollHeight;
-    el.style.overflow = elOverf;
-    return isOverflowing;
-  }
-
-  //arrows design
-  const carousel = document.getElementById("carousel"),
-    arrows = document.querySelectorAll(".wrapper button.arrow");
-
-  if (checkOverf(carousel)) {
-    arrows[0].parentNode.style.setProperty("--display", "block");
-  }
-
-  arrows.forEach((arrow, index) => {
-    arrow.addEventListener("focus", () => {
-      arrow.classList.add("active");
-    });
-    arrow.addEventListener("blur", () => {
-      arrow.classList.remove("active");
-    });
-  });
-
   //share icon
   const shareIcon = document.querySelector(".share"),
     shareLists = document.querySelectorAll(".icons .font-share-icons");
