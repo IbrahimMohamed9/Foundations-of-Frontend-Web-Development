@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sidebarArrow = document.querySelector(
       ".sidebar .sidebar-control .sidebar-icon"
     ),
-    sidebarSpans = document.querySelectorAll(" .sidebar ul li a i + span"),
-    dashIcons = document.querySelectorAll(" .sidebar ul li a.dash-icon"),
+    dashIcons = document.querySelectorAll(".sidebar ul li a.dash-icon"),
     sidebar = document.querySelector(".content > .sidebar"),
     globalModal = document.querySelector(".modal.animation");
 
@@ -64,18 +63,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
+  //dashboard
+
   dashIcons.forEach((icon, index) => {
-    icon.addEventListener("click", () => switchBotton(icon, index));
+    icon.addEventListener("click", () => switchBotton(index));
   });
-
   var previous = 0;
-
-  function switchBotton(clickedIcon, clickedIndex) {
+  function switchBotton(clickedIndex) {
     if (previous !== null && clickedIndex != previous) {
       dashIcons[previous].classList.remove("active");
     }
 
-    clickedIcon.classList.add("active");
+    dashIcons[clickedIndex].classList.add("active");
     previous = clickedIndex;
+
+    // need to fix the problem
+    // need to fix the problem
+    // need to fix the problem
+    // need to fix the problem
+    // need to fix the problem
+    if (clickedIndex == 1) {
+      setTimeout(() => {
+        const profiltBtn = document.getElementById("profile-btn");
+        profiltBtn.addEventListener("click", () => {
+          switchBotton(0);
+        });
+      }, 300);
+    }
+    // need to fix the problem
+    // need to fix the problem
+    // need to fix the problem
+    // need to fix the problem
+    // need to fix the problem
   }
 });

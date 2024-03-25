@@ -47,6 +47,7 @@
     </div>
     <a
       href="#profile"
+      id="profile-btn"
       class="vistit d-block fs-15 rad-6 bg-main-color c-white btn-position w-fit btn-shape"
     >
       Profile
@@ -383,3 +384,15 @@
   <!-- End Projects Table -->
 </div>
 <!-- End Dashbord -->
+<script>
+  const dashIcons = document.querySelectorAll(".sidebar ul li a.dash-icon");
+  dashIcons.forEach((icon, index) => {
+    icon.addEventListener("click", () => switchBotton(index));
+  });
+  function switchBotton(clickedIndex) {
+    dashIcons[1].classList.remove("active");
+
+    dashIcons[clickedIndex].classList.add("active");
+    previous = clickedIndex;
+  }
+</script>

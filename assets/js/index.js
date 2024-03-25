@@ -1,31 +1,27 @@
 document.addEventListener("DOMContentLoaded", () => {
   //share icon in article
-  const shareIcons = document.querySelectorAll(".share"),
+  const shareIcons = document.querySelectorAll(".share-btn"),
     shareLists = document.querySelectorAll(".icons .font-share-icons");
-  var previous = null;
+
   shareIcons.forEach((shareIcon, index) => {
     shareIcon.addEventListener("click", () => {
-      if (shareLists[index].style.display === "grid") {
+      if (shareLists[index].style.display != "grid") {
+        shareLists[index].style.display = "grid";
+        shareLists[index].style.animation = "appear 0.2s linear forwards";
+      } else {
         shareLists[index].style.animation =
           "hidden var(--main-transition) linear forwards";
         setTimeout(() => {
           shareLists[index].style.display = "none";
         }, 300);
-      } else {
-        shareLists[index].style.display = "grid";
-        shareLists[index].style.animation =
-          "appear var(--main-transition) linear forwards";
-        if (previous !== null && index != previous) {
-          shareLists[previous].style.animation =
-            "hidden var(--main-transition) linear forwards";
-          setTimeout(() => {
-            shareLists[previous].style.display = "none";
-          }, 300);
-        }
-        setTimeout(() => {
-          previous = index;
-        }, 301);
       }
+    });
+    shareIcon.addEventListener("blur", () => {
+      shareLists[index].style.animation =
+        "hidden var(--main-transition) linear forwards";
+      setTimeout(() => {
+        shareLists[index].style.display = "none";
+      }, 300);
     });
   });
 

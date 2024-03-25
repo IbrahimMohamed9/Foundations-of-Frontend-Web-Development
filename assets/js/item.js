@@ -23,33 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //share icon
-  const shareIcon = document.querySelector(".share"),
-    shareLists = document.querySelectorAll(".icons .font-share-icons");
+  const shareIcon = document.querySelector(".share-btn"),
+    shareLists = document.querySelector(".icons .font-share-icons");
 
   shareIcon.addEventListener("click", () => {
-    if (window.matchMedia("(max-width:500px)").matches) {
-      if (navigator.share) {
-        navigator
-          .share({
-            title: "10 Days",
-            text: "Come to stay with the best 10 Days",
-            url: "https://ibrahimmoatazmohamed.github.io/IT-207-Introduction-to-Web-Programming/assets/html/item.html",
-          })
-          .then(() => console.log("Successful share"))
-          .catch((error) => console.log("Error sharing", error));
-      }
+    if (shareLists.style.display != "grid") {
+      shareLists.style.display = "grid";
+      shareLists.style.animation = "appear 0.2s linear forwards";
     } else {
-      if (shareLists[0].style.display === "grid") {
-        shareLists[0].style.animation =
-          "hidden var(--main-transition) linear forwards";
-        setTimeout(() => {
-          shareLists[0].style.display = "none";
-        }, 300);
-      } else {
-        shareLists[0].style.display = "grid";
-        shareLists[0].style.animation =
-          "appear var(--main-transition) linear forwards";
-      }
+      shareLists.style.animation =
+        "hidden var(--main-transition) linear forwards";
+      setTimeout(() => {
+        shareLists.style.display = "none";
+      }, 300);
     }
+  });
+  shareIcon.addEventListener("blur", () => {
+    shareLists.style.animation =
+      "hidden var(--main-transition) linear forwards";
+    setTimeout(() => {
+      shareLists.style.display = "none";
+    }, 300);
   });
 });
