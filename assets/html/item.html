@@ -169,60 +169,61 @@
       Cart: Item Added!
     </div>
     <!-- End successful Message -->
-    <div class="cart item position-relative">
-      <div id="myModal" class="modal">
-        <div class="master-container">
-          <div class="card cart">
-            <div class="top-title">
-              <span class="title">Package</span>
-              <i class="fa-solid fa-xmark x"></i>
-            </div>
-            <div class="products">
-              <div class="product">
-                <img src="../images/package/en/package-7.jpg" alt="" />
-                <div>
-                  <!-- <span>Package</span> -->
-                  <p>7 Days</p>
-                  <div class="select-container">
-                    <select name="plans" id="plans">
-                      <option value="plan1">Plan 1</option>
-                      <option value="plan2">Plan 2</option>
-                      <option value="plan3">Plan 3</option>
-                      <option value="plan4">Plan 4</option>
-                    </select>
-                    <i class="fa-solid fa-chevron-down"></i>
-                  </div>
-                </div>
-                <div class="quantity">
-                  <button>
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <span>2</span>
-                  <button>
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-                <span class="price small">$23.99</span>
-              </div>
-            </div>
+    <!-- Start Danger Message -->
+    <div class="alert alert-danger decrease d-none" role="alert"></div>
+    <!-- End Danger Message -->
+    <!-- Start Item Modal -->
+    <div id="myModal" class="modal zindex-tooltip">
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title">Package</span>
+            <i class="fa-solid fa-xmark x"></i>
           </div>
-          <div class="card checkout">
-            <span class="title top-title">Total</span>
-            <div class="details">
-              <span>Your total:</span>
-              <span>47.98$</span>
-              <!-- <span>Discount through applied coupons:</span>
-              <span>3.99$</span>
-              <span>Shipping fees:</span>
-              <span>4.99$</span> -->
-            </div>
-            <div class="checkout--footer">
-              <span class="price"><sup>$</sup>47.98</span>
-              <button class="checkout-btn">Add to cart</button>
+          <div class="products">
+            <div class="product">
+              <img class="modal-img" src="" alt="item image" />
+              <div>
+                <!-- <span>Package</span> -->
+                <p class="item-name"></p>
+                <div class="select-container">
+                  <select name="plans" id="plans">
+                    <option value="plan1">Plan 1</option>
+                    <option value="plan2">Plan 2</option>
+                    <option value="plan3">Plan 3</option>
+                    <option value="plan4">Plan 4</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+              <div class="quantity">
+                <button>
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <span>2</span>
+                <button>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+              <span class="price small"></span>
             </div>
           </div>
         </div>
+        <div class="card checkout">
+          <span class="title top-title">Total</span>
+          <div class="details">
+            <span>Your total:</span>
+            <span>47.98$</span>
+          </div>
+          <div class="checkout--footer">
+            <span class="price"><sup>$</sup>47.98</span>
+            <button class="checkout-btn">Add to cart</button>
+          </div>
+        </div>
       </div>
+    </div>
+    <!-- End Item Modal -->
+    <div class="cart item position-relative">
       <div class="containerr">
         <div class="right-corner">
           <a href="../../index.html">Home</a>
@@ -355,169 +356,171 @@
       </div>
     </div>
     <!-- Start More Items -->
-    <div class="more-items splide" aria-label="Splide Basic HTML Example">
-      <div class="wrapper splide__track">
-        <div class="carousel splide__list">
-          <a
-            href="../html/item.html"
-            class="col splide__slide"
-            draggable="false"
-          >
-            <h2>Package</h2>
-            <div class="image">
-              <img
-                src="../images/package/en/package-14.jpg"
-                alt=""
-                draggable="false"
-              />
-            </div>
-            <div class="text">
-              <h3>1 Days</h3>
-            </div>
-            <div class="footer">
-              <div class="price">Price: <sup>km</sup>1<sub>.00</sub></div>
-            </div>
-          </a>
-          <a
-            href="../html/item.html"
-            class="col splide__slide"
-            draggable="false"
-          >
-            <h2>Package</h2>
-            <div class="image">
-              <img
-                src="../images/package/en/package-14.jpg"
-                alt=""
-                draggable="false"
-              />
-            </div>
-            <div class="text">
-              <h3>2 Days</h3>
-            </div>
-            <div class="footer">
-              <div class="price">Price: <sup>km</sup>10<sub>.00</sub></div>
-            </div>
-          </a>
-          <a
-            href="../html/item.html"
-            class="col splide__slide"
-            draggable="false"
-          >
-            <h2>Package</h2>
-            <div class="image">
-              <img
-                src="../images/package/en/package-14.jpg"
-                alt=""
-                draggable="false"
-              />
-            </div>
-            <div class="text">
-              <h3>3 Days</h3>
-            </div>
-            <div class="footer">
-              <div class="price">Price: <sup>km</sup>120<sub>.00</sub></div>
-            </div>
-          </a>
-          <a
-            href="../html/item.html"
-            class="col splide__slide"
-            draggable="false"
-          >
-            <h2>Package</h2>
-            <div class="image">
-              <img
-                src="../images/package/en/package-14.jpg"
-                alt=""
-                draggable="false"
-              />
-            </div>
-            <div class="text">
-              <h3>4 Days</h3>
-            </div>
-            <div class="footer">
-              <div class="price">Price: <sup>km</sup>152<sub>.00</sub></div>
-            </div>
-          </a>
-          <a
-            href="../html/item.html"
-            class="col splide__slide"
-            draggable="false"
-          >
-            <h2>Package</h2>
-            <div class="image">
-              <img
-                src="../images/package/en/package-14.jpg"
-                alt=""
-                draggable="false"
-              />
-            </div>
-            <div class="text">
-              <h3>5 Days</h3>
-            </div>
-            <div class="footer">
-              <div class="price">Price: <sup>km</sup>150<sub>.00</sub></div>
-            </div>
-          </a>
-          <a
-            href="../html/item.html"
-            class="col splide__slide"
-            draggable="false"
-          >
-            <h2>Package</h2>
-            <div class="image">
-              <img
-                src="../images/package/en/package-14.jpg"
-                alt=""
-                draggable="false"
-              />
-            </div>
-            <div class="text">
-              <h3>6 Days</h3>
-            </div>
-            <div class="footer">
-              <div class="price">Price: <sup>km</sup>150<sub>.00</sub></div>
-            </div>
-          </a>
-          <a
-            href="../html/item.html"
-            class="col splide__slide"
-            draggable="false"
-          >
-            <h2>Package</h2>
-            <div class="image">
-              <img
-                src="../images/package/en/package-14.jpg"
-                alt=""
-                draggable="false"
-              />
-            </div>
-            <div class="text">
-              <h3>7 Days</h3>
-            </div>
-            <div class="footer">
-              <div class="price">Price: <sup>km</sup>150<sub>.00</sub></div>
-            </div>
-          </a>
-          <a
-            href="../html/item.html"
-            class="col splide__slide"
-            draggable="false"
-          >
-            <h2>Package</h2>
-            <div class="image">
-              <img
-                src="../images/package/en/package-14.jpg"
-                alt=""
-                draggable="false"
-              />
-            </div>
-            <div class="text">
-              <h3>8 Days</h3>
-            </div>
-            <div class="footer">
-              <div class="price">Price: <sup>km</sup>150<sub>.00</sub></div>
-            </div>
-          </a>
+    <div class="more-items">
+      <div class="splide" aria-label="Splide Basic HTML Example">
+        <div class="wrapper splide__track">
+          <div class="carousel splide__list">
+            <a
+              href="../html/item.html"
+              class="col splide__slide"
+              draggable="false"
+            >
+              <h2>Package</h2>
+              <div class="image">
+                <img
+                  src="../images/package/en/package-14.jpg"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div class="text">
+                <h3>1 Days</h3>
+              </div>
+              <div class="footer">
+                <div class="price">Price: <sup>km</sup>1<sub>.00</sub></div>
+              </div>
+            </a>
+            <a
+              href="../html/item.html"
+              class="col splide__slide"
+              draggable="false"
+            >
+              <h2>Package</h2>
+              <div class="image">
+                <img
+                  src="../images/package/en/package-14.jpg"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div class="text">
+                <h3>2 Days</h3>
+              </div>
+              <div class="footer">
+                <div class="price">Price: <sup>km</sup>10<sub>.00</sub></div>
+              </div>
+            </a>
+            <a
+              href="../html/item.html"
+              class="col splide__slide"
+              draggable="false"
+            >
+              <h2>Package</h2>
+              <div class="image">
+                <img
+                  src="../images/package/en/package-14.jpg"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div class="text">
+                <h3>3 Days</h3>
+              </div>
+              <div class="footer">
+                <div class="price">Price: <sup>km</sup>120<sub>.00</sub></div>
+              </div>
+            </a>
+            <a
+              href="../html/item.html"
+              class="col splide__slide"
+              draggable="false"
+            >
+              <h2>Package</h2>
+              <div class="image">
+                <img
+                  src="../images/package/en/package-14.jpg"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div class="text">
+                <h3>4 Days</h3>
+              </div>
+              <div class="footer">
+                <div class="price">Price: <sup>km</sup>152<sub>.00</sub></div>
+              </div>
+            </a>
+            <a
+              href="../html/item.html"
+              class="col splide__slide"
+              draggable="false"
+            >
+              <h2>Package</h2>
+              <div class="image">
+                <img
+                  src="../images/package/en/package-14.jpg"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div class="text">
+                <h3>5 Days</h3>
+              </div>
+              <div class="footer">
+                <div class="price">Price: <sup>km</sup>150<sub>.00</sub></div>
+              </div>
+            </a>
+            <a
+              href="../html/item.html"
+              class="col splide__slide"
+              draggable="false"
+            >
+              <h2>Package</h2>
+              <div class="image">
+                <img
+                  src="../images/package/en/package-14.jpg"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div class="text">
+                <h3>6 Days</h3>
+              </div>
+              <div class="footer">
+                <div class="price">Price: <sup>km</sup>150<sub>.00</sub></div>
+              </div>
+            </a>
+            <a
+              href="../html/item.html"
+              class="col splide__slide"
+              draggable="false"
+            >
+              <h2>Package</h2>
+              <div class="image">
+                <img
+                  src="../images/package/en/package-14.jpg"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div class="text">
+                <h3>7 Days</h3>
+              </div>
+              <div class="footer">
+                <div class="price">Price: <sup>km</sup>150<sub>.00</sub></div>
+              </div>
+            </a>
+            <a
+              href="../html/item.html"
+              class="col splide__slide"
+              draggable="false"
+            >
+              <h2>Package</h2>
+              <div class="image">
+                <img
+                  src="../images/package/en/package-14.jpg"
+                  alt=""
+                  draggable="false"
+                />
+              </div>
+              <div class="text">
+                <h3>8 Days</h3>
+              </div>
+              <div class="footer">
+                <div class="price">Price: <sup>km</sup>150<sub>.00</sub></div>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -566,9 +569,7 @@
     <!-- End Footer -->
     <!-- JavaScript -->
     <script src="../js/main.js"></script>
-    <script src="../js/item.js"></script>
-    <script src="../js/addToCart.js"></script>
-    <script src="../js/carousel.js"></script>
+    <script type="module" src="../js/item.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   </body>
 </html>

@@ -1,11 +1,20 @@
-.packages {
-  padding: 20px 0 50px;
+.items {
+  padding: 20px 0 30px;
   background-color: var(--secondary-background-color);
+}
+@media (min-width: 1200px) {
+  .items {
+    min-height: 500px;
+    max-height: 520px;
+  }
+  .items.overflow {
+    min-height: 590px;
+  }
 }
 .cars {
-  background-color: var(--secondary-background-color);
+  background-color: var(--third-background-color);
 }
-.new-packages .items .package .image.car img {
+.items .item .image.car img {
   min-width: 100%;
   max-width: 100%;
   min-height: 100%;
@@ -13,15 +22,14 @@
 }
 .hotels {
   background-color: var(--secondary-background-color);
-  padding: 50px 0;
 }
 @media (max-width: 410px) {
-  .hotels .package .text h3 {
+  .hotels .item .text h3 {
     font-size: 20px;
   }
 }
 @media (max-width: 370px) {
-  .hotels .package .text h3 {
+  .hotels .item .text h3 {
     font-size: 18px;
   }
 }

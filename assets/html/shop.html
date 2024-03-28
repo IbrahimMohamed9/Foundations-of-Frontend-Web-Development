@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+      rel="stylesheet"
+    />
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
@@ -165,236 +169,137 @@
       Cart: Item Added!
     </div>
     <!-- End successful Message -->
-    <!-- Start Packages -->
-    <div class="new-packages packages">
-      <h2 class="main-title">packages</h2>
-      <div id="myModal" class="modal">
-        <div class="master-container">
-          <div class="card cart">
-            <div class="top-title">
-              <span class="title">Package</span>
-              <i class="fa-solid fa-xmark x"></i>
-            </div>
-            <div class="products">
-              <div class="product">
-                <img src="../images/package/en/package-7.jpg" alt="" />
-                <div>
-                  <!-- <span>Package</span> -->
-                  <p>7 Days</p>
-                  <div class="select-container">
-                    <select name="plans" id="plans">
-                      <option value="plan1">Plan 1</option>
-                      <option value="plan2">Plan 2</option>
-                      <option value="plan3">Plan 3</option>
-                      <option value="plan4">Plan 4</option>
-                    </select>
-                    <i class="fa-solid fa-chevron-down"></i>
-                  </div>
-                </div>
-                <div class="quantity">
-                  <button>
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <span>2</span>
-                  <button>
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-                <span class="price small">$23.99</span>
-              </div>
-            </div>
+    <!-- Start Danger Message -->
+    <div class="alert alert-danger decrease d-none" role="alert"></div>
+    <!-- End Danger Message -->
+    <!-- Start Item Modal -->
+    <div id="myModal" class="modal zindex-tooltip">
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title"></span>
+            <i class="fa-solid fa-xmark x"></i>
           </div>
-          <div class="card checkout">
-            <span class="title top-title">Total</span>
-            <div class="details">
-              <span>Your total:</span>
-              <span>47.98$</span>
-              <!-- <span>Discount through applied coupons:</span>
-              <span>3.99$</span>
-              <span>Shipping fees:</span>
-              <span>4.99$</span> -->
-            </div>
-            <div class="checkout--footer">
-              <span class="price"><sup>$</sup>47.98</span>
-              <button class="checkout-btn">Add to cart</button>
+          <div class="products">
+            <div class="product">
+              <img class="modal-img" src="" alt="item image" />
+              <div>
+                <!-- <span>Package</span> -->
+                <p class="item-name"></p>
+                <div class="select-container">
+                  <select name="plans" id="plans">
+                    <option value="plan1">Plan 1</option>
+                    <option value="plan2">Plan 2</option>
+                    <option value="plan3">Plan 3</option>
+                    <option value="plan4">Plan 4</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+              <div class="quantity">
+                <button>
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <span>2</span>
+                <button>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+              <span class="price small"></span>
             </div>
           </div>
         </div>
+        <div class="card checkout">
+          <span class="title top-title">Total</span>
+          <div class="details">
+            <span>Your total:</span>
+            <span>47.98$</span>
+          </div>
+          <div class="checkout--footer">
+            <span class="price"><sup>$</sup>47.98</span>
+            <button class="checkout-btn">Add to cart</button>
+          </div>
+        </div>
       </div>
-      <div class="items">
-        <div class="container">
-          <div class="package">
-            <div class="box">
-              <div class="back face">
-                <button class="button" id="p-1-4">plan 1</button>
-                <button class="button" id="p-2-4">plan 2</button>
-                <button class="button" id="p-3-4">plan 3</button>
-                <button class="button" id="p-4-4">plan 4</button>
-              </div>
-              <div class="image face">
-                <img src="../images/package/en/package-4.jpg" alt="" />
-              </div>
-            </div>
-            <div class="text">
-              <h3>4 Days</h3>
-              <p>Price: 0.00 KM</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="box">
-              <div class="back face">
-                <button class="button" id="p-1-7">plan 1</button>
-                <button class="button" id="p-2-7">plan 2</button>
-                <button class="button" id="p-3-7">plan 3</button>
-                <button class="button" id="p-4-7">plan 4</button>
-              </div>
-              <div class="image face">
-                <img src="../images/package/en/package-7.jpg" alt="" />
-              </div>
-            </div>
-            <div class="text">
-              <h3>7 Days</h3>
-              <p>Price: 0.00 KM</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="box">
-              <div class="back face">
-                <button class="button" id="p-1-10">plan 1</button>
-                <button class="button" id="p-2-10">plan 2</button>
-                <button class="button" id="p-3-10">plan 3</button>
-                <button class="button" id="p-4-10">plan 4</button>
-              </div>
-              <div class="image face">
-                <img src="../images/package/en/package-10.jpg" alt="" />
-              </div>
-            </div>
-            <div class="text">
-              <h3>10 Days</h3>
-              <p>Price: 0.00 KM</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="box">
-              <div class="back face">
-                <button class="button" id="p-1-14">plan 1</button>
-                <button class="button" id="p-2-14">plan 2</button>
-                <button class="button" id="p-3-14">plan 3</button>
-                <button class="button" id="p-4-14">plan 4</button>
-              </div>
-              <div class="image face">
-                <img src="../images/package/en/package-14.jpg" alt="" />
-              </div>
-            </div>
-            <div class="text">
-              <h3>14 Days</h3>
-              <p>Price: 0.00 KM</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
+    </div>
+    <!-- End Item Modal -->
+    <!-- Start Packages -->
+    <div class="items packages">
+      <h2 class="main-title">packages</h2>
+      <div
+        class="splide packages-carousel"
+        aria-label="Splide Basic HTML Example"
+      >
+        <div class="splide__track">
+          <div class="container holder splide__list"></div>
         </div>
       </div>
     </div>
     <!-- End Shop -->
     <!-- Start Cars -->
-    <div class="new-packages cars">
+    <div class="items cars">
       <h2 class="main-title">cars</h2>
-      <div class="items">
-        <div class="container">
-          <div class="package">
-            <div class="image car">
-              <img src="../images/cars/car1.jpg" alt="" />
-            </div>
-            <div class="text">
-              <h3>Tesla</h3>
-              <p>Price: 0.00 KM/day</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="image car">
-              <img src="../images/cars/car.jpg" alt="" />
-            </div>
-            <div class="text">
-              <h3>BMW</h3>
-              <p>Price: 0.00 KM/day</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="image car">
-              <img src="../images/cars/car3.jpeg" alt="" />
-            </div>
-            <div class="text">
-              <h3>Porsche</h3>
-              <p>Price: 0.00 KM/day</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="image car">
-              <img src="../images/cars/car4.avif" alt="" />
-            </div>
-            <div class="text">
-              <h3>Mercidies</h3>
-              <p>Price: 0.00 KM/day</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
+      <div class="splide cars-carousel" aria-label="Splide Basic HTML Example">
+        <div class="splide__track">
+          <div class="container holder splide__list"></div>
         </div>
       </div>
     </div>
+    <!-- </div> -->
     <!-- End Cars -->
     <!-- Start Hotels -->
-    <div class="new-packages hotels">
+    <div class="items hotels">
       <h2 class="main-title">hotels</h2>
-      <div class="items">
-        <div class="container">
-          <div class="package">
-            <div class="image car">
-              <img src="../images/hotels/holiday.jpg" alt="" />
-            </div>
-            <div class="text">
-              <h3>Holiday Hotel</h3>
-              <p>Price: 0.00 KM/day</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="image car">
-              <img src="../images/hotels/hotel3.jpg" alt="" />
-            </div>
-            <div class="text">
-              <h3>Hotel</h3>
-              <p>Price: 0.00 KM/day</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="image car">
-              <img src="../images/hotels/hotel2.png" alt="" />
-            </div>
-            <div class="text">
-              <h3>Hotel</h3>
-              <p>Price: 0.00 KM/day</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
-          <div class="package">
-            <div class="image car">
-              <img src="../images/hotels/hotel4.jpeg" alt="" />
-            </div>
-            <div class="text">
-              <h3>Hotel</h3>
-              <p>Price: 0.00 KM/day</p>
-            </div>
-            <button class="pckbtn"></button>
-          </div>
+      <div
+        class="splide hotels-carousel"
+        aria-label="Splide Basic HTML Example"
+      >
+        <div class="splide__track">
+          <div class="container holder splide__list"></div>
         </div>
       </div>
+      <!-- <div class="container">
+        <div class="item">
+          <div class="image car">
+            <img src="../images/hotels/holiday.jpg" alt="" />
+          </div>
+          <div class="text">
+            <h3>Holiday Hotel</h3>
+            <p>Price: 0.00 KM/day</p>
+          </div>
+          <button class="pckbtn"></button>
+        </div>
+        <div class="item">
+          <div class="image car">
+            <img src="../images/hotels/hotel3.jpg" alt="" />
+          </div>
+          <div class="text">
+            <h3>Hotel</h3>
+            <p>Price: 0.00 KM/day</p>
+          </div>
+          <button class="pckbtn"></button>
+        </div>
+        <div class="item">
+          <div class="image car">
+            <img src="../images/hotels/hotel2.png" alt="" />
+          </div>
+          <div class="text">
+            <h3>Hotel</h3>
+            <p>Price: 0.00 KM/day</p>
+          </div>
+          <button class="pckbtn"></button>
+        </div>
+        <div class="item">
+          <div class="image car">
+            <img src="../images/hotels/hotel4.jpeg" alt="" />
+          </div>
+          <div class="text">
+            <h3>Hotel</h3>
+            <p>Price: 0.00 KM/day</p>
+          </div>
+          <button class="pckbtn"></button>
+        </div>
+      </div> -->
     </div>
     <!-- End Hotels -->
     <!-- Start Footer -->
@@ -441,7 +346,8 @@
     <!-- End Footer -->
     <!-- JavaScript -->
     <script src="../js/main.js"></script>
-    <script src="../js/addToCart.js"></script>
-    <script src="../js/shop.js"></script>
+    <script type="module" src="../js/shop.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
   </body>
 </html>

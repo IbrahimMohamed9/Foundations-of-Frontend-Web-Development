@@ -1,0 +1,18 @@
+[
+  {
+    "id": "843244",
+    "imgSrc": "assets/images/package/en/package-4.jpg",
+    "name": "4 Days",
+    "min": "1",
+    "max": "10",
+    "price": "55"
+  },
+  {
+    "id": "158745",
+    "imgSrc": "assets/images/package/en/package-7.jpg",
+    "name": "7 Days",
+    "min": "3",
+    "max": "5",
+    "price": "60"
+  }
+]

@@ -1,3 +1,9 @@
+import {
+  itemModal,
+  setupModalActions,
+  redirect,
+  carouselSplide,
+} from "./component.js";
 document.addEventListener("DOMContentLoaded", () => {
   //share icon in article
   const shareIcons = document.querySelectorAll(".share-btn"),
@@ -72,11 +78,91 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  //redirect plan 1
-  if (document.getElementById("p-1-4")) {
-    document.getElementById("p-1-4").addEventListener("click", redirect);
-    function redirect() {
-      window.location = "assets/html/item.html";
-    }
+  //change main video
+  function mainVideoSrc(src) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        document.querySelector(".video-wraper .video video").innerHTML = `
+        <source
+            src="${data.src}"
+            type="video/mp4"
+          />`;
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
   }
+
+  mainVideoSrc("assets/json/video.json");
+
+  //New Packages
+  setupModalActions();
+
+  function newPackages(src) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const newPackages = document.querySelector(".items .container.holder");
+        data.map((packageData) => {
+          const packageCon = `
+        <div class="item splide__slide">
+          <div class="box">
+            <div class="back face">
+              <button class="button" id="${packageData.id}-1">plan 1</button>
+              <button class="button" id="${packageData.id}-2">plan 2</button>
+              <button class="button" id="${packageData.id}-3">plan 3</button>
+              <button class="button" id="${packageData.id}-4">plan 4</button>
+            </div>
+            <div class="image face">
+              <img src="${packageData.imgSrc}" alt="package image" />
+            </div>
+          </div>
+          <div class="text">
+            <h3>${packageData.name}</h3>
+            <p>Price: ${packageData.price} KM</p>
+          </div>
+          <button class="pckbtn"></button>
+        </div>`;
+          newPackages.innerHTML += packageCon;
+        });
+
+        document.querySelectorAll(".pckbtn").forEach((button, index) =>
+          button.addEventListener("click", () => {
+            const packageData = data[index];
+            itemModal(
+              "Package",
+              packageData.name,
+              packageData.imgSrc,
+              packageData.min,
+              packageData.max,
+              packageData.price
+            );
+          })
+        );
+
+        carouselSplide(".items .items-carousel", 20);
+
+        //redirect
+        document.querySelectorAll(".item .back .button").forEach((button) => {
+          button.addEventListener("click", () => {
+            redirect("assets/html/item.html");
+          });
+        });
+      });
+  }
+
+  newPackages("assets/json/newPackages.json");
+
+  carouselSplide(".articles .splide");
 });

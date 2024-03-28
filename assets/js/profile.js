@@ -77,11 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
     dashIcons[clickedIndex].classList.add("active");
     previous = clickedIndex;
 
-    // need to fix the problem
-    // need to fix the problem
-    // need to fix the problem
-    // need to fix the problem
-    // need to fix the problem
+    // need to fix
+    // need to fix
+    // need to fix
+    // need to fix
+    // need to fix
     if (clickedIndex == 1) {
       setTimeout(() => {
         const profiltBtn = document.getElementById("profile-btn");
@@ -90,10 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       }, 300);
     }
-    // need to fix the problem
-    // need to fix the problem
-    // need to fix the problem
-    // need to fix the problem
-    // need to fix the problem
+    // need to fix
+    // need to fix
+    // need to fix
+    // need to fix
+    // need to fix
   }
 });

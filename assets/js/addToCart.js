@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const body = document.body;
   //add to cart
   const modal = document.getElementById("myModal"),
-    addItemAlert = document.querySelector(".alert.alert-success.add-item");
+    addItemAlert = document.querySelector(".alert.alert-success.add-item"),
+    decreaseAlert = document.querySelector(".alert.alert-danger.decrease");
   function addItemModal() {
     modal.classList.add("d-block");
     setTimeout(() => {
@@ -32,4 +33,32 @@ document.addEventListener("DOMContentLoaded", () => {
       addItemAlert.classList.add("d-none");
     }, 1700);
   });
+
+  const quantity = Array.from(
+      document.querySelector(".cart .quantity").children
+    ),
+    QuantityNumber = quantity[1];
+  quantity.splice(1, 1);
+  
+  quantity.forEach((el, index) => {
+    el.addEventListener("click", () => {
+      modalButton(index, 1);
+    });
+  });
+
+  function modalButton(index, min) {
+    if (index === 0) {
+      if (parseInt(QuantityNumber.textContent) - min)
+        QuantityNumber.textContent = parseInt(QuantityNumber.textContent) - 1;
+      else {
+        decreaseAlert.classList.remove("d-none");
+        decreaseAlert.style.animation = "alert 1.7s linear forwards";
+        decreaseAlert.addEventListener("animationend", () => {
+          decreaseAlert.classList.add("d-none");
+        });
+      }
+    } else {
+      QuantityNumber.textContent = parseInt(QuantityNumber.textContent) + 1;
+    }
+  }
 });

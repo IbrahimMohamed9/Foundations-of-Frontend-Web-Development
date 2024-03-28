@@ -227,14 +227,34 @@
         </div>
       </div>
       <!-- End sidebar -->
-      <main id="spapp" role="main">
-        <section id="dashbord" data-load="dashbord.html"></section>
-        <section id="settings" data-load="settings.html"></section>
-        <section id="projects" data-load="projects.html"></section>
-        <section id="friends" data-load="friends.html"></section>
-        <section id="files" data-load="files.html"></section>
-        <section id="profile" data-load="profile.html"></section>
-      </main>
+      <div class="second-col">
+        <!-- Start Head -->
+        <div class="head bg-third p-15 between-flex">
+          <div class="search">
+            <input
+              class="border-ccc p-10 rad-10 ml-5 pl-30"
+              type="search"
+              placeholder="Type A Keyword"
+              name="search"
+            />
+          </div>
+          <div class="icons d-flex align-center">
+            <span class="notification p-relative">
+              <i class="fa-regular fa-bell fa-lg"></i>
+            </span>
+            <img class="ml-15" src="../images/profile/avatar.png" alt="" />
+          </div>
+        </div>
+        <!-- End Head -->
+        <main id="spapp" role="main">
+          <section id="profile" data-load="profile.html"></section>
+          <section id="dashbord" data-load="dashbord.html"></section>
+          <section id="settings" data-load="settings.html"></section>
+          <section id="projects" data-load="projects.html"></section>
+          <section id="friends" data-load="friends.html"></section>
+          <section id="files" data-load="files.html"></section>
+        </main>
+      </div>
     </div>
     <!-- Start Footer -->
     <footer>
@@ -285,6 +305,7 @@
     <script>
       $(document).ready(function () {
         var app = $.spapp({
+          defaultView: "#profile",
           templateDir: "./profilePages/",
         });
 

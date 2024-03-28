@@ -1,4 +1,10 @@
+import { setupModalActions, carouselSplide, itemModal } from "./component.js";
+
 document.addEventListener("DOMContentLoaded", () => {
+  setupModalActions();
+
+  carouselSplide(".splide");
+
   // Main image
   var previous = 0;
 
@@ -27,10 +33,33 @@ document.addEventListener("DOMContentLoaded", () => {
     shareLists = document.querySelector(".icons .font-share-icons");
 
   shareIcon.addEventListener("click", () => {
-    if (shareLists.style.display != "grid") {
-      shareLists.style.display = "grid";
-      shareLists.style.animation = "appear 0.2s linear forwards";
+    if (window.matchMedia("(max-width:500px)").matches && navigator.share) {
+      navigator
+        .share({
+          title: "10 Days",
+          text: "Come to stay with the best 10 Days",
+          url: "https://ibrahimmoatazmohamed.github.io/IT-207-Introduction-to-Web-Programming/assets/html/item.html",
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
     } else {
+      if (shareLists.style.display !== "grid") {
+        shareLists.style.display = "grid";
+        shareLists.style.animation =
+          "appear var(--main-transition) linear forwards";
+      } else {
+        shareLists.style.animation =
+          "hidden var(--main-transition) linear forwards";
+        setTimeout(() => {
+          shareLists.style.display = "none";
+        }, 300);
+      }
+    }
+  });
+
+  // Hide share list on blur
+  shareIcon.addEventListener("blur", () => {
+    if (shareLists.style.display === "grid") {
       shareLists.style.animation =
         "hidden var(--main-transition) linear forwards";
       setTimeout(() => {
@@ -38,11 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 300);
     }
   });
-  shareIcon.addEventListener("blur", () => {
-    shareLists.style.animation =
-      "hidden var(--main-transition) linear forwards";
-    setTimeout(() => {
-      shareLists.style.display = "none";
-    }, 300);
-  });
+
+  document.querySelector(".pckbtn").addEventListener("click", itemModal);
 });

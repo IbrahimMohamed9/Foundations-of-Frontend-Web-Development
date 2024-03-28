@@ -168,148 +168,75 @@
       Cart: Item Added!
     </div>
     <!-- End successful Message -->
+    <!-- Start Danger Message -->
+    <div class="alert alert-danger decrease d-none" role="alert"></div>
+    <!-- End Danger Message -->
     <!-- Start video -->
     <div class="video-wraper">
       <div class="video">
         <video autoplay loop muted playsinline>
-          <source
-            src="assets/videos/introduction-video-en.mp4"
-            type="video/mp4"
-          />
           Your browser does not support the video tag.
         </video>
       </div>
     </div>
-
     <!-- End video -->
-    <!-- Start New packages -->
-    <div class="new-packages">
-      <h2 class="main-title">new packages</h2>
-      <div id="myModal" class="modal zindex-tooltip">
-        <div class="master-container">
-          <div class="card cart">
-            <div class="top-title">
-              <span class="title">Package</span>
-              <i class="fa-solid fa-xmark x"></i>
-            </div>
-            <div class="products">
-              <div class="product">
-                <img src="assets/images/package/en/package-7.jpg" alt="" />
-                <div>
-                  <!-- <span>Package</span> -->
-                  <p>7 Days</p>
-                  <div class="select-container">
-                    <select name="plans" id="plans">
-                      <option value="plan1">Plan 1</option>
-                      <option value="plan2">Plan 2</option>
-                      <option value="plan3">Plan 3</option>
-                      <option value="plan4">Plan 4</option>
-                    </select>
-                    <i class="fa-solid fa-chevron-down"></i>
-                  </div>
+    <!-- Start Item Modal -->
+    <div id="myModal" class="modal zindex-tooltip">
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title"></span>
+            <i class="fa-solid fa-xmark x"></i>
+          </div>
+          <div class="products">
+            <div class="product">
+              <img class="modal-img" src="" alt="item image" />
+              <div>
+                <!-- <span>Package</span> -->
+                <p class="item-name"></p>
+                <div class="select-container">
+                  <select name="plans" id="plans">
+                    <option value="plan1">Plan 1</option>
+                    <option value="plan2">Plan 2</option>
+                    <option value="plan3">Plan 3</option>
+                    <option value="plan4">Plan 4</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down"></i>
                 </div>
-                <div class="quantity">
-                  <button>
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <span>2</span>
-                  <button>
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-                <span class="price small">$23.99</span>
               </div>
+              <div class="quantity">
+                <button>
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <span>2</span>
+                <button>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+              <span class="price small"></span>
             </div>
           </div>
-          <div class="card checkout">
-            <span class="title top-title">Total</span>
-            <div class="details">
-              <span>Your total:</span>
-              <span>47.98$</span>
-              <!-- <span>Discount through applied coupons:</span>
-              <span>3.99$</span>
-              <span>Shipping fees:</span>
-              <span>4.99$</span> -->
-            </div>
-            <div class="checkout--footer">
-              <span class="price"><sup>$</sup>47.98</span>
-              <button class="checkout-btn">Add to cart</button>
-            </div>
+        </div>
+        <div class="card checkout">
+          <span class="title top-title">Total</span>
+          <div class="details">
+            <span>Your total:</span>
+            <span>47.98$</span>
+          </div>
+          <div class="checkout--footer">
+            <span class="price"><sup>$</sup>47.98</span>
+            <button class="checkout-btn">Add to cart</button>
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="package">
-          <div class="box">
-            <div class="back face">
-              <button class="button" id="p-1-4">plan 1</button>
-              <button class="button" id="p-2-4">plan 2</button>
-              <button class="button" id="p-3-4">plan 3</button>
-              <button class="button" id="p-4-4">plan 4</button>
-            </div>
-            <div class="image face">
-              <img src="assets/images/package/en/package-4.jpg" alt="" />
-            </div>
-          </div>
-          <div class="text">
-            <h3>4 Days</h3>
-            <p>Price: 0.00 KM</p>
-          </div>
-          <button class="pckbtn"></button>
-        </div>
-        <div class="package">
-          <div class="box">
-            <div class="back face">
-              <button class="button" id="p-1-7">plan 1</button>
-              <button class="button" id="p-2-7">plan 2</button>
-              <button class="button" id="p-3-7">plan 3</button>
-              <button class="button" id="p-4-7">plan 4</button>
-            </div>
-            <div class="image face">
-              <img src="assets/images/package/en/package-7.jpg" alt="" />
-            </div>
-          </div>
-          <div class="text">
-            <h3>7 Days</h3>
-            <p>Price: 0.00 KM</p>
-          </div>
-          <button class="pckbtn"></button>
-        </div>
-        <div class="package">
-          <div class="box">
-            <div class="back face">
-              <button class="button" id="p-1-10">plan 1</button>
-              <button class="button" id="p-2-10">plan 2</button>
-              <button class="button" id="p-3-10">plan 3</button>
-              <button class="button" id="p-4-10">plan 4</button>
-            </div>
-            <div class="image face">
-              <img src="assets/images/package/en/package-10.jpg" alt="" />
-            </div>
-          </div>
-          <div class="text">
-            <h3>10 Days</h3>
-            <p>Price: 0.00 KM</p>
-          </div>
-          <button class="pckbtn"></button>
-        </div>
-        <div class="package">
-          <div class="box">
-            <div class="back face">
-              <button class="button" id="p-1-14">plan 1</button>
-              <button class="button" id="p-2-14">plan 2</button>
-              <button class="button" id="p-3-14">plan 3</button>
-              <button class="button" id="p-4-14">plan 4</button>
-            </div>
-            <div class="image face">
-              <img src="assets/images/package/en/package-14.jpg" alt="" />
-            </div>
-          </div>
-          <div class="text">
-            <h3>14 Days</h3>
-            <p>Price: 0.00 KM</p>
-          </div>
-          <button class="pckbtn"></button>
+    </div>
+    <!-- End Item Modal -->
+    <!-- Start New packages -->
+    <div class="items new-packages">
+      <h2 class="main-title">new packages</h2>
+      <div class="splide items-carousel" aria-label="Splide Basic HTML Example">
+        <div class="splide__track">
+          <div class="container holder splide__list"></div>
         </div>
       </div>
     </div>
@@ -467,7 +394,6 @@
         </div>
       </div>
     </div>
-
     <!-- End Info -->
     <!-- Start Tourist-Images -->
     <div class="tourist">
@@ -546,148 +472,152 @@
       </div>
     </div>
     <!-- End Tourist-Images -->
-    <div class="articles splide" aria-label="Splide Basic HTML Example">
+    <div class="articles">
       <h2 class="main-title">newest articles</h2>
-      <div class="splide__track">
-        <div class="container splide__list">
-          <div class="article splide__slide">
-            <div class="image">
-              <img src="assets/images/articles/articles-1.jpeg" alt="" />
-            </div>
-            <div class="card">
-              <div class="content">
-                <h3>The best 3 hotels in Bosnia</h3>
-                <div class="icons">
-                  <ul class="font-share-icons">
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-whatsapp whatsapp"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-x-twitter twitter"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-telegram telegram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-facebook-f facebook"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-instagram instagram"></i
-                      ></a>
-                    </li>
-                  </ul>
-                  <button class="share-btn">
-                    <i class="fa-solid fa-share share"></i>
-                  </button>
+      <div class="splide" aria-label="Splide Basic HTML Example">
+        <div class="splide__track">
+          <div class="container splide__list">
+            <div class="article splide__slide">
+              <div class="image">
+                <img src="assets/images/articles/articles-1.jpeg" alt="" />
+              </div>
+              <div class="card">
+                <div class="content">
+                  <h3>The best 3 hotels in Bosnia</h3>
+                  <div class="icons">
+                    <ul class="font-share-icons">
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-whatsapp whatsapp"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-x-twitter twitter"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-telegram telegram"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-facebook-f facebook"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-instagram instagram"></i
+                        ></a>
+                      </li>
+                    </ul>
+                    <button class="share-btn">
+                      <i class="fa-solid fa-share share"></i>
+                    </button>
+                  </div>
+                  <p>
+                    For those looking for the most important hotels in Bosnia,
+                    the Hollywood Hotel is 2 km from Sarajevo Airport.
+                  </p>
+                  <a href="assets/html/article.html" class="read">
+                    Read More
+                  </a>
                 </div>
-                <p>
-                  For those looking for the most important hotels in Bosnia, the
-                  Hollywood Hotel is 2 km from Sarajevo Airport.
-                </p>
-                <a href="assets/html/article.html" class="read"> Read More </a>
               </div>
             </div>
-          </div>
-          <div class="article splide__slide">
-            <div class="image">
-              <img src="assets/images/articles/articles-2.webp" alt="" />
-            </div>
-            <div class="card">
-              <div class="content">
-                <h3>The important tourist cities</h3>
-                <div class="icons">
-                  <ul class="font-share-icons">
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-whatsapp whatsapp"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-x-twitter twitter"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-telegram telegram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-facebook-f facebook"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-instagram instagram"></i
-                      ></a>
-                    </li>
-                  </ul>
-                  <button class="share-btn">
-                    <i class="fa-solid fa-share share"></i>
-                  </button>
+            <div class="article splide__slide">
+              <div class="image">
+                <img src="assets/images/articles/articles-2.webp" alt="" />
+              </div>
+              <div class="card">
+                <div class="content">
+                  <h3>The important tourist cities</h3>
+                  <div class="icons">
+                    <ul class="font-share-icons">
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-whatsapp whatsapp"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-x-twitter twitter"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-telegram telegram"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-facebook-f facebook"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-instagram instagram"></i
+                        ></a>
+                      </li>
+                    </ul>
+                    <button class="share-btn">
+                      <i class="fa-solid fa-share share"></i>
+                    </button>
+                  </div>
+                  <p>
+                    Tourism is a pleasure in Sarajevo, which is considered a
+                    meeting place for the civilizations.
+                  </p>
+                  <a href="" class="read"> Read More </a>
                 </div>
-                <p>
-                  Tourism is a pleasure in Sarajevo, which is considered a
-                  meeting place for the civilizations.
-                </p>
-                <a href="" class="read"> Read More </a>
               </div>
             </div>
-          </div>
-          <div class="article splide__slide">
-            <div class="image">
-              <img src="assets/images/articles/articles-3.jpg" alt="" />
-            </div>
-            <div class="card">
-              <div class="content">
-                <h3>An overview of tourism in Bosnia</h3>
-                <div class="icons">
-                  <ul class="font-share-icons">
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-whatsapp whatsapp"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-facebook-messenger"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-telegram telegram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-facebook-f facebook"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-instagram instagram"></i
-                      ></a>
-                    </li>
-                  </ul>
-                  <button class="share-btn">
-                    <i class="fa-solid fa-share share"></i>
-                  </button>
+            <div class="article splide__slide">
+              <div class="image">
+                <img src="assets/images/articles/articles-3.jpg" alt="" />
+              </div>
+              <div class="card">
+                <div class="content">
+                  <h3>An overview of tourism in Bosnia</h3>
+                  <div class="icons">
+                    <ul class="font-share-icons">
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-whatsapp whatsapp"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-facebook-messenger"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-telegram telegram"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-facebook-f facebook"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a href="" target="_blank"
+                          ><i class="fa-brands fa-instagram instagram"></i
+                        ></a>
+                      </li>
+                    </ul>
+                    <button class="share-btn">
+                      <i class="fa-solid fa-share share"></i>
+                    </button>
+                  </div>
+                  <p>
+                    Bosnia is characterized by the diversity of its tourist
+                    attractions and tourist.
+                  </p>
+                  <a href="" class="read"> Read More </a>
                 </div>
-                <p>
-                  Bosnia is characterized by the diversity of its tourist
-                  attractions and tourist.
-                </p>
-                <a href="" class="read"> Read More </a>
               </div>
             </div>
           </div>
@@ -741,9 +671,7 @@
     <!-- End Footer -->
     <!-- JavaScript -->
     <script src="assets/js/main.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/addToCart.js"></script>
+    <script type="module" src="assets/js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="assets/js/carousel.js"></script>
   </body>
 </html>
