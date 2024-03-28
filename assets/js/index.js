@@ -1,31 +1,5 @@
 import { setupModalActions, carouselSplide, packages } from "./component.js";
 document.addEventListener("DOMContentLoaded", () => {
-  //share icon in article
-  const shareIcons = document.querySelectorAll(".share-btn"),
-    shareLists = document.querySelectorAll(".icons .font-share-icons");
-
-  shareIcons.forEach((shareIcon, index) => {
-    shareIcon.addEventListener("click", () => {
-      if (shareLists[index].style.display != "grid") {
-        shareLists[index].style.display = "grid";
-        shareLists[index].style.animation = "appear 0.2s linear forwards";
-      } else {
-        shareLists[index].style.animation =
-          "hidden var(--main-transition) linear forwards";
-        setTimeout(() => {
-          shareLists[index].style.display = "none";
-        }, 300);
-      }
-    });
-    shareIcon.addEventListener("blur", () => {
-      shareLists[index].style.animation =
-        "hidden var(--main-transition) linear forwards";
-      setTimeout(() => {
-        shareLists[index].style.display = "none";
-      }, 300);
-    });
-  });
-
   //images in example
   const scrollers = document.querySelectorAll(".scroller");
   addAnimation();
@@ -172,6 +146,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         carouselSplide(carouselSelector);
+
+        //share icon in article
+        const shareIcons = document.querySelectorAll(".share-btn"),
+          shareLists = document.querySelectorAll(".icons .font-share-icons");
+
+        shareIcons.forEach((shareIcon, index) => {
+          shareIcon.addEventListener("click", () => {
+            if (shareLists[index].style.display != "grid") {
+              shareLists[index].style.display = "grid";
+              shareLists[index].style.animation = "appear 0.2s linear forwards";
+            } else {
+              shareLists[index].style.animation =
+                "hidden var(--main-transition) linear forwards";
+              setTimeout(() => {
+                shareLists[index].style.display = "none";
+              }, 300);
+            }
+          });
+          shareIcon.addEventListener("blur", () => {
+            shareLists[index].style.animation =
+              "hidden var(--main-transition) linear forwards";
+            setTimeout(() => {
+              shareLists[index].style.display = "none";
+            }, 300);
+          });
+        });
 
         //redirect
         document

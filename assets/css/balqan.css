@@ -665,7 +665,7 @@ p {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 1170px;
+  /* max-width: 1170px; */
 }
 .video video {
   min-width: 100%;
