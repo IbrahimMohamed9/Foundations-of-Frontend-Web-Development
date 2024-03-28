@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+  var previous = 0;
+
   const body = document.body,
     barIcon = document.querySelector(".sidebar .sidebar-control"),
     sidebarArrow = document.querySelector(
@@ -64,11 +66,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   //dashboard
-
   dashIcons.forEach((icon, index) => {
     icon.addEventListener("click", () => switchBotton(index));
   });
-  var previous = 0;
+
   function switchBotton(clickedIndex) {
     if (previous !== null && clickedIndex != previous) {
       dashIcons[previous].classList.remove("active");
@@ -77,23 +78,44 @@ document.addEventListener("DOMContentLoaded", () => {
     dashIcons[clickedIndex].classList.add("active");
     previous = clickedIndex;
 
-    // need to fix
-    // need to fix
-    // need to fix
-    // need to fix
-    // need to fix
     if (clickedIndex == 1) {
-      setTimeout(() => {
-        const profiltBtn = document.getElementById("profile-btn");
-        profiltBtn.addEventListener("click", () => {
+      const profileBtn = document.getElementById("profile-btn");
+      if (profileBtn) {
+        profileBtn.addEventListener("click", () => {
+          // document.getElementById("profile-btn").addEventListener("click", () => {
           switchBotton(0);
         });
-      }, 300);
+      }
     }
-    // need to fix
-    // need to fix
-    // need to fix
-    // need to fix
-    // need to fix
   }
+
+  window.onhashchange = () => {
+    switch (true) {
+      case window.location.hash === "#profile":
+        switchBotton(0);
+        break;
+      case window.location.hash === "#dashboard":
+        switchBotton(1);
+        break;
+      case window.location.hash === "#settings":
+        switchBotton(2);
+        break;
+      case window.location.hash === "#projects":
+        switchBotton(3);
+        break;
+      case window.location.hash === "#friends":
+        switchBotton(4);
+        break;
+      case window.location.hash === "#files":
+        switchBotton(5);
+        break;
+      default:
+        console.log("New Section added");
+        alert("New Section added");
+    }
+  };
+
+  window.onload = () => {
+    window.dispatchEvent(new Event("hashchange"));
+  };
 });

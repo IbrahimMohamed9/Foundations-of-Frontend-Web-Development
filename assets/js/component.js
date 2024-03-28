@@ -158,3 +158,120 @@ export function carouselSplide(carousel, gap = 25) {
     splideTrack.parentElement.classList.add("not-overflow");
   }
 }
+
+export function loadItems(
+  src,
+  content1,
+  content2,
+  content3,
+  content4,
+  modalTitle
+) {
+  fetch(src)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const items = document.querySelector(`.items.${modalTitle} .container`);
+      data.map((itemData) => {
+        const car =
+          content1 +
+          itemData.imgSrc +
+          content2 +
+          itemData.name +
+          content3 +
+          itemData.price +
+          content4;
+        items.innerHTML += car;
+      });
+
+      document
+        .querySelectorAll(`.items.${modalTitle} .container .pckbtn`)
+        .forEach((button, index) =>
+          button.addEventListener("click", () => {
+            const itemData = data[index];
+            itemModal(
+              modalTitle,
+              itemData.name,
+              itemData.imgSrc,
+              itemData.min,
+              itemData.max,
+              itemData.price,
+              false
+            );
+          })
+        );
+
+      carouselSplide(`.splide.${modalTitle}-carousel`, 20);
+    });
+}
+
+export function packages(
+  src,
+  redirect,
+  sectionSelector,
+  carouselSelector,
+  gap
+) {
+  fetch(src)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const packages = document.querySelector(sectionSelector);
+      data.map((packageData) => {
+        const packageCon = `
+            <div class="item splide__slide">
+            <div class="box">
+              <div class="back face">
+                <button class="button" id="${packageData.id}-1">plan 1</button>
+                <button class="button" id="${packageData.id}-2">plan 2</button>
+                <button class="button" id="${packageData.id}-3">plan 3</button>
+                <button class="button" id="${packageData.id}-4">plan 4</button>
+              </div>
+              <div class="image face">
+                <img src="${packageData.imgSrc}" alt="" />
+              </div>
+            </div>
+            <div class="text">
+              <h3>${packageData.name}</h3>
+              <p>Price: ${packageData.price} KM</p>
+            </div>
+            <button class="pckbtn"></button>
+          </div>
+          `;
+        packages.innerHTML += packageCon;
+      });
+
+      document.querySelectorAll(".pckbtn").forEach((button, index) =>
+        button.addEventListener("click", () => {
+          const packageData = data[index];
+
+          itemModal(
+            "Package",
+            packageData.name,
+            packageData.imgSrc,
+            packageData.min,
+            packageData.max,
+            packageData.price,
+            true
+          );
+        })
+      );
+
+      carouselSplide(carouselSelector, gap);
+
+      //redirect
+      document.querySelectorAll(".item .back .button").forEach((button) => {
+        button.addEventListener("click", () => {
+          window.location = redirect;
+        });
+      });
+    });
+}

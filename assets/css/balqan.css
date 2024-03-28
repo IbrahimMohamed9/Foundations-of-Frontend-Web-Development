@@ -1,8 +1,5 @@
 /*
 * Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
-* Browsers: last 4 version
 */
 /* 
 ====================================================================
@@ -48,7 +45,7 @@
   --box-shadow-2: rgba(255, 255, 255, 0.1);
   --product-color: #e7e7e7;
   --secondary-product-color: #dbdbdb;
-  --third-background-color: #020202db;
+  --third-background-color: #161616;
 }
 /* 
 ====================================================================
@@ -1044,6 +1041,7 @@ p {
 .title {
   width: 100%;
   height: 40px;
+  text-transform: capitalize;
   position: relative;
   display: flex;
   align-items: center;

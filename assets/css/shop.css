@@ -14,7 +14,7 @@
 .cars {
   background-color: var(--third-background-color);
 }
-.items .item .image.car img {
+.items .item .image.item-img img {
   min-width: 100%;
   max-width: 100%;
   min-height: 100%;
