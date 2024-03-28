@@ -145,7 +145,6 @@ export function carouselSplide(carousel, gap = 25) {
       wheel: true,
       speed: 1500,
       wheelSleep: 200,
-      drag: true,
       classes: {
         arrows: "splide__arrows your-class-arrows",
         arrow: "splide__arrow your-class-arrow",

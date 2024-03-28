@@ -106,5 +106,86 @@ document.addEventListener("DOMContentLoaded", () => {
     ".items .items-carousel",
     20
   );
-  carouselSplide(".articles .splide");
+  // carouselSplide();
+
+  //Newest Articles
+  function articles(src, redirect, carouselSelector, sectionSelector) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const articles = document.querySelector(sectionSelector);
+        data.map((articleData) => {
+          const articleCon = `
+          <div class="article splide__slide">
+          <div class="image">
+            <img src="${articleData.imgSrc}" alt="" />
+          </div>
+          <div class="card">
+            <div class="content">
+              <h3>${articleData.title}</h3>
+              <div class="icons">
+                <ul class="font-share-icons">
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-whatsapp whatsapp"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-facebook-messenger"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-telegram telegram"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-facebook-f facebook"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-instagram instagram"></i
+                    ></a>
+                  </li>
+                </ul>
+                <button class="share-btn">
+                  <i class="fa-solid fa-share share"></i>
+                </button>
+              </div>
+              <p>
+              ${articleData.descreption}
+              </p>
+              <a href="" class="read"> Read More </a>
+            </div>
+          </div>
+        </div>
+            `;
+          articles.innerHTML += articleCon;
+        });
+
+        carouselSplide(carouselSelector);
+
+        //redirect
+        document
+          .querySelectorAll(".articles .container .article .card .read")
+          .forEach((button) => {
+            button.href = redirect;
+          });
+      });
+  }
+
+  articles(
+    "assets/json/newArticles.json",
+    "assets/html/article.html",
+    ".articles .splide",
+    ".articles .splide__track .container.splide__list"
+  );
 });

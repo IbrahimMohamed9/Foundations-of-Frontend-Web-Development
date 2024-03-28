@@ -1,6 +1,6 @@
 .items {
   padding: 20px 0 30px;
-  background-color: var(--secondary-background-color);
+  background-color: var(--third-background-color);
 }
 @media (min-width: 1200px) {
   .items {
@@ -12,7 +12,7 @@
   }
 }
 .cars {
-  background-color: var(--third-background-color);
+  background-color: var(--secondary-background-color);
 }
 .items .item .image.item-img img {
   min-width: 100%;
@@ -21,7 +21,7 @@
   max-height: 100%;
 }
 .hotels {
-  background-color: var(--secondary-background-color);
+  background-color: var(--third-background-color);
 }
 @media (max-width: 410px) {
   .hotels .item .text h3 {
