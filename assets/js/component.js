@@ -6,12 +6,24 @@ export const modal = document.getElementById("myModal"),
   modalPrice = modal.querySelector(".price.small"),
   body = document.body,
   modalQuantity = modal.querySelector(".master-container .cart .quantity"),
-  modalType = modal.querySelector(".top-title .title");
+  modalType = modal.querySelector(".top-title .title"),
+  sumOfTotalModal = modal.querySelector(
+    ".checkout .checkout--footer .price"
+  ).children;
 
 //appear the modal
 var quantityNumber, quantityBtns;
 
-export function itemModal(type, name, imgSrc, min, max, price, plans = true) {
+export function itemModal(
+  type,
+  name,
+  imgSrc,
+  min,
+  max,
+  price,
+  quantaty,
+  plans = true
+) {
   quantityBtns = Array.from(modalQuantity.children);
 
   modalType.textContent = type;
@@ -19,13 +31,17 @@ export function itemModal(type, name, imgSrc, min, max, price, plans = true) {
   modalName.textContent = name;
   modalImage.src = imgSrc;
   modalPrice.textContent = `${price} KM`;
-  quantityNumber.textContent = min;
+  quantityNumber.textContent = quantaty;
+
+  const total = parseInt(quantityNumber.textContent) * Number(price);
+  sumOfTotalModal[1].textContent = Math.floor(total);
+  sumOfTotalModal[2].textContent = checkDec(total);
 
   quantityBtns[0].addEventListener("click", () => {
-    modalButton(0, min, max, quantityNumber);
+    cartQuantityBtn(min, max, 0, price, quantityNumber);
   });
   quantityBtns[2].addEventListener("click", () => {
-    modalButton(2, min, max, quantityNumber);
+    cartQuantityBtn(min, max, 1, price, quantityNumber);
   });
 
   if (plans) {
@@ -45,21 +61,24 @@ export function itemModal(type, name, imgSrc, min, max, price, plans = true) {
   }, 1);
 }
 
-//increse and decrease the quantity
-export function modalButton(index, min, max, quantityNumber) {
-  if (index === 0) {
-    if (parseInt(quantityNumber.textContent) > min)
-      quantityNumber.textContent = parseInt(quantityNumber.textContent) - 1;
-    else {
-      appearQuantityAlert("This is the minimum number");
-    }
-  } else {
-    if (parseInt(quantityNumber.textContent) < max)
-      quantityNumber.textContent = parseInt(quantityNumber.textContent) + 1;
-    else {
-      appearQuantityAlert("This is the maximum number");
-    }
-  }
+//change the quantity and prices in modal and page
+function cartQuantityBtn(min, max, plus, price, quantityNumber) {
+  plus
+    ? parseInt(quantityNumber.textContent) < max
+      ? buttomFunction(plus, price, quantityNumber)
+      : appearQuantityAlert("This is the maximum number")
+    : parseInt(quantityNumber.textContent) > min
+    ? buttomFunction(plus, price, quantityNumber)
+    : appearQuantityAlert("This is the minimum number");
+}
+function buttomFunction(plus, price, quantityNumber) {
+  quantityNumber.textContent =
+    parseInt(quantityNumber.textContent) + (plus ? 1 : -1);
+
+  const total = parseInt(quantityNumber.textContent) * Number(price);
+
+  sumOfTotalModal[1].textContent = Math.floor(total);
+  sumOfTotalModal[2].textContent = checkDec(total);
 }
 
 export function appearQuantityAlert(message) {
@@ -72,9 +91,11 @@ export function appearQuantityAlert(message) {
 }
 
 //remove the modal
-export function removeItemModal() {
-  removeAllEventListeners(quantityBtns[0]);
-  removeAllEventListeners(quantityBtns[2]);
+export function removeItemModal(removeeBtn) {
+  if (removeeBtn) {
+    removeAllEventListeners(quantityBtns[0]);
+    removeAllEventListeners(quantityBtns[2]);
+  }
 
   modal.classList.remove("active");
   body.classList.remove("fix");
@@ -84,17 +105,26 @@ export function removeItemModal() {
 }
 
 //add the functionality of modal buttons
-export function setupModalActions() {
-  document.querySelector(".x").addEventListener("click", removeItemModal);
+export function setupModalActions(
+  message = "Cart: Item Added!",
+  removeeBtn = true
+) {
+  document.querySelector(".x").addEventListener("click", () => {
+    removeItemModal(removeeBtn);
+  });
 
   document.querySelector(".checkout-btn").addEventListener("click", () => {
-    removeItemModal();
+    removeItemModal(removeeBtn);
+    appearSuccAlert(message);
+  });
+}
 
-    addItemAlert.classList.remove("d-none");
-    addItemAlert.style.animation = "alert 1.7s linear forwards";
-    addItemAlert.addEventListener("animationend", () => {
-      addItemAlert.classList.add("d-none");
-    });
+export function appearSuccAlert(message) {
+  addItemAlert.innerHTML = message;
+  addItemAlert.classList.remove("d-none");
+  addItemAlert.style.animation = "alert 1.7s linear forwards";
+  addItemAlert.addEventListener("animationend", () => {
+    addItemAlert.classList.add("d-none");
   });
 }
 
@@ -199,6 +229,7 @@ export function loadItems(
               itemData.min,
               itemData.max,
               itemData.price,
+              itemData.quantaty,
               false
             );
           })
@@ -259,6 +290,7 @@ export function packages(
             packageData.min,
             packageData.max,
             packageData.price,
+            packageData.quantaty,
             true
           );
         })
@@ -273,4 +305,22 @@ export function packages(
         });
       });
     });
+}
+
+//remove unnecessary decimal zeroes
+export function checkDec(number) {
+  let decPartTest = Number(
+    String((parseFloat(number) - Math.floor(number)).toFixed(2)).slice(3)
+  );
+  if (decPartTest) {
+    decPartTest = String(
+      (parseFloat(number) - Math.floor(number)).toFixed(2)
+    ).slice(1);
+  } else {
+    decPartTest = String(
+      (parseFloat(number) - Math.floor(number)).toFixed(1)
+    ).slice(1);
+  }
+
+  return Number(decPartTest) ? decPartTest : "";
 }

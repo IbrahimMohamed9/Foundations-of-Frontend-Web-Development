@@ -93,8 +93,8 @@ header + .cart.item {
 .cart.item .item-container .icons {
   position: absolute;
   right: 0;
-  --left: -32px;
-  top: 2px;
+  --left: -33px;
+  top: -15px;
 }
 .cart.item .item-container .icons .share {
   cursor: pointer;
@@ -109,6 +109,9 @@ header + .cart.item {
   left: var(--left);
   z-index: 100;
   background-color: var(--main-background-color);
+}
+.cart.item .item-container .icons .share-btn {
+  border: none;
 }
 .dark-theme .cart.item .item-container .icons .share {
   background-image: url(../images/shareIcons/share-white.svg);

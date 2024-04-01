@@ -1,4 +1,10 @@
-import { modal, appearQuantityAlert, body, addItemAlert } from "./component.js";
+import {
+  modal,
+  appearQuantityAlert,
+  checkDec,
+  body,
+  setupModalActions,
+} from "./component.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const modalProducts = modal.querySelector(".products"),
@@ -10,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     quantitiesCart,
     quantitiesModal,
     sumOfTotalPrices = 0;
-  setupModalActions();
+  setupModalActions("Items Registered Successfully!", false);
 
   //load the items of shopping cart
   function loadItems(src) {
@@ -26,10 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
         let content, modalContent;
         data.map((itemData) => {
           const price = parseFloat(itemData.price),
-            decimalPart = checkDec(price),
+            decimalPart = checkDec(parseFloat(itemData.price)),
             totalPrice = parseFloat(itemData.price) * itemData.quantaty,
             totalDecimalPart = checkDec(totalPrice);
           sumOfTotalPrices = totalPrice + parseFloat(sumOfTotalPrices);
+
           if (itemData.category == "package") {
             modalContent = `      
               <div class="products">
@@ -51,8 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                   <span class="price small">
                     <sup>KM</sup>
-                    <span>${Math.floor(totalPrice)}</span>
-                    <sub>${totalDecimalPart}</sub>
+                    <span>${Math.floor(price)}</span>
+                    <sub>${decimalPart}</sub>
                   </span>
                 </div>
               </div>
@@ -75,9 +82,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                   </div>
                   <div class="price">
-                    <p><sup>KM</sup>${Math.floor(
-                      price
-                    )}<sup class="down">${decimalPart}</sup></p>
+                    <p>
+                      <span class="price small">
+                        <sup>KM</sup>
+                        <span>${Math.floor(price)}</span>
+                        <sub>${decimalPart}</sub>
+                      </span>
+                    </p>
                   </div>
                   <div class="quantity">
                     <button>
@@ -119,8 +130,8 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                   <span class="price small">
                     <sup>KM</sup>
-                    <span>${Math.floor(totalPrice)}</span>
-                    <sub>${totalDecimalPart}</sub>
+                    <span>${Math.floor(price)}</span>
+                    <sub>${decimalPart}</sub>
                   </span>
                 </div>
               </div>
@@ -238,101 +249,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //change the quantity and prices in modal and page
   function cartQuantityBtn(min, max, plus, price, index) {
+    const quantityCart = quantitiesCart[index].children[1];
+    plus
+      ? parseInt(quantityCart.textContent) < max
+        ? buttomFunction(plus, price, index)
+        : appearQuantityAlert("This is the maximum number")
+      : parseInt(quantityCart.textContent) > min
+      ? buttomFunction(plus, price, index)
+      : appearQuantityAlert("This is the minimum number");
+  }
+
+  function buttomFunction(plus, price, index) {
     const quantityModal = quantitiesModal[index].children[1],
       quantityCart = quantitiesCart[index].children[1];
 
-    if (plus) {
-      if (parseInt(quantityCart.textContent) < max) {
-        quantityCart.textContent = quantityModal.textContent =
-          parseInt(quantityCart.textContent) + 1;
+    quantityCart.textContent = quantityModal.textContent =
+      parseInt(quantityCart.textContent) + (plus ? 1 : -1);
 
-        const intPartModal = totalPricesModal[index].children[1],
-          decPartModal = totalPricesModal[index].children[2],
-          intPartCart = totalPricesCart[index].children[1],
-          decPartCart = totalPricesCart[index].children[2];
+    const intPartCart = totalPricesCart[index].children[1],
+      decPartCart = totalPricesCart[index].children[2];
 
-        const total =
-          Number(intPartModal.textContent) +
-          Number(decPartModal.textContent) +
-          Number(price);
-        sumOfTotalPrices += parseFloat(price);
+    const total = parseInt(quantityCart.textContent) * Number(price);
 
-        intPartModal.textContent = intPartCart.textContent = Math.floor(total);
-        decPartModal.textContent = decPartCart.textContent = checkDec(total);
-        const sumOfInts = Math.floor(sumOfTotalPrices),
-          sumOfDecs = checkDec(sumOfTotalPrices);
-        sumOfTotalModal[1].innerHTML = sumOfInts;
-        sumOfTotalModal[2].innerHTML = sumOfDecs;
-      } else {
-        appearQuantityAlert("This is the maximum number");
-      }
-    } else {
-      if (parseInt(quantityCart.textContent) > min) {
-        quantityCart.textContent = quantityModal.textContent =
-          parseInt(quantityCart.textContent) - 1;
+    sumOfTotalPrices += plus ? parseFloat(price) : -parseFloat(price);
 
-        const intPartModal = totalPricesModal[index].children[1],
-          decPartModal = totalPricesModal[index].children[2],
-          intPartCart = totalPricesCart[index].children[1],
-          decPartCart = totalPricesCart[index].children[2];
+    intPartCart.textContent = intPartCart.textContent = Math.floor(total);
+    decPartCart.textContent = decPartCart.textContent = checkDec(total);
 
-        const total =
-          Number(intPartModal.textContent) +
-          Number(decPartModal.textContent) -
-          Number(price);
-
-        sumOfTotalPrices -= parseFloat(price);
-
-        intPartModal.textContent = intPartCart.textContent = Math.floor(total);
-        decPartModal.textContent = decPartCart.textContent = checkDec(total);
-        const sumOfInts = Math.floor(sumOfTotalPrices),
-          sumOfDecs = checkDec(sumOfTotalPrices);
-        sumOfTotalModal[1].innerHTML = sumOfInts;
-        sumOfTotalModal[2].innerHTML = sumOfDecs;
-      } else {
-        appearQuantityAlert("This is the minimum number");
-      }
-    }
-  }
-
-  //remove unnecessary decimal zeroes
-  function checkDec(number) {
-    let decPartTest = Number(
-      String((parseFloat(number) - Math.floor(number)).toFixed(2)).slice(3)
-    );
-    if (decPartTest) {
-      decPartTest = String(
-        (parseFloat(number) - Math.floor(number)).toFixed(2)
-      ).slice(1);
-    } else {
-      decPartTest = String(
-        (parseFloat(number) - Math.floor(number)).toFixed(1)
-      ).slice(1);
-    }
-
-    return Number(decPartTest) ? decPartTest : "";
-  }
-
-  //remove the modal
-  function removeItemModal() {
-    modal.classList.remove("active");
-    body.classList.remove("fix");
-    setTimeout(() => {
-      modal.classList.remove("d-block");
-    }, 300);
-  }
-  //add the functionality of modal buttons
-  function setupModalActions() {
-    document.querySelector(".x").addEventListener("click", removeItemModal);
-
-    document.querySelector(".checkout-btn").addEventListener("click", () => {
-      removeItemModal();
-
-      addItemAlert.classList.remove("d-none");
-      addItemAlert.style.animation = "alert 1.7s linear forwards";
-      addItemAlert.addEventListener("animationend", () => {
-        addItemAlert.classList.add("d-none");
-      });
-    });
+    sumOfTotalModal[1].innerHTML = Math.floor(sumOfTotalPrices);
+    sumOfTotalModal[2].innerHTML = checkDec(sumOfTotalPrices);
   }
 });

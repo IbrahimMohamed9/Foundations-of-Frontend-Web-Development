@@ -1321,7 +1321,8 @@ p {
   border-radius: 9px 9px 19px 19px;
 }
 .checkout .details {
-  display: grid;
+  /* display: grid; */
+  display: none;
   grid-template-columns: 3fr 1fr;
   padding: 10px;
   gap: 5px;
