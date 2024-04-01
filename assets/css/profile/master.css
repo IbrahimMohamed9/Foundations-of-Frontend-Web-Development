@@ -267,16 +267,6 @@ body .content + footer .container {
 .content .head .search input:focus::placeholder {
   opacity: 0;
 }
-.content .head .icons .notification::before {
-  content: "";
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  border-radius: 50%;
-  right: -3px;
-  top: -6px;
-}
 .content .head .icons img {
   width: 32px;
   height: 32px;

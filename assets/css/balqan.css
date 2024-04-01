@@ -503,6 +503,7 @@ p {
 }
 .main-header .icons .heart {
   cursor: pointer;
+  display: none;
 }
 .main-header .icons .heart:hover {
   color: var(--main-color);
@@ -517,8 +518,7 @@ p {
 }
 @media (max-width: 1000px) {
   .main-header .icons .cart-shopping {
-    margin: 0 3px 0 10px;
-    font-size: 15px;
+    margin: 0 3px 0 11px;
   }
 }
 .main-header .icons .cart-shopping::after {
@@ -533,7 +533,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: -10px;
+  top: -20px;
   left: -10px;
   transition: background-color 0.3s, color 0.3s;
 }
@@ -567,7 +567,7 @@ p {
 }
 @media (max-width: 1000px) {
   .toggle {
-    margin-left: 5px;
+    margin-left: 0px;
   }
 }
 .input {
@@ -602,7 +602,7 @@ p {
   padding: 7px;
   border-radius: 8px;
   border: none;
-  margin-left: 10px;
+  margin-left: 0px;
   flex-direction: column;
   position: relative;
   cursor: pointer;
