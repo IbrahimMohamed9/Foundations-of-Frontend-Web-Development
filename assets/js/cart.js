@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         data.map((itemData) => {
           const price = parseFloat(itemData.price),
             decimalPart = checkDec(parseFloat(itemData.price)),
-            totalPrice = parseFloat(itemData.price) * itemData.quantaty,
+            totalPrice = parseFloat(itemData.price) * itemData.quantity,
             totalDecimalPart = checkDec(totalPrice);
           sumOfTotalPrices = totalPrice + parseFloat(sumOfTotalPrices);
 
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button>
                       <i class="fa-solid fa-minus"></i>
                     </button>
-                    <span>${itemData.quantaty}</span>
+                    <span>${itemData.quantity}</span>
                     <button>
                       <i class="fa-solid fa-plus"></i>
                     </button>
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button>
                       <i class="fa-solid fa-minus"></i>
                     </button>
-                    <span>${itemData.quantaty}</span>
+                    <span>${itemData.quantity}</span>
                     <button>
                       <i class="fa-solid fa-plus"></i>
                     </button>
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <button>
                       <i class="fa-solid fa-minus"></i>
                     </button>
-                    <span>${itemData.quantaty}</span>
+                    <span>${itemData.quantity}</span>
                     <button>
                       <i class="fa-solid fa-plus"></i>
                     </button>
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <button>
                     <i class="fa-solid fa-minus"></i>
                   </button>
-                  <span>${itemData.quantaty}</span>
+                  <span>${itemData.quantity}</span>
                   <button>
                     <i class="fa-solid fa-plus"></i>
                   </button>
