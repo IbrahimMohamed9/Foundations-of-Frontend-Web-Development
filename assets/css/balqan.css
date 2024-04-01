@@ -1057,9 +1057,12 @@ p {
   border-radius: 19px 19px 7px 7px;
 }
 .cart .products {
-  display: flex;
-  flex-direction: column;
   padding: 10px;
+}
+@media (max-width: 360px) {
+  .cart .products {
+    padding: 5px 1px;
+  }
 }
 .cart .products .product {
   display: grid;
@@ -1209,10 +1212,42 @@ p {
     font-size: 12px;
   }
 }
-.card .small {
+.cart .card .products .product .small {
+  padding-top: 8px;
   font-size: 15px;
   margin: 0 auto;
   color: var(--product-color);
+  min-width: 100%;
+  text-align: center;
+}
+.cart .card .products .product .small span {
+  display: inline;
+}
+.cart .card .products .product .small sup {
+  position: relative;
+  right: -3px;
+  font-size: 10px;
+  top: -8px;
+}
+.cart .card .products .product .small sub {
+  position: relative;
+  right: 3px;
+  font-size: 10px;
+  bottom: -5px;
+}
+@media (max-width: 315px) {
+  .cart .card .products .product .small span {
+    position: relative;
+    right: 10px;
+  }
+  .cart .card .products .product .small sup {
+    right: 7px;
+    top: -8px;
+  }
+  .cart .card .products .product .small sub {
+    right: -18px;
+    bottom: 10px;
+  }
 }
 @media (max-width: 360px) {
   .card .small {
@@ -1252,7 +1287,7 @@ p {
   color: var(--font-color);
 }
 .input_field:focus {
-  background-color: transparent;
+  background-color: #0b0b0b;
   color: var(--font-color);
 }
 .coupons .form button {
@@ -1295,7 +1330,7 @@ p {
   font-size: 13px;
   font-weight: 600;
 }
-.checkout .details span:nth-child(odd) {
+.checkout .details > span:nth-child(odd) {
   font-size: 11px;
   font-weight: 700;
   color: var(--secondary-product-color);

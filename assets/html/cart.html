@@ -103,8 +103,8 @@
             <!-- <i class="fa-regular fa-heart heart"></i> -->
             <i class="fa-regular fa-bell heart"></i>
           </a>
-          <a href="../html/cart.html">
-            <i class="fa-solid fa-cart-shopping cart-shopping" data-counter="2">
+          <a href="#">
+            <i class="fa-solid fa-cart-shopping cart-shopping" data-counter="">
             </i>
           </a>
           <span>KM 0.00</span>
@@ -166,69 +166,25 @@
       Items Registered Successfully!
     </div>
     <!-- End successful Message -->
+    <!-- Start Danger Message -->
+    <div class="alert alert-danger decrease d-none" role="alert"></div>
+    <!-- End Danger Message -->
     <!-- Start Cart -->
     <div class="cart shopping">
       <div id="myModal" class="modal">
+        <!-- style="display: block; z-index: 10000; opacity: 5; padding: 50px" -->
         <div class="master-container">
           <div class="card cart">
             <div class="top-title">
               <span class="title">Cart Items</span>
               <i class="fa-solid fa-xmark x"></i>
             </div>
-            <div class="products">
-              <div class="product">
-                <img src="../images/package/en/package-14.jpg" alt="" />
-                <div>
-                  <span>Package</span>
-                  <p>14 Days</p>
-                  <p>Plain 1</p>
-                </div>
-                <div class="quantity">
-                  <button>
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <span>2</span>
-                  <button>
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-                <span class="price small">KM23.99</span>
-              </div>
-              <div class="product">
-                <img src="../images/package/en/package-4.jpg" alt="" />
-                <div>
-                  <span>Package</span>
-                  <p>4 Days</p>
-                  <p>Plain 1</p>
-                </div>
-                <div class="quantity">
-                  <button>
-                    <i class="fa-solid fa-minus"></i>
-                  </button>
-                  <span>2</span>
-                  <button>
-                    <i class="fa-solid fa-plus"></i>
-                  </button>
-                </div>
-                <span class="price small">KM23.99</span>
-              </div>
-            </div>
+            <div class="products"></div>
           </div>
 
-          <div class="card coupons">
+          <div class="card coupons" style="display: none">
             <span class="title top-title">Apply coupons</span>
-            <!-- 
-      
-      
-      
-            
-            Edit here importan 
-      
-      
-      
-            
-          -->
-            <div class="form">
+            <form class="form">
               <input
                 type="text"
                 placeholder="Apply your coupons"
@@ -236,29 +192,19 @@
                 id="coupon"
               />
               <button>Apply</button>
-            </div>
-            <!--
-      
-      
-      
-      
-            Edit here importan 
-      
-      
-      
-      
-          --></div>
+            </form>
+          </div>
 
           <div class="card checkout">
             <span class="title top-title">Total</span>
-            <div class="details">
+            <div class="details" style="display: none">
               <span>Your subtotal:</span>
-              <span>47.98KM</span>
+              <span><span>47.9</span> KM</span>
               <span>Discount through applied coupons:</span>
-              <span>3.99KM</span>
+              <span><span>3.99</span> KM</span>
             </div>
             <div class="checkout--footer">
-              <span class="price"><sup>KM</sup>47.98</span>
+              <span class="price"><sup>KM</sup><span></span><sub></sub></span>
               <button class="checkout-btn">Register</button>
             </div>
           </div>
@@ -275,88 +221,18 @@
         <h1>Your Shopping Cart</h1>
       </div>
       <div class="containerr">
-        <div class="products">
+        <div class="products cart-rows">
           <div class="head row">
             <p>Products</p>
             <p></p>
             <p>Price</p>
-            <p>Persons</p>
+            <p>Quantaty</p>
             <p>Total</p>
           </div>
-          <div class="row">
-            <div class="image">
-              <img src="../images/package/en/package-14.jpg" alt="" />
-            </div>
-            <div class="name-plan">
-              <h2>14 Days</h2>
-              <div class="select-container">
-                <select name="plans" id="plans-cart">
-                  <option value="plan1">Plan 1</option>
-                  <option value="plan2">Plan 2</option>
-                  <option value="plan3">Plan 3</option>
-                  <option value="plan4">Plan 4</option>
-                </select>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="price">
-              <p><sup>KM</sup>47<sup class="down">.98</sup></p>
-            </div>
-            <div class="quantity">
-              <button>
-                <i class="fa-solid fa-minus"></i>
-              </button>
-              <span>2</span>
-              <button>
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-            <div class="total">
-              <p>
-                <sup>KM</sup>47<sup class="down">.98</sup>
-                <i class="fa-solid fa-trash trash"></i>
-                <i class="fa-solid fa-circle-minus circle-minus"></i>
-              </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="image">
-              <img src="../images/package/en/package-4.jpg" alt="" />
-            </div>
-            <div class="name-plan">
-              <h2>4 Days</h2>
-              <div class="select-container">
-                <select name="plans" id="plans">
-                  <option value="plan1">Plan 1</option>
-                  <option value="plan2">Plan 2</option>
-                  <option value="plan3">Plan 3</option>
-                  <option value="plan4">Plan 4</option>
-                </select>
-                <i class="fa-solid fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="price">
-              <p><sup>KM</sup>47<sup>.98</sup></p>
-            </div>
-            <div class="quantity">
-              <button>
-                <i class="fa-solid fa-minus"></i>
-              </button>
-              <span>2</span>
-              <button>
-                <i class="fa-solid fa-plus"></i>
-              </button>
-            </div>
-            <div class="total">
-              <p>
-                <sup>KM</sup>47<sup class="down">.98</sup>
-                <i class="fa-solid fa-trash trash"></i>
-                <i class="fa-solid fa-circle-minus circle-minus"></i>
-              </p>
-            </div>
-          </div>
           <div class="footer">
-            <button class="btn-pay pckbtn">Proceed to checkout</button>
+            <button class="btn-pay pckbtn" onclick="itemModal()">
+              Proceed to checkout
+            </button>
           </div>
         </div>
       </div>
@@ -406,6 +282,28 @@
     <!-- End Footer -->
     <!-- JavaScript -->
     <script src="../js/main.js"></script>
-    <script src="../js/addToCart.js"></script>
+    <script type="module" src="../js/cart.js"></script>
+    <script>
+      const body = document.body,
+        modal = document.getElementById("myModal"),
+        masterContainer = modal.querySelector(".master-container");
+
+      function itemModal() {
+        modal.classList.add("d-block");
+        body.classList.add("fix");
+        setTimeout(() => {
+          modal.classList.add("active");
+
+          // Check if the height of master container is more than the height of the customer
+          const masterContainerHeight = masterContainer.offsetHeight;
+          const customerHeight = window.innerHeight;
+
+          if (masterContainerHeight > customerHeight) {
+            masterContainer.style.marginTop = "115px";
+            masterContainer.style.paddingBottom = "50px";
+          }
+        }, 1);
+      }
+    </script>
   </body>
 </html>

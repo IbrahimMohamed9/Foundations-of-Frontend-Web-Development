@@ -134,15 +134,14 @@ article .article-container header + section .icons i {
 }
 article .article-container header + section .icons .font-share-icons {
   max-width: 150px;
-  display: -ms-grid;
   display: grid;
-  grid-template-columns: repeat(5, 30px);
-  padding-left: 0;
-  justify-content: center;
-  align-items: center;
-  transition: var(--main-transition);
+  position: initial;
+  transform: initial;
+  background-color: transparent;
+  padding: initial;
 }
 article .article-container header + section .icons a {
+  transition: var(--main-transition);
   color: var(--font-color);
   font-size: 20px;
 }
@@ -167,9 +166,14 @@ article .article-container header + section .icons .font-share-icons a:hover {
   background-color: var(--secondary-background-color);
 }
 .more-articles .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
-  column-gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.more-articles .container > * {
+  min-width: 205px;
+  max-width: 205px;
 }
 @media (max-width: 510px) {
   .more-articles .container {

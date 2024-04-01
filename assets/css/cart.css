@@ -1,6 +1,7 @@
 header ~ .shopping.cart {
   background-color: var(--third-background-color);
   padding: 5px 0 100px;
+  position: relative;
 }
 
 .containerr {
@@ -56,7 +57,6 @@ header ~ .shopping.cart {
   font-size: 2rem;
   text-align: center;
 }
-/* Extra Extra large devices */
 @media (max-width: 578px) {
   .cart .container h1 {
     font-size: 25px;
@@ -126,14 +126,14 @@ header ~ .shopping.cart {
 }
 .cart .containerr .products .row p i {
   position: absolute;
-  right: 10%;
+  right: 6%;
   color: #969696;
   cursor: pointer;
 }
 .cart .containerr .products .row p .circle-minus {
   display: none;
 }
-@media (max-width: 710px) {
+@media (max-width: 750px) {
   .cart .containerr .products .row p .trash {
     display: none;
   }
@@ -192,6 +192,12 @@ header ~ .shopping.cart {
 .cart .containerr .products .row .select-container select {
   cursor: pointer;
 }
+.cart .containerr .products .row .name-plan h2 {
+  font-size: 25px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
 @media (max-width: 580px) {
   .cart .containerr .products .row .name-plan {
     padding-top: 10px;
@@ -210,11 +216,8 @@ header ~ .shopping.cart {
 @media (max-width: 500px) {
   .cart .containerr .products .row .name-plan h2 {
     font-size: 1.2rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
     width: 60px;
     height: 1.2em;
-    white-space: nowrap;
   }
 }
 @media (max-width: 370px) {
@@ -286,32 +289,32 @@ header ~ .shopping.cart {
   font-weight: normal;
   font-size: 20px;
 }
-@media (max-width: 490px) {
+@media (max-width: 520px) {
   .cart .containerr .products .row .total p {
     font-weight: normal;
     font-size: 1rem;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 340px) {
   .cart .containerr .products .row .total p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
 }
 .cart .containerr .products .row p .down {
   top: 0;
 }
 .cart .containerr .products .footer {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
 }
 .footer .btn-pay {
+  position: relative;
   padding: 10px 15px;
   border-radius: 8px;
   background-color: var(--main-color);
   border: 0;
-  margin-top: 20px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   font-weight: bold;
   min-width: 187px;
 }

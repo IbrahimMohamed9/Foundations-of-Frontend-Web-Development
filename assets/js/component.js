@@ -5,14 +5,14 @@ export const modal = document.getElementById("myModal"),
   modalImage = modal.querySelector(".modal-img"),
   modalPrice = modal.querySelector(".price.small"),
   body = document.body,
-  quantity = modal.querySelector(".cart .quantity"),
+  modalQuantity = modal.querySelector(".master-container .cart .quantity"),
   modalType = modal.querySelector(".top-title .title");
 
 //appear the modal
 var quantityNumber, quantityBtns;
 
 export function itemModal(type, name, imgSrc, min, max, price, plans = true) {
-  quantityBtns = Array.from(quantity.children);
+  quantityBtns = Array.from(modalQuantity.children);
 
   modalType.textContent = type;
   quantityNumber = quantityBtns[1];
@@ -22,10 +22,10 @@ export function itemModal(type, name, imgSrc, min, max, price, plans = true) {
   quantityNumber.textContent = min;
 
   quantityBtns[0].addEventListener("click", () => {
-    modalButton(0, min, max);
+    modalButton(0, min, max, quantityNumber);
   });
   quantityBtns[2].addEventListener("click", () => {
-    modalButton(2, min, max);
+    modalButton(2, min, max, quantityNumber);
   });
 
   if (plans) {
@@ -46,9 +46,9 @@ export function itemModal(type, name, imgSrc, min, max, price, plans = true) {
 }
 
 //increse and decrease the quantity
-export function modalButton(index, min, max) {
+export function modalButton(index, min, max, quantityNumber) {
   if (index === 0) {
-    if (parseInt(quantityNumber.textContent) - min)
+    if (parseInt(quantityNumber.textContent) > min)
       quantityNumber.textContent = parseInt(quantityNumber.textContent) - 1;
     else {
       appearQuantityAlert("This is the minimum number");
@@ -62,7 +62,7 @@ export function modalButton(index, min, max) {
   }
 }
 
-function appearQuantityAlert(message) {
+export function appearQuantityAlert(message) {
   quantityAlert.classList.remove("d-none");
   quantityAlert.textContent = message;
   quantityAlert.style.animation = "alert 1.7s linear forwards";
@@ -176,7 +176,7 @@ export function loadItems(
     .then((data) => {
       const items = document.querySelector(`.items.${modalTitle} .container`);
       data.map((itemData) => {
-        const car =
+        const content =
           content1 +
           itemData.imgSrc +
           content2 +
@@ -184,7 +184,7 @@ export function loadItems(
           content3 +
           itemData.price +
           content4;
-        items.innerHTML += car;
+        items.innerHTML += content;
       });
 
       document
