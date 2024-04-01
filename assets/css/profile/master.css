@@ -755,8 +755,10 @@ textarea {
 .settings-page .social-boxes > div:focus-within i {
   color: black;
 }
+.widgets-control > div {
+  max-height: fit-content;
+}
 .widgets-control .control input[type="checkbox"] {
-  -webkit-appearance: none;
   appearance: none;
 }
 .widgets-control .control label {
@@ -948,6 +950,13 @@ textarea {
   border-bottom: 1px solid #eee;
   border-left: 1px solid #eee;
   transition: var(--main-transition);
+}
+.profile-page .info-box .box .email {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+
 }
 .profile-page .info-box .box:first-of-type {
   border-top: 1px solid #eee;

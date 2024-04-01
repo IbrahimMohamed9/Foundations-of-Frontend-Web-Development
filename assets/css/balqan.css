@@ -1100,6 +1100,7 @@ p {
   font-weight: 600;
   color: var(--product-color);
   display: block;
+  text-align: center;
 }
 .cart .products .product p {
   font-size: 11px;
