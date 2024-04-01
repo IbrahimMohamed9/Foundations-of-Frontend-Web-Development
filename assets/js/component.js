@@ -21,7 +21,7 @@ export function itemModal(
   min,
   max,
   price,
-  quantaty,
+  quantity,
   plans = true
 ) {
   quantityBtns = Array.from(modalQuantity.children);
@@ -31,7 +31,7 @@ export function itemModal(
   modalName.textContent = name;
   modalImage.src = imgSrc;
   modalPrice.textContent = `${price} KM`;
-  quantityNumber.textContent = quantaty;
+  quantityNumber.textContent = quantity;
 
   const total = parseInt(quantityNumber.textContent) * Number(price);
   sumOfTotalModal[1].textContent = Math.floor(total);
@@ -229,7 +229,7 @@ export function loadItems(
               itemData.min,
               itemData.max,
               itemData.price,
-              itemData.quantaty,
+              itemData.quantity,
               false
             );
           })
@@ -290,7 +290,7 @@ export function packages(
             packageData.min,
             packageData.max,
             packageData.price,
-            packageData.quantaty,
+            packageData.quantity,
             true
           );
         })

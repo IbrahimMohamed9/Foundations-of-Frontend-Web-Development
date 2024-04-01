@@ -236,7 +236,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelector(".pckbtn").addEventListener("click", () => {
           const i = data[0];
-          itemModal(i.category, i.name, i.imgSrc, i.min, i.max, i.price, false);
+          itemModal(
+            i.category,
+            i.name,
+            i.imgSrc,
+            i.min,
+            i.max,
+            i.price,
+            i.quantity,
+            false
+          );
         });
       });
   }
