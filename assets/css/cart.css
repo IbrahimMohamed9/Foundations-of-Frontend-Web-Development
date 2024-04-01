@@ -3,7 +3,6 @@ header ~ .shopping.cart {
   padding: 5px 0 100px;
   position: relative;
 }
-
 .containerr {
   margin-left: auto;
   margin-right: auto;
@@ -49,6 +48,13 @@ header ~ .shopping.cart {
   font-size: 13px;
   text-transform: uppercase;
   word-spacing: -1px;
+}
+@media (max-width: 416px) {
+  #myModal .cart .products .product p.active {
+    font-size: 14px;
+    margin-top: 0;
+    max-width: 64px;
+  }
 }
 .cart .container h1 {
   font-weight: 900;

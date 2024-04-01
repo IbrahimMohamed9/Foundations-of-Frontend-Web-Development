@@ -140,6 +140,9 @@ article .article-container header + section .icons .font-share-icons {
   background-color: transparent;
   padding: initial;
 }
+article .article-container header + section .icons .font-share-icons::before {
+  content: none;
+}
 article .article-container header + section .icons a {
   transition: var(--main-transition);
   color: var(--font-color);
@@ -171,9 +174,11 @@ article .article-container header + section .icons .font-share-icons a:hover {
   justify-content: center;
   gap: 20px;
 }
-.more-articles .container > * {
-  min-width: 205px;
-  max-width: 205px;
+@media (min-width: 510px) {
+  .more-articles .container > * {
+    min-width: 205px;
+    max-width: 205px;
+  }
 }
 @media (max-width: 510px) {
   .more-articles .container {
@@ -205,10 +210,7 @@ article .article-container header + section .icons .font-share-icons a:hover {
 }
 @media (max-width: 510px) {
   .more-articles .container .col .image {
-    -ms-grid-columns: 40% 10px 1fr;
     grid-template-columns: 40% 1fr;
-    -webkit-column-gap: 10px;
-    -moz-column-gap: 10px;
     column-gap: 10px;
     margin: 10px 0;
   }
@@ -218,6 +220,7 @@ article .article-container header + section .icons .font-share-icons a:hover {
 }
 .more-articles .container .col .image img {
   max-width: 100%;
+  max-height: 100%;
 }
 .more-articles .container .col h3 a {
   color: var(--main-color);

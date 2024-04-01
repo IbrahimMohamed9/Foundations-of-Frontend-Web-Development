@@ -173,9 +173,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   shoppingCartCounter();
   function shoppingCartCounter() {
-    const src = window.location.href.includes("index.html")
-      ? "assets/json/cart.json"
-      : "../json/cart.json";
+    const src =
+      window.location.pathname === "/" ||
+      window.location.href.includes("index.html")
+        ? "assets/json/cart.json"
+        : "../json/cart.json";
     fetch(src)
       .then((response) => {
         if (!response.ok) {
