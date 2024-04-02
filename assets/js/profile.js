@@ -91,6 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
       case 2:
         loadSettings("../json/profile.json");
         break;
+      case 3:
+        loadProjects("../json/projects.json");
+        break;
     }
   }
 
@@ -232,12 +235,13 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           `;
         });
-
-        document.querySelector(".other-data .skills-card ul").innerHTML +=
-          skillsList;
-        document.querySelector(".other-data .activities").innerHTML +=
-          activitiesList;
-        document.querySelector(".screen .overview").innerHTML = content;
+        setTimeout(() => {
+          document.querySelector(".other-data .skills-card ul").innerHTML +=
+            skillsList;
+          document.querySelector(".other-data .activities").innerHTML +=
+            activitiesList;
+          document.querySelector(".screen .overview").innerHTML = content;
+        }, 50);
       });
   }
 
@@ -358,25 +362,28 @@ document.addEventListener("DOMContentLoaded", () => {
               </tr>
             `;
         });
+        setTimeout(() => {
+          document.querySelector(".screen.wrapper .welcome").innerHTML =
+            welcomWidget;
+          document.querySelector(".screen.wrapper .targets").innerHTML +=
+            targetsWidget;
+          document.querySelector(
+            ".screen.wrapper .tickets .tickets-wrapper"
+          ).innerHTML = ticketsWidget;
+          document.querySelector(".screen.wrapper .last-project ul").innerHTML =
+            progressWidget;
+          document.querySelector(".screen.wrapper .reminders ul").innerHTML =
+            remindersWidget;
+          document.querySelector(
+            ".screen.wrapper .projects .table-container table tbody"
+          ).innerHTML = tableRows;
 
-        document.querySelector(".screen.wrapper .welcome").innerHTML =
-          welcomWidget;
-        document.querySelector(".screen.wrapper .targets").innerHTML +=
-          targetsWidget;
-        document.querySelector(
-          ".screen.wrapper .tickets .tickets-wrapper"
-        ).innerHTML = ticketsWidget;
-        document.querySelector(".screen.wrapper .last-project ul").innerHTML =
-          progressWidget;
-        document.querySelector(".screen.wrapper .reminders ul").innerHTML =
-          remindersWidget;
-        document.querySelector(
-          ".screen.wrapper .projects .table-container table tbody"
-        ).innerHTML = tableRows;
-
-        document.getElementById("profile-btn").addEventListener("click", () => {
-          switchButton(0);
-        });
+          document
+            .getElementById("profile-btn")
+            .addEventListener("click", () => {
+              switchButton(0);
+            });
+        }, 50);
       });
   }
 
@@ -389,8 +396,62 @@ document.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then((data) => {
-        const content = ``
-        document.querySelector(".settings-page .email").value = data.email
+        setTimeout(() => {
+          document.querySelector(".settings-page .email").value = data.email;
+        }, 50);
+      });
+  }
+
+  function loadProjects(src) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        let content = "";
+        data.forEach((project) => {
+          content += `
+            <div class="project bg-fourth p-20 rad-6 p-relative">
+              <span class="date fs-13 c-grey">${project.date}</span>
+              <h4 class="m-0">${project.name}</h4>
+              <p class="c-grey mt-10 mb-10 fs-14">${project.description}</p>
+              <div class="team">`;
+
+          project.team.forEach((teamMember) => {
+            content += `<a href="#"><img src="${teamMember}" alt="" /></a>`;
+          });
+
+          content += `
+              </div>
+              <div class="do d-flex">`;
+
+          project.tasks.forEach((task) => {
+            content += `<span class="fs-13 rad-6 bg-eee">${task}</span>`;
+          });
+
+          content += `
+              </div>
+              <div class="info between-flex">
+                <div class="prog bg-eee">
+                  <span class="bg-red" style="width: ${project.progress}%"></span>
+                </div>
+                <div class="fs-14 c-grey">
+                  <i class="fa-solid fa-dollar-sign"></i>
+                  ${project.price}
+                </div>
+              </div>
+            </div>`;
+        });
+        
+        setTimeout(() => {
+          document.querySelector(".screen.projects-page").innerHTML = content;
+        }, 50);
+      })
+      .catch((error) => {
+        console.error("Error fetching projects data:", error);
       });
   }
 });
