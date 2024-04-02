@@ -424,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((data) => {
         setTimeout(() => {
           document.querySelector(".settings-page .email").value = data.email;
-        }, 50);
+        }, 1s50);
       })
       .catch((error) => {
         console.error("Error fetching Settings data:", error);
