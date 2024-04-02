@@ -29,19 +29,6 @@
   },
   {
     "date": "15/6/2022",
-    "name": "Academy Portal",
-    "description": "Discovering the cultural heritage of Sarajevo and experiencing the lively atmosphere of Zenica.",
-    "team": [
-      "../images/profile/team-01.png",
-      "../images/profile/team-02.png",
-      "../images/profile/team-03.png"
-    ],
-    "tasks": ["Sarajevo", "Zenica"],
-    "progress": 100,
-    "price": 950
-  },
-  {
-    "date": "15/6/2022",
     "name": "Package 10",
     "description": "Exploring the historical landmarks of Sarajevo, experiencing the vibrant culture of Banja Luka, admiring the scenic beauty of Mostar, and discovering the charm of Tuzla.",
     "team": [
@@ -53,19 +40,6 @@
     "tasks": ["Sarajevo", "Banja Luka", "Mostar", "Tuzla"],
     "progress": 60,
     "price": 1700
-  },
-  {
-    "date": "15/6/2022",
-    "name": "Chatting Application",
-    "description": "Exploring the vibrant streets of Mostar.",
-    "team": [
-      "../images/profile/team-01.png",
-      "../images/profile/team-02.png",
-      "../images/profile/team-03.png"
-    ],
-    "tasks": ["Mostar"],
-    "progress": 100,
-    "price": 850
   },
   {
     "date": "15/6/2022",
