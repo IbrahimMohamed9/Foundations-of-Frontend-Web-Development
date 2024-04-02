@@ -89,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
         loadDashboard("../json/dashboard.json");
         break;
       case 2:
+        loadSettings("../json/profile.json");
         break;
     }
   }
@@ -376,6 +377,20 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("profile-btn").addEventListener("click", () => {
           switchButton(0);
         });
+      });
+  }
+
+  function loadSettings(src) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const content = ``
+        document.querySelector(".settings-page .email").value = data.email
       });
   }
 });
