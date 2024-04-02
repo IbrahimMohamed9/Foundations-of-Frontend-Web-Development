@@ -11,6 +11,17 @@
     "category": "package"
   },
   {
+    "id": "843244",
+    "imgSrc": "../images/package/en/package-4.jpg",
+    "name": "4 Days",
+    "min": "1",
+    "max": "5",
+    "price": "55.56",
+    "quantity": "3",
+    "plan": "Plan 1",
+    "category": "package"
+  },
+  {
     "id": "951293",
     "imgSrc": "../images/cars/car1.jpg",
     "name": "Tesla",

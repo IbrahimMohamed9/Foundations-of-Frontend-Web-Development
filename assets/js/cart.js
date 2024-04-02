@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     quantitiesCart,
     quantitiesModal,
     sumOfTotalPrices = 0;
+
   setupModalActions("Items Registered Successfully!", false);
 
   //load the items of shopping cart
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   <div>
                     <span>${itemData.category}</span>
                     <p>${itemData.name}</p>
-                    <p>${itemData.plan}</p>
+                    <p class="plan">${itemData.plan}</p>
                   </div>
                   <div class="quantity">
                     <button>
@@ -181,10 +182,12 @@ document.addEventListener("DOMContentLoaded", () => {
         sumOfTotalModal[1].innerHTML = sumOfInts;
         sumOfTotalModal[2].innerHTML = sumOfDecs;
 
+        //total column
         totalPricesCart = Array.from(
           items.querySelectorAll(".cart .containerr .products .row .total p")
         );
 
+        //total in the modal footer
         totalPricesModal = Array.from(
           modal.querySelectorAll(".card .small.price")
         );
