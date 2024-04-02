@@ -64,8 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
       sidebar.style.zIndex = 60;
     }, 300);
   }
-  let profileLoaded = true;
 
+  let profileLoaded = true;
   //dashboard
   dashIcons.forEach((icon, index) => {
     icon.addEventListener("click", () => switchButton(index));
@@ -86,13 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         break;
       case 1:
-        const profileBtn = document.getElementById("profile-btn");
-        if (profileBtn) {
-          profileBtn.addEventListener("click", () => {
-            // document.getElementById("profile-btn").addEventListener("click", () => {
-            switchButton(0);
-          });
-        }
+        loadDashboard("../json/dashboard.json");
         break;
       case 2:
         break;
@@ -243,6 +237,145 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".other-data .activities").innerHTML +=
           activitiesList;
         document.querySelector(".screen .overview").innerHTML = content;
+      });
+  }
+
+  function loadDashboard(src) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const welcomWidget = `
+          <div class="intro p-20 d-flex space-between bg-third pl-10-f pr-10-f">
+            <div>
+              <h2 class="m-0">Welcom</h2>
+              <p class="c-grey mt-5 txt-c-f">${data.name}</p>
+            </div>
+            <img src="../images/profile/welcome.png" alt="" />
+          </div>
+          <img src="${data.imgSrc}" alt="Profile image" class="avatar" />
+          <div class="body txt-c d-flex p-20 mt-20 mb-20 bg-fourth pl-10-f pr-10-f">
+            <div class="fs-13-f">
+              ${data.name} ${data.surname}
+              <span class="d-block c-grey fs-14 mt-10 fs-10-f">${data.jobTitle}</span>
+            </div>
+            <div class="fs-13-f">
+              ${data.projects}
+              <span class="d-block c-grey fs-14 fs-10-f mt-10">Projects</span>
+            </div>
+            <div class="fs-13-f">
+              KM ${data.earned}
+              <span class="d-block c-grey fs-14 fs-10-f mt-10">Earned</span>
+            </div>
+          </div>
+          <a
+            href="#profile"
+            id="profile-btn"
+            class="vistit d-block fs-15 rad-6 bg-main-color c-white btn-position w-fit btn-shape"
+          >
+            Profile
+          </a>
+        `;
+        let targetsWidget = "",
+          ticketsWidget = "",
+          progressWidget = "",
+          remindersWidget = "",
+          tableRows = "";
+
+        data.targets.forEach((target) => {
+          const achieved = Number(target.achieved.replace(/,/g, "")),
+            goal = Number(target.goal.replace(/,/g, "")),
+            percentageAchieved = ((achieved / goal) * 100).toFixed(2);
+
+          targetsWidget += `
+            <div class="target-row mb-20 mb-25-f d-flex align-center">
+              <div class="icon center-flex">
+                <i class="fa-solid ${target.icon} fa-lg"></i>
+              </div>
+              <div class="details">
+                <span class="fs-14 c-grey">${target.name}</span>
+                <span class="d-block p-relative mb-10 fw-bold">${target.goal}</span>
+                <div class="progress rad-10 p-relative">
+                  <span style="width: ${percentageAchieved}%" class="rad-10">
+                    <span class="rad-6 fs-13 c-white fw-bold">${percentageAchieved}%</span></span
+                  >
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        data.tickets.forEach((ticket) => {
+          ticketsWidget += `
+            <div class="box border-ccc p-20 p-10-f pr-10-f fs-13 c-grey">
+              <i class="fa-solid ${ticket.icon} fa-2x mb-10"></i>
+              <span class="d-block c-main-font fw-bold fs-25 mb-5">${ticket.achieved}</span>
+              ${ticket.name}
+            </div>
+          `;
+        });
+
+        data.progrProjs.forEach((progrProj) => {
+          progressWidget += `
+          <li class="mt-25 d-flex align-center ${progrProj.status}">${progrProj.part}</li>
+          `;
+        });
+
+        data.reminders.forEach((reminder) => {
+          remindersWidget += `
+            <li class="d-flex align-center mt-15">
+              <span class="key mr-15 d-block rad-half"></span>
+              <div class="pl-15">
+                <p class="fs-14 fw-bold mt-0 mb-5">${reminder.title}</p>
+                <span class="fs-13 c-grey">${reminder.date} - ${reminder.time}</span>
+              </div>
+            </li>
+          `;
+        });
+
+        data.tableRows.forEach((row) => {
+          tableRows += `
+              <tr>
+                <td>${row.name}</td>
+                <td>${row.finish}</td>
+                <td>${row.client}</td>
+                <td>${row.price}</td>
+                <td>
+                  ${row.team
+                    .map((image) => `<img src="${image}" alt="person image" />`)
+                    .join("")}
+                </td>
+                <td>
+                  <span class="label btn-shape ${row.background} c-white">${
+            row.status
+          }</span>
+                </td>
+              </tr>
+            `;
+        });
+
+        document.querySelector(".screen.wrapper .welcome").innerHTML =
+          welcomWidget;
+        document.querySelector(".screen.wrapper .targets").innerHTML +=
+          targetsWidget;
+        document.querySelector(
+          ".screen.wrapper .tickets .tickets-wrapper"
+        ).innerHTML = ticketsWidget;
+        document.querySelector(".screen.wrapper .last-project ul").innerHTML =
+          progressWidget;
+        document.querySelector(".screen.wrapper .reminders ul").innerHTML =
+          remindersWidget;
+        document.querySelector(
+          ".screen.wrapper .projects .table-container table tbody"
+        ).innerHTML = tableRows;
+
+        document.getElementById("profile-btn").addEventListener("click", () => {
+          switchButton(0);
+        });
       });
   }
 });

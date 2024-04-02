@@ -1,0 +1,160 @@
+{
+  "imgSrc": "../images/profile/avatar.png",
+  "name": "Ibrahim",
+  "surname": "Mohamed",
+  "jobTitle": "IT Manager",
+  "projects": "5",
+  "earned": "1000",
+  "targets": [
+    {
+      "name": "Money",
+      "goal": "20,000",
+      "icon": "fa-euro-sign",
+      "achieved": "10,000"
+    },
+    {
+      "name": "Tourist Group",
+      "goal": "100",
+      "icon": "fa-users-rays",
+      "achieved": "30"
+    },
+    {
+      "name": "Project",
+      "goal": "20",
+      "icon": "fa-bars-progress",
+      "achieved": "19"
+    }
+  ],
+  "tickets": [
+    {
+      "name": "Rented cars",
+      "icon": "fa-car",
+      "achieved": "300"
+    },
+    {
+      "name": "Available Car",
+      "icon": "fa-car-tunnel",
+      "achieved": "5"
+    },
+    {
+      "name": "Tourists",
+      "icon": "fa-person",
+      "achieved": "600"
+    },
+    {
+      "name": "Tourist Group",
+      "icon": "fa-users-rays",
+      "achieved": "50"
+    }
+  ],
+  "progrProjs": [
+    {
+      "part": "Got The Project",
+      "status": "done"
+    },
+    {
+      "part": "Started The Project",
+      "status": "done"
+    },
+    {
+      "part": "The Project About To Finish",
+      "status": "done"
+    },
+    {
+      "part": "Test The Project",
+      "status": "current"
+    },
+    {
+      "part": "Finish The Project & Get Money",
+      "status": ""
+    }
+  ],
+  "reminders": [
+    {
+      "title": "Check My Tasks List",
+      "date": "26/10/2022",
+      "time": "12:00am"
+    },
+    {
+      "title": "Check My Projects",
+      "date": "26/10/2022",
+      "time": "12:00am"
+    },
+    {
+      "title": "Call All My Clients",
+      "date": "26/10/2022",
+      "time": "12:00am"
+    },
+    {
+      "title": "Finish The Development Workshop",
+      "date": "26/10/2022",
+      "time": "12:00am"
+    }
+  ],
+  "tableRows": [
+    {
+      "name": "Package 4",
+      "finish": "2022-05-24",
+      "date": "2021-05-24",
+      "client": "Client A",
+      "price": "$500",
+      "background": "bg-orange",
+      "status": "Pending",
+      "team": ["../images/profile/team-01.png", "../images/profile/team-02.png"]
+    },
+    {
+      "name": "Package 7",
+      "finish": "2023-08-15",
+      "date": "2021-06-12",
+      "client": "Client B",
+      "price": "$800",
+      "background": "bg-blue",
+      "status": "In Progress",
+      "team": [
+        "../images/profile/team-02.png",
+        "../images/profile/team-03.png",
+        "../images/profile/team-04.png"
+      ]
+    },
+    {
+      "name": "Package 14",
+      "finish": "2024-02-28",
+      "date": "2021-09-05",
+      "client": "Client C",
+      "price": "$1200",
+      "background": "bg-green",
+      "status": "Completed",
+      "team": ["../images/profile/team-01.png", "../images/profile/team-03.png"]
+    },
+    {
+      "name": "Package 10",
+      "finish": "2023-11-10",
+      "date": "2021-12-30",
+      "client": "Client D",
+      "price": "$1000",
+      "background": "bg-red",
+      "status": "Rejected",
+      "team": ["../images/profile/team-04.png"]
+    },
+    {
+      "name": "Package 4",
+      "finish": "2024-05-01",
+      "date": "2022-02-14",
+      "client": "Client E",
+      "price": "$700",
+      "background": "bg-orange",
+      "status": "Pending",
+      "team": ["../images/profile/team-01.png", "../images/profile/team-02.png"]
+    },
+    {
+      "name": "Package 14",
+      "finish": "2023-07-20",
+      "date": "2022-11-07",
+      "client": "Client F",
+      "price": "$1500",
+      "background": "bg-green",
+      "status": "Completed",
+      "team": ["../images/profile/team-03.png", "../images/profile/team-04.png"]
+    }
+  ]
+}
