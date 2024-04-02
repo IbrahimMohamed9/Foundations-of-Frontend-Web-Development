@@ -65,11 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
-  let profileLoaded = true;
   //dashboard
   dashIcons.forEach((icon, index) => {
     icon.addEventListener("click", () => switchButton(index));
   });
+  let profileLoaded = true,
+    dashboardLoaded = true,
+    settingsLoaded = true,
+    projectsLoaded = true,
+    friendsLoaded = true;
   function switchButton(clickedIndex) {
     if (previous !== null && clickedIndex !== previous) {
       dashIcons[previous].classList.remove("active");
@@ -86,13 +90,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         break;
       case 1:
-        loadDashboard("../json/dashboard.json");
+        if (dashboardLoaded) {
+          loadDashboard("../json/dashboard.json");
+          dashboardLoaded = false;
+        }
         break;
       case 2:
-        loadSettings("../json/profile.json");
+        if (settingsLoaded) {
+          loadSettings("../json/profile.json");
+          settingsLoaded = false;
+        }
         break;
       case 3:
-        loadProjects("../json/projects.json");
+        if (projectsLoaded) {
+          loadProjects("../json/projects.json");
+          projectsLoaded = false;
+        }
+        break;
+      case 4:
+        if (friendsLoaded) {
+          loadFriends("../json/friends.json");
+          friendsLoaded = false;
+        }
         break;
     }
   }
@@ -219,9 +238,9 @@ document.addEventListener("DOMContentLoaded", () => {
           skillsList += "</li>";
         }
 
-        let activitiesList = "";
-        data.activities.forEach((activity) => {
-          activitiesList += `
+        const activitiesList = data.activities
+          .map(
+            (activity) => `
             <div class="activity d-flex align-center txt-c-mobile">
               <img src="${activity.imgSrc}" alt="" />
               <div class="info">
@@ -233,8 +252,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 <span class="c-grey">${activity.date}</span>
               </div>
             </div>
-          `;
-        });
+          `
+          )
+          .join("");
         setTimeout(() => {
           document.querySelector(".other-data .skills-card ul").innerHTML +=
             skillsList;
@@ -242,6 +262,9 @@ document.addEventListener("DOMContentLoaded", () => {
             activitiesList;
           document.querySelector(".screen .overview").innerHTML = content;
         }, 50);
+      })
+      .catch((error) => {
+        console.error("Error fetching Profile data:", error);
       });
   }
 
@@ -384,6 +407,9 @@ document.addEventListener("DOMContentLoaded", () => {
               switchButton(0);
             });
         }, 50);
+      })
+      .catch((error) => {
+        console.error("Error fetching Dashboard data:", error);
       });
   }
 
@@ -399,6 +425,9 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           document.querySelector(".settings-page .email").value = data.email;
         }, 50);
+      })
+      .catch((error) => {
+        console.error("Error fetching Settings data:", error);
       });
   }
 
@@ -445,13 +474,73 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>
             </div>`;
         });
-        
+
         setTimeout(() => {
           document.querySelector(".screen.projects-page").innerHTML = content;
         }, 50);
       })
       .catch((error) => {
         console.error("Error fetching projects data:", error);
+      });
+  }
+
+  function loadFriends(src) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        let content = "";
+
+        data.forEach((friend) => {
+          content += `
+          <div class="friend bg-fourth rad-6 p-20 p-relative">
+          <div class="contact">
+            <i class="fa-solid fa-phone"></i>
+            <i class="fa-regular fa-envelope"></i>
+          </div>
+          <div class="txt-c">
+            <img
+              class="rad-half mt-10 mb-10 w-100 h-100"
+              src="${friend.imgSrc}"
+              alt=""
+            />
+            <h4 class="m-0">${friend.name}</h4>
+            <p class="c-grey fs-13 mt-5 mb-0">${friend.jobTitle}</p>
+          </div>
+          <div class="icons fs-14 p-relative">
+            <div class="mb-10">
+              <i class="fa-regular fa-face-smile fa-fw"></i>
+              <span>${friend.friends} Friends</span>
+            </div>
+            <div class="mb-10">
+              <i class="fa-solid fa-code-commit fa-fw"></i>
+              <span>${friend.projects} Projects</span>
+            </div>
+            <div>
+              <i class="fa-regular fa-newspaper fa-fw"></i>
+              <span>${friend.articles} Articles</span>
+            </div>
+          </div>
+          <div class="info between-flex fs-13">
+            <span class="c-grey">Joined ${friend.joined}</span>
+            <div class="d-flex gap-5">
+              <a class="bg-blue c-white btn-shape" href="profile.html">Profile</a>
+              <a class="bg-red c-white btn-shape" href="">Remove</a>
+            </div>
+          </div>
+        </div>
+      `;
+        });
+        setTimeout(() => {
+          document.querySelector(".screen.friends-page").innerHTML = content;
+        }, 50);
+      })
+      .catch((error) => {
+        console.error("Error fetching Friends data:", error);
       });
   }
 });

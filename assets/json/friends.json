@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Ahmed Nasser",
+    "jobTitle": "Tourist",
+    "friends": 99,
+    "projects": 15,
+    "articles": 25,
+    "vip": true,
+    "joined": "02/10/2021",
+    "imgSrc": "../images/profile/friend-01.jpg"
+  },
+  {
+    "name": "Omar Fathy",
+    "jobTitle": "Driver",
+    "friends": 30,
+    "projects": 11,
+    "articles": 12,
+    "vip": false,
+    "joined": "02/08/2020",
+    "imgSrc": "../images/profile/friend-02.jpg"
+  },
+  {
+    "name": "Omar Ahmed",
+    "jobTitle": "Tourist Guide",
+    "friends": 80,
+    "projects": 20,
+    "articles": 18,
+    "vip": false,
+    "joined": "02/06/2020",
+    "imgSrc": "../images/profile/friend-03.jpg"
+  },
+  {
+    "name": "Shady Nabil",
+    "jobTitle": "Translator",
+    "friends": 70,
+    "projects": 30,
+    "articles": 18,
+    "vip": false,
+    "joined": "28/06/2020",
+    "imgSrc": "../images/profile/friend-04.jpg"
+  },
+  {
+    "name": "Mohamed Ibrahim",
+    "jobTitle": "Tourist",
+    "friends": 80,
+    "projects": 30,
+    "articles": 18,
+    "vip": false,
+    "joined": "28/08/2020",
+    "imgSrc": "../images/profile/friend-05.jpg"
+  }
+]
