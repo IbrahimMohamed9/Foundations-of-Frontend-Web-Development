@@ -1,0 +1,131 @@
+<h1 class="p-relative">Settings</h1>
+<div class="screen settings-page m-20 d-grid gap-20">
+  <!-- Start Settings Box -->
+  <div class="p-20 bg-fourth rad-10 p-10-f">
+    <h2 class="mt-0 mb-10">Site Control</h2>
+    <p class="mt-0 mb-20 c-grey fs-15">
+      Control The Website If There Is Maintenance
+    </p>
+    <div class="mb-15 between-flex">
+      <div>
+        <span>Website Control</span>
+        <p class="c-grey mt-5 mb-0 fs-13">
+          Open/Close Website And Type The Reason
+        </p>
+      </div>
+      <div>
+        <label>
+          <input
+            name="websideControl"
+            class="toggle-checkbox"
+            type="checkbox"
+            checked
+          />
+          <div class="toggle-switch"></div>
+        </label>
+      </div>
+    </div>
+    <div class="textarea border-ccc rad-6">
+      <textarea
+        name="reason"
+        class="close-message b-none p-10 rad-6 d-block w-full bg-third c-main-font"
+        placeholder="Close Message Content"
+      ></textarea>
+    </div>
+  </div>
+  <!-- End Settings Box -->
+  <!-- Start Settings Box -->
+  <div class="general p-20 bg-fourth rad-10 p-relative pb-60 p-10-f">
+    <h2 class="mt-0 mb-10">General Info</h2>
+    <p class="mt-0 mb-20 c-grey fs-15">
+      General Information About Your Account
+    </p>
+    <div class="mb-15">
+      <label class="fs-14 c-grey d-block mb-10" for="first">First Name</label>
+      <input
+        class="d-block rad-6 w-full p-10 bg-third c-main-font border-ccc"
+        type="text"
+        id="first"
+        placeholder="First Name"
+        autocomplete="on"
+      />
+    </div>
+    <div class="mb-15">
+      <label class="fs-14 c-grey d-block mb-5" for="last">Last Name</label>
+      <input
+        class="d-block rad-6 w-full p-10 bg-third c-main-font border-ccc"
+        id="last"
+        type="text"
+        placeholder="Last Name"
+        autocomplete="on"
+      />
+    </div>
+    <div>
+      <label class="fs-14 c-grey d-block mb-5" for="email">Email</label>
+      <input
+        class="email d-block bg-third c-main-font border-ccc p-10 rad-6 w-full mr-10"
+        id="email"
+        type="email"
+        value="ibrahim@balqan.net"
+        autocomplete="on"
+        disabled
+      />
+      <a
+        class="d-block fs-15 rad-6 bg-main-color c-white btn-position w-fit btn-shape"
+        href="#"
+        >Change</a
+      >
+    </div>
+  </div>
+  <!-- End Settings Box -->
+  <!-- Start Settings Box -->
+  <div class="p-20 pb-60-f bg-fourth rad-10 p-10-f p-relative">
+    <h2 class="mt-0 mb-10">Security Info</h2>
+    <p class="mt-0 mb-20 c-grey fs-15">
+      Security Information About Your Account
+    </p>
+    <div class="sec-box mb-15 between-flex">
+      <div>
+        <span>Password</span>
+        <p class="c-grey mt-5 mb-0 fs-13">Last Change On 25/10/2021</p>
+      </div>
+      <a
+        class="bg-main-color d-block c-white fs-15 rad-6 c-white w-fit btn-shape btn-position"
+        href="#"
+      >
+        Change
+      </a>
+    </div>
+  </div>
+  <!-- End Settings Box -->
+  <!-- Start Settings Box -->
+  <div class="widgets-control p-20 bg-fourth rad-10 p-10-f">
+    <h2 class="mt-0 mb-10">Widgets Control</h2>
+    <p class="mt-0 mb-20 c-grey fs-15">Show/Hide Widgets</p>
+    <div class="control d-flex align-center mb-15">
+      <input type="checkbox" id="one" checked />
+      <label for="one">Quick Draft</label>
+    </div>
+    <div class="control d-flex align-center mb-15">
+      <input type="checkbox" id="two" checked />
+      <label for="two">Yearly Targets</label>
+    </div>
+    <div class="control d-flex align-center mb-15">
+      <input type="checkbox" id="three" checked />
+      <label for="three">Tickets Statistics</label>
+    </div>
+    <div class="control d-flex align-center mb-15">
+      <input type="checkbox" id="four" checked />
+      <label for="four">Latest News</label>
+    </div>
+    <div class="control d-flex align-center mb-15">
+      <input type="checkbox" id="five" />
+      <label for="five">Latest Tasks</label>
+    </div>
+    <div class="control d-flex align-center mb-15">
+      <input type="checkbox" id="six" checked />
+      <label for="six">Top Search Items</label>
+    </div>
+  </div>
+  <!-- End Settings Box -->
+</div>

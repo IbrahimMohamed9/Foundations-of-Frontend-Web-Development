@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/balqan.css" />
+    <link rel="stylesheet" href="../css/articles.css" />
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon_io/favicon-16x16.png"
+    />
+    <!-- <link rel="manifest" href="../favicon_io/site.webmanifest" /> -->
+
+    <title>Articles</title>
+  </head>
+  <body class="dark-theme">
+    <!-- Start Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="../../index.html">
+          <div class="logoo">
+            <!-- <img src="../images/logo/logo.png" alt="" /> -->
+            <img src="../images/logo/b.png" alt="" class="b letter" />
+            <img src="../images/logo/a.png" alt="" class="a-f letter" />
+            <img src="../images/logo/l.png" alt="" class="l letter" />
+            <span class="dot left"></span>
+            <div class="letter-div letter">
+              <div class="letter-q-div">
+                <img src="../images/logo/q.png" alt="" />
+              </div>
+            </div>
+            <span class="dot right"></span>
+            <img src="../images/logo/a.png" alt="" class="a-s letter" />
+            <img src="../images/logo/n.png" alt="" class="n letter" />
+          </div>
+        </a>
+        <ul class="tile-wrds">
+          <li>
+            <a href="../../index.html">
+              <i class="fa-solid fa-house-chimney"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="../html/contact-us.html"
+              ><i class="fa-regular fa-id-badge"></i> <span>Contact</span></a
+            >
+          </li>
+          <li id="current-page">
+            <a href="#">
+              <i class="fa-regular fa-newspaper"></i>
+              <span>Articles</span>
+            </a>
+          </li>
+          <li>
+            <a href="../html/profile.html#profile">
+              <i class="fa-regular fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="../html/shop.html">
+              <i class="fa-solid fa-shop"></i>
+              <span>Shop</span>
+            </a>
+          </li>
+        </ul>
+        <div class="icons">
+          <a href="">
+            <!-- <i class="fa-regular fa-heart heart"></i> -->
+            <i class="fa-regular fa-bell heart"></i>
+          </a>
+          <a href="../html/cart.html">
+            <i class="fa-solid fa-cart-shopping cart-shopping" data-counter="2">
+            </i>
+          </a>
+          <span>KM 0.00</span>
+
+          <div class="dark-mode-icon">
+            <label for="switch" class="toggle">
+              <input type="checkbox" class="input" id="switch" />
+              <div class="icon icon--moon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+
+              <div class="icon icon--sun">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
+                  ></path>
+                </svg>
+              </div>
+            </label>
+          </div>
+        </div>
+        <button class="menu">
+          <!-- <i class="fa-solid fa-bars"></i> -->
+          <span></span>
+          <span></span>
+
+          <span class="close"></span>
+          <span class="close"></span>
+        </button>
+        <div class="modal" id="headerModal"></div>
+      </div>
+    </header>
+    <!-- End Header -->
+    <!-- Start Go Up -->
+    <div class="go-up-box">
+      <i class="fa-solid fa-chevron-up"></i>
+    </div>
+    <!-- End Go Up -->
+    <!-- Start Articles -->
+    <div class="wrap">
+      <h1 class="main-title">Articles</h1>
+    </div>
+    <!-- Start Cities -->
+    <div class="articles first">
+      <div class="container justify-content-md-center flex-wrap">
+        <h2 class="">cities</h2>
+        <div class="row"></div>
+      </div>
+    </div>
+    <!-- End Cities -->
+    <!-- Start Cities -->
+    <div class="articles second">
+      <div class="container justify-content-md-center flex-wrap">
+        <h2 class="">hotels</h2>
+        <div class="row"></div>
+      </div>
+    </div>
+    <!-- End Cities -->
+    <!-- Start Cities -->
+    <div class="articles third">
+      <div class="container justify-content-md-center flex-wrap">
+        <h2 class="">tourism</h2>
+        <div class="row"></div>
+      </div>
+    </div>
+    <!-- End Cities -->
+    <!-- End Articles -->
+    <!-- Start Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="image">
+            <img src="../images/logo/logo.png" alt="" />
+          </div>
+          <div class="icons">
+            <a
+              href="https://www.instagram.com/balqan01?igsh=YTQwZjQ0NmI0OA%3D%3D&utm_source=qr"
+              class="instagram"
+              target="_blank"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a
+              href="https://wa.me/message/XX3SX2GZKPV2K1?src=qr"
+              class="whatsapp"
+              target="_blank"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a
+              href="https://t.snapchat.com/CcJTjXmZ"
+              class="snapchat"
+              target="_blank"
+            >
+              <i class="fa-brands fa-snapchat"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="../html/contact-us.html">Contact</a></li>
+          </ul>
+        </div>
+        <p>Copyright &#169; 2024</p>
+      </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+    <script src="../js/articles.js"></script>
+  </body>
+</html>

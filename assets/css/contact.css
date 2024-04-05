@@ -1,0 +1,297 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+/* 
+====================================================================
+====================================================================
+============================ Start Touch ===========================
+====================================================================
+====================================================================
+*/
+.touch .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .touch .container {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+}
+.touch .container .col {
+  text-align: center;
+  max-width: 30%;
+  min-width: 30%;
+  position: relative;
+}
+@media (max-width: 768px) {
+  .touch .container .col {
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
+.touch .container .col i {
+  --width-height: 75px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--width-height);
+  height: var(--width-height);
+  background-color: var(--footer-icon);
+  color: var(--footer-font);
+  border-radius: 50%;
+  font-size: 35px;
+  transition: background-color var(--main-transition),
+    color var(--main-transition);
+}
+.touch .container .col i:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+.touch .container .col h3 {
+  text-transform: capitalize;
+  font-weight: bold;
+  font-size: 25px;
+  margin: 90px 0 15px;
+}
+/* 
+====================================================================
+====================================================================
+============================ End Touch =============================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+============================ Start Form ============================
+====================================================================
+====================================================================
+*/
+.form-section {
+  background-color: var(--secondary-background-color);
+  padding: 75px 0 var(--main-padding);
+}
+.form-section .main-title {
+  position: relative;
+}
+.form-section .main-title span {
+  max-width: 110%;
+  min-width: 110%;
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: var(--font-color);
+  transition: var(--main-transition);
+}
+.form-section .main-title:hover span {
+  transition-delay: var(--main-transition);
+  color: var(--main-color);
+}
+.form-section .prag {
+  text-align: center;
+  font-weight: bold;
+}
+.form-section .form {
+  max-width: 70%;
+  box-shadow: 0 0 15px 2px var(--box-shadow);
+  border-radius: 1rem;
+  margin: 40px auto;
+  background-color: var(--main-background-color);
+}
+@media (max-width: 768px) {
+  .form-section .form {
+    max-width: 100%;
+  }
+}
+.form-section form {
+  max-width: 95%;
+  margin: 0 auto;
+}
+.form-section form .inputs {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  row-gap: 20px;
+  column-gap: 45px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+@media (max-width: 992px) {
+  .form-section form .inputs {
+    column-gap: 20px;
+  }
+}
+.form-section form .inputs .full {
+  grid-column: 1 / span 2;
+}
+.form-control {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+}
+.form-control input {
+  border: solid 1.5px #9e9e9e;
+  border-radius: 1rem;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--font-color);
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 100%;
+}
+.form .form-control input {
+  min-width: 100%;
+}
+@media (max-width: 992px) {
+  .form-control.full input {
+    min-width: 101%;
+  }
+}
+@media (max-width: 555px) {
+  .form-section form .inputs .form-control {
+    grid-column: 1 / span 2;
+  }
+}
+.form-control input.active {
+  outline: 0;
+  border-color: var(--main-color);
+}
+.form-control label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 25px;
+  pointer-events: none;
+  min-width: 33px;
+}
+.form-control #email + label,
+.form-control #emailcreate + label,
+.form-control #emailsignin + label {
+  min-width: 100px;
+  justify-content: left;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.form-control label span {
+  background-color: var(--main-background-color);
+  display: inline-block;
+  font-size: 18px;
+  border-left: 1px solid var(--main-background-color);
+  color: var(--font-color);
+}
+.form-control .field.delay + label span,
+.form-control label.txtar-la.delay span {
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.form-control .field.delay + label span:first-child,
+.form-control label.txtar-la.delay span:first-child {
+  transition-delay: 0ms;
+}
+.form-control .field.delay + label span:nth-child(2),
+.form-control label.txtar-la.delay span:nth-child(2) {
+  transition-delay: 50ms;
+}
+.form-control .field.delay + label span:nth-child(3),
+.form-control label.txtar-la.delay span:nth-child(3) {
+  transition-delay: 150ms;
+}
+.form-control .field.delay + label span:nth-child(4),
+.form-control label.txtar-la.delay span:nth-child(4) {
+  transition-delay: 200ms;
+}
+.form-control .field.delay + label span:nth-child(5),
+.form-control label.txtar-la.delay span:nth-child(5) {
+  transition-delay: 250ms;
+}
+.form-control .field.delay + label span:nth-child(6),
+.form-control label.txtar-la.delay span:nth-child(6) {
+  transition-delay: 300ms;
+}
+.form-control .field.delay + label span:nth-child(7),
+.form-control label.txtar-la.delay span:nth-child(7) {
+  transition-delay: 350ms;
+}
+.form-control .field.delay + label span:nth-child(8),
+.form-control label.txtar-la.delay span:nth-child(8) {
+  transition-delay: 400ms;
+}
+.form-control .field.delay + label span:nth-child(9),
+.form-control label.txtar-la.delay span:nth-child(9) {
+  transition-delay: 450ms;
+}
+.form-control label span:not(:first-of-type) {
+  margin-left: -6px;
+}
+.form-control input.active + label span {
+  color: var(--main-color) !important;
+  transform: translateY(-22.5px) !important;
+}
+.textarea {
+  min-width: 100%;
+  min-height: 205px;
+  max-width: 100%;
+  max-height: 205px;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.form-control .textarea textarea {
+  border: solid 1.5px #9e9e9e;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  font-size: 1rem;
+  color: var(--font-color);
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  resize: none;
+  min-width: 100%;
+  min-height: 200px;
+  max-width: 100%;
+  max-height: 200px;
+}
+.form-control textarea.active {
+  outline: 0;
+  border-color: var(--main-color);
+}
+.form-control label.txtar-la.active span {
+  color: var(--main-color);
+  transform: translateY(-22.5px);
+}
+.form-control label.txtar-la {
+  top: 5px;
+  transform: translateY(0);
+}
+form .submit {
+  border: 0;
+  border-radius: 1rem;
+  background-color: var(--main-color);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--font-color);
+  width: 100px;
+  margin: 30px 0;
+}
+
+/* 
+====================================================================
+====================================================================
+============================= End Form =============================
+====================================================================
+====================================================================
+*/

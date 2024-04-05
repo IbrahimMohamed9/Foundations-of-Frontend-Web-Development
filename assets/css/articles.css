@@ -1,0 +1,114 @@
+:root {
+  --main-color: #f7af01;
+  --secondary-color: #c1a362;
+  --main-background-color: #ececec;
+  --secondary-background-color: white;
+  --font-color: black;
+  --secondary-font-color: #696969;
+  --third-font-color: #a09ba03d;
+  --scrollbar-color: #77777736;
+  --main-transition: 0.3s;
+  --main-padding: 50px;
+  --footer-icon: #fff;
+  --footer-font: #333;
+  --box-shadow: rgba(0, 0, 0, 0.2);
+  --product-color: #47484b;
+  --secondary-product-color: #7a7c81;
+  --third-background-color: #ffffff1a;
+  --grey-color: grey;
+}
+.dark-theme {
+  --main-color: #f7af01;
+  --secondary-color: #bb8501;
+  --main-background-color: #212121;
+  --secondary-background-color: black;
+  --secondary-font-color: #e2e2e2;
+  --third-font-color: #313131;
+  --font-color: white;
+  --footer-icon: #313131;
+  --footer-font: #b9b9b9;
+  --box-shadow: rgba(255, 255, 255, 0.4);
+  --product-color: #e7e7e7;
+  --secondary-product-color: #dbdbdb;
+  --third-background-color: #0c0c0d85;
+}
+.wrap {
+  background-color: var(--secondary-background-color);
+  padding: 50px 0 1px;
+}
+.articles {
+  background-color: var(--secondary-background-color);
+}
+.articles.first {
+  padding-top: 0;
+}
+.articles.second {
+  background-color: var(--third-background-color);
+}
+.articles .container h2 {
+  width: 900px;
+  max-width: 100%;
+  margin-bottom: 25px;
+  font-size: 20px;
+  text-transform: capitalize;
+  color: var(--product-color);
+}
+.articles .container .row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  row-gap: 30px;
+}
+@media (max-width: 992.8px) {
+  .articles .container .row {
+    grid-template-columns: 1fr;
+  }
+}
+.articles .container .row .col {
+  padding: 0 15px;
+}
+.articles .container .row .col a {
+  color: var(--font-color);
+}
+.articles .container .row .col .card {
+  background-color: transparent;
+  border: none;
+  max-width: 100%;
+}
+.articles .container .row .col .card > * {
+  max-width: 100%;
+}
+.articles .container .row .col .card .card-body {
+  padding: 0;
+  margin-top: 15px;
+}
+.articles .container .row .col .card h3 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--main-color);
+  font-weight: bold;
+}
+.articles .container .row .col:hover .card .card-body h3 {
+  text-decoration: underline;
+}
+.articles .container .row .col .card .card-body .card-text {
+  padding-top: 10px;
+  font-size: 14px;
+}
+.category {
+  margin-top: 15px;
+  font-size: 12px;
+}
+.category span:first-child {
+  color: var(--secondary-font-color);
+  position: relative;
+}
+.category span:first-child::after {
+  content: "|";
+  position: absolute;
+  right: -12px;
+  top: -2px;
+}
+.category span:last-child {
+  margin-left: 10px;
+  color: var(--secondary-font-color);
+}

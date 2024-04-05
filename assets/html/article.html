@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/balqan.css" />
+    <link rel="stylesheet" href="../css/article.css" />
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="../css/all.min.css" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon_io/favicon-16x16.png"
+    />
+    <!-- <link rel="manifest" href="../favicon_io/site.webmanifest" /> -->
+
+    <title>Balqan: The best 3 hotels in Bosnia</title>
+  </head>
+  <body class="dark-theme">
+    <!-- Start Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="../../index.html">
+          <div class="logoo">
+            <!-- <img src="../images/logo/logo.png" alt="logo" /> -->
+            <img
+              src="../images/logo/b.png"
+              alt="logo letter"
+              class="b letter"
+            />
+            <img
+              src="../images/logo/a.png"
+              alt="logo letter"
+              class="a-f letter"
+            />
+            <img
+              src="../images/logo/l.png"
+              alt="logo letter"
+              class="l letter"
+            />
+            <span class="dot left"></span>
+            <div class="letter-div letter">
+              <div class="letter-q-div">
+                <img src="../images/logo/q.png" alt="logo letter" />
+              </div>
+            </div>
+            <span class="dot right"></span>
+            <img
+              src="../images/logo/a.png"
+              alt="logo letter"
+              class="a-s letter"
+            />
+            <img
+              src="../images/logo/n.png"
+              alt="logo letter"
+              class="n letter"
+            />
+          </div>
+        </a>
+        <ul class="tile-wrds">
+          <li>
+            <a href="../html/contact-us.html"
+              ><i class="fa-regular fa-id-badge"></i> <span>Contact</span></a
+            >
+          </li>
+          <li>
+            <a href="../html/articles.html">
+              <i class="fa-regular fa-newspaper"></i>
+              <span>Articles</span>
+            </a>
+          </li>
+          <li>
+            <a href="../html/profile.html#profile">
+              <i class="fa-regular fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="../html/shop.html">
+              <i class="fa-solid fa-shop"></i>
+              <span>Shop</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../index.html">
+              <i class="fa-solid fa-house-chimney"></i>
+              <span>Home</span>
+            </a>
+          </li>
+        </ul>
+        <div class="icons">
+          <a href="">
+            <!-- <i class="fa-regular fa-heart heart"></i> -->
+            <i class="fa-regular fa-bell heart"></i>
+          </a>
+          <a href="../html/cart.html">
+            <i class="fa-solid fa-cart-shopping cart-shopping" data-counter="2">
+            </i>
+          </a>
+          <span>KM 0.00</span>
+
+          <div class="dark-mode-icon">
+            <label for="switch" class="toggle">
+              <input type="checkbox" class="input" id="switch" />
+              <div class="icon icon--moon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+
+              <div class="icon icon--sun">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
+                  ></path>
+                </svg>
+              </div>
+            </label>
+          </div>
+        </div>
+        <button class="menu">
+          <!-- <i class="fa-solid fa-bars"></i> -->
+          <span></span>
+          <span></span>
+
+          <span class="close"></span>
+          <span class="close"></span>
+        </button>
+        <div class="modal" id="headerModal"></div>
+      </div>
+    </header>
+    <!-- End Header -->
+    <!-- Start Go Up -->
+    <div class="go-up-box">
+      <i class="fa-solid fa-chevron-up"></i>
+    </div>
+    <!-- End Go Up -->
+    <!-- Start Article -->
+    <article>
+      <div class="containerr">
+        <div class="article-container">
+          <header>
+            <div class="category">
+              <span>Hotels</span>
+              <span>Bosnia</span>
+            </div>
+            <h1>The best 3 hotels in Bosnia</h1>
+            <time>2024.2.12</time>
+            <p>For those looking for the most important hotels in Bosnia.</p>
+          </header>
+          <section>
+            <div class="icons">
+              <ul class="font-share-icons">
+                <li>
+                  <a href="" target="_blank"
+                    ><i class="fa-brands fa-whatsapp whatsapp"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" target="_blank"
+                    ><i class="fa-brands fa-x-twitter twitter"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" target="_blank"
+                    ><i class="fa-brands fa-telegram telegram"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" target="_blank"
+                    ><i class="fa-brands fa-facebook-f facebook"></i
+                  ></a>
+                </li>
+                <li>
+                  <a href="" target="_blank"
+                    ><i class="fa-brands fa-instagram instagram"></i
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </section>
+          <figure>
+            <picture>
+              <img src="../images/articles/articles-4.jpg" />
+            </picture>
+            <figcaption>
+              The Hotel Hollywood is a five-star hotel located in Ilidža, a
+              district of Sarajevo.
+            </figcaption>
+          </figure>
+          <p>
+            For those looking for the most important hotels in Bosnia, we
+            present an overview of some hotels in Sarajevo:
+          </p>
+          <h2>Hollywood Hotel</h2>
+          <p>
+            Located 2 km from Sarajevo International Airport and near the
+            Ferhadija Springs in Bosnia, a tributary of the Bosna River,
+            Hollywood Hotel is situated in the Ilidža area.
+          </p>
+          <p>
+            It offers modern and spacious rooms with complimentary use of the
+            indoor pool, sauna, and sports center.
+          </p>
+          <p>
+            Hollywood Hotel features 18 conference and meeting rooms, 3
+            restaurants, and a supermarket is located just 100 meters from the
+            hotel.
+          </p>
+          <h2>Malak Regency Hotel</h2>
+          <p>
+            Just 12 km from the capital Sarajevo, Malak Regency Hotel - a 5-star
+            hotel - is located in the Ilidža area with a charming view of the
+            mountains.
+          </p>
+          <p>
+            The hotel is only about 5 km away from Sarajevo International
+            Airport.
+          </p>
+          <p>
+            One of the distinguishing features of this hotel is that it does not
+            serve alcoholic beverages.
+          </p>
+          <p>
+            The hotel also features an indoor pool, sauna, fitness center, and a
+            gift shop.
+          </p>
+          <p>Local and international cuisine is served at this hotel.</p>
+          <h2>Radon Plaza Hotel</h2>
+          <p>
+            Radon Plaza Hotel is classified as a 5-star hotel and is
+            distinguished by its proximity to Sarajevo Airport, just 2.8 km
+            away.
+          </p>
+          <p>
+            Its rooms are equipped with soundproofing systems, some of which are
+            designated as suites for honeymooners.
+          </p>
+          <p>
+            The hotel also includes a wellness center available for
+            complimentary use.
+          </p>
+          <p>
+            The hotel's restaurant, located on the 15th floor, offers panoramic
+            views of the city and serves breakfast.
+          </p>
+        </div>
+      </div>
+    </article>
+    <!-- End Article -->
+    <!-- Start More Articles -->
+    <div class="more-articles">
+      <div class="container">
+        <div class="col">
+          <h2>Bosnia</h2>
+          <div class="image">
+            <img src="../images/articles/articles-2.webp" alt="article image" />
+            <div class="text">
+              <h3><a href="">The important tourist cities</a></h3>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="category">
+              <span>cities</span>
+              <span>20 hours ago</span>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h2>Bosnia</h2>
+          <div class="image">
+            <img src="../images/articles/articles-3.jpg" alt="article image" />
+            <div class="text">
+              <h3><a href="">An overview of tourism in Bosnia</a></h3>
+            </div>
+          </div>
+          <div class="footer">
+            <div class="category">
+              <span>tourism</span>
+              <span>20 hours ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End More Articles -->
+    <!-- Start Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="image">
+            <img src="../images/logo/logo.png" alt="logo" />
+          </div>
+          <div class="icons">
+            <a
+              href="https://www.instagram.com/balqan01?igsh=YTQwZjQ0NmI0OA%3D%3D&utm_source=qr"
+              class="instagram"
+              target="_blank"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a
+              href="https://wa.me/message/XX3SX2GZKPV2K1?src=qr"
+              class="whatsapp"
+              target="_blank"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a
+              href="https://t.snapchat.com/CcJTjXmZ"
+              class="snapchat"
+              target="_blank"
+            >
+              <i class="fa-brands fa-snapchat"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <ul>
+            <li><a href="../../index.html">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="contact-us.html">Contact</a></li>
+          </ul>
+        </div>
+        <p>Copyright &#169; 2024</p>
+      </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- JavaScript -->
+    <script src="../js/main.js"></script>
+  </body>
+</html>

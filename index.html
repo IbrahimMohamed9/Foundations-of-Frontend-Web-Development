@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- CSS files -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/balqan.css" />
+    <!-- Font Awesome Library -->
+    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/favicon_io/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/favicon_io/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/favicon_io/favicon-16x16.png"
+    />
+    <!-- <link rel="manifest" href="assets/favicon_io/site.webmanifest" /> -->
+    <title>Balqan</title>
+  </head>
+  <body class="dark-theme">
+    <!-- Start Header -->
+    <header class="main-header">
+      <div class="container">
+        <a href="#">
+          <div class="logoo">
+            <!-- <img src="assets/images/logo/logo.png" alt="" /> -->
+            <img src="assets/images/logo/b.png" alt="" class="b letter" />
+            <img src="assets/images/logo/a.png" alt="" class="a-f letter" />
+            <img src="assets/images/logo/l.png" alt="" class="l letter" />
+            <span class="dot left"></span>
+            <div class="letter-div letter">
+              <div class="letter-q-div">
+                <img src="assets/images/logo/q.png" alt="" />
+              </div>
+            </div>
+            <span class="dot right"></span>
+            <img src="assets/images/logo/a.png" alt="" class="a-s letter" />
+            <img src="assets/images/logo/n.png" alt="" class="n letter" />
+          </div>
+        </a>
+        <ul class="tile-wrds">
+          <li id="current-page">
+            <a href="#">
+              <i class="fa-solid fa-house-chimney"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="assets/html/contact-us.html"
+              ><i class="fa-regular fa-id-badge"></i> <span>Contact</span></a
+            >
+          </li>
+          <li>
+            <a href="assets/html/articles.html">
+              <i class="fa-regular fa-newspaper"></i>
+              <span>Articles</span>
+            </a>
+          </li>
+          <li>
+            <a href="assets/html/profile.html#profile">
+              <i class="fa-regular fa-user"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="assets/html/shop.html">
+              <i class="fa-solid fa-shop"></i>
+              <span>Shop</span>
+            </a>
+          </li>
+        </ul>
+        <div class="icons">
+          <a href="">
+            <!-- <i class="fa-regular fa-heart heart"></i> -->
+            <i class="fa-regular fa-bell heart"></i>
+          </a>
+          <a href="assets/html/cart.html">
+            <i class="fa-solid fa-cart-shopping cart-shopping" data-counter="2">
+            </i>
+          </a>
+          <span>KM 0.00</span>
+
+          <div class="dark-mode-icon">
+            <label for="switch" class="toggle">
+              <input type="checkbox" class="input" id="switch" />
+              <div class="icon icon--moon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+
+              <div class="icon icon--sun">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  width="20"
+                  height="20"
+                >
+                  <path
+                    d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
+                  ></path>
+                </svg>
+              </div>
+            </label>
+          </div>
+        </div>
+        <button class="menu">
+          <!-- <i class="fa-solid fa-bars"></i> -->
+          <span></span>
+          <span></span>
+
+          <span class="close"></span>
+          <span class="close"></span>
+        </button>
+        <div class="modal" id="headerModal"></div>
+      </div>
+    </header>
+    <!-- End Header -->
+    <!-- Start Go Up -->
+    <div class="go-up-box">
+      <i class="fa-solid fa-chevron-up"></i>
+    </div>
+    <!-- End Go Up -->
+    <!-- Start Successful Message -->
+    <div class="alert alert-success add-item d-none" role="alert">
+      Cart: Item Added!
+    </div>
+    <!-- End successful Message -->
+    <!-- Start Danger Message -->
+    <div class="alert alert-danger decrease d-none" role="alert"></div>
+    <!-- End Danger Message -->
+    <!-- Start video -->
+    <div class="video-wraper">
+      <div class="video">
+        <video autoplay loop muted playsinline>
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+    <!-- End video -->
+    <!-- Start Item Modal -->
+    <div id="myModal" class="modal zindex-tooltip">
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title"></span>
+            <i class="fa-solid fa-xmark x"></i>
+          </div>
+          <div class="products">
+            <div class="product">
+              <img class="modal-img" src="" alt="item image" />
+              <div>
+                <!-- <span>Package</span> -->
+                <p class="item-name"></p>
+                <div class="select-container">
+                  <select name="plans" id="plans">
+                    <option value="plan1">Plan 1</option>
+                    <option value="plan2">Plan 2</option>
+                    <option value="plan3">Plan 3</option>
+                    <option value="plan4">Plan 4</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div>
+              </div>
+              <div class="quantity">
+                <button>
+                  <i class="fa-solid fa-minus"></i>
+                </button>
+                <span>2</span>
+                <button>
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+              <span class="price small"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card checkout">
+          <span class="title top-title">Total</span>
+          <div class="details">
+            <span>Your total:</span>
+            <span>47.98$</span>
+          </div>
+          <div class="checkout--footer">
+            <span class="price"><sup>$</sup>47.98</span>
+            <button class="checkout-btn">Add to cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Item Modal -->
+    <!-- Start New packages -->
+    <div class="items new-packages">
+      <h2 class="main-title">new packages</h2>
+      <div class="splide items-carousel" aria-label="Splide Basic HTML Example">
+        <div class="splide__track">
+          <div class="container holder splide__list"></div>
+        </div>
+      </div>
+    </div>
+    <!-- End New packages -->
+    <!-- Start Info -->
+    <div class="info">
+      <div class="container">
+        <div class="row">
+          <div class="image">
+            <img src="assets/images/info/info-1.webp" alt="" />
+          </div>
+          <div class="wrap">
+            <div class="content">
+              <div class="text">
+                <h2>Information about Bosnia</h2>
+                <p>
+                  Enjoy the beauty of nature, explore tourist attractions, learn
+                  about its history, and enjoy affordable prices in Bosnia
+                </p>
+              </div>
+              <button><span>More</span></button>
+              <p class="paragraph">
+                1. Enchanting Nature: <br />
+                From dense forests to green mountains and charming lakes, Bosnia
+                and Herzegovina is a unique destination for nature lovers. It is
+                characterized by stunning landscapes that attract visitors with
+                their beauty and unique diversity.
+                <br /><br />
+                2. Ideal Weather:<br />
+                The moderate weather in Bosnia provides an opportunity to
+                explore tourist attractions throughout the year. Whether
+                strolling through the streets of historic cities or enjoying the
+                breathtaking views of lakes and mountains, you will find
+                yourself in a world of natural beauty.
+                <br /><br />
+                3. Beautiful Tourist Attractions:<br />
+                From the fortress of the city of Mostar to the waterfalls of
+                Jajce, tourist destinations in Bosnia and Herzegovina are
+                diverse. Enjoy a tour of the historic streets of Sarajevo and
+                learn about the culture of the old town.
+                <br /><br />
+                4. Low Prices:<br />
+                In terms of cost, your trip to Bosnia and Herzegovina is
+                considered a simple investment for an unforgettable experience.
+                Compared to other European countries, prices remain affordable,
+                allowing visitors to explore all that this wonderful destination
+                has to offer.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="image">
+            <img src="assets/images/info/info-2.jpg" alt="" />
+          </div>
+          <div class="wrap">
+            <div class="content">
+              <div class="text">
+                <h2>Islam in Bosnia</h2>
+                <p>
+                  Enjoy the beauty of nature and spirituality in the heart of
+                  Europe! Discover the rich Islamic heritage in Bosnia and
+                  Herzegovina.
+                </p>
+              </div>
+              <button><span>More</span></button>
+              <p class="paragraph">
+                Bosnia and Herzegovina hosts a rich Islamic heritage that
+                reflects cultural and historical diversity. The magnificent
+                mosques in its old cities reflect unique Islamic architecture
+                and serve as centers for spirituality and contemplation.
+                Visitors can enjoy the beauty of minarets and domes that
+                harmonize beautifully with the stunning natural landscapes.
+                <br />
+                <br />
+                Bosnia is characterized by an Islamic way of life embodied in
+                its traditions and daily customs. People here enjoy delicious
+                halal cuisine, and Bosnian hospitality reflects tolerance and
+                warmth. Ramadan and Eid al-Fitr are considered two important
+                occasions where residents experience unique religious and social
+                experiences.
+                <br />
+                <br />
+                Regarding the religious experience, mosques and the call to
+                prayer (Adhan) are among the prominent features that distinguish
+                Bosnia and Herzegovina. This adds a special spiritual charm to
+                the urban environment.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="image">
+            <img src="assets/images/info/info-3.jpg" alt="" />
+          </div>
+          <div class="wrap">
+            <div class="content">
+              <div class="text">
+                <h2>The history of Bosnia.</h2>
+                <p>
+                  Bosnia and Herzegovina: A Journey through History of
+                  Resilience and Renewal Bosnia and Herzegovina shines as one of
+                  the unique tourist destinations in Europe with its rich and
+                  diverse history. This land of resilience reflects a journey of
+                  construction and renewal throughout the ages, where ancient
+                  history and different civilizations converge.
+                </p>
+              </div>
+              <button><span>More</span></button>
+              <p class="paragraph big">
+                The Formation and Ancient Civilizations: <br />
+                The origins of Bosnia and Herzegovina date back to several
+                ancient civilizations, including the Greeks, Romans, and
+                Illyrians. The region witnessed diverse influences, giving it a
+                rich cultural background.
+                <br /><br />
+                The Ottoman Era:<br />
+                In the Middle Ages, Bosnia and Herzegovina were influenced by
+                the Ottoman Empire, a period that lasted for a long time. The
+                Ottoman Empire left its mark on architecture and culture, and
+                some of these influences are still evident today.
+                <br /><br />
+                The Austro-Hungarian Period:<br />
+                Bosnia and Herzegovina came under the rule of the
+                Austro-Hungarian Empire in the 19th century, witnessing changes
+                in administration and social structure. This period continued to
+                influence the cultural identity of the region.
+                <br /><br />
+                World War I and II:<br />
+                Bosnia and Herzegovina experienced the effects of both World
+                Wars, enduring a difficult period of division and political
+                changes. The economic and social structure was affected during
+                this time.
+                <br /><br />
+                The Bosnian War:<br />
+                The Bosnian Civil War (1992-1995) is considered a crucial period
+                in the country's history. It witnessed wars and political
+                transformations, but Bosnia and Herzegovina managed to rise and
+                recover thanks to the will of the people and international
+                support.
+                <br /><br />
+                The Present and Future:<br />
+                The history of Bosnia and Herzegovina is filled with challenges
+                and victories, and today the country remains a place that
+                combines cultural diversity and rich heritage. With ongoing
+                efforts for renewal and infrastructure development, the future
+                of Bosnia and Herzegovina looks promising.
+                <br /><br />
+                Bosnia and Herzegovina offer visitors a unique opportunity to
+                explore its exciting history and enjoy a travel experience with
+                deep cultural significance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Info -->
+    <!-- Start Tourist-Images -->
+    <div class="tourist">
+      <h2 class="main-title">examples</h2>
+      <div class="container">
+        <div class="images scroller">
+          <ul class="tag-list scroller__inner">
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-1.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-2.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-3.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-4.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-5.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-6.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-7.jpg"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-8.webp"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-9.webp"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-10.webp"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="assets/images/tourist-places/tourist-places-11.jpg"
+                alt=""
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- End Tourist-Images -->
+    <div class="articles">
+      <h2 class="main-title">newest articles</h2>
+      <div class="splide" aria-label="Splide Basic HTML Example">
+        <div class="splide__track">
+          <div class="container splide__list"></div>
+        </div>
+      </div>
+    </div>
+    <!-- Start Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="image">
+            <img src="assets/images/logo/logo.png" alt="" />
+          </div>
+          <div class="icons">
+            <a
+              href="https://www.instagram.com/balqan01?igsh=YTQwZjQ0NmI0OA%3D%3D&utm_source=qr"
+              class="instagram"
+              target="_blank"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a
+              href="https://wa.me/message/XX3SX2GZKPV2K1?src=qr"
+              class="whatsapp"
+              target="_blank"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a
+              href="https://t.snapchat.com/CcJTjXmZ"
+              class="snapchat"
+              target="_blank"
+            >
+              <i class="fa-brands fa-snapchat"></i>
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="assets/html/contact-us.html">Contact</a></li>
+          </ul>
+        </div>
+        <p>
+          Copyright &#169;
+          <a href="assets/html/login.html" class="change-me">2024</a>
+        </p>
+      </div>
+    </footer>
+    <!-- End Footer -->
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script type="module" src="assets/js/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+  </body>
+</html>
