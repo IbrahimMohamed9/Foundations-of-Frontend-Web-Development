@@ -1,5 +1,5 @@
 {
-  "imgSrc": "../images/profile/avatar.png",
+  "imgSrc": "../assets/images/profile/avatar.png",
   "name": "Ibrahim",
   "surname": "Mohamed",
   "jobTitle": "IT Manager",
@@ -100,7 +100,7 @@
       "price": "$500",
       "background": "bg-orange",
       "status": "Pending",
-      "team": ["../images/profile/team-01.png", "../images/profile/team-02.png"]
+      "team": ["../assets/images/profile/team-01.png", "../assets/images/profile/team-02.png"]
     },
     {
       "name": "Package 7",
@@ -111,9 +111,9 @@
       "background": "bg-blue",
       "status": "In Progress",
       "team": [
-        "../images/profile/team-02.png",
-        "../images/profile/team-03.png",
-        "../images/profile/team-04.png"
+        "../assets/images/profile/team-02.png",
+        "../assets/images/profile/team-03.png",
+        "../assets/images/profile/team-04.png"
       ]
     },
     {
@@ -124,7 +124,7 @@
       "price": "$1200",
       "background": "bg-green",
       "status": "Completed",
-      "team": ["../images/profile/team-01.png", "../images/profile/team-03.png"]
+      "team": ["../assets/images/profile/team-01.png", "../assets/images/profile/team-03.png"]
     },
     {
       "name": "Package 10",
@@ -134,7 +134,7 @@
       "price": "$1000",
       "background": "bg-red",
       "status": "Rejected",
-      "team": ["../images/profile/team-04.png"]
+      "team": ["../assets/images/profile/team-04.png"]
     },
     {
       "name": "Package 4",
@@ -144,7 +144,7 @@
       "price": "$700",
       "background": "bg-orange",
       "status": "Pending",
-      "team": ["../images/profile/team-01.png", "../images/profile/team-02.png"]
+      "team": ["../assets/images/profile/team-01.png", "../assets/images/profile/team-02.png"]
     },
     {
       "name": "Package 14",
@@ -154,7 +154,7 @@
       "price": "$1500",
       "background": "bg-green",
       "status": "Completed",
-      "team": ["../images/profile/team-03.png", "../images/profile/team-04.png"]
+      "team": ["../assets/images/profile/team-03.png", "../assets/images/profile/team-04.png"]
     }
   ]
 }

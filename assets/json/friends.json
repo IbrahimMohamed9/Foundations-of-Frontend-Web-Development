@@ -7,7 +7,7 @@
     "articles": 25,
     "vip": true,
     "joined": "02/10/2021",
-    "imgSrc": "../images/profile/friend-01.jpg"
+    "imgSrc": "../assets/images/profile/friend-01.jpg"
   },
   {
     "name": "Omar Fathy",
@@ -17,7 +17,7 @@
     "articles": 12,
     "vip": false,
     "joined": "02/08/2020",
-    "imgSrc": "../images/profile/friend-02.jpg"
+    "imgSrc": "../assets/images/profile/friend-02.jpg"
   },
   {
     "name": "Omar Ahmed",
@@ -27,7 +27,7 @@
     "articles": 18,
     "vip": false,
     "joined": "02/06/2020",
-    "imgSrc": "../images/profile/friend-03.jpg"
+    "imgSrc": "../assets/images/profile/friend-03.jpg"
   },
   {
     "name": "Shady Nabil",
@@ -37,7 +37,7 @@
     "articles": 18,
     "vip": false,
     "joined": "28/06/2020",
-    "imgSrc": "../images/profile/friend-04.jpg"
+    "imgSrc": "../assets/images/profile/friend-04.jpg"
   },
   {
     "name": "Mohamed Ibrahim",
@@ -47,6 +47,6 @@
     "articles": 18,
     "vip": false,
     "joined": "28/08/2020",
-    "imgSrc": "../images/profile/friend-05.jpg"
+    "imgSrc": "../assets/images/profile/friend-05.jpg"
   }
 ]

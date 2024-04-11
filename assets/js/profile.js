@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  var previous = 0;
-
   const body = document.body,
     barIcon = document.querySelector(".sidebar .sidebar-control"),
     sidebarArrow = document.querySelector(
@@ -65,86 +63,78 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
+  let previous;
   //dashboard
-  dashIcons.forEach((icon, index) => {
-    icon.addEventListener("click", () => switchButton(index));
-  });
-  let profileLoaded = true,
-    dashboardLoaded = true,
-    settingsLoaded = true,
-    projectsLoaded = true,
-    friendsLoaded = true;
   function switchButton(clickedIndex) {
-    if (previous !== null && clickedIndex !== previous) {
+    if (
+      previous !== null &&
+      clickedIndex !== previous &&
+      previous !== undefined
+    ) {
       dashIcons[previous].classList.remove("active");
     }
 
     dashIcons[clickedIndex].classList.add("active");
     previous = clickedIndex;
-
-    switch (clickedIndex) {
-      case 0:
-        if (profileLoaded) {
-          loadProfile("../json/profile.json");
-          profileLoaded = false;
-        }
-        break;
-      case 1:
-        if (dashboardLoaded) {
-          loadDashboard("../json/dashboard.json");
-          dashboardLoaded = false;
-        }
-        break;
-      case 2:
-        if (settingsLoaded) {
-          loadSettings("../json/profile.json");
-          settingsLoaded = false;
-        }
-        break;
-      case 3:
-        if (projectsLoaded) {
-          loadProjects("../json/projects.json");
-          projectsLoaded = false;
-        }
-        break;
-      case 4:
-        if (friendsLoaded) {
-          loadFriends("../json/friends.json");
-          friendsLoaded = false;
-        }
-        break;
-    }
   }
 
-  window.onhashchange = () => {
-    switch (true) {
-      case window.location.hash === "#profile":
-        switchButton(0);
-        break;
-      case window.location.hash === "#dashboard":
-        switchButton(1);
-        break;
-      case window.location.hash === "#settings":
-        switchButton(2);
-        break;
-      case window.location.hash === "#projects":
-        switchButton(3);
-        break;
-      case window.location.hash === "#friends":
-        switchButton(4);
-        break;
-      case window.location.hash === "#files":
-        switchButton(5);
-        break;
-      default:
-        console.log("New Section added");
-        alert("New Section added");
-    }
-  };
+  var app = $.spapp({
+    defaultView: "#profile",
+    templateDir: "./profilePages/",
+  });
 
-  window.onload = () => {
-    window.dispatchEvent(new Event("hashchange"));
-  };
+  app.route({
+    view: "profile",
+    load: "profile.html",
+    onCreate: function () {
+      loadProfile("../assets/json/profile.json");
+    },
+    onReady: function () {
+      switchButton(0);
+    },
+  });
+  app.route({
+    view: "dashboard",
+    load: "dashboard.html",
+    onCreate: function () {
+      loadDashboard("../assets/json/dashboard.json");
+    },
+    onReady: function () {
+      switchButton(1);
+    },
+  });
+  app.route({
+    view: "settings",
+    load: "settings.html",
+    onCreate: function () {
+      loadSettings("../assets/json/profile.json");
+    },
+    onReady: function () {
+      switchButton(2);
+    },
+  });
+  app.route({
+    view: "projects",
+    load: "projects.html",
+    onCreate: function () {
+      loadProjects("../assets/json/projects.json");
+    },
+    onReady: function () {
+      switchButton(3);
+    },
+  });
+  app.route({
+    view: "friends",
+    load: "friends.html",
+    onCreate: function () {
+      loadFriends("../assets/json/friends.json");
+    },
+    onReady: function () {
+      switchButton(4);
+    },
+  });
+
+  app.run();
 
   function loadProfile(src) {
     fetch(src)
@@ -255,13 +245,11 @@ document.addEventListener("DOMContentLoaded", () => {
           `
           )
           .join("");
-        setTimeout(() => {
-          document.querySelector(".other-data .skills-card ul").innerHTML +=
-            skillsList;
-          document.querySelector(".other-data .activities").innerHTML +=
-            activitiesList;
-          document.querySelector(".screen .overview").innerHTML = content;
-        }, 50);
+        document.querySelector(".other-data .skills-card ul").innerHTML +=
+          skillsList;
+        document.querySelector(".other-data .activities").innerHTML +=
+          activitiesList;
+        document.querySelector(".screen .overview").innerHTML = content;
       })
       .catch((error) => {
         console.error("Error fetching Profile data:", error);
@@ -283,7 +271,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <h2 class="m-0">Welcom</h2>
               <p class="c-grey mt-5 txt-c-f">${data.name}</p>
             </div>
-            <img src="../images/profile/welcome.png" alt="" />
+            <img src="../assets/images/profile/welcome.png" alt="" />
           </div>
           <img src="${data.imgSrc}" alt="Profile image" class="avatar" />
           <div class="body txt-c d-flex p-20 mt-20 mb-20 bg-fourth pl-10-f pr-10-f">
@@ -317,7 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
         data.targets.forEach((target) => {
           const achieved = Number(target.achieved.replace(/,/g, "")),
             goal = Number(target.goal.replace(/,/g, "")),
-            percentageAchieved = ((achieved / goal) * 100).toFixed(2);
+            percentageAchieved = ((achieved / goal) * 100).toFixed(0);
 
           targetsWidget += `
             <div class="target-row mb-20 mb-25-f d-flex align-center">
@@ -385,28 +373,24 @@ document.addEventListener("DOMContentLoaded", () => {
               </tr>
             `;
         });
-        setTimeout(() => {
-          document.querySelector(".screen.wrapper .welcome").innerHTML =
-            welcomWidget;
-          document.querySelector(".screen.wrapper .targets").innerHTML +=
-            targetsWidget;
-          document.querySelector(
-            ".screen.wrapper .tickets .tickets-wrapper"
-          ).innerHTML = ticketsWidget;
-          document.querySelector(".screen.wrapper .last-project ul").innerHTML =
-            progressWidget;
-          document.querySelector(".screen.wrapper .reminders ul").innerHTML =
-            remindersWidget;
-          document.querySelector(
-            ".screen.wrapper .projects .table-container table tbody"
-          ).innerHTML = tableRows;
+        document.querySelector(".screen.wrapper .welcome").innerHTML =
+          welcomWidget;
+        document.querySelector(".screen.wrapper .targets").innerHTML +=
+          targetsWidget;
+        document.querySelector(
+          ".screen.wrapper .tickets .tickets-wrapper"
+        ).innerHTML = ticketsWidget;
+        document.querySelector(".screen.wrapper .last-project ul").innerHTML =
+          progressWidget;
+        document.querySelector(".screen.wrapper .reminders ul").innerHTML =
+          remindersWidget;
+        document.querySelector(
+          ".screen.wrapper .projects .table-container table tbody"
+        ).innerHTML = tableRows;
 
-          document
-            .getElementById("profile-btn")
-            .addEventListener("click", () => {
-              switchButton(0);
-            });
-        }, 50);
+        document.getElementById("profile-btn").addEventListener("click", () => {
+          switchButton(0);
+        });
       })
       .catch((error) => {
         console.error("Error fetching Dashboard data:", error);
@@ -422,9 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then((data) => {
-        setTimeout(() => {
-          document.querySelector(".settings-page .email").value = data.email;
-        }, 150);
+        document.querySelector(".settings-page .email").value = data.email;
       })
       .catch((error) => {
         console.error("Error fetching Settings data:", error);
@@ -475,9 +457,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
         });
 
-        setTimeout(() => {
-          document.querySelector(".screen.projects-page").innerHTML = content;
-        }, 50);
+        document.querySelector(".screen.projects-page").innerHTML = content;
       })
       .catch((error) => {
         console.error("Error fetching projects data:", error);
@@ -535,9 +515,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
         });
-        setTimeout(() => {
-          document.querySelector(".screen.friends-page").innerHTML = content;
-        }, 50);
+        document.querySelector(".screen.friends-page").innerHTML = content;
       })
       .catch((error) => {
         console.error("Error fetching Friends data:", error);

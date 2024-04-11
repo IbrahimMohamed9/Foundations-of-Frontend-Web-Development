@@ -956,7 +956,6 @@ textarea {
   white-space: nowrap;
   text-overflow: ellipsis;
   display: inline-block;
-
 }
 .profile-page .info-box .box:first-of-type {
   border-top: 1px solid #eee;

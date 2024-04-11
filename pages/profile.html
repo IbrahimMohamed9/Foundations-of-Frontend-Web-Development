@@ -4,14 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="../css/balqan.css" />
-    <link rel="stylesheet" href="../css/cart.css" />
+    <link href="../assets/css/spapp.css" rel="stylesheet" />
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/balqan.css" />
+    <link rel="stylesheet" href="../assets/css/profile/framework.css" />
+    <link rel="stylesheet" href="../assets/css/profile/master.css" />
     <!-- Font Awesome Library -->
-    <link rel="stylesheet" href="../css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/all.min.css" />
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,71 +26,71 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../favicon_io/apple-touch-icon.png"
+      href="../assets/favicon_io/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="../favicon_io/favicon-32x32.png"
+      href="../assets/favicon_io/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="../favicon_io/favicon-16x16.png"
+      href="../assets/favicon_io/favicon-16x16.png"
     />
-    <!-- <link rel="manifest" href="../favicon_io/site.webmanifest" /> -->
+    <!-- <link rel="manifest" href="../assets/favicon_io/site.webmanifest" /> -->
 
-    <title>Balqan: shopping cart</title>
+    <title>Balqan</title>
   </head>
-  <body>
+  <body class="dash sidebar-250">
     <!-- Start Header -->
     <header class="main-header">
       <div class="container">
-        <a href="../../index.html">
+        <a href="../index.html">
           <div class="logoo">
-            <!-- <img src="../images/logo/logo.png" alt="" /> -->
-            <img src="../images/logo/b.png" alt="" class="b letter" />
-            <img src="../images/logo/a.png" alt="" class="a-f letter" />
-            <img src="../images/logo/l.png" alt="" class="l letter" />
+            <!-- <img src="../assets/images/logo/logo.png" alt="" /> -->
+            <img src="../assets/images/logo/b.png" alt="" class="b letter" />
+            <img src="../assets/images/logo/a.png" alt="" class="a-f letter" />
+            <img src="../assets/images/logo/l.png" alt="" class="l letter" />
             <span class="dot left"></span>
             <div class="letter-div letter">
               <div class="letter-q-div">
-                <img src="../images/logo/q.png" alt="" />
+                <img src="../assets/images/logo/q.png" alt="" />
               </div>
             </div>
             <span class="dot right"></span>
-            <img src="../images/logo/a.png" alt="" class="a-s letter" />
-            <img src="../images/logo/n.png" alt="" class="n letter" />
+            <img src="../assets/images/logo/a.png" alt="" class="a-s letter" />
+            <img src="../assets/images/logo/n.png" alt="" class="n letter" />
           </div>
         </a>
         <ul class="tile-wrds">
           <li>
-            <a href="../../index.html">
+            <a href="../index.html">
               <i class="fa-solid fa-house-chimney"></i>
               <span>Home</span>
             </a>
           </li>
           <li>
-            <a href="../html/contact-us.html"
+            <a href="../index.html#contact"
               ><i class="fa-regular fa-id-badge"></i> <span>Contact</span></a
             >
           </li>
           <li>
-            <a href="../html/articles.html">
+            <a href="../index.html#articles">
               <i class="fa-regular fa-newspaper"></i>
               <span>Articles</span>
             </a>
           </li>
-          <li>
-            <a href="../html/profile.html#profile">
+          <li class="current-page">
+            <a href="#profile">
               <i class="fa-regular fa-user"></i>
               <span>Profile</span>
             </a>
           </li>
           <li>
-            <a href="../html/shop.html">
+            <a href="../index.html#shop">
               <i class="fa-solid fa-shop"></i>
               <span>Shop</span>
             </a>
@@ -99,10 +98,10 @@
         </ul>
         <div class="icons">
           <a href="">
-            <!-- <i class="fa-regular fa-heart heart"></i> -->
+            <!-- <i class="fa-regular fa-heart fa-lg"></i> -->
             <i class="fa-regular fa-bell fa-lg heart"></i>
           </a>
-          <a href="#">
+          <a href="../html/cart.html">
             <i
               class="fa-solid fa-cart-shopping fa-lg cart-shopping"
               data-counter=""
@@ -163,86 +162,110 @@
       <i class="fa-solid fa-chevron-up"></i>
     </div>
     <!-- End Go Up -->
-    <!-- Start Successful Message -->
-    <div class="alert alert-success add-item d-none" role="alert"></div>
-    <!-- End successful Message -->
-    <!-- Start Danger Message -->
-    <div class="alert alert-danger decrease d-none" role="alert"></div>
-    <!-- End Danger Message -->
-    <!-- Start Cart -->
-    <div class="cart shopping">
-      <div id="myModal" class="modal">
-        <div class="master-container">
-          <div class="card cart">
-            <div class="top-title">
-              <span class="title">Cart Items</span>
-              <i class="fa-solid fa-xmark x"></i>
-            </div>
-            <div class="products"></div>
+    <div class="modal animation"></div>
+    <div class="content">
+      <!-- Start sidebar -->
+      <div class="sidebar bg-black-s p-10">
+        <div class="wrapper p-relative">
+          <div class="sidebar-control bg-black-s">
+            <i class="fa-solid fa-chevron-left sidebar-icon"></i>
           </div>
-
-          <div class="card coupons" style="display: none">
-            <span class="title top-title">Apply coupons</span>
-            <form class="form">
-              <input
-                type="text"
-                placeholder="Apply your coupons"
-                class="input_field"
-                id="coupon"
-              />
-              <button>Apply</button>
-            </form>
-          </div>
-
-          <div class="card checkout">
-            <span class="title top-title">Total</span>
-            <div class="details" style="display: none">
-              <span>Your subtotal:</span>
-              <span><span>47.9</span> KM</span>
-              <span>Discount through applied coupons:</span>
-              <span><span>3.99</span> KM</span>
-            </div>
-            <div class="checkout--footer">
-              <span class="price"><sup>KM</sup><span></span><sub></sub></span>
-              <button class="checkout-btn">Register</button>
-            </div>
-          </div>
+          <ul class="p-0">
+            <!-- profile -->
+            <li>
+              <a
+                href="#profile"
+                class="dash-icon d-flex align-center fs-14 c-main-font rad-6 p-10"
+              >
+                <i class="fa-regular fa-user fa-fw"></i>
+                <span class="fs-14 ml-10">Profile</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#dashboard"
+                class="dash-icon d-flex align-center fs-14 c-main-font rad-6 p-10"
+              >
+                <i class="fa-regular fa-chart-bar fa-fw"></i>
+                <span class="fs-14 ml-10">dashboard</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#settings"
+                class="dash-icon d-flex align-center fs-14 c-main-font rad-6 p-10"
+              >
+                <i class="fa-solid fa-gear fa-fw"></i>
+                <span class="fs-14 ml-10">Settings</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#projects"
+                class="dash-icon d-flex align-center fs-14 c-main-font rad-6 p-10"
+              >
+                <i class="projects fa-solid fa-diagram-project fa-fw"></i>
+                <span class="fs-14 ml-10">Projects</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#friends"
+                class="dash-icon d-flex align-center fs-14 c-main-font rad-6 p-10"
+              >
+                <i class="friends fa-solid fa-user-group fa-fw"></i>
+                <span class="fs-14 ml-10">Friends</span>
+              </a>
+            </li>
+            <li>
+              <a
+                href="#files"
+                class="d-none dash-icon files d-flex align-center fs-14 c-main-font rad-6 p-10"
+              >
+                <i class="files fa-regular fa-file fa-fw"></i>
+                <span class="fs-14 ml-5">Files</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="containerr">
-        <div class="right-corner">
-          <a href="../../index.html">Home</a>
-          <i class="fa-solid fa-chevron-right"></i>
-          <a href="#">Your Cart</a>
-        </div>
-      </div>
-      <div class="container">
-        <h1>Your Shopping Cart</h1>
-      </div>
-      <div class="containerr">
-        <div class="products cart-rows">
-          <div class="head row">
-            <p>Products</p>
-            <p></p>
-            <p>Price</p>
-            <p>Quantaty</p>
-            <p>Total</p>
+      <!-- End sidebar -->
+      <div class="second-col">
+        <!-- Start Head -->
+        <div class="head bg-third p-15 between-flex">
+          <div class="search">
+            <input
+              class="border-ccc p-10 rad-10 ml-5 pl-30"
+              type="search"
+              placeholder="Type A Keyword"
+              name="search"
+            />
           </div>
-          <div class="footer">
-            <button class="btn-pay pckbtn" onclick="itemModal()">
-              Proceed to checkout
-            </button>
+          <div class="icons d-flex align-center">
+            <img
+              class="ml-15"
+              src="../assets/images/profile/avatar.png"
+              alt=""
+            />
           </div>
         </div>
+        <!-- End Head -->
+        <main id="spapp" role="main">
+          <section id="profile" data-load="profile.html"></section>
+          <section id="dashboard" data-load="dashboard.html"></section>
+          <section id="settings" data-load="settings.html"></section>
+          <section id="projects" data-load="projects.html"></section>
+          <section id="friends" data-load="friends.html"></section>
+          <section id="files" data-load="files.html"></section>
+        </main>
       </div>
     </div>
-    <!-- End Cart -->
     <!-- Start Footer -->
     <footer>
       <div class="container">
         <div class="row">
           <div class="image">
-            <img src="../images/logo/logo.png" alt="" />
+            <img src="../assets/images/logo/logo.png" alt="" />
           </div>
           <div class="icons">
             <a
@@ -270,58 +293,18 @@
         </div>
         <div class="row">
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="../index.html">Home</a></li>
             <li><a href="">About</a></li>
-            <li><a href="contact-us.html">Contact</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
           </ul>
         </div>
         <p>Copyright &#169; 2024</p>
       </div>
     </footer>
     <!-- End Footer -->
-    <!-- JavaScript -->
-    <script src="../js/main.js"></script>
-    <script type="module" src="../js/cart.js"></script>
-    <script>
-      let body, modal, masterContainer;
-      document.addEventListener("DOMContentLoaded", () => {
-        setTimeout(() => {
-          body = document.body;
-          modal = document.getElementById("myModal");
-          masterContainer = modal.querySelector(".master-container");
-        }, 1000);
-      });
-      function itemModal() {
-        const selectedOptions = document.querySelectorAll(
-          ".cart .containerr .products .row .select-container select option:checked"
-        );
-        let selectedText = [];
-        selectedOptions.forEach((option) => {
-          if (option.selected) {
-            selectedText.push(option.textContent.trim());
-          }
-        });
-        document
-          .querySelectorAll(".cart .products .product p.plan")
-          .forEach((element, index) => {
-            element.textContent = selectedText[index];
-          });
-
-        modal.classList.add("d-block");
-        body.classList.add("fix");
-        setTimeout(() => {
-          modal.classList.add("active");
-
-          // Check if the height of master container is more than the height of the customer
-          const masterContainerHeight = masterContainer.offsetHeight,
-            customerHeight = window.innerHeight;
-
-          if (masterContainerHeight > customerHeight) {
-            masterContainer.style.marginTop = "115px";
-            masterContainer.style.paddingBottom = "50px";
-          }
-        }, 1);
-      }
-    </script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/profile.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../assets/js/jquery.spapp.min.js"></script>
   </body>
 </html>
