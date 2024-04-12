@@ -133,7 +133,6 @@ document.addEventListener("DOMContentLoaded", () => {
       switchButton(4);
     },
   });
-<<<<<<< HEAD
   function setupModalActions(
     message = "Added To DB Successfully",
     removeeBtn = true
@@ -1044,8 +1043,6 @@ document.addEventListener("DOMContentLoaded", () => {
       switchButton(6);
     },
   });
-=======
->>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
 
   app.run();
 
@@ -1298,11 +1295,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector(".screen.wrapper .reminders ul").innerHTML =
           remindersWidget;
         document.querySelector(
-<<<<<<< HEAD
           ".screen.wrapper .table-holder .table-container table tbody"
-=======
-          ".screen.wrapper .projects .table-container table tbody"
->>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
         ).innerHTML = tableRows;
 
         document.getElementById("profile-btn").addEventListener("click", () => {
