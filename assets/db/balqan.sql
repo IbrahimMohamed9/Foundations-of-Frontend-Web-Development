@@ -108,3 +108,11 @@ CREATE TABLE `friends`(
     `friends` JSON,
 	CONSTRAINT `fk_friends_user_id` FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
 );
+
+CREATE TABLE `contact_us`(
+	`contact_id` INT AUTO_INCREMENT PRIMARY KEY,
+	`user_name` VARCHAR(255),
+    `user_surname` VARCHAR(255),
+	`email` VARCHAR(255),
+    `message` TEXT
+);
