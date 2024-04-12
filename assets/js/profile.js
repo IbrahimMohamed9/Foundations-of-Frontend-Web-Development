@@ -1,6 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  var previous = 0;
-
   const body = document.body,
     barIcon = document.querySelector(".sidebar .sidebar-control"),
     sidebarArrow = document.querySelector(
@@ -65,86 +63,988 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 300);
   }
 
+  let previous;
   //dashboard
-  dashIcons.forEach((icon, index) => {
-    icon.addEventListener("click", () => switchButton(index));
-  });
-  let profileLoaded = true,
-    dashboardLoaded = true,
-    settingsLoaded = true,
-    projectsLoaded = true,
-    friendsLoaded = true;
   function switchButton(clickedIndex) {
-    if (previous !== null && clickedIndex !== previous) {
+    if (
+      previous !== null &&
+      clickedIndex !== previous &&
+      previous !== undefined
+    ) {
       dashIcons[previous].classList.remove("active");
     }
 
     dashIcons[clickedIndex].classList.add("active");
     previous = clickedIndex;
-
-    switch (clickedIndex) {
-      case 0:
-        if (profileLoaded) {
-          loadProfile("../json/profile.json");
-          profileLoaded = false;
-        }
-        break;
-      case 1:
-        if (dashboardLoaded) {
-          loadDashboard("../json/dashboard.json");
-          dashboardLoaded = false;
-        }
-        break;
-      case 2:
-        if (settingsLoaded) {
-          loadSettings("../json/profile.json");
-          settingsLoaded = false;
-        }
-        break;
-      case 3:
-        if (projectsLoaded) {
-          loadProjects("../json/projects.json");
-          projectsLoaded = false;
-        }
-        break;
-      case 4:
-        if (friendsLoaded) {
-          loadFriends("../json/friends.json");
-          friendsLoaded = false;
-        }
-        break;
-    }
   }
 
-  window.onhashchange = () => {
-    switch (true) {
-      case window.location.hash === "#profile":
-        switchButton(0);
-        break;
-      case window.location.hash === "#dashboard":
-        switchButton(1);
-        break;
-      case window.location.hash === "#settings":
-        switchButton(2);
-        break;
-      case window.location.hash === "#projects":
-        switchButton(3);
-        break;
-      case window.location.hash === "#friends":
-        switchButton(4);
-        break;
-      case window.location.hash === "#files":
-        switchButton(5);
-        break;
-      default:
-        console.log("New Section added");
-        alert("New Section added");
-    }
-  };
+  var app = $.spapp({
+    defaultView: "#profile",
+    templateDir: "./profilePages/",
+  });
 
-  window.onload = () => {
-    window.dispatchEvent(new Event("hashchange"));
-  };
+  app.route({
+    view: "profile",
+    load: "profile.html",
+    onCreate: function () {
+      loadProfile("../assets/json/profile.json");
+    },
+    onReady: function () {
+      switchButton(0);
+    },
+  });
+  app.route({
+    view: "dashboard",
+    load: "dashboard.html",
+    onCreate: function () {
+      loadDashboard("../assets/json/dashboard.json");
+    },
+    onReady: function () {
+      switchButton(1);
+    },
+  });
+  app.route({
+    view: "settings",
+    load: "settings.html",
+    onCreate: function () {
+      loadSettings("../assets/json/profile.json");
+    },
+    onReady: function () {
+      switchButton(2);
+    },
+  });
+  app.route({
+    view: "projects",
+    load: "projects.html",
+    onCreate: function () {
+      loadProjects("../assets/json/projects.json");
+    },
+    onReady: function () {
+      switchButton(3);
+    },
+  });
+  app.route({
+    view: "friends",
+    load: "friends.html",
+    onCreate: function () {
+      loadFriends("../assets/json/friends.json");
+    },
+    onReady: function () {
+      switchButton(4);
+    },
+  });
+  function setupModalActions(
+    message = "Added To DB Successfully",
+    removeeBtn = true
+  ) {
+    const modal = document.getElementById("myModal");
+    modal.querySelector(".x").addEventListener("click", () => {
+      Utils.removeItemModal(false, modal);
+    });
+  }
+  function fieldAnimation(field) {
+    field.addEventListener("focus", (input) => {
+      input.target.classList.add("active", "delay");
+    });
+    field.addEventListener("blur", (input) => {
+      if (input.target.value.trim() == "") {
+        input.target.classList.remove("active");
+        input.target.value = input.target.value.trim();
+        setTimeout(() => {
+          input.target.classList.remove("delay");
+        }, 500);
+      }
+    });
+  }
+  function formAnimation() {
+    const textareas = document.querySelectorAll("textarea.field"),
+      fields = document.querySelectorAll(".form-control"),
+      txtarLabels = document.querySelectorAll(".txtar-la");
+
+    textareas.forEach((textarea, index) => {
+      textarea.addEventListener("focus", () => {
+        txtarLabels[index].classList.add("active", "delay");
+        textarea.classList.add("active");
+      });
+      textarea.addEventListener("blur", () => {
+        if (textarea.value.trim() == "") {
+          txtarLabels[index].classList.remove("active");
+          textarea.classList.remove("active");
+          textarea.value = textarea.value.trim();
+          setTimeout(() => {
+            txtarLabels[index].classList.remove("delay");
+          }, 900);
+        }
+      });
+    });
+
+    fields.forEach((field) => {
+      inputs = field.children;
+      fieldAnimation(inputs[0]);
+    });
+  }
+  function packageModal() {
+    document.getElementById("myModal").innerHTML = `
+      <div class="master-container">
+          <div class="card cart">
+            <div class="top-title">
+              <span class="title">Add Package</span>
+              <i class="fa-solid fa-xmark x"></i>
+            </div>
+            <div class="form">
+              <form action="" method="post">
+                <div class="inputs">
+                  <div class="form-control">
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      class="field"
+                      required
+                      autocomplete="name"
+                    />
+                    <label for="name">
+                      <span>N</span>
+                      <span>a</span>
+                      <span>m</span>
+                      <span>e</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <input
+                      type="text"
+                      class="field"
+                      required
+                      id="title"
+                      name="title"
+                    />
+                    <label for="title">
+                      <span>T</span>
+                      <span>i</span>
+                      <span>t</span>
+                      <span>l</span>
+                      <span>e</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <input
+                      type="number"
+                      class="field"
+                      required
+                      id="days"
+                      name="days"
+                    />
+                    <label for="days">
+                      <span>D</span>
+                      <span>a</span>
+                      <span>y</span>
+                      <span>s</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <input
+                      type="number"
+                      class="field"
+                      required
+                      id="min_persons"
+                      name="min_persons"
+                    />
+                    <label for="min_persons">
+                      <span>M</span>
+                      <span>i</span>
+                      <span>n</span>
+                      <span>&nbsp;</span>
+                      <span>P</span>
+                      <span>e</span>
+                      <span>r</span>
+                      <span>s</span>
+                      <span>o</span>
+                      <span>n</span>
+                      <span>s</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <input
+                      type="number"
+                      class="field"
+                      required
+                      id="max_persons"
+                      name="max_persons"
+                    />
+                    <label for="max_persons">
+                      <span>M</span>
+                      <span>a</span>
+                      <span>x</span>
+                      <span>&nbsp;</span>
+                      <span>P</span>
+                      <span>e</span>
+                      <span>r</span>
+                      <span>s</span>
+                      <span>o</span>
+                      <span>n</span>
+                      <span>s</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <input
+                      type="number"
+                      class="field"
+                      required
+                      id="Price"
+                      name="Price"
+                    />
+                    <label for="Price">
+                      <span>P</span>
+                      <span>r</span>
+                      <span>i</span>
+                      <span>c</span>
+                      <span>e</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <input
+                      type="text"
+                      class="field"
+                      required
+                      id="status"
+                      name="status"
+                    />
+                    <label for="status">
+                      <span>S</span>
+                      <span>t</span>
+                      <span>a</span>
+                      <span>t</span>
+                      <span>u</span>
+                      <span>s</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="textareas">
+                  <div class="form-control">
+                    <div class="textarea">
+                      <textarea
+                        id="intro"
+                        name="intro"
+                        required
+                        class="field"
+                      ></textarea>
+                    </div>
+                    <label for="intro" class="txtar-la">
+                      <span>I</span>
+                      <span>n</span>
+                      <span>t</span>
+                      <span>r</span>
+                      <span>o</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <div class="textarea">
+                      <textarea
+                        id="description"
+                        name="description"
+                        required
+                        class="field"
+                      ></textarea>
+                    </div>
+                    <label for="description" class="txtar-la">
+                      <span>D</span>
+                      <span>e</span>
+                      <span>s</span>
+                      <span>c</span>
+                      <span>r</span>
+                      <span>i</span>
+                      <span>p</span>
+                      <span>t</span>
+                      <span>i</span>
+                      <span>o</span>
+                      <span>n</span>
+                    </label>
+                  </div>
+                  <div class="form-control">
+                    <div class="textarea">
+                      <textarea
+                        id="imgsSrcs"
+                        name="imgsSrcs"
+                        required
+                        class="field"
+                      ></textarea>
+                    </div>
+
+                    <label for="imgsSrcs" class="txtar-la">
+                      <span>I</span>
+                      <span>m</span>
+                      <span>a</span>
+                      <span>g</span>
+                      <span>e</span>
+                      <span>&nbsp;</span>
+
+                      <span>S</span>
+                      <span>o</span>
+                      <span>u</span>
+                      <span>r</span>
+                      <span>c</span>
+                      <span>e</span>
+                    </label>
+                  </div>
+                </div>
+                <input type="submit" class="submit" value="Submit" />
+              </form>
+            </div>
+          </div>
+        </div>
+      `;
+    formAnimation();
+    setupModalActions();
+    Utils.appearModal(false);
+  }
+  function carModal() {
+    document.getElementById("myModal").innerHTML = `
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title">Add Car</span>
+            <i class="fa-solid fa-xmark x"></i>
+          </div>
+          <div class="form">
+            <form action="" method="post">
+              <div class="inputs">
+                <div class="form-control">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="field"
+                    required
+                    autocomplete="name"
+                  />
+                  <label for="name">
+                    <span>N</span>
+                    <span>a</span>
+                    <span>m</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="title"
+                    name="title"
+                  />
+                  <label for="title">
+                    <span>T</span>
+                    <span>i</span>
+                    <span>t</span>
+                    <span>l</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="min_days"
+                    name="days"
+                  />
+                  <label for="min_days">
+                    <span>M</span>
+                    <span>i</span>
+                    <span>n</span>
+                    <span>&nbsp;</span>
+                    <span>D</span>
+                    <span>a</span>
+                    <span>y</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="max_days"
+                    name="max_days"
+                  />
+                  <label for="max_days">
+                    <span>M</span>
+                    <span>a</span>
+                    <span>x</span>
+                    <span>&nbsp;</span>
+                    <span>D</span>
+                    <span>a</span>
+                    <span>y</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="persons"
+                    name="persons"
+                  />
+                  <label for="persons">
+                    <span>P</span>
+                    <span>e</span>
+                    <span>r</span>
+                    <span>s</span>
+                    <span>o</span>
+                    <span>n</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="Price"
+                    name="Price"
+                  />
+                  <label for="Price">
+                    <span>P</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>c</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="status"
+                    name="status"
+                  />
+                  <label for="status">
+                    <span>S</span>
+                    <span>t</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>u</span>
+                    <span>s</span>
+                  </label>
+                </div>
+              </div>
+              <div class="textareas">
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="intro"
+                      name="intro"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="intro" class="txtar-la">
+                    <span>I</span>
+                    <span>n</span>
+                    <span>t</span>
+                    <span>r</span>
+                    <span>o</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="description"
+                      name="description"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="description" class="txtar-la">
+                    <span>D</span>
+                    <span>e</span>
+                    <span>s</span>
+                    <span>c</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>p</span>
+                    <span>t</span>
+                    <span>i</span>
+                    <span>o</span>
+                    <span>n</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="imgsSrcs"
+                      name="imgsSrcs"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+
+                  <label for="imgsSrcs" class="txtar-la">
+                    <span>I</span>
+                    <span>m</span>
+                    <span>a</span>
+                    <span>g</span>
+                    <span>e</span>
+                    <span>&nbsp;</span>
+
+                    <span>S</span>
+                    <span>o</span>
+                    <span>u</span>
+                    <span>r</span>
+                    <span>c</span>
+                    <span>e</span>
+                  </label>
+                </div>
+              </div>
+              <input type="submit" class="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+      `;
+    formAnimation();
+    setupModalActions();
+    Utils.appearModal(false);
+  }
+  function hotelModal() {
+    document.getElementById("myModal").innerHTML = `
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title">Add Hotel</span>
+            <i class="fa-solid fa-xmark x"></i>
+          </div>
+          <div class="form">
+            <form action="" method="post">
+              <div class="inputs">
+                <div class="form-control">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    class="field"
+                    required
+                    autocomplete="name"
+                  />
+                  <label for="name">
+                    <span>N</span>
+                    <span>a</span>
+                    <span>m</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="title"
+                    name="title"
+                  />
+                  <label for="title">
+                    <span>T</span>
+                    <span>i</span>
+                    <span>t</span>
+                    <span>l</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="min_days"
+                    name="days"
+                  />
+                  <label for="min_days">
+                    <span>M</span>
+                    <span>i</span>
+                    <span>n</span>
+                    <span>&nbsp;</span>
+                    <span>D</span>
+                    <span>a</span>
+                    <span>y</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="max_days"
+                    name="max_days"
+                  />
+                  <label for="max_days">
+                    <span>M</span>
+                    <span>a</span>
+                    <span>x</span>
+                    <span>&nbsp;</span>
+                    <span>D</span>
+                    <span>a</span>
+                    <span>y</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="min_persons"
+                    name="min_persons"
+                  />
+                  <label for="min_persons">
+                    <span>M</span>
+                    <span>i</span>
+                    <span>n</span>
+                    <span>&nbsp;</span>
+                    <span>P</span>
+                    <span>e</span>
+                    <span>r</span>
+                    <span>s</span>
+                    <span>o</span>
+                    <span>n</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="max_persons"
+                    name="max_persons"
+                  />
+                  <label for="max_persons">
+                    <span>M</span>
+                    <span>a</span>
+                    <span>x</span>
+                    <span>&nbsp;</span>
+                    <span>P</span>
+                    <span>e</span>
+                    <span>r</span>
+                    <span>s</span>
+                    <span>o</span>
+                    <span>n</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="number"
+                    class="field"
+                    required
+                    id="Price"
+                    name="Price"
+                  />
+                  <label for="Price">
+                    <span>P</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>c</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="status"
+                    name="status"
+                  />
+                  <label for="status">
+                    <span>S</span>
+                    <span>t</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>u</span>
+                    <span>s</span>
+                  </label>
+                </div>
+              </div>
+              <div class="textareas">
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="intro"
+                      name="intro"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="intro" class="txtar-la">
+                    <span>I</span>
+                    <span>n</span>
+                    <span>t</span>
+                    <span>r</span>
+                    <span>o</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="description"
+                      name="description"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="description" class="txtar-la">
+                    <span>D</span>
+                    <span>e</span>
+                    <span>s</span>
+                    <span>c</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>p</span>
+                    <span>t</span>
+                    <span>i</span>
+                    <span>o</span>
+                    <span>n</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="imgsSrcs"
+                      name="imgsSrcs"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+
+                  <label for="imgsSrcs" class="txtar-la">
+                    <span>I</span>
+                    <span>m</span>
+                    <span>a</span>
+                    <span>g</span>
+                    <span>e</span>
+                    <span>&nbsp;</span>
+
+                    <span>S</span>
+                    <span>o</span>
+                    <span>u</span>
+                    <span>r</span>
+                    <span>c</span>
+                    <span>e</span>
+                  </label>
+                </div>
+              </div>
+              <input type="submit" class="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+      `;
+    formAnimation();
+    setupModalActions();
+    Utils.appearModal(false);
+  }
+  function articleModal() {
+    document.getElementById("myModal").innerHTML = `
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title">Add Article</span>
+            <i class="fa-solid fa-xmark x"></i>
+          </div>
+          <div class="form">
+            <form action="" method="post">
+              <div class="inputs">
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="title"
+                    name="title"
+                  />
+                  <label for="title">
+                    <span>T</span>
+                    <span>i</span>
+                    <span>t</span>
+                    <span>l</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    id="img_src"
+                    name="img_src"
+                    class="field"
+                    required
+                  />
+                  <label for="img_src">
+                    <span>I</span>
+                    <span>m</span>
+                    <span>a</span>
+                    <span>g</span>
+                    <span>e</span>
+                    <span>&nbsp;</span>
+                    <span>S</span>
+                    <span>o</span>
+                    <span>u</span>
+                    <span>r</span>
+                    <span>c</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="category"
+                    name="category"
+                  />
+                  <label for="category">
+                    <span>C</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>e</span>
+                    <span>g</span>
+                    <span>o</span>
+                    <span>r</span>
+                    <span>y</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="status"
+                    name="status"
+                  />
+                  <label for="status">
+                    <span>S</span>
+                    <span>t</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>u</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control full">
+                  <input type="datetime-local" id="datetime" name="datetime" />
+                </div>
+              </div>
+              <div class="textareas">
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="content"
+                      name="content"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="content" class="txtar-la">
+                    <span>C</span>
+                    <span>o</span>
+                    <span>n</span>
+                    <span>t</span>
+                    <span>e</span>
+                    <span>n</span>
+                    <span>t</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="description"
+                      name="description"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="description" class="txtar-la">
+                    <span>D</span>
+                    <span>e</span>
+                    <span>s</span>
+                    <span>c</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>p</span>
+                    <span>t</span>
+                    <span>i</span>
+                    <span>o</span>
+                    <span>n</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="img_desc"
+                      name="img_desc"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="img_desc" class="txtar-la">
+                    <span>I</span>
+                    <span>m</span>
+                    <span>g</span>
+                    <span>&nbsp;</span>
+                    <span>D</span>
+                    <span>e</span>
+                    <span>s</span>
+                    <span>c</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>p</span>
+                    <span>t</span>
+                    <span>i</span>
+                    <span>o</span>
+                    <span>n</span>
+                  </label>
+                </div>
+              </div>
+              <input type="submit" class="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+      `;
+    formAnimation();
+    setupModalActions();
+    Utils.appearModal(false);
+  }
+
+  app.route({
+    view: "tables",
+    load: "tables.html",
+    onCreate: function () {},
+    onReady: function () {
+      switchButton(5);
+      document
+        .getElementById("add-package")
+        .addEventListener("click", packageModal);
+      document.getElementById("add-car").addEventListener("click", carModal);
+      document
+        .getElementById("add-hotel")
+        .addEventListener("click", hotelModal);
+      document
+        .getElementById("add-article")
+        .addEventListener("click", articleModal);
+    },
+  });
+  app.route({
+    view: "files",
+    load: "files.html",
+    onCreate: function () {},
+    onReady: function () {
+      switchButton(6);
+    },
+  });
+
+  app.run();
 
   function loadProfile(src) {
     fetch(src)
@@ -255,13 +1155,11 @@ document.addEventListener("DOMContentLoaded", () => {
           `
           )
           .join("");
-        setTimeout(() => {
-          document.querySelector(".other-data .skills-card ul").innerHTML +=
-            skillsList;
-          document.querySelector(".other-data .activities").innerHTML +=
-            activitiesList;
-          document.querySelector(".screen .overview").innerHTML = content;
-        }, 50);
+        document.querySelector(".other-data .skills-card ul").innerHTML +=
+          skillsList;
+        document.querySelector(".other-data .activities").innerHTML +=
+          activitiesList;
+        document.querySelector(".screen .overview").innerHTML = content;
       })
       .catch((error) => {
         console.error("Error fetching Profile data:", error);
@@ -283,7 +1181,7 @@ document.addEventListener("DOMContentLoaded", () => {
               <h2 class="m-0">Welcom</h2>
               <p class="c-grey mt-5 txt-c-f">${data.name}</p>
             </div>
-            <img src="../images/profile/welcome.png" alt="" />
+            <img src="../assets/images/profile/welcome.png" alt="" />
           </div>
           <img src="${data.imgSrc}" alt="Profile image" class="avatar" />
           <div class="body txt-c d-flex p-20 mt-20 mb-20 bg-fourth pl-10-f pr-10-f">
@@ -303,7 +1201,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <a
             href="#profile"
             id="profile-btn"
-            class="vistit d-block fs-15 rad-6 bg-main-color c-white btn-position w-fit btn-shape"
+            class="d-block fs-15 rad-6 bg-main-color c-white btn-position w-fit btn-shape"
           >
             Profile
           </a>
@@ -317,7 +1215,7 @@ document.addEventListener("DOMContentLoaded", () => {
         data.targets.forEach((target) => {
           const achieved = Number(target.achieved.replace(/,/g, "")),
             goal = Number(target.goal.replace(/,/g, "")),
-            percentageAchieved = ((achieved / goal) * 100).toFixed(2);
+            percentageAchieved = ((achieved / goal) * 100).toFixed(0);
 
           targetsWidget += `
             <div class="target-row mb-20 mb-25-f d-flex align-center">
@@ -372,7 +1270,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${row.finish}</td>
                 <td>${row.client}</td>
                 <td>${row.price}</td>
-                <td>
+                <td class="team">
                   ${row.team
                     .map((image) => `<img src="${image}" alt="person image" />`)
                     .join("")}
@@ -385,28 +1283,24 @@ document.addEventListener("DOMContentLoaded", () => {
               </tr>
             `;
         });
-        setTimeout(() => {
-          document.querySelector(".screen.wrapper .welcome").innerHTML =
-            welcomWidget;
-          document.querySelector(".screen.wrapper .targets").innerHTML +=
-            targetsWidget;
-          document.querySelector(
-            ".screen.wrapper .tickets .tickets-wrapper"
-          ).innerHTML = ticketsWidget;
-          document.querySelector(".screen.wrapper .last-project ul").innerHTML =
-            progressWidget;
-          document.querySelector(".screen.wrapper .reminders ul").innerHTML =
-            remindersWidget;
-          document.querySelector(
-            ".screen.wrapper .projects .table-container table tbody"
-          ).innerHTML = tableRows;
+        document.querySelector(".screen.wrapper .welcome").innerHTML =
+          welcomWidget;
+        document.querySelector(".screen.wrapper .targets").innerHTML +=
+          targetsWidget;
+        document.querySelector(
+          ".screen.wrapper .tickets .tickets-wrapper"
+        ).innerHTML = ticketsWidget;
+        document.querySelector(".screen.wrapper .last-project ul").innerHTML =
+          progressWidget;
+        document.querySelector(".screen.wrapper .reminders ul").innerHTML =
+          remindersWidget;
+        document.querySelector(
+          ".screen.wrapper .table-holder .table-container table tbody"
+        ).innerHTML = tableRows;
 
-          document
-            .getElementById("profile-btn")
-            .addEventListener("click", () => {
-              switchButton(0);
-            });
-        }, 50);
+        document.getElementById("profile-btn").addEventListener("click", () => {
+          switchButton(0);
+        });
       })
       .catch((error) => {
         console.error("Error fetching Dashboard data:", error);
@@ -422,9 +1316,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return response.json();
       })
       .then((data) => {
-        setTimeout(() => {
-          document.querySelector(".settings-page .email").value = data.email;
-        }, 150);
+        document.querySelector(".settings-page .email").value = data.email;
       })
       .catch((error) => {
         console.error("Error fetching Settings data:", error);
@@ -475,9 +1367,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>`;
         });
 
-        setTimeout(() => {
-          document.querySelector(".screen.projects-page").innerHTML = content;
-        }, 50);
+        document.querySelector(".screen.projects-page").innerHTML = content;
       })
       .catch((error) => {
         console.error("Error fetching projects data:", error);
@@ -535,9 +1425,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
         });
-        setTimeout(() => {
-          document.querySelector(".screen.friends-page").innerHTML = content;
-        }, 50);
+        document.querySelector(".screen.friends-page").innerHTML = content;
       })
       .catch((error) => {
         console.error("Error fetching Friends data:", error);

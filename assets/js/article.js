@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  loadArticle("../json/article.json");
+  loadArticle("../assets/json/article.json");
 });
 
 // const modifiedText = text

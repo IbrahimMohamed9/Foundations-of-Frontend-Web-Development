@@ -38,25 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1950);
   }
 
-  //dots in main-title
-  const mainTitles = document.querySelectorAll(".main-title");
-
-  mainTitles.forEach((mainTitle) => {
-    mainTitle.addEventListener("mouseenter", () => {
-      mainTitleAnimation(mainTitle);
-    });
-    mainTitle.addEventListener("click", () => {
-      mainTitleAnimation(mainTitle);
-    });
-  });
-  function mainTitleAnimation(title) {
-    title.classList.remove("unhovered");
-    title.classList.add("hovered");
-    setTimeout(() => {
-      title.classList.remove("hovered");
-      title.classList.add("unhovered");
-    }, 1500);
-  }
+  
 
   //change heart in hover header
   const heartIcon = document.querySelector(".heart.fa-regular");
@@ -177,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
       src =
         fileName === "" || fileName === "index.html"
           ? "assets/json/cart.json"
-          : "../json/cart.json";
+          : "../assets/json/cart.json";
     fetch(src)
       .then((response) => {
         if (!response.ok) {

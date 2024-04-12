@@ -471,18 +471,18 @@ p {
     background-color: var(--third-font-color);
     color: var(--font-color);
   }
-  .main-header ul.tile-wrds li#current-page a {
+  .main-header ul.tile-wrds li.current-page a {
     color: var(--main-color);
   }
-  .main-header ul.tile-wrds li#current-page a {
+  .main-header ul.tile-wrds li.current-page a {
     box-shadow: inset 0px 9px 20px 3px var(--box-shadow-2);
     color: var(--main-color);
     background-color: #00000025;
   }
-  .main-header ul.tile-wrds li#current-page:hover a {
+  .main-header ul.tile-wrds li.current-page:hover a {
     background-color: #00000035;
   }
-  .dark-theme .main-header ul.tile-wrds li#current-page a {
+  .dark-theme .main-header ul.tile-wrds li.current-page a {
     box-shadow: inset 0px 20px 25px 0px var(--box-shadow-2);
     background-color: var(--third-font-color);
   }
@@ -961,6 +961,7 @@ p {
   opacity: 1;
 }
 .modal {
+  z-index: -1;
   position: fixed;
   left: 0;
   top: 0;
@@ -969,6 +970,7 @@ p {
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.6);
   opacity: 0;
+  transition: opacity var(--main-transition);
   transition: var(--main-transition) linear;
 }
 .modal#headerModal,
@@ -2324,3 +2326,167 @@ footer p {
 ====================================================================
 ====================================================================
 */
+.loader {
+  --c1: #673b14;
+  --c2: #f8b13b;
+  width: 40px;
+  height: 80px;
+  border-top: 4px solid var(--c1);
+  border-bottom: 4px solid var(--c1);
+  background: linear-gradient(
+      90deg,
+      var(--c1) 2px,
+      var(--c2) 0 5px,
+      var(--c1) 0
+    )
+    50%/7px 8px no-repeat;
+  display: grid;
+  overflow: hidden;
+  animation: l5-0 2s infinite linear;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  width: 75%;
+  height: calc(50% - 4px);
+  margin: 0 auto;
+  border: 2px solid var(--c1);
+  border-top: 0;
+  box-sizing: content-box;
+  border-radius: 0 0 40% 40%;
+  mask: linear-gradient(#000 0 0) bottom/4px 2px no-repeat,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  background: linear-gradient(var(--d, 0deg), var(--c2) 50%, #0000 0) bottom /
+      100% 205%,
+    linear-gradient(var(--c2) 0 0) center/0 100%;
+  background-repeat: no-repeat;
+  animation: inherit;
+  animation-name: l5-1;
+}
+
+.loader::after {
+  transform-origin: 50% calc(100% + 2px);
+  transform: scaleY(-1);
+  --s: 3px;
+  --d: 180deg;
+}
+
+@keyframes l5-0 {
+  80% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(0.5turn);
+  }
+}
+
+@keyframes l5-1 {
+  10%,
+  70% {
+    background-size: 100% 205%, var(--s, 0) 100%;
+  }
+
+  70%,
+  100% {
+    background-position: top, center;
+  }
+}
+
+/* 
+====================================================================
+====================================================================
+===========================End Animation============================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+===============================Start================================
+====================================================================
+====================================================================
+*/
+
+section#articles .wrap {
+  background-color: var(--secondary-background-color);
+  padding: 50px 0 1px;
+}
+section#articles .articles {
+  background-color: var(--secondary-background-color);
+}
+section#articles .articles.first {
+  padding-top: 0;
+}
+section#articles .articles.second {
+  background-color: var(--third-background-color);
+}
+section#articles .articles .container h2 {
+  width: 900px;
+  max-width: 100%;
+  margin-bottom: 25px;
+  font-size: 20px;
+  text-transform: capitalize;
+  color: var(--product-color);
+}
+section#articles .articles .container .row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  row-gap: 30px;
+}
+@media (max-width: 992.8px) {
+  section#articles .articles .container .row {
+    grid-template-columns: 1fr;
+  }
+}
+section#articles .articles .container .row .col {
+  padding: 0 15px;
+}
+section#articles .articles .container .row .col a {
+  color: var(--font-color);
+}
+section#articles .articles .container .row .col .card {
+  background-color: transparent;
+  border: none;
+  max-width: 100%;
+}
+section#articles .articles .container .row .col .card > * {
+  max-width: 100%;
+}
+section#articles .articles .container .row .col .card .card-body {
+  padding: 0;
+  margin-top: 15px;
+}
+section#articles .articles .container .row .col .card h3 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--main-color);
+  font-weight: bold;
+}
+section#articles .articles .container .row .col:hover .card .card-body h3 {
+  text-decoration: underline;
+}
+section#articles .articles .container .row .col .card .card-body .card-text {
+  padding-top: 10px;
+  font-size: 14px;
+}
+.category {
+  margin-top: 15px;
+  font-size: 12px;
+}
+.category span:first-child {
+  color: var(--secondary-font-color);
+  position: relative;
+}
+.category span:first-child::after {
+  content: "|";
+  position: absolute;
+  right: -12px;
+  top: -2px;
+}
+.category span:last-child {
+  margin-left: 10px;
+  color: var(--secondary-font-color);
+}

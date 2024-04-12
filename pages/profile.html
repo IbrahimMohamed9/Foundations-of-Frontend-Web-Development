@@ -4,13 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../css/spapp.css" rel="stylesheet" />
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/balqan.css" />
-    <link rel="stylesheet" href="../css/profile/framework.css" />
-    <link rel="stylesheet" href="../css/profile/master.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../assets/css/contact.css" />
+    <link href="../assets/css/spapp.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/css/balqan.css" />
+    <link rel="stylesheet" href="../assets/css/profile/framework.css" />
+    <link rel="stylesheet" href="../assets/css/profile/master.css" />
     <!-- Font Awesome Library -->
-    <link rel="stylesheet" href="../css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/all.min.css" />
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -26,71 +30,71 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="../favicon_io/apple-touch-icon.png"
+      href="../assets/favicon_io/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="../favicon_io/favicon-32x32.png"
+      href="../assets/favicon_io/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="../favicon_io/favicon-16x16.png"
+      href="../assets/favicon_io/favicon-16x16.png"
     />
-    <!-- <link rel="manifest" href="../favicon_io/site.webmanifest" /> -->
+    <!-- <link rel="manifest" href="../assets/favicon_io/site.webmanifest" /> -->
 
     <title>Balqan</title>
   </head>
-  <body class="dark-theme dash sidebar-250">
+  <body class="dash sidebar-250">
     <!-- Start Header -->
     <header class="main-header">
       <div class="container">
-        <a href="../../index.html">
+        <a href="../index.html">
           <div class="logoo">
-            <!-- <img src="../images/logo/logo.png" alt="" /> -->
-            <img src="../images/logo/b.png" alt="" class="b letter" />
-            <img src="../images/logo/a.png" alt="" class="a-f letter" />
-            <img src="../images/logo/l.png" alt="" class="l letter" />
+            <!-- <img src="../assets/images/logo/logo.png" alt="" /> -->
+            <img src="../assets/images/logo/b.png" alt="" class="b letter" />
+            <img src="../assets/images/logo/a.png" alt="" class="a-f letter" />
+            <img src="../assets/images/logo/l.png" alt="" class="l letter" />
             <span class="dot left"></span>
             <div class="letter-div letter">
               <div class="letter-q-div">
-                <img src="../images/logo/q.png" alt="" />
+                <img src="../assets/images/logo/q.png" alt="" />
               </div>
             </div>
             <span class="dot right"></span>
-            <img src="../images/logo/a.png" alt="" class="a-s letter" />
-            <img src="../images/logo/n.png" alt="" class="n letter" />
+            <img src="../assets/images/logo/a.png" alt="" class="a-s letter" />
+            <img src="../assets/images/logo/n.png" alt="" class="n letter" />
           </div>
         </a>
         <ul class="tile-wrds">
           <li>
-            <a href="../../index.html">
+            <a href="../index.html">
               <i class="fa-solid fa-house-chimney"></i>
               <span>Home</span>
             </a>
           </li>
           <li>
-            <a href="../html/contact-us.html"
+            <a href="../index.html#contact"
               ><i class="fa-regular fa-id-badge"></i> <span>Contact</span></a
             >
           </li>
           <li>
-            <a href="../html/articles.html">
+            <a href="../index.html#articles">
               <i class="fa-regular fa-newspaper"></i>
               <span>Articles</span>
             </a>
           </li>
-          <li id="current-page">
+          <li class="current-page">
             <a href="#profile">
               <i class="fa-regular fa-user"></i>
               <span>Profile</span>
             </a>
           </li>
           <li>
-            <a href="../html/shop.html">
+            <a href="../index.html#shop">
               <i class="fa-solid fa-shop"></i>
               <span>Shop</span>
             </a>
@@ -101,7 +105,7 @@
             <!-- <i class="fa-regular fa-heart fa-lg"></i> -->
             <i class="fa-regular fa-bell fa-lg heart"></i>
           </a>
-          <a href="../html/cart.html">
+          <a href="../index.html#cart">
             <i
               class="fa-solid fa-cart-shopping fa-lg cart-shopping"
               data-counter=""
@@ -162,6 +166,12 @@
       <i class="fa-solid fa-chevron-up"></i>
     </div>
     <!-- End Go Up -->
+    <!-- Start Successful Message -->
+    <div class="alert alert-success add-item d-none" role="alert"></div>
+    <!-- End successful Message -->
+    <!-- Start Danger Message -->
+    <div class="alert alert-danger decrease d-none" role="alert"></div>
+    <!-- End Danger Message -->
     <div class="modal animation"></div>
     <div class="content">
       <!-- Start sidebar -->
@@ -219,6 +229,15 @@
             </li>
             <li>
               <a
+                href="#tables"
+                class="dash-icon tables d-flex align-center fs-14 c-main-font rad-6 p-10"
+              >
+                <i class="tables fa-solid fa-table fa-fw"></i>
+                <span class="fs-14 ml-5">Tables</span>
+              </a>
+            </li>
+            <li>
+              <a
                 href="#files"
                 class="d-none dash-icon files d-flex align-center fs-14 c-main-font rad-6 p-10"
               >
@@ -242,7 +261,11 @@
             />
           </div>
           <div class="icons d-flex align-center">
-            <img class="ml-15" src="../images/profile/avatar.png" alt="" />
+            <img
+              class="ml-15"
+              src="../assets/images/profile/avatar.png"
+              alt=""
+            />
           </div>
         </div>
         <!-- End Head -->
@@ -252,6 +275,7 @@
           <section id="settings" data-load="settings.html"></section>
           <section id="projects" data-load="projects.html"></section>
           <section id="friends" data-load="friends.html"></section>
+          <section id="tables" data-load="tables.html"></section>
           <section id="files" data-load="files.html"></section>
         </main>
       </div>
@@ -261,7 +285,7 @@
       <div class="container">
         <div class="row">
           <div class="image">
-            <img src="../images/logo/logo.png" alt="" />
+            <img src="../assets/images/logo/logo.png" alt="" />
           </div>
           <div class="icons">
             <a
@@ -289,28 +313,185 @@
         </div>
         <div class="row">
           <ul>
-            <li><a href="../../index.html">Home</a></li>
+            <li><a href="../index.html">Home</a></li>
             <li><a href="">About</a></li>
-            <li><a href="../html/contact-us.html">Contact</a></li>
+            <li><a href="../index.html#contact">Contact</a></li>
           </ul>
         </div>
         <p>Copyright &#169; 2024</p>
       </div>
     </footer>
     <!-- End Footer -->
-    <script src="../js/main.js"></script>
-    <script src="../js/profile.js"></script>
+    <div id="myModal" class="modal">
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title">Add Article</span>
+            <i class="fa-solid fa-xmark x"></i>
+          </div>
+          <div class="form">
+            <form action="" method="post">
+              <div class="inputs">
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="title"
+                    name="title"
+                  />
+                  <label for="title">
+                    <span>T</span>
+                    <span>i</span>
+                    <span>t</span>
+                    <span>l</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    id="img_src"
+                    name="img_src"
+                    class="field"
+                    required
+                  />
+                  <label for="img_src">
+                    <span>I</span>
+                    <span>m</span>
+                    <span>a</span>
+                    <span>g</span>
+                    <span>e</span>
+                    <span>&nbsp;</span>
+                    <span>S</span>
+                    <span>o</span>
+                    <span>u</span>
+                    <span>r</span>
+                    <span>c</span>
+                    <span>e</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="category"
+                    name="category"
+                  />
+                  <label for="category">
+                    <span>C</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>e</span>
+                    <span>g</span>
+                    <span>o</span>
+                    <span>r</span>
+                    <span>y</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <input
+                    type="text"
+                    class="field"
+                    required
+                    id="status"
+                    name="status"
+                  />
+                  <label for="status">
+                    <span>S</span>
+                    <span>t</span>
+                    <span>a</span>
+                    <span>t</span>
+                    <span>u</span>
+                    <span>s</span>
+                  </label>
+                </div>
+                <div class="form-control full">
+                  <input type="datetime-local" id="datetime" name="datetime" />
+                </div>
+              </div>
+              <div class="textareas">
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="content"
+                      name="content"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="content" class="txtar-la">
+                    <span>C</span>
+                    <span>o</span>
+                    <span>n</span>
+                    <span>t</span>
+                    <span>e</span>
+                    <span>n</span>
+                    <span>t</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="description"
+                      name="description"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="description" class="txtar-la">
+                    <span>D</span>
+                    <span>e</span>
+                    <span>s</span>
+                    <span>c</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>p</span>
+                    <span>t</span>
+                    <span>i</span>
+                    <span>o</span>
+                    <span>n</span>
+                  </label>
+                </div>
+                <div class="form-control">
+                  <div class="textarea">
+                    <textarea
+                      id="img_desc"
+                      name="img_desc"
+                      required
+                      class="field"
+                    ></textarea>
+                  </div>
+                  <label for="img_desc" class="txtar-la">
+                    <span>I</span>
+                    <span>m</span>
+                    <span>g</span>
+                    <span>&nbsp;</span>
+                    <span>D</span>
+                    <span>e</span>
+                    <span>s</span>
+                    <span>c</span>
+                    <span>r</span>
+                    <span>i</span>
+                    <span>p</span>
+                    <span>t</span>
+                    <span>i</span>
+                    <span>o</span>
+                    <span>n</span>
+                  </label>
+                </div>
+              </div>
+              <input type="submit" class="submit" value="Submit" />
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/profile.js"></script>
+    <script src="../utils/utils.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="../js/jquery.spapp.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        var app = $.spapp({
-          defaultView: "#profile",
-          templateDir: "./profilePages/",
-        });
-
-        app.run();
-      });
-    </script>
+    <script src="../assets/js/jquery.spapp.min.js"></script>
   </body>
 </html>

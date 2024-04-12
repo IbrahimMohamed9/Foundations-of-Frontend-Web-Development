@@ -65,6 +65,9 @@
 .d-grid {
   display: grid;
 }
+.two-span {
+  grid-column: 2 span;
+}
 .gap-5 {
   gap: 5px !important;
 }
@@ -417,6 +420,9 @@
 }
 .w-full {
   width: 100%;
+}
+.w-81 {
+  width: 81px;
 }
 .w-100 {
   max-width: 100px;

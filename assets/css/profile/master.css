@@ -634,58 +634,80 @@ textarea {
 
 ====================================================================
 ====================================================================
-======================== Start Projects Table =========================
+======================== Start table-holder Table =========================
 ====================================================================
 ====================================================================
 */
-.projects .table-container {
+.table-holder .data-table-header {
+  grid-template-columns: 1fr auto;
+}
+.table-holder .data-table-header .add-btn {
+  max-width: fit-content;
+  height: fit-content;
+  padding: 5px 10px;
+  background-color: #d7a120;
+}
+.table-holder .table-container {
   overflow: hidden;
 }
-.projects .responsive-table {
+.table-holder .responsive-table {
   overflow-x: auto;
   border-radius: 12px;
 }
-.projects table {
+.table-holder table {
   min-width: 1000px;
   border-spacing: 0;
 }
-.projects thead td {
+.table-holder thead td {
   background-color: var(--main-color);
   border: 1px solid var(--secondary-color);
   font-size: 18px;
   color: black;
+  text-align: center;
 }
-.projects table td {
+.table-holder table td {
   padding: 10px;
 }
-.projects tbody td {
+.table-holder tbody td {
   border-bottom: 1px solid #eee;
   border-left: 1px solid #eee;
   transition: var(--main-transition);
 }
-.projects table tbody tr td:last-child {
+.table-holder table tbody tr td:last-child {
   border-right: 1px solid #eee;
 }
-.projects tbody tr:hover td {
+.table-holder table tr td:last-child {
+  width: 100px;
+}
+.table-holder tbody tr:hover td {
   background-color: var(--secondary-color);
 }
-.projects table img {
+.table-holder table .team img {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   padding: 2px;
   background-color: white;
 }
-.projects table img:not(:first-child) {
+.table-holder table tr td.item-image img {
+  position: relative;
+  transform: translateX(-50%);
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  padding: 2px;
+  background-color: white;
+}
+.table-holder table img:not(:first-child) {
   margin-left: -20px;
 }
-.projects table .label {
+.table-holder table .label {
   font-size: 13px;
 }
 /* 
 ====================================================================
 ====================================================================
-======================== End Projects Table ========================
+======================== End table-holder Table ========================
 ====================================================================
 ====================================================================
 
@@ -956,7 +978,6 @@ textarea {
   white-space: nowrap;
   text-overflow: ellipsis;
   display: inline-block;
-
 }
 .profile-page .info-box .box:first-of-type {
   border-top: 1px solid #eee;
@@ -1333,21 +1354,68 @@ textarea {
 .files-page .files-content .info {
   border-top: 1px solid #eee;
 }
-/* End Files Page */
 /* 
 ====================================================================
 ====================================================================
-======================== End  ========================
+========================== End Files Page ==========================
 ====================================================================
 ====================================================================
 
 ====================================================================
 ====================================================================
-======================== Start  =========================
+=========================== Start Modal ============================
 ====================================================================
 ====================================================================
 */
-/* Start Animation */
+.modal .master-container .form form {
+  overflow: auto;
+  max-height: calc(85vh - 50px);
+}
+.modal .master-container .form form .inputs,
+.modal .master-container .form form .textareas {
+  display: grid;
+  grid-template-columns: repeat(2, calc(50% - 10px));
+  gap: 16px 10px;
+  justify-content: center;
+  margin: 20px 0;
+}
+.modal .master-container .form form .inputs .full {
+  grid-column: 2 span;
+}
+@media (max-width: 360px) {
+  .modal .master-container .form form .inputs,
+  .modal .master-container .form form .textareas {
+    grid-template-columns: calc(100% - 10px);
+  }
+  .modal .master-container .form form .inputs .full {
+    grid-column: 1 span;
+  }
+}
+.modal .master-container .form form .textareas {
+  margin-bottom: 10px;
+}
+.textarea {
+  max-height: 205px;
+}
+.form-control .textarea textarea {
+  height: 200px;
+}
+form .submit {
+  margin: 0 5px 10px;
+}
+/* 
+====================================================================
+====================================================================
+============================ End Modal =============================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+========================= Start Animation ==========================
+====================================================================
+====================================================================
+*/
 @keyframes change-color {
   from {
     background-color: var(--main-color);
@@ -1366,3 +1434,10 @@ textarea {
   }
 }
 /* End Animation */
+/* 
+====================================================================
+====================================================================
+========================== End Animation ===========================
+====================================================================
+====================================================================
+*/

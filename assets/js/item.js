@@ -1,12 +1,5 @@
-import {
-  setupModalActions,
-  carouselSplide,
-  itemModal,
-  checkDec,
-} from "./component.js";
-
 document.addEventListener("DOMContentLoaded", () => {
-  setupModalActions();
+  Utils.setupModalActions();
 
   function loadItems(src) {
     fetch(src)
@@ -22,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ".carousel.splide__list"
           );
         data.map((itemData, index) => {
-          let decimalPart = checkDec(parseFloat(itemData.price));
+          let decimalPart = Utils.checkDec(parseFloat(itemData.price));
           const intPart = Math.floor(parseFloat(itemData.price));
           if (!index) {
             if (decimalPart === "&emsp;") {
@@ -140,7 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             const moreItemCon = `
               <a
-                href="../html/item.html"
+                href="./item.html"
                 class="col splide__slide"
                 draggable="false"
               >
@@ -165,7 +158,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
 
-        carouselSplide(".splide");
+        Utils.carouselSplide(".splide");
 
         // Main image
         let previous = 0;
@@ -236,7 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelector(".pckbtn").addEventListener("click", () => {
           const i = data[0];
-          itemModal(
+          Utils.itemModal(
             i.category,
             i.name,
             i.imgSrc,
@@ -249,5 +242,5 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
   }
-  loadItems("../json/item.json");
+  loadItems("../assets/json/item.json");
 });

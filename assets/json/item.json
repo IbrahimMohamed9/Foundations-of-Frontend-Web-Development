@@ -1,7 +1,7 @@
 [
   {
     "id": "843244",
-    "imgSrc": "../images/tourist-places/tourist-places-10.webp",
+    "imgSrc": "../assets/images/tourist-places/tourist-places-10.webp",
     "name": "4 Day Plan 1",
     "min": "1",
     "max": "5",
@@ -11,18 +11,18 @@
     "intro": "The 10-day tourist days program includes visits to the cities of Sarajevo and Bihać",
     "title": "A tourist program in Bosnian",
     "description": "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
-    "imgsSrcs": "../images/tourist-places/tourist-places-10.webp ../images/tourist-places/tourist-places-9.webp ../images/tourist-places/tourist-places-2.jpg ../images/tourist-places/tourist-places-3.jpg ../images/tourist-places/tourist-places-4.jpg ../images/tourist-places/tourist-places-5.jpg ../images/tourist-places/tourist-places-6.jpg"
+    "imgsSrcs": "../assets/images/tourist-places/tourist-places-10.webp ../assets/images/tourist-places/tourist-places-9.webp ../assets/images/tourist-places/tourist-places-2.jpg ../assets/images/tourist-places/tourist-places-3.jpg ../assets/images/tourist-places/tourist-places-4.jpg ../assets/images/tourist-places/tourist-places-5.jpg ../assets/images/tourist-places/tourist-places-6.jpg"
   },
   {
     "id": "569564",
-    "imgSrc": "../images/package/en/package-14.jpg",
+    "imgSrc": "../assets/images/package/en/package-14.jpg",
     "name": "14 Days",
     "category": "Package",
     "price": "55.06"
   },
   {
     "id": "158745",
-    "imgSrc": "../images/package/en/package-7.jpg",
+    "imgSrc": "../assets/images/package/en/package-7.jpg",
     "name": "7 Days",
     "category": "Package",
     "price": "60.16"

@@ -236,6 +236,31 @@
 .form-control label.txtar-la.delay span:nth-child(9) {
   transition-delay: 450ms;
 }
+.form-control .field.delay + label span:nth-child(10),
+.form-control label.txtar-la.delay span:nth-child(10) {
+  transition-delay: 500ms;
+}
+.form-control .field.delay + label span:nth-child(11),
+.form-control label.txtar-la.delay span:nth-child(11) {
+  transition-delay: 550ms;
+}
+.form-control .field.delay + label span:nth-child(12),
+.form-control label.txtar-la.delay span:nth-child(12) {
+  transition-delay: 600ms;
+}
+.form-control .field.delay + label span:nth-child(13),
+.form-control label.txtar-la.delay span:nth-child(13) {
+  transition-delay: 650ms;
+}
+.form-control .field.delay + label span:nth-child(14),
+.form-control label.txtar-la.delay span:nth-child(14) {
+  transition-delay: 700ms;
+}
+.form-control .field.delay + label span:nth-child(15),
+.form-control label.txtar-la.delay span:nth-child(15) {
+  transition-delay: 750ms;
+}
+
 .form-control label span:not(:first-of-type) {
   margin-left: -6px;
 }

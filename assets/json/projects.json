@@ -4,11 +4,11 @@
     "name": "Package 4",
     "description": "Exploring the historical landmarks of Sarajevo, experiencing the vibrant culture of Banja Luka, admiring the scenic beauty of Mostar, and discovering the charm of Tuzla.",
     "team": [
-      "../images/profile/team-01.png",
-      "../images/profile/team-02.png",
-      "../images/profile/team-03.png",
-      "../images/profile/team-04.png",
-      "../images/profile/team-05.png"
+      "../assets/images/profile/team-01.png",
+      "../assets/images/profile/team-02.png",
+      "../assets/images/profile/team-03.png",
+      "../assets/images/profile/team-04.png",
+      "../assets/images/profile/team-05.png"
     ],
     "tasks": ["Sarajevo", "Banja Luka", "Mostar", "Tuzla"],
     "progress": 50,
@@ -19,9 +19,9 @@
     "name": "Package 7",
     "description": "Exploring the vibrant streets of Sarajevo, embracing the culture of Zenica, and discovering the beauty of Tuzla.",
     "team": [
-      "../images/profile/team-01.png",
-      "../images/profile/team-02.png",
-      "../images/profile/team-03.png"
+      "../assets/images/profile/team-01.png",
+      "../assets/images/profile/team-02.png",
+      "../assets/images/profile/team-03.png"
     ],
     "tasks": ["Sarajevo", "Zenica", "Tuzla"],
     "progress": 80,
@@ -32,10 +32,10 @@
     "name": "Package 10",
     "description": "Exploring the historical landmarks of Sarajevo, experiencing the vibrant culture of Banja Luka, admiring the scenic beauty of Mostar, and discovering the charm of Tuzla.",
     "team": [
-      "../images/profile/team-01.png",
-      "../images/profile/team-02.png",
-      "../images/profile/team-03.png",
-      "../images/profile/team-04.png"
+      "../assets/images/profile/team-01.png",
+      "../assets/images/profile/team-02.png",
+      "../assets/images/profile/team-03.png",
+      "../assets/images/profile/team-04.png"
     ],
     "tasks": ["Sarajevo", "Banja Luka", "Mostar", "Tuzla"],
     "progress": 60,
@@ -46,10 +46,10 @@
     "name": "Package 14",
     "description": "Discovering the cultural heritage of Sarajevo, experiencing the lively atmosphere of Zenica, and exploring the charm of Tuzla.",
     "team": [
-      "../images/profile/team-01.png",
-      "../images/profile/team-02.png",
-      "../images/profile/team-03.png",
-      "../images/profile/team-04.png"
+      "../assets/images/profile/team-01.png",
+      "../assets/images/profile/team-02.png",
+      "../assets/images/profile/team-03.png",
+      "../assets/images/profile/team-04.png"
     ],
     "tasks": ["Sarajevo", "Zenica", "Tuzla"],
     "progress": 60,
