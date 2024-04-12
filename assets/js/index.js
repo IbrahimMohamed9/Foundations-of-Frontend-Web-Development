@@ -291,7 +291,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   var app = $.spapp({
     defaultView: "#home",
+<<<<<<< HEAD
     templateDir: "pages/homePages/",
+=======
+    templateDir: "pages/",
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
   });
 
   app.route({
@@ -417,16 +421,26 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       Utils.loadItems(
         "assets/json/cars.json",
+<<<<<<< HEAD
         '<div class="item splide__slide"><a href="pages/item.html"><div class="image item-img "><img src="',
         '" alt="Car Image" /></div></a><div class="text"><h3>',
+=======
+        '<div class="item splide__slide"><div class="image item-img "><img src="',
+        '" alt="" /></div><div class="text"><h3>',
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
         "</h3><p>Price: ",
         ' KM/day</p></div><button class="pckbtn"></button></div>',
         "cars"
       );
       Utils.loadItems(
         "assets/json/hotels.json",
+<<<<<<< HEAD
         '<div class="item splide__slide"><a href="pages/item.html"><div class="image item-img "><img src="',
         '" alt="" /></div></a><div class="text"><h3>',
+=======
+        '<div class="item splide__slide"><div class="image item-img "><img src="',
+        '" alt="" /></div><div class="text"><h3>',
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
         "</h3><p>Price: ",
         ' KM/day</p></div><button class="pckbtn"></button></div>',
         "hotels"
@@ -506,6 +520,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 totalDecimalPart = Utils.checkDec(totalPrice);
               sumOfTotalPrices = totalPrice + parseFloat(sumOfTotalPrices);
 
+<<<<<<< HEAD
               //   if (itemData.category == "package") {
               //     modalContent = `
               //   <div class="products">
@@ -581,6 +596,83 @@ document.addEventListener("DOMContentLoaded", () => {
               //   `;
               //   } else {
               modalContent = `      
+=======
+              if (itemData.category == "package") {
+                modalContent = `      
+              <div class="products">
+                <div class="product">
+                  <img src="${itemData.imgSrc}" alt="" />
+                  <div>
+                    <span>${itemData.category}</span>
+                    <p>${itemData.name}</p>
+                    <p class="plan">${itemData.plan}</p>
+                  </div>
+                  <div class="quantity">
+                    <button>
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <span>${itemData.quantity}</span>
+                    <button>
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </div>
+                  <span class="price small">
+                    <sup>KM</sup>
+                    <span>${Math.floor(price)}</span>
+                    <sub>${decimalPart}</sub>
+                  </span>
+                </div>
+              </div>
+            `;
+                content = `
+                <div class="row">
+                  <div class="image">
+                    <img src="${itemData.imgSrc}" alt="" />
+                  </div>
+                  <div class="name-plan">
+                    <h2>${itemData.name}</h2>
+                    <div class="select-container">
+                      <select name="plans">
+                        <option value="plan1">Plan 1</option>
+                        <option value="plan2">Plan 2</option>
+                        <option value="plan3">Plan 3</option>
+                        <option value="plan4">Plan 4</option>
+                      </select>
+                      <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                  </div>
+                  <div class="price">
+                    <p>
+                      <span class="price small">
+                        <sup>KM</sup>
+                        <span>${Math.floor(price)}</span>
+                        <sub>${decimalPart}</sub>
+                      </span>
+                    </p>
+                  </div>
+                  <div class="quantity">
+                    <button>
+                      <i class="fa-solid fa-minus"></i>
+                    </button>
+                    <span>${itemData.quantity}</span>
+                    <button>
+                      <i class="fa-solid fa-plus"></i>
+                    </button>
+                  </div>
+                  <div class="total">
+                    <p>
+                      <sup>KM</sup>
+                      <span class="totalInt">${Math.floor(totalPrice)}</span>
+                      <sup class="down">${totalDecimalPart}</sup>
+                      <i class="fa-solid fa-trash trash"></i>
+                      <i class="fa-solid fa-circle-minus circle-minus"></i>
+                    </p>
+                  </div>
+                </div>
+              `;
+              } else {
+                modalContent = `      
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
               <div class="products">
                 <div class="product">
                   <img src="${itemData.imgSrc}" alt="" />
@@ -605,7 +697,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
               </div>
             `;
+<<<<<<< HEAD
               content = `
+=======
+                content = `
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
               <div class="row">
                 <div class="image">
                   <img src="${itemData.imgSrc}" alt="" />
@@ -640,7 +736,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
               </div>
             `;
+<<<<<<< HEAD
               // }
+=======
+              }
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
               items.innerHTML += content;
               modalProducts.innerHTML += modalContent;
             });
@@ -729,10 +829,17 @@ document.addEventListener("DOMContentLoaded", () => {
         plus
           ? parseInt(quantityCart.textContent) < max
             ? buttomFunction(plus, price, index)
+<<<<<<< HEAD
             : Utils.appearQuantityAlert("This is the maximum number")
           : parseInt(quantityCart.textContent) > min
           ? buttomFunction(plus, price, index)
           : Utils.appearQuantityAlert("This is the minimum number");
+=======
+            : appearQuantityAlert("This is the maximum number")
+          : parseInt(quantityCart.textContent) > min
+          ? buttomFunction(plus, price, index)
+          : appearQuantityAlert("This is the minimum number");
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
       }
 
       function buttomFunction(plus, price, index) {

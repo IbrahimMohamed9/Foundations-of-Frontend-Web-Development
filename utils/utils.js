@@ -113,6 +113,7 @@ var Utils = {
       .then((data) => {
         const packages = document.querySelector(sectionSelector);
         data.map((packageData) => {
+<<<<<<< HEAD
           // Origin
           // `
           //     <div class="item splide__slide">
@@ -141,12 +142,32 @@ var Utils = {
                 <img src="${packageData.imgSrc}" alt="" />
               </div>
             </a>
+=======
+          const packageCon = `
+              <div class="item splide__slide">
+              <div class="box">
+                <div class="back face">
+                  <button class="button" id="${packageData.id}-1">plan 1</button>
+                  <button class="button" id="${packageData.id}-2">plan 2</button>
+                  <button class="button" id="${packageData.id}-3">plan 3</button>
+                  <button class="button" id="${packageData.id}-4">plan 4</button>
+                </div>
+                <div class="image face">
+                  <img src="${packageData.imgSrc}" alt="" />
+                </div>
+              </div>
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
               <div class="text">
                 <h3>${packageData.name}</h3>
                 <p>Price: ${packageData.price} KM</p>
               </div>
               <button class="pckbtn"></button>
+<<<<<<< HEAD
           </div>`;
+=======
+            </div>
+            `;
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
           packages.innerHTML += packageCon;
         });
 
@@ -282,6 +303,7 @@ var Utils = {
       );
     });
 
+<<<<<<< HEAD
     // if (plans) {
     //   modal.querySelector(".select-container").style.display = "block";
     //   modal
@@ -291,6 +313,17 @@ var Utils = {
     modal.querySelector(".select-container").style.display = "none";
     modal.querySelector(".cart .products .product p").classList.add("active");
     // }
+=======
+    if (plans) {
+      modal.querySelector(".select-container").style.display = "block";
+      modal
+        .querySelector(".cart .products .product p")
+        .classList.remove("active");
+    } else {
+      modal.querySelector(".select-container").style.display = "none";
+      modal.querySelector(".cart .products .product p").classList.add("active");
+    }
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
 
     modal.classList.add("d-block");
     body.classList.add("fix");
@@ -351,11 +384,20 @@ var Utils = {
     sumOfTotalModal[1].textContent = Math.floor(total);
     sumOfTotalModal[2].textContent = Utils.checkDec(total);
   },
+<<<<<<< HEAD
   removeItemModal: function (removeBtn, modal) {
     if (removeBtn) {
       const quantityBtns = Array.from(
         modal.querySelector(".master-container .cart .quantity").children
       );
+=======
+  removeItemModal: function (removeeBtn, modal) {
+    const quantityBtns = Array.from(
+      modal.querySelector(".master-container .cart .quantity").children
+    );
+
+    if (removeeBtn) {
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
       Utils.removeAllEventListeners(quantityBtns[0]);
       Utils.removeAllEventListeners(quantityBtns[2]);
     }
@@ -381,6 +423,7 @@ var Utils = {
       addItemAlert.classList.add("d-none");
     });
   },
+<<<<<<< HEAD
   appearModal: function (cartModal = true) {
     const selectedOptions = document.querySelectorAll(
         ".cart .containerr .products .row .select-container select option:checked"
@@ -416,4 +459,6 @@ var Utils = {
       }
     }, 1);
   },
+=======
+>>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
 };

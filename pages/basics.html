@@ -4,22 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- CSS files -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="assets/css/spapp.css" />
-    <link rel="stylesheet" href="assets/css/cart.css" />
-    <link rel="stylesheet" href="assets/css/shop.css" />
-    <link rel="stylesheet" href="assets/css/contact.css" />
-    <link rel="stylesheet" href="assets/css/balqan.css" />
+    <link rel="stylesheet" href="../css/balqan.css" />
+    <!-- 
+
+
+
+
+
+
+
+
+
+    -->
+    <link rel="stylesheet" href="../css/.css" />
+    <!-- 
+
+
+
+
+
+
+
+
+
+    -->
     <!-- Font Awesome Library -->
-    <link rel="stylesheet" href="assets/css/all.min.css" />
+    <link rel="stylesheet" href="../css/all.min.css" />
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,72 +45,73 @@
     <link
       rel="apple-touch-icon"
       sizes="180x180"
-      href="assets/favicon_io/apple-touch-icon.png"
+      href="../favicon_io/apple-touch-icon.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="assets/favicon_io/favicon-32x32.png"
+      href="../favicon_io/favicon-32x32.png"
     />
     <link
       rel="icon"
       type="image/png"
       sizes="16x16"
-      href="assets/favicon_io/favicon-16x16.png"
+      href="../favicon_io/favicon-16x16.png"
     />
-    <!-- <link rel="manifest" href="assets/favicon_io/site.webmanifest" /> -->
+    <!-- <link rel="manifest" href="../favicon_io/site.webmanifest" /> -->
+
     <title>Balqan</title>
   </head>
-  <body>
+  <body class="dark-theme">
     <!-- Start Header -->
     <header class="main-header">
       <div class="container">
-        <a href="#home">
+        <a href="../../index.html">
           <div class="logoo">
-            <!-- <img src="assets/images/logo/logo.png" alt="" /> -->
-            <img src="assets/images/logo/b.png" alt="" class="b letter" />
-            <img src="assets/images/logo/a.png" alt="" class="a-f letter" />
-            <img src="assets/images/logo/l.png" alt="" class="l letter" />
+            <!-- <img src="../images/logo/logo.png" alt="" /> -->
+            <img src="../images/logo/b.png" alt="" class="b letter" />
+            <img src="../images/logo/a.png" alt="" class="a-f letter" />
+            <img src="../images/logo/l.png" alt="" class="l letter" />
             <span class="dot left"></span>
             <div class="letter-div letter">
               <div class="letter-q-div">
-                <img src="assets/images/logo/q.png" alt="" />
+                <img src="../images/logo/q.png" alt="" />
               </div>
             </div>
             <span class="dot right"></span>
-            <img src="assets/images/logo/a.png" alt="" class="a-s letter" />
-            <img src="assets/images/logo/n.png" alt="" class="n letter" />
+            <img src="../images/logo/a.png" alt="" class="a-s letter" />
+            <img src="../images/logo/n.png" alt="" class="n letter" />
           </div>
         </a>
         <ul class="tile-wrds">
-          <li id="current-page">
-            <a href="#home">
-              <i class="fa-solid fa-house-chimney"></i>
-              <span>Home</span>
-            </a>
-          </li>
           <li>
-            <a href="#contact"
+            <a href="../html/contact-us.html"
               ><i class="fa-regular fa-id-badge"></i> <span>Contact</span></a
             >
           </li>
           <li>
-            <a href="#articles">
+            <a href="../html/articles.html">
               <i class="fa-regular fa-newspaper"></i>
               <span>Articles</span>
             </a>
           </li>
           <li>
-            <a href="pages/profile.html">
+            <a href="../html/profile.html#profile">
               <i class="fa-regular fa-user"></i>
               <span>Profile</span>
             </a>
           </li>
           <li>
-            <a href="#shop">
+            <a href="../html/shop.html">
               <i class="fa-solid fa-shop"></i>
               <span>Shop</span>
+            </a>
+          </li>
+          <li>
+            <a href="../../index.html">
+              <i class="fa-solid fa-house-chimney"></i>
+              <span>Home</span>
             </a>
           </li>
         </ul>
@@ -109,7 +120,7 @@
             <!-- <i class="fa-regular fa-heart heart"></i> -->
             <i class="fa-regular fa-bell fa-lg heart"></i>
           </a>
-          <a href="#cart">
+          <a href="../html/cart.html">
             <i
               class="fa-solid fa-cart-shopping fa-lg cart-shopping"
               data-counter=""
@@ -170,25 +181,15 @@
       <i class="fa-solid fa-chevron-up"></i>
     </div>
     <!-- End Go Up -->
-    <!-- Start Successful Message -->
-    <div class="alert alert-success add-item d-none" role="alert"></div>
-    <!-- End successful Message -->
-    <!-- Start Danger Message -->
-    <div class="alert alert-danger decrease d-none" role="alert"></div>
-    <!-- End Danger Message -->
-    <main id="spapp" role="main">
-      <section id="home" data-load="home.html"></section>
-      <section id="shop" data-load="shop.html"></section>
-      <section id="articles" data-load="articles.html"></section>
-      <section id="contact" data-load="contact-us.html"></section>
-      <section id="cart" data-load="cart.html"></section>
-    </main>
+    <!-- Start  -->
+
+    <!-- End  -->
     <!-- Start Footer -->
     <footer>
       <div class="container">
         <div class="row">
           <div class="image">
-            <img src="assets/images/logo/logo.png" alt="" />
+            <img src="../images/logo/logo.png" alt="" />
           </div>
           <div class="icons">
             <a
@@ -216,83 +217,16 @@
         </div>
         <div class="row">
           <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="../../index.html">Home</a></li>
             <li><a href="">About</a></li>
-            <li><a href="assets/html/contact-us.html">Contact</a></li>
+            <li><a href="../html/contact-us.html">Contact</a></li>
           </ul>
         </div>
-        <p>
-          Copyright &#169;
-          <a href="pages/login.html" class="change-me">2024</a>
-        </p>
+        <p>Copyright &#169; 2024</p>
       </div>
     </footer>
     <!-- End Footer -->
-<<<<<<< HEAD
-=======
-
->>>>>>> c92b7ef71b299e3beb46a6dec7e502efed9c6ac2
-    <div id="myModal" class="modal">
-      <div class="master-container">
-        <div class="card cart">
-          <div class="top-title">
-            <span class="title"></span>
-            <i class="fa-solid fa-xmark x"></i>
-          </div>
-          <div class="products">
-            <div class="product">
-              <img class="modal-img" src="" alt="item image" />
-              <div>
-                <p class="item-name"></p>
-                <div class="select-container">
-                  <select name="plans" id="plans">
-                    <option value="plan1">Plan 1</option>
-                    <option value="plan2">Plan 2</option>
-                    <option value="plan3">Plan 3</option>
-                    <option value="plan4">Plan 4</option>
-                  </select>
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-              </div>
-              <div class="quantity">
-                <button>
-                  <i class="fa-solid fa-minus"></i>
-                </button>
-                <span>2</span>
-                <button>
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </div>
-              <span class="price small"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card checkout">
-          <span class="title top-title">Total</span>
-          <div class="details">
-            <span>Your total:</span>
-            <span></span>
-          </div>
-          <div class="checkout--footer">
-            <span class="price"><sup>KM</sup><span></span><sub></sub></span>
-            <button class="checkout-btn">Register</button>
-          </div>
-        </div>
-      </div>
-    </div>
     <!-- JavaScript -->
-    <script src="assets/js/main.js"></script>
-    <script src="utils/utils.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"
-      integrity="sha512-eYSzo+20ajZMRsjxB6L7eyqo5kuXuS2+wEbbOkpaur+sA2shQameiJiWEzCIDwJqaB0a4a6tCuEvCOBHUg3Skg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="assets/js/jquery.spapp.min.js"></script>
+    <script src="../js/main.js"></script>
   </body>
 </html>
