@@ -1,7 +1,7 @@
 [
   {
     "id": "843244",
-    "imgSrc": "assets/images/package/en/package-4.jpg",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/package/en/package-4.jpg",
     "name": "4 Days",
     "min": "1",
     "max": "10",
@@ -10,7 +10,7 @@
   },
   {
     "id": "158745",
-    "imgSrc": "assets/images/package/en/package-7.jpg",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/package/en/package-7.jpg",
     "name": "7 Days",
     "min": "3",
     "max": "5",

@@ -1,118 +1,327 @@
-DROP DATABASE IF EXISTS `balqan`;
-CREATE DATABASE `balqan`;
-
-USE `balqan`;
-
-CREATE TABLE `users` (
-    `user_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `user_name` VARCHAR(255),
+DROP
+    DATABASE IF EXISTS `sql11699000`;
+CREATE DATABASE `sql11699000`;
+USE
+    `sql11699000`;
+CREATE TABLE `users`
+(
+    `user_id`      INT AUTO_INCREMENT PRIMARY KEY,
+    `user_name`    VARCHAR(255),
     `user_surname` VARCHAR(255),
-    `password` VARCHAR(255),
-    `email` VARCHAR(255),
-    `img` VARCHAR(255),
-    `DOF` DATE,
-    `phone` VARCHAR(255),
-    `country` VARCHAR(255),
-    `jobTitle` VARCHAR(255),
-    `YOE` INT,
-    `gender` VARCHAR(15),
-    `nationality` VARCHAR(255),
-    `skills` JSON,
-    `ratingsStar` JSON,
-    `activities` JSON
-    );
-
-CREATE TABLE `items` (
-    `item_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255),
-    `description` TEXT,
-    `price` DECIMAL(10, 2),
+    `password`     VARCHAR(255),
+    `email`        VARCHAR(255),
+    `img`          VARCHAR(255),
+    `DOF`          DATE,
+    `phone`        VARCHAR(255),
+    `country`      VARCHAR(255),
+    `jobTitle`     VARCHAR(255),
+    `YOE`          INT,
+    `gender`       VARCHAR(15),
+    `nationality`  VARCHAR(255),
+    `skills`       TEXT,
+    `ratingsStar`  TEXT,
+    `activities`   TEXT
+);
+CREATE TABLE `items`
+(
+    `item_id`        INT AUTO_INCREMENT PRIMARY KEY,
+    `name`           VARCHAR(255),
+    `description`    TEXT,
+    `price`          DECIMAL(10, 2),
     `stock_quantity` INT,
-    `imgs` JSON,
-    `max_days` INT,
-    `days` INT,
-    `min_days` INT,
-    `min_persons` VARCHAR(255),
-    `persons` VARCHAR(255),
-    `max_persons` VARCHAR(255),
-    `category` VARCHAR(255),
-    `title` VARCHAR(255),
-    `intro` VARCHAR(255),
-    `status` VARCHAR(255)
+    `imgs_srcs`      TEXT,
+    `min_days`       INT,
+    `days`           INT,
+    `max_days`       INT,
+    `min_persons`    VARCHAR(255),
+    `persons`        VARCHAR(255),
+    `max_persons`    VARCHAR(255),
+    `category`       VARCHAR(255),
+    `title`          VARCHAR(255),
+    `intro`          VARCHAR(255),
+    `status`         VARCHAR(255),
+    `added_time`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
-CREATE TABLE `carts` (
-    `cart_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `user_id` INT,
+INSERT
+INTO items(imgs_srcs,
+           NAME,
+           intro,
+           title,
+           description,
+           price,
+           stock_quantity,
+           days,
+           min_persons,
+           max_persons,
+           category,
+           STATUS)
+VALUES ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/package/en/package-14.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "14 Day",
+        "The 14-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "14",
+        "1",
+        "5",
+        "package",
+        "available"),
+       ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/package/en/package-10.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "10 Day",
+        "The 10-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "10",
+        "1",
+        "5",
+        "package",
+        "available"),
+       ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/package/en/package-7.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "7 Day",
+        "The 7-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "7",
+        "1",
+        "5",
+        "package",
+        "available"),
+       ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/package/en/package-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "4 Day",
+        "The 4-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "4",
+        "1",
+        "5",
+        "package",
+        "available");
+INSERT
+INTO items(imgs_srcs,
+           NAME,
+           intro,
+           title,
+           description,
+           price,
+           stock_quantity,
+           min_days,
+           max_days,
+           persons,
+           category,
+           STATUS)
+VALUES ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/cars/car1.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "Tesla",
+        "The 14-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "14",
+        "1",
+        "3",
+        "car",
+        "available"),
+       ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/cars/car.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "BMW",
+        "The 10-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "10",
+        "1",
+        "5",
+        "car",
+        "available"),
+       ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/cars/car3.jpeg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "Porsche",
+        "The 7-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "7",
+        "1",
+        "5",
+        "car",
+        "available"),
+       ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/cars/car4.avif https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "Mercidies",
+        "The 4-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "4",
+        "1",
+        "2",
+        "car",
+        "available");
+INSERT
+INTO items(imgs_srcs,
+           NAME,
+           intro,
+           title,
+           description,
+           price,
+           stock_quantity,
+           min_days,
+           max_days,
+           min_persons,
+           max_persons,
+           category,
+           STATUS)
+VALUES ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/hotels/holiday.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "Holiday Hotel",
+        "The 14-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "14",
+        "1",
+        "5",
+        "5",
+        "hotel",
+        "available"),
+        ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/hotels/hotel2.png https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "Hotel",
+        "The 10-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "10",
+        "1",
+        "5",
+        "5",
+        "hotel",
+        "available"),
+        ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/hotels/hotel3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "Hotel",
+        "The 7-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "7",
+        "1",
+        "5",
+        "5",
+        "hotel",
+        "available"),
+        ("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/hotels/hotel4.jpeg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-10.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-9.webp https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-2.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-3.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-4.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-5.jpg https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/tourist-places/tourist-places-6.jpg",
+        "Hotel",
+        "The 4-day tourist days program includes visits to the cities of Sarajevo and ",
+        "A tourist program in Bosnian",
+        "One month of the tourism program for Bosnia: Accommodation in 4-star hotels with one month and two mobile SIM cards at reception, in addition to accommodation between cities and reception and farewell at airports. Its special monthly launch begins with a private driver to explore the most important tourist attractions of the current year. It is distinguished by its distinguished excellence with all the advantages provided to you The option can also be modified according to the customer's choice",
+        "55",
+        "100",
+        "4",
+        "1",
+        "5",
+        "5",
+        "hotel",
+        "available");
+CREATE TABLE `carts`
+(
+    `cart_id`    INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id`    INT,
     `cart_items` TEXT,
-	CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
+    CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
-
-CREATE TABLE `cart_items` (
-    `cart_id` INT,
-    `item_id` INT,
+CREATE TABLE `cart_items`
+(
+    `cart_id`  INT,
+    `item_id`  INT,
     `quantity` INT,
-	CONSTRAINT `fk_cart_item_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts`(`cart_id`),
-	CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items`(`item_id`)
+    CONSTRAINT `fk_cart_item_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`cart_id`),
+    CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 );
-
-CREATE TABLE `articles` (
-    `article_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `img` VARCHAR(300),
-    `imgDesc` VARCHAR(255),
-    `category` VARCHAR(255),
-    `title` VARCHAR(255),
-    `country` VARCHAR(255),
-    time DATETIME DEFAULT CURRENT_TIMESTAMP
-,
+CREATE TABLE `articles`
+(
+    `article_id`  INT AUTO_INCREMENT PRIMARY KEY,
+    `img_src`     VARCHAR(300),
+    `img_desc`    VARCHAR(255),
+    `category`    VARCHAR(255),
+    `title`       VARCHAR(255),
+    `country`     VARCHAR(255),
+    `added_time`  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `description` TEXT,
-    `content` TEXT
+    `content`     TEXT,
+    `status`      VARCHAR(255)
 );
+INSERT INTO articles (img_src, category, country, title, description, img_desc, status, content)
+VALUES 
+        ("https://www.hit-booker.com/wp-content/uploads/2022/02/327-3276102_bosnia-and-herzegovina-mostar.jpg",
+         "cities", "Bosnia", "The important tourist cities", "For those seeking vital tourism info in Bosnia.",
+         "The Hotel Hollywood is a five-star hotel located in Ilida, a district of Sarajevo.","available",
+         "{{{1. Sarajevo:}}}(((A city known for its historical sites and stunning natural landscapes, situated at the confluence of Eastern and Western civilizations. It boasts attractions like Gazi Husrev-beg Mosque, Sebilj Square, the National Museum, Latin Bridge, Kravice Waterfalls, and more.))){{{2. Mostar:}}} (((Described as one of the most beautiful cities in the Balkans, it overlooks the Nera River and is only 25 km away from the Adriatic Sea coast. Attractions include the Mohammed Bey's Mosque, Stari Most Bridge, Kravica Waterfalls, and the Old Bazaar.))){{{3. :}}} (((Located about 4 hours northwest of Sarajevo, it's renowned for its charming natural landscapes, including Una National Park with its beautiful river. Attractions include the Ostroac Castle, Una National Park, Captain's Tower, Fethija Mosque, Kantara Historical Museum, Martin Brod Waterfalls, and  Buk.))){{{4. Travnik:}}} (((Situated in the valley of the Lava River, just 90 km from Sarajevo, it's known for its beautiful nature suitable for leisure and sightseeing. Attractions include the Lava River, Old Town Travnik, Stari Grad Fortress, and other beautiful spots.))){{{Top 3 Tourist Attractions in Bosnia and Herzegovina:}}}{{{{1. Skakavac Waterfall:}}}} (((Located 12 km north of Sarajevo, it's one of the highest waterfalls in Bosnia and Herzegovina at 98 meters, offering breathtaking views of green mountains and cascading waterfalls.))){{{{2. Neretva River:}}}} (((Passing through Konjic, it's the largest river in the eastern part of the Adriatic Sea, known for its beautiful natural scenery spread along its banks.))){{{{3. Jahorina Mountain:}}}} (((Near the municipality of Pale and bordering Trebevi Mountain, it's part of the Dinaric Alps. With its highest peak reaching 1910 meters, it's ideal for skiing and was the venue for the 1984 Winter Olympics. Accessible from Sarajevo by bus.)))"),
+        ("https://lll.ba/wp-content/uploads/2023/08/Old-Bridge-Stari-most-Unesco-Mostar-Bosnia-Herzegovina-lll.ba_-1.jpg",
+         "tourism", "Bosnia", "An overview of tourism in Bosnia", "For those seeking vital tourism info in Bosnia.",
+         "The Hotel Hollywood is a five-star hotel located in Ilida, a district of Sarajevo.","available",
+         "{{{Information about Bosnia and Herzegovina:}}}(((Bosnia and Herzegovina is characterized by its diverse attractions and tourist areas that attract tourists and visitors from different parts of the world to the extent that some websites describe it as one of the best tourist destinations in Europe due to its unique landmarks, charming nature, and affordable tourism prices compared to neighboring European countries.))){{{History of Bosnia and Herzegovina:}}}(((Bosnia is an ancient European country with a long history. It has enjoyed an important political and geographical status since the Middle Ages until the present day. It has been present on maps and known by its current name, Bosnia, for over 650 years, indicating its historical roots and antiquity.))){{{Location of Bosnia and Herzegovina:}}}(((The Republic of Bosnia and Herzegovina is located in the region known as the Balkans, situated in the southeastern part of Europe. Bosnia has a coastline on the Adriatic Sea, which is a branch of the Mediterranean Sea. The Adriatic Sea separates the Italian peninsula from the Balkan Peninsula, and the Dinaric Alps separate it from the Apennine Mountains.))){{{Weather in Bosnia and Herzegovina:}}} {{{{Bosnia is characterized by two main climates:}}}} {{{{{Continental or semi-continental climate:}}}}}(((The country experiences hot summers and cold winters, with snowfall. This climate is concentrated in the northern part of Bosnia and Herzegovina.))){{{{{Mediterranean climate:}}}}}(((This type of climate is evident in the southern part of Bosnia.)))"),
+("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/articles/articles-4.jpg",
+        "Hotels", "Bosnia", "The best 3 hotels in Bosnia", "For those looking for the most important hotels in Bosnia.",
+        "The Hotel Hollywood is a five-star hotel located in Ilida, a district of Sarajevo.", "available",
+        "(((For those looking for the most important hotels in Bosnia, we present an overview of some hotels in Sarajevo:))) {{{Hollywood Hotel}}} (((Located 2 km from Sarajevo International Airport and near the Ferhadija Springs in Bosnia, a tributary of the Bosna River, Hollywood Hotel is situated in the Ilida area.))) (((It offers modern and spacious rooms with complimentary use of the indoor pool, sauna, and sports center.))) (((Hollywood Hotel features 18 conference and meeting rooms, 3 restaurants, and a supermarket is located just 100 meters from the hotel.))) {{{Malak Regency Hotel}}} (((Just 12 km from the capital Sarajevo, Malak Regency Hotel - a 5-star hotel - is located in the Ilida area with a charming view of the mountains.))) (((The hotel is only about 5 km away from Sarajevo International Airport.))) (((One of the distinguishing features of this hotel is that it does not serve alcoholic beverages.))) (((The hotel also features an indoor pool, sauna, fitness center, and a gift shop.))) (((Local and international cuisine is served at this hotel.))) {{{Radon Plaza Hotel}}} (((Radon Plaza Hotel is classified as a 5-star hotel and is distinguished by its proximity to Sarajevo Airport, just 2.8 km away.))) (((Its rooms are equipped with soundproofing systems, some of which are designated as suites for honeymooners.))) (((The hotel also includes a wellness center available for complimentary use.))) (((The hotel's restaurant, located on the 15th floor, offers panoramic views of the city and serves breakfast)))"),
+        ("https://www.hit-booker.com/wp-content/uploads/2022/02/327-3276102_bosnia-and-herzegovina-mostar.jpg",
+         "cities", "Bosnia", "The important tourist cities", "For those seeking vital tourism info in Bosnia.",
+         "The Hotel Hollywood is a five-star hotel located in Ilida, a district of Sarajevo.","available",
+         "{{{1. Sarajevo:}}}(((A city known for its historical sites and stunning natural landscapes, situated at the confluence of Eastern and Western civilizations. It boasts attractions like Gazi Husrev-beg Mosque, Sebilj Square, the National Museum, Latin Bridge, Kravice Waterfalls, and more.))){{{2. Mostar:}}} (((Described as one of the most beautiful cities in the Balkans, it overlooks the Nera River and is only 25 km away from the Adriatic Sea coast. Attractions include the Mohammed Bey's Mosque, Stari Most Bridge, Kravica Waterfalls, and the Old Bazaar.))){{{3. :}}} (((Located about 4 hours northwest of Sarajevo, it's renowned for its charming natural landscapes, including Una National Park with its beautiful river. Attractions include the Ostroac Castle, Una National Park, Captain's Tower, Fethija Mosque, Kantara Historical Museum, Martin Brod Waterfalls, and  Buk.))){{{4. Travnik:}}} (((Situated in the valley of the Lava River, just 90 km from Sarajevo, it's known for its beautiful nature suitable for leisure and sightseeing. Attractions include the Lava River, Old Town Travnik, Stari Grad Fortress, and other beautiful spots.))){{{Top 3 Tourist Attractions in Bosnia and Herzegovina:}}}{{{{1. Skakavac Waterfall:}}}} (((Located 12 km north of Sarajevo, it's one of the highest waterfalls in Bosnia and Herzegovina at 98 meters, offering breathtaking views of green mountains and cascading waterfalls.))){{{{2. Neretva River:}}}} (((Passing through Konjic, it's the largest river in the eastern part of the Adriatic Sea, known for its beautiful natural scenery spread along its banks.))){{{{3. Jahorina Mountain:}}}} (((Near the municipality of Pale and bordering Trebevi Mountain, it's part of the Dinaric Alps. With its highest peak reaching 1910 meters, it's ideal for skiing and was the venue for the 1984 Winter Olympics. Accessible from Sarajevo by bus.)))"),
+("https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/articles/articles-4.jpg",
+        "Hotels", "Bosnia", "The best 3 hotels in Bosnia", "For those looking for the most important hotels in Bosnia.",
+        "The Hotel Hollywood is a five-star hotel located in Ilida, a district of Sarajevo.", "available",
+        "(((For those looking for the most important hotels in Bosnia, we present an overview of some hotels in Sarajevo:))) {{{Hollywood Hotel}}} (((Located 2 km from Sarajevo International Airport and near the Ferhadija Springs in Bosnia, a tributary of the Bosna River, Hollywood Hotel is situated in the Ilida area.))) (((It offers modern and spacious rooms with complimentary use of the indoor pool, sauna, and sports center.))) (((Hollywood Hotel features 18 conference and meeting rooms, 3 restaurants, and a supermarket is located just 100 meters from the hotel.))) {{{Malak Regency Hotel}}} (((Just 12 km from the capital Sarajevo, Malak Regency Hotel - a 5-star hotel - is located in the Ilida area with a charming view of the mountains.))) (((The hotel is only about 5 km away from Sarajevo International Airport.))) (((One of the distinguishing features of this hotel is that it does not serve alcoholic beverages.))) (((The hotel also features an indoor pool, sauna, fitness center, and a gift shop.))) (((Local and international cuisine is served at this hotel.))) {{{Radon Plaza Hotel}}} (((Radon Plaza Hotel is classified as a 5-star hotel and is distinguished by its proximity to Sarajevo Airport, just 2.8 km away.))) (((Its rooms are equipped with soundproofing systems, some of which are designated as suites for honeymooners.))) (((The hotel also includes a wellness center available for complimentary use.))) (((The hotel's restaurant, located on the 15th floor, offers panoramic views of the city and serves breakfast)))"),
+        ("https://lll.ba/wp-content/uploads/2023/08/Old-Bridge-Stari-most-Unesco-Mostar-Bosnia-Herzegovina-lll.ba_-1.jpg",
+         "tourism", "Bosnia", "An overview of tourism in Bosnia", "For those seeking vital tourism info in Bosnia.",
+         "The Hotel Hollywood is a five-star hotel located in Ilida, a district of Sarajevo.","available",
+         "{{{Information about Bosnia and Herzegovina:}}}(((Bosnia and Herzegovina is characterized by its diverse attractions and tourist areas that attract tourists and visitors from different parts of the world to the extent that some websites describe it as one of the best tourist destinations in Europe due to its unique landmarks, charming nature, and affordable tourism prices compared to neighboring European countries.))){{{History of Bosnia and Herzegovina:}}}(((Bosnia is an ancient European country with a long history. It has enjoyed an important political and geographical status since the Middle Ages until the present day. It has been present on maps and known by its current name, Bosnia, for over 650 years, indicating its historical roots and antiquity.))){{{Location of Bosnia and Herzegovina:}}}(((The Republic of Bosnia and Herzegovina is located in the region known as the Balkans, situated in the southeastern part of Europe. Bosnia has a coastline on the Adriatic Sea, which is a branch of the Mediterranean Sea. The Adriatic Sea separates the Italian peninsula from the Balkan Peninsula, and the Dinaric Alps separate it from the Apennine Mountains.))){{{Weather in Bosnia and Herzegovina:}}} {{{{Bosnia is characterized by two main climates:}}}} {{{{{Continental or semi-continental climate:}}}}}(((The country experiences hot summers and cold winters, with snowfall. This climate is concentrated in the northern part of Bosnia and Herzegovina.))){{{{{Mediterranean climate:}}}}}(((This type of climate is evident in the southern part of Bosnia.)))");
 
-CREATE TABLE `projects` (
-    `project_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `name` VARCHAR(255),
-    `start_date` DATE,
-    `end_date` DATE,
-    `team` JSON,
-    `tasks` JSON,
+CREATE TABLE `projects`
+(
+    `project_id`      INT AUTO_INCREMENT PRIMARY KEY,
+    `name`            VARCHAR(255),
+    `start_date`      TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `end_date`        TIMESTAMP,
+    `team`            TEXT,
+    `tasks`           TEXT,
     `progressPersent` INT,
-    `status` VARCHAR(255),
-    `client` INT,
-    `price` DECIMAL(10, 2),
-    `progress` JSON,
-    CONSTRAINT `fk_project_client` FOREIGN KEY (`client`) REFERENCES `users`(`user_id`)
+    `status`          VARCHAR(255),
+    `client`          INT,
+    `price`           DECIMAL(10, 2),
+    `progress`        TEXT,
+    CONSTRAINT `fk_project_client` FOREIGN KEY (`client`) REFERENCES `users` (`user_id`)
 );
-
-CREATE TABLE `targets`(
-	`target_id` INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE `targets`
+(
+    `target_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id`   INT,
+    `label`     VARCHAR(255),
+    `goal`      DECIMAL(10, 2),
+    `icon`      VARCHAR(255),
+    `achieved`  DECIMAL(10, 2),
+    CONSTRAINT `fk_targets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+);
+CREATE TABLE `tickets`
+(
+    `ticket_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id`   INT,
+    `label`     VARCHAR(255),
+    `icon`      VARCHAR(255),
+    `achieved`  DECIMAL(10, 2),
+    CONSTRAINT `fk_tickets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+);
+CREATE TABLE `friends`
+(
     `user_id` INT,
-    `label` VARCHAR(255),
-    `goal` DECIMAL(10, 2),
-    `icon` VARCHAR(255),
-    `achieved` DECIMAL(10, 2),
-	CONSTRAINT `fk_targets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
-);
-
-CREATE TABLE `tickets`(
-	`ticket_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `user_id` INT,
-    `label` VARCHAR(255),
-    `icon` VARCHAR(255),
-    `achieved` DECIMAL(10, 2),
-	CONSTRAINT `fk_tickets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
-);
-
-CREATE TABLE `friends`(
-	`user_id` INT,
-    `friends` JSON,
-	CONSTRAINT `fk_friends_user_id` FOREIGN KEY (`user_id`) REFERENCES `users`(`user_id`)
-);
-
-CREATE TABLE `contact_us`(
-	`contact_id` INT AUTO_INCREMENT PRIMARY KEY,
-	`user_name` VARCHAR(255),
-    `user_surname` VARCHAR(255),
-	`email` VARCHAR(255),
-    `message` TEXT
+    `friends` TEXT,
+    CONSTRAINT `fk_friends_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );

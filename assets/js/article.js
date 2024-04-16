@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span>${articleData.country}</span>
                       </div>
                       <h1>${articleData.title}</h1>
-                      <time>${articleData.date}</time>
+                      <time>${articleData.added_time}</time>
                       <p>For those looking for the most important hotels in Bosnia.</p>
                     </header>
                     <section>
@@ -59,13 +59,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     </section>
                     <figure>
                       <picture>
-                        <img src="${articleData.imgSrc}" />
+                        <img src="${articleData.img_src}" />
                       </picture>
-                      <figcaption>${articleData.imgDesc}</figcaption>
+                      <figcaption>${articleData.img_desc}</figcaption>
                     </figure>
                     ${articleData.content
-                      .replace(/\{([^}]+)\}/g, "<h2>$1</h2>")
-                      .replace(/\(([^)]+)\)/g, "<p>$1</p>")}
+                      .replace(/{{{{{([^}]+)}}}}}/g, "<h4>$1</h4>")
+                      .replace(/{{{{([^}]+)}}}}/g, "<h3>$1</h3>")
+                      .replace(/{{{([^}]+)}}}/g, "<h2>$1</h2>")
+                      .replace(/\(\(\(([^)]+)\)\)\)/g, "<p>$1</p>")}
                   </div>
                 </div>
               `;
@@ -76,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="col">
                   <h2>${articleData.country}</h2>
                   <div class="image">
-                    <img src="${articleData.imgSrc}" alt="article image" />
+                    <img src="${articleData.img_src}" alt="article image" />
                     <div class="text">
                       <h3><a href="">${articleData.title}</a></h3>
                     </div>

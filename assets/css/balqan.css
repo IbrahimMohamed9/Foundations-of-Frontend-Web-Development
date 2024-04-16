@@ -110,6 +110,9 @@ p {
   word-spacing: -2px;
   letter-spacing: 1px;
 }
+img {
+  color: black;
+}
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -740,7 +743,7 @@ p {
   }
   .items .splide .splide__track,
   .items .not-overflow .splide__track {
-    min-height: 405px;
+    min-height: 380px;
   }
 }
 
@@ -1104,6 +1107,11 @@ p {
 .cart .products .product span.center {
   text-align: center;
 }
+.cart .products .product div span.quantity-label,
+.cart .products .product div span.quantity-label-2 {
+  margin-bottom: 3px;
+  margin-top: -2px;
+}
 .cart .products .product p {
   font-size: 11px;
   font-weight: 600;
@@ -1174,7 +1182,8 @@ p {
     font-size: 10px;
   }
 }
-.cart .quantity {
+.cart .quantity,
+.cart .quantity-2 {
   height: var(--height);
   display: grid;
   grid-template-columns: 30px 20px 30px;
@@ -1184,11 +1193,13 @@ p {
   overflow: hidden;
 }
 @media (max-width: 315px) {
-  .cart .quantity {
+  .cart .quantity,
+  .cart .quantity-2 {
     grid-template-columns: 15px 20px 15px;
   }
 }
-.cart .quantity span {
+.cart .quantity span,
+.cart .quantity-2 span {
   height: 30px;
   display: flex !important;
   align-items: center;
@@ -1199,7 +1210,8 @@ p {
   color: black !important;
   background-color: var(--main-color);
 }
-.cart .quantity button {
+.cart .quantity button,
+.cart .quantity-2 button {
   height: 30px;
   display: flex;
   align-items: center;
@@ -1211,7 +1223,8 @@ p {
   background-color: var(--secondary-color);
 }
 @media (max-width: 315px) {
-  .cart .quantity button {
+  .cart .quantity button,
+  .cart .quantity-2 button {
     font-size: 12px;
   }
 }
@@ -2326,6 +2339,11 @@ footer p {
 ====================================================================
 ====================================================================
 */
+.blockUI.blockMsg.blockElement {
+  transform: translate(-50%, -50%);
+  left: 63% !important;
+  top: 50% !important;
+}
 .loader {
   --c1: #673b14;
   --c2: #f8b13b;
@@ -2432,13 +2450,18 @@ section#articles .articles .container h2 {
   color: var(--product-color);
 }
 section#articles .articles .container .row {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  display: flex;
   row-gap: 30px;
+  justify-content: center;
+}
+section#articles .articles .container .row > * {
+  flex-basis: calc(33% - 10px);
+  max-width: 33%;
 }
 @media (max-width: 992.8px) {
-  section#articles .articles .container .row {
-    grid-template-columns: 1fr;
+  section#articles .articles .container .row > * {
+    flex-basis: 100%;
+    max-width: 100%;
   }
 }
 section#articles .articles .container .row .col {

@@ -104,7 +104,8 @@ article .article-container figure picture {
   position: relative;
 }
 article .article-container figure picture img {
-  max-width: 100%;
+  width: 100%;
+  max-height: 90vh;
 }
 article .article-container figure figcaption {
   padding: 10px 15px;

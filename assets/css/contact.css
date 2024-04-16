@@ -200,67 +200,6 @@
 .form-control label.txtar-la.delay span {
   transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.form-control .field.delay + label span:first-child,
-.form-control label.txtar-la.delay span:first-child {
-  transition-delay: 0ms;
-}
-.form-control .field.delay + label span:nth-child(2),
-.form-control label.txtar-la.delay span:nth-child(2) {
-  transition-delay: 50ms;
-}
-.form-control .field.delay + label span:nth-child(3),
-.form-control label.txtar-la.delay span:nth-child(3) {
-  transition-delay: 150ms;
-}
-.form-control .field.delay + label span:nth-child(4),
-.form-control label.txtar-la.delay span:nth-child(4) {
-  transition-delay: 200ms;
-}
-.form-control .field.delay + label span:nth-child(5),
-.form-control label.txtar-la.delay span:nth-child(5) {
-  transition-delay: 250ms;
-}
-.form-control .field.delay + label span:nth-child(6),
-.form-control label.txtar-la.delay span:nth-child(6) {
-  transition-delay: 300ms;
-}
-.form-control .field.delay + label span:nth-child(7),
-.form-control label.txtar-la.delay span:nth-child(7) {
-  transition-delay: 350ms;
-}
-.form-control .field.delay + label span:nth-child(8),
-.form-control label.txtar-la.delay span:nth-child(8) {
-  transition-delay: 400ms;
-}
-.form-control .field.delay + label span:nth-child(9),
-.form-control label.txtar-la.delay span:nth-child(9) {
-  transition-delay: 450ms;
-}
-.form-control .field.delay + label span:nth-child(10),
-.form-control label.txtar-la.delay span:nth-child(10) {
-  transition-delay: 500ms;
-}
-.form-control .field.delay + label span:nth-child(11),
-.form-control label.txtar-la.delay span:nth-child(11) {
-  transition-delay: 550ms;
-}
-.form-control .field.delay + label span:nth-child(12),
-.form-control label.txtar-la.delay span:nth-child(12) {
-  transition-delay: 600ms;
-}
-.form-control .field.delay + label span:nth-child(13),
-.form-control label.txtar-la.delay span:nth-child(13) {
-  transition-delay: 650ms;
-}
-.form-control .field.delay + label span:nth-child(14),
-.form-control label.txtar-la.delay span:nth-child(14) {
-  transition-delay: 700ms;
-}
-.form-control .field.delay + label span:nth-child(15),
-.form-control label.txtar-la.delay span:nth-child(15) {
-  transition-delay: 750ms;
-}
-
 .form-control label span:not(:first-of-type) {
   margin-left: -6px;
 }

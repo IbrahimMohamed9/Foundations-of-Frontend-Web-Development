@@ -1,7 +1,7 @@
 [
   {
     "id": "953293",
-    "imgSrc": "assets/images/cars/car1.jpg",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/cars/car1.jpg",
     "name": "Tesla",
     "min": "1",
     "max": "10",
@@ -10,7 +10,7 @@
   },
   {
     "id": "920712",
-    "imgSrc": "assets/images/cars/car.jpg",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/cars/car.jpg",
     "name": "BMW",
     "min": "1",
     "max": "5",
@@ -19,7 +19,7 @@
   },
   {
     "id": "922095",
-    "imgSrc": "assets/images/cars/car3.jpeg",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/cars/car3.jpeg",
     "name": "Porsche",
     "min": "1",
     "max": "10",
@@ -28,7 +28,7 @@
   },
   {
     "id": "592118",
-    "imgSrc": "assets/images/cars/car4.avif",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/cars/car4.avif",
     "name": "Mercidies",
     "min": "1",
     "quantity": "3",

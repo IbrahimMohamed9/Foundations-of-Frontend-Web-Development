@@ -8,6 +8,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link
+      href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.min.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="../assets/css/contact.css" />
     <link href="../assets/css/spapp.css" rel="stylesheet" />
     <link rel="stylesheet" href="../assets/css/balqan.css" />
@@ -322,176 +326,24 @@
       </div>
     </footer>
     <!-- End Footer -->
-    <div id="myModal" class="modal">
-      <div class="master-container">
-        <div class="card cart">
-          <div class="top-title">
-            <span class="title">Add Article</span>
-            <i class="fa-solid fa-xmark x"></i>
-          </div>
-          <div class="form">
-            <form action="" method="post">
-              <div class="inputs">
-                <div class="form-control">
-                  <input
-                    type="text"
-                    class="field"
-                    required
-                    id="title"
-                    name="title"
-                  />
-                  <label for="title">
-                    <span>T</span>
-                    <span>i</span>
-                    <span>t</span>
-                    <span>l</span>
-                    <span>e</span>
-                  </label>
-                </div>
-                <div class="form-control">
-                  <input
-                    type="text"
-                    id="img_src"
-                    name="img_src"
-                    class="field"
-                    required
-                  />
-                  <label for="img_src">
-                    <span>I</span>
-                    <span>m</span>
-                    <span>a</span>
-                    <span>g</span>
-                    <span>e</span>
-                    <span>&nbsp;</span>
-                    <span>S</span>
-                    <span>o</span>
-                    <span>u</span>
-                    <span>r</span>
-                    <span>c</span>
-                    <span>e</span>
-                  </label>
-                </div>
-                <div class="form-control">
-                  <input
-                    type="text"
-                    class="field"
-                    required
-                    id="category"
-                    name="category"
-                  />
-                  <label for="category">
-                    <span>C</span>
-                    <span>a</span>
-                    <span>t</span>
-                    <span>e</span>
-                    <span>g</span>
-                    <span>o</span>
-                    <span>r</span>
-                    <span>y</span>
-                  </label>
-                </div>
-                <div class="form-control">
-                  <input
-                    type="text"
-                    class="field"
-                    required
-                    id="status"
-                    name="status"
-                  />
-                  <label for="status">
-                    <span>S</span>
-                    <span>t</span>
-                    <span>a</span>
-                    <span>t</span>
-                    <span>u</span>
-                    <span>s</span>
-                  </label>
-                </div>
-                <div class="form-control full">
-                  <input type="datetime-local" id="datetime" name="datetime" />
-                </div>
-              </div>
-              <div class="textareas">
-                <div class="form-control">
-                  <div class="textarea">
-                    <textarea
-                      id="content"
-                      name="content"
-                      required
-                      class="field"
-                    ></textarea>
-                  </div>
-                  <label for="content" class="txtar-la">
-                    <span>C</span>
-                    <span>o</span>
-                    <span>n</span>
-                    <span>t</span>
-                    <span>e</span>
-                    <span>n</span>
-                    <span>t</span>
-                  </label>
-                </div>
-                <div class="form-control">
-                  <div class="textarea">
-                    <textarea
-                      id="description"
-                      name="description"
-                      required
-                      class="field"
-                    ></textarea>
-                  </div>
-                  <label for="description" class="txtar-la">
-                    <span>D</span>
-                    <span>e</span>
-                    <span>s</span>
-                    <span>c</span>
-                    <span>r</span>
-                    <span>i</span>
-                    <span>p</span>
-                    <span>t</span>
-                    <span>i</span>
-                    <span>o</span>
-                    <span>n</span>
-                  </label>
-                </div>
-                <div class="form-control">
-                  <div class="textarea">
-                    <textarea
-                      id="img_desc"
-                      name="img_desc"
-                      required
-                      class="field"
-                    ></textarea>
-                  </div>
-                  <label for="img_desc" class="txtar-la">
-                    <span>I</span>
-                    <span>m</span>
-                    <span>g</span>
-                    <span>&nbsp;</span>
-                    <span>D</span>
-                    <span>e</span>
-                    <span>s</span>
-                    <span>c</span>
-                    <span>r</span>
-                    <span>i</span>
-                    <span>p</span>
-                    <span>t</span>
-                    <span>i</span>
-                    <span>o</span>
-                    <span>n</span>
-                  </label>
-                </div>
-              </div>
-              <input type="submit" class="submit" value="Submit" />
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/profile.js"></script>
     <script src="../utils/utils.js"></script>
+    <script src="../utils/rest_client.js"></script>
+    <script src="../utils/form_validation.js"></script>
+    <script src="../utils/constants.js"></script>
+    <script src="../services/item.js"></script>
+    <script src="../services/article.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../assets/js/jquery.spapp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <script src="https://cdn.datatables.net/2.0.3/js/dataTables.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"
+      integrity="sha512-eYSzo+20ajZMRsjxB6L7eyqo5kuXuS2+wEbbOkpaur+sA2shQameiJiWEzCIDwJqaB0a4a6tCuEvCOBHUg3Skg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </body>
 </html>

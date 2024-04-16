@@ -670,8 +670,12 @@ textarea {
   color: black;
   text-align: center;
 }
-.table-holder table td {
+.table-holder table tr td {
   padding: 10px;
+}
+.table-holder table tr:hover td::selection {
+  color: var(--secondary-background-color);
+  background-color: #ecaf1c;
 }
 .table-holder tbody td {
   border-bottom: 1px solid #eee;
@@ -694,7 +698,7 @@ textarea {
   padding: 2px;
   background-color: white;
 }
-.table-holder table tr td.item-image img {
+.table-holder table tr td.table-image img {
   position: relative;
   transform: translateX(-50%);
   left: 50%;
@@ -708,6 +712,14 @@ textarea {
 }
 .table-holder table .label {
   font-size: 13px;
+}
+.table-holder table tr td.content {
+  line-height: 2.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 /* 
 ====================================================================

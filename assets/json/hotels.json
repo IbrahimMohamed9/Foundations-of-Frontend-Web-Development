@@ -1,7 +1,7 @@
 [
   {
     "id": "953293",
-    "imgSrc": "assets/images/hotels/holiday.jpg",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/hotels/holiday.jpg",
     "name": "Holiday Hotel",
     "min": "1",
     "max": "10",
@@ -10,7 +10,7 @@
   },
   {
     "id": "920712",
-    "imgSrc": "assets/images/hotels/hotel3.jpg",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/hotels/hotel3.jpg",
     "name": "Hotel",
     "min": "1",
     "max": "5",
@@ -19,7 +19,7 @@
   },
   {
     "id": "922095",
-    "imgSrc": "assets/images/hotels/hotel2.png",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/hotels/hotel2.png",
     "name": "Hotel",
     "min": "1",
     "max": "10",
@@ -28,7 +28,7 @@
   },
   {
     "id": "592118",
-    "imgSrc": "assets/images/hotels/hotel4.jpeg",
+    "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/hotels/hotel4.jpeg",
     "name": "Hotel",
     "min": "1",
     "max": "10",
