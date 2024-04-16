@@ -110,6 +110,9 @@ p {
   word-spacing: -2px;
   letter-spacing: 1px;
 }
+img {
+  color: black;
+}
 .container {
   margin-left: auto;
   margin-right: auto;
@@ -1103,6 +1106,10 @@ p {
 }
 .cart .products .product span.center {
   text-align: center;
+}
+.cart .products .product div span.quantity-label {
+  margin-bottom: 3px;
+  margin-top: -2px;
 }
 .cart .products .product p {
   font-size: 11px;
@@ -2326,6 +2333,11 @@ footer p {
 ====================================================================
 ====================================================================
 */
+.blockUI.blockMsg.blockElement {
+  transform: translate(-50%, -50%);
+  left: 63% !important;
+  top: 50% !important;
+}
 .loader {
   --c1: #673b14;
   --c2: #f8b13b;
