@@ -1,6 +1,10 @@
-DROP DATABASE IF EXISTS `sql11699000`;
-CREATE DATABASE `sql11699000` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `sql11699000`;
+-- DROP DATABASE IF EXISTS `sql11699000`;
+-- CREATE DATABASE `sql11699000` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+-- USE `sql11699000`;
+
+DROP DATABASE IF EXISTS `balqan`;
+CREATE DATABASE `balqan` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `balqan`;
 CREATE TABLE `users`
 (
     `user_id`      INT AUTO_INCREMENT PRIMARY KEY,
@@ -232,7 +236,7 @@ CREATE TABLE `carts`
 (
     `cart_id`    INT AUTO_INCREMENT PRIMARY KEY,
     `user_id`    INT,
-    `cart_items` TEXT,
+    `cart_items` TEXT, 
     CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
 CREATE TABLE `cart_items`

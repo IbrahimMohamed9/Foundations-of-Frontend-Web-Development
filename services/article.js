@@ -522,4 +522,46 @@ var ArticleService = {
         );
       });
   },
+  articlesArticle: (category) => {
+    fetch(Constants.API_BASE_URL + "get_articles.php?category=" + category)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const articles = document.querySelector(
+          `.articles.${category.toLowerCase()} .container .row`
+        );
+        data.map((articleData) => {
+          const articleCon = `
+            <div class="col">
+              <a href="pages/article.html?article_id=${articleData.article_id}">
+                <div class="card">
+                  <img
+                    src="${articleData.img_src}"
+                    class="card-img-top"
+                    alt="Article Image"
+                  />
+                  <div class="card-body">
+                    <h3 class="card-title">${articleData.title}</h3>
+                    <p class="card-text">
+                    ${articleData.description}
+                    </p>
+                  </div>
+                  <div class="footer">
+                    <div class="category">
+                      <span>${articleData.category}</span>
+                      <span>${articleData.added_time}</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          `;
+          articles.innerHTML += articleCon;
+        });
+      });
+  },
 };

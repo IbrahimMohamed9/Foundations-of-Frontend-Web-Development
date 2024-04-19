@@ -55,29 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  //change main video
-  // function mainVideoSrc(src) {
-  //   fetch(src)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         throw new Error("Network response was not ok");
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       document.querySelector(".video-wraper .video video").innerHTML = `
-  //       <source
-  //           src="${data.src}"
-  //           type="video/mp4"
-  //         />`;
-  //     })
-  //     .catch((error) => {
-  //       console.error("There was a problem with the fetch operation:", error);
-  //     });
-  // }
-
-  //dots in main-title
-
   function mainTitleAnimation() {
     const mainTitles = document.querySelectorAll(".main-title");
     mainTitles.forEach((mainTitle) => {
@@ -203,7 +180,6 @@ document.addEventListener("DOMContentLoaded", () => {
       ItemService.loadCards("package");
       expandGraph();
       ArticleService.loadArticleCrousel();
-      mainVideoSrc("assets/json/video.json");
     },
     onReady: function () {
       Utils.setupModalActions();
@@ -227,21 +203,9 @@ document.addEventListener("DOMContentLoaded", () => {
     view: "articles",
     load: "articles.html",
     onCreate: function () {
-      articlesArticle(
-        "assets/json/articlesCities.json",
-        "pages/article.html",
-        ".articles.first .container .row"
-      );
-      articlesArticle(
-        "assets/json/articlesHotels.json",
-        "pages/article.html",
-        ".articles.second .container .row"
-      );
-      articlesArticle(
-        "assets/json/articlesTourism.json",
-        "pages/article.html",
-        ".articles.third .container .row"
-      );
+      ArticleService.articlesArticle("cities");
+      ArticleService.articlesArticle("Hotels");
+      ArticleService.articlesArticle("Tourism");
     },
     onReady: function () {
       switchButton(2);
