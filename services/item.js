@@ -36,7 +36,7 @@ var ItemService = {
     <tr>
     <td class="table-image">
       <img
-        src="https${itemData.imgs_srcs.trim().split("https")[1]}"
+        src="${ItemService.firstLink(itemData.imgs_srcs)}"
         alt="Package Image"
       />
     </td>
@@ -90,7 +90,10 @@ var ItemService = {
             ? ItemService.loadCard(itemData)
             : alert("check the category");
         });
-        Utils.carouselSplide(`.splide.${category}s-carousel`, 20);
+        // TODO SOOOlVE THIS
+        setTimeout(() => {
+          Utils.carouselSplide(`.splide.${category}s-carousel`, 20);
+        }, 100);
       });
   },
   loadCard: function (itemData) {
@@ -105,8 +108,7 @@ var ItemService = {
     //         <button class="button" id="${itemData.id}-4">plan 4</button>
     //       </div>
     //       <div class="image face">
-    //         <img src="https${
-    //           itemData.imgs_srcs.trim().split("https")[1]
+    //         <img src="${ItemService.firstLink(itemData.imgs_srcs)
     //         }" alt="${itemData.category} Image" /></div>
     //       </div>
     //     </div>
@@ -124,11 +126,11 @@ var ItemService = {
       decP = Utils.checkDec(itemData.price);
     const content = `
       <div class="item splide__slide">
-        <a href="pages/item.html"
+        <a href="pages/item.html?item_id=${itemData.item_id}"
           ><div class="image item-img">
-            <img src="https${
-              itemData.imgs_srcs.trim().split("https")[1]
-            }" alt="${itemData.category} Image" /></div
+            <img src="${ItemService.firstLink(itemData.imgs_srcs)}" alt="${
+      itemData.category
+    } Image" /></div
         ></a>
         <div class="text">
           <h3>${itemData.name}</h3>
@@ -138,7 +140,7 @@ var ItemService = {
         onClick="Utils.itemModal(
         '${itemData.category}',
         '${itemData.name}',
-        'https${itemData.imgs_srcs.trim().split("https")[1]}',
+        '${ItemService.firstLink(itemData.imgs_srcs)}',
         '1',
         '12',
         '${itemData.price}',
@@ -528,5 +530,246 @@ var ItemService = {
         ItemService.loadTable("tbl_" + category + "s");
       });
     }
+  },
+  loadItemPage: (id) => {
+    fetch(Constants.API_BASE_URL + "get_item.php?item_id=" + id)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((itemData) => {
+        const itemWrapper = document.querySelector(".cart.item");
+        let decimalPart = Utils.checkDec(parseFloat(itemData.price));
+        const intPart = Math.floor(parseFloat(itemData.price));
+
+        const itemCon1 = `
+            <div class="cart item position-relative">
+              <div class="containerr">
+                <div class="right-corner">
+                  <a href="../index.html#home">Home</a>
+                  <i class="fa-solid fa-chevron-right"></i>
+                  <a href="../index.html#shop">Shop</a>
+                  <i class="fa-solid fa-chevron-right"></i>
+                  <a href="#">${itemData.name}</a>
+                </div>
+              </div>
+              <div class="item-container position-relative">
+                <!-- Start Item Images -->
+                <div class="images">
+                  <div class="main position-relative p-relative-c-m">
+                    <img src="${ItemService.firstLink(
+                      itemData.imgs_srcs
+                    )}" alt="" />
+                    <div class="icons">
+                      <ul class="font-share-icons">
+                        <li>
+                          <a href="" target="_blank"
+                            ><i class="fa-brands fa-whatsapp whatsapp"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a href="" target="_blank"
+                            ><i class="fa-brands fa-x-twitter twitter"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a href="" target="_blank"
+                            ><i class="fa-brands fa-telegram telegram"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a href="" target="_blank"
+                            ><i class="fa-brands fa-facebook-f facebook"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a href="" target="_blank"
+                            ><i class="fa-brands fa-instagram instagram"></i
+                          ></a>
+                        </li>
+                      </ul>
+                      <button class="share-btn">
+                        <span class="share"></span>
+                      </button>
+                    </div>
+                  </div>
+                  <span class="images-span">Roll over image to zoom in </span>
+                  <div class="list-container position-relative">
+                    <div class="center list-img">
+          `;
+        const srcsArray = itemData.imgs_srcs.split(" ");
+        let itemCon2 = `
+            <div class="img-container active">
+              <img
+                src="${srcsArray[0]}"
+                alt=""
+              />
+            </div>
+          `;
+        srcsArray.forEach((imgSrc, index) => {
+          if (!index) {
+            return;
+          }
+          itemCon2 += `
+              <div class="img-container">
+                <img
+                  src="${imgSrc}"
+                  alt=""
+                />
+              </div>
+            `;
+        });
+        const itemCon3 = `
+                    </div>
+                  </div>
+                </div>
+                <!--End Item Images -->
+                <div class="content">
+                  <h1>${itemData.name}</h1>
+                  <p>${itemData.intro}
+                    <br />
+                    <span class="tlte"> ${itemData.title} </span>
+                    ${itemData.description}
+                  </p>
+                </div>
+                <!-- Start Price Box -->
+                <div class="add">
+                  <div class="wrapper">
+                    <div class="price"><sup>km</sup>${intPart}<sub>${decimalPart}</sub></div>
+                    <label for="count">people:</label>
+                    <select name="peopleCount" id="count" class="btn">
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                    </select>
+                    <button class="pckbtn btn">Add to cart</button>
+                    <button class="pckbtn btn pay d-none">Pay Now</button>
+                  </div>
+                </div>
+                <!-- End Price Box -->
+              </div>
+            </div>
+          `;
+
+        itemWrapper.innerHTML = itemCon1 + itemCon2 + itemCon3;
+
+        // Main image
+        let previous = 0;
+        const mainImage = document.querySelector(
+            ".item-container .images .main img"
+          ),
+          imageList = document.querySelectorAll(
+            ".item-container .images .list-container .img-container"
+          );
+        imageList.forEach((image, index) => {
+          const imgElement = image.querySelector("img");
+          image.addEventListener("mouseover", () => {
+            mainImage.src = imgElement.src;
+            image.classList.add("active");
+            removeActive(index);
+            previous = index;
+          });
+        });
+
+        // remove class active in img
+        function removeActive(hoverdIndex) {
+          if (hoverdIndex != previous) {
+            imageList[previous].classList.remove("active");
+          }
+        }
+        //share icon
+        const shareIcon = document.querySelector(".share-btn"),
+          shareLists = document.querySelector(".icons .font-share-icons");
+
+        shareIcon.addEventListener("click", () => {
+          if (
+            window.matchMedia("(max-width:500px)").matches &&
+            navigator.share
+          ) {
+            navigator
+              .share({
+                title: "10 Days",
+                text: "Come to stay with the best 10 Days",
+                url: "https://ibrahimmoatazmohamed.github.io/IT-207-Introduction-to-Web-Programming/assets/html/item.html",
+              })
+              .then(() => console.log("Successful share"))
+              .catch((error) => console.log("Error sharing", error));
+          } else {
+            if (shareLists.style.display !== "grid") {
+              shareLists.style.display = "grid";
+              shareLists.style.animation =
+                "appear var(--main-transition) linear forwards";
+            } else {
+              shareLists.style.animation =
+                "hidden var(--main-transition) linear forwards";
+              setTimeout(() => {
+                shareLists.style.display = "none";
+              }, 300);
+            }
+          }
+        });
+
+        // Hide share list on blur
+        shareIcon.addEventListener("blur", () => {
+          if (shareLists.style.display === "grid") {
+            shareLists.style.animation =
+              "hidden var(--main-transition) linear forwards";
+            setTimeout(() => {
+              shareLists.style.display = "none";
+            }, 300);
+          }
+        });
+      });
+  },
+  loadMoreItems: () => {
+    fetch(Constants.API_BASE_URL + "get_items.php")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        const moreItemWrapper = document.querySelector(
+          ".more-items .splide .wrapper.splide__track .carousel.splide__list"
+        );
+        data.map((itemData) => {
+          let decimalPart = Utils.checkDec(parseFloat(itemData.price));
+          const intPart = Math.floor(parseFloat(itemData.price));
+
+          const moreItemCon = `
+          <a
+            href="./item.html?item_id=${itemData.item_id}"
+            class="col splide__slide"
+            draggable="false"
+          >
+            <h2>${itemData.category}</h2>
+            <div class="image">
+              <img
+              src="${ItemService.firstLink(itemData.imgs_srcs)}"
+                alt=""
+                draggable="false"
+              />
+            </div>
+            <div class="text">
+              <h3>${itemData.name}</h3>
+            </div>
+            <div class="footer">
+              <div class="price">Price: <sup>km</sup>${intPart}<sub>${decimalPart}</sub></div>
+            </div>
+          </a>
+        `;
+
+          moreItemWrapper.innerHTML += moreItemCon;
+          console.log(moreItemWrapper.innerHTML);
+        });
+        Utils.carouselSplide(".splide");
+      });
+  },
+  firstLink: (imgs_srcs) => {
+    return `https${imgs_srcs.trim().split("https")[1]}`;
   },
 };

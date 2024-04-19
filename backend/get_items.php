@@ -5,8 +5,10 @@ $payload = $_REQUEST;
 
 $item_service = new ItemService();
 
-$category = $payload['category'];
-
-$data = $item_service->get_items_by_category($category);
+if(isset($payload['category']) && $payload['category'] != ''){
+    $data = $item_service->get_items_by_category($payload['category']);
+} else {
+    $data = $item_service->get_items();
+}
 
 echo json_encode($data);
