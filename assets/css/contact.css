@@ -178,34 +178,20 @@
   transform: translateY(-50%);
   left: 25px;
   pointer-events: none;
-  min-width: 33px;
-}
-.form-control #email + label,
-.form-control #emailcreate + label,
-.form-control #emailsignin + label {
-  min-width: 100px;
-  justify-content: left;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.form-control label span {
+  width: fit-content;
   background-color: var(--main-background-color);
   display: inline-block;
   font-size: 18px;
   border-left: 1px solid var(--main-background-color);
   color: var(--font-color);
 }
-.form-control .field.delay + label span,
-.form-control label.txtar-la.delay span {
+.form-control .field.delay + label,
+.form-control label.txtar-la.delay {
   transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
-.form-control label span:not(:first-of-type) {
-  margin-left: -6px;
-}
-.form-control input.active + label span {
+.form-control input.active + label {
   color: var(--main-color) !important;
-  transform: translateY(-22.5px) !important;
+  transform: translateY(-37px) !important;
 }
 .textarea {
   min-width: 100%;
@@ -233,7 +219,7 @@
   outline: 0;
   border-color: var(--main-color);
 }
-.form-control label.txtar-la.active span {
+.form-control label.txtar-la.active {
   color: var(--main-color);
   transform: translateY(-22.5px);
 }

@@ -38,46 +38,30 @@
       Drop us a line through the form below and we'll get back to you
     </p>
     <div class="form">
-      <form action="" method="post">
+      <form id="contact-form">
         <div class="inputs">
-          <div class="form-control">
+          <div class="form-control full">
             <input
               type="text"
-              id="username"
-              name="username"
+              id="name"
+              name="name"
               required=""
               autocomplete="on"
               class="field"
             />
-            <label for="username">
-              <span>U</span>
-              <span>s</span>
-              <span>e</span>
-              <span>r</span>
-              <span>n</span>
-              <span>a</span>
-              <span>m</span>
-              <span>e</span>
-            </label>
+            <label for="name"> Full Name </label>
           </div>
-          <div class="form-control">
+          <div class="form-control full">
             <input
-              type="text"
-              id="surname"
-              name="surname"
+              type="tel"
+              id="phone"
+              name="phone"
               required=""
+              pattern="[0-9]{6,18}"
               autocomplete="on"
               class="field"
             />
-            <label for="surname">
-              <span>S</span>
-              <span>u</span>
-              <span>r</span>
-              <span>n</span>
-              <span>a</span>
-              <span>m</span>
-              <span>e</span>
-            </label>
+            <label for="phone"> Phone </label>
           </div>
           <div class="form-control full">
             <input
@@ -88,13 +72,7 @@
               autocomplete="on"
               class="field"
             />
-            <label for="email">
-              <span>E</span>
-              <span>m</span>
-              <span>a</span>
-              <span>i</span>
-              <span>l</span>
-            </label>
+            <label for="email"> Email </label>
           </div>
         </div>
         <div class="form-control">
@@ -108,15 +86,7 @@
             ></textarea>
           </div>
 
-          <label for="message" class="txtar-la" id="txtar-la">
-            <span>M</span>
-            <span>e</span>
-            <span>s</span>
-            <span>s</span>
-            <span>a</span>
-            <span>g</span>
-            <span>e</span>
-          </label>
+          <label for="message" class="txtar-la" id="txtar-la"> Message </label>
         </div>
         <input type="submit" class="submit" value="Submit" />
       </form>

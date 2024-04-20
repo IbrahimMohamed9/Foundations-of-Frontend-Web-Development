@@ -8,7 +8,7 @@ var ItemService = {
         : id === "tbl_hotels"
         ? "hotel"
         : alert("check the id");
-    fetch(Constants.API_BASE_URL + "get_items.php?category=" + category)
+    fetch(Constants.API_BASE_URL + "items/get_items.php?category=" + category)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -77,7 +77,7 @@ var ItemService = {
     `;
   },
   loadCards: function (category) {
-    fetch(Constants.API_BASE_URL + "get_items.php?category=" + category)
+    fetch(Constants.API_BASE_URL + "items/get_items.php?category=" + category)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -163,7 +163,7 @@ var ItemService = {
     );
     items.innerHTML += content;
   },
-  addItemModal: function (category) {
+  addItemModal: function (category, message = " added successfully") {
     const modal = document.getElementById("myModal");
     modal.innerHTML = `
       <div class="master-container">
@@ -196,10 +196,7 @@ var ItemService = {
                     autocomplete="name"
                     />
                   <label for="name">
-                    <span>N</span>
-                    <span>a</span>
-                    <span>m</span>
-                    <span>e</span>
+                    Name
                   </label>
                 </div>
                 <div class="form-control">
@@ -209,11 +206,7 @@ var ItemService = {
                   id="title" 
                   name="title" />
                   <label for="title">
-                    <span>T</span>
-                    <span>i</span>
-                    <span>t</span>
-                    <span>l</span>
-                    <span>e</span>
+                    Title
                   </label>
                 </div>
                 ${
@@ -227,10 +220,7 @@ var ItemService = {
                   name="days" 
                   />
                   <label for="days">
-                    <span>D</span>
-                    <span>a</span>
-                    <span>y</span>
-                    <span>s</span>
+                    Days
                   </label>
                 </div>
                 `
@@ -244,14 +234,7 @@ var ItemService = {
                     name="min_days" 
                   />
                   <label for="min_days">
-                    <span>M</span>
-                    <span>i</span>
-                    <span>n</span>
-                    <span>&nbsp;</span>
-                    <span>D</span>
-                    <span>a</span>
-                    <span>y</span>
-                    <span>s</span>
+                    Min Days
                   </label>
                 </div>
                 <div class="form-control">
@@ -263,39 +246,26 @@ var ItemService = {
                     name="max_days" 
                   />
                   <label for="max_days">
-                    <span>M</span>
-                    <span>a</span>
-                    <span>x</span>
-                    <span>&nbsp;</span>
-                    <span>D</span>
-                    <span>a</span>
-                    <span>y</span>
-                    <span>s</span>
+                    Max Days
                   </label>
                 </div>
                 `
                 } ${
       category === "car"
         ? `
-                <div class="form-control">
-                  <input
-                    type="number"
-                    class="field"
-                    required
-                    id="persons"
-                    name="persons" 
-                  />
-                  <label for="persons">
-                    <span>P</span>
-                    <span>e</span>
-                    <span>r</span>
-                    <span>s</span>
-                    <span>o</span>
-                    <span>n</span>
-                    <span>s</span>
-                  </label>
-                </div>
-                `
+          <div class="form-control">
+            <input
+              type="number"
+              class="field"
+              required
+              id="persons"
+              name="persons" 
+            />
+            <label for="persons">
+              Persons
+            </label>
+          </div>
+          `
         : `
                 <div class="form-control">
                   <input
@@ -306,17 +276,7 @@ var ItemService = {
                     name="min_persons" 
                   />
                   <label for="min_persons">
-                    <span>M</span>
-                    <span>i</span>
-                    <span>n</span>
-                    <span>&nbsp;</span>
-                    <span>P</span>
-                    <span>e</span>
-                    <span>r</span>
-                    <span>s</span>
-                    <span>o</span>
-                    <span>n</span>
-                    <span>s</span>
+                    Min persons
                   </label>
                 </div>
                 <div class="form-control">
@@ -328,17 +288,7 @@ var ItemService = {
                     name="max_persons" 
                   />
                   <label for="max_persons">
-                    <span>M</span>
-                    <span>a</span>
-                    <span>x</span>
-                    <span>&nbsp;</span>
-                    <span>P</span>
-                    <span>e</span>
-                    <span>r</span>
-                    <span>s</span>
-                    <span>o</span>
-                    <span>n</span>
-                    <span>s</span>
+                    Max persons
                   </label>
                 </div>
                 `
@@ -352,11 +302,7 @@ var ItemService = {
                     name="price" 
                   />
                   <label for="price">
-                    <span>P</span>
-                    <span>r</span>
-                    <span>i</span>
-                    <span>c</span>
-                    <span>e</span>
+                    Price
                   </label>
                 </div>
                 <div class="form-control">
@@ -368,11 +314,7 @@ var ItemService = {
                     name="stock_quantity" 
                   />
                   <label for="stock_quantity">
-                    <span>S</span>
-                    <span>t</span>
-                    <span>o</span>
-                    <span>c</span>
-                    <span>k</span>
+                    Stock
                   </label>
                 </div>
                 <div class="form-control">
@@ -384,12 +326,7 @@ var ItemService = {
                     name="status" 
                   />
                   <label for="status">
-                    <span>S</span>
-                    <span>t</span>
-                    <span>a</span>
-                    <span>t</span>
-                    <span>u</span>
-                    <span>s</span>
+                    Status
                   </label>
                 </div>
                 <div class="form-control full">
@@ -407,11 +344,7 @@ var ItemService = {
                     ></textarea>
                   </div>
                   <label for="intro" class="txtar-la">
-                    <span>I</span>
-                    <span>n</span>
-                    <span>t</span>
-                    <span>r</span>
-                    <span>o</span>
+                    Intro
                   </label>
                 </div>
                 <div class="form-control">
@@ -424,17 +357,7 @@ var ItemService = {
                     ></textarea>
                   </div>
                   <label for="description" class="txtar-la">
-                    <span>D</span>
-                    <span>e</span>
-                    <span>s</span>
-                    <span>c</span>
-                    <span>r</span>
-                    <span>i</span>
-                    <span>p</span>
-                    <span>t</span>
-                    <span>i</span>
-                    <span>o</span>
-                    <span>n</span>
+                    Description
                   </label>
                 </div>
                 <div class="form-control">
@@ -448,19 +371,7 @@ var ItemService = {
                   </div>
 
                   <label id="imgs_srcs" class="txtar-la">
-                    <span>I</span>
-                    <span>m</span>
-                    <span>a</span>
-                    <span>g</span>
-                    <span>e</span>
-                    <span>&nbsp;</span>
-
-                    <span>S</span>
-                    <span>o</span>
-                    <span>u</span>
-                    <span>r</span>
-                    <span>c</span>
-                    <span>e</span>
+                    Image Source
                   </label>
                 </div>
               </div>
@@ -470,38 +381,23 @@ var ItemService = {
         </div>
       </div>
     `;
-    Utils.formAnimation();
-    modal.querySelector(".x").addEventListener("click", () => {
-      Utils.removeItemModal(false, modal);
-    });
-    Utils.appearModal(false);
-    ItemService.submit(
-      category + "-form",
-      "add_item.php",
-      "tbl_" + category + "s",
-      modal
-    );
-  },
-  submit: function (id, to = "add_item.php", tableId, modal) {
-    FormValidation.validate("#" + id, {}, (data) => {
-      Utils.block_ui("#myModal");
-      $("#myModal .x").trigger("click");
-      $.post(Constants.API_BASE_URL + to, data)
-        .done(function (data) {
-          Utils.unblock_ui("#myModal");
-          Utils.removeItemModal(false, modal);
-          Utils.appearSuccAlert("Item added successfully");
-          ItemService.loadTable(tableId);
-        })
-        .fail(function (xhr) {
-          Utils.removeItemModal(false, modal);
-          Utils.appearFailAlert(xhr.responseText);
-        });
+    Utils.formSetup(modal, () => {
+      message = Utils.capitalizeFirstLetter(category) + message;
+      Utils.submit(
+        category + "-form",
+        "items/add_item.php",
+        message,
+        category + "-form .submit",
+        () => {
+          ItemService.loadTable("tbl_" + category + "s");
+        },
+        modal
+      );
     });
   },
   openEditItemModal: function (id) {
-    RestClient.get("get_item.php?item_id=" + id, function (data) {
-      ItemService.addItemModal(data.category, true);
+    RestClient.get("items/get_item.php?item_id=" + id, function (data) {
+      ItemService.addItemModal(data.category, " edited successfully");
 
       $("#myModal input[name='item_id']").val(data.item_id);
       $("#myModal input[name='name']").val(data.name);
@@ -526,13 +422,13 @@ var ItemService = {
   },
   removeItem: function (id, category) {
     if (confirm("Do you want to delete item with the id " + id + "?") == true) {
-      RestClient.delete("delete_item.php?item_id=" + id, {}, () => {
+      RestClient.delete("items/delete_item.php?item_id=" + id, {}, () => {
         ItemService.loadTable("tbl_" + category + "s");
       });
     }
   },
   loadItemPage: (id) => {
-    fetch(Constants.API_BASE_URL + "get_item.php?item_id=" + id)
+    fetch(Constants.API_BASE_URL + "items/get_item.php?item_id=" + id)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -725,7 +621,7 @@ var ItemService = {
       });
   },
   loadMoreItems: () => {
-    fetch(Constants.API_BASE_URL + "get_items.php")
+    fetch(Constants.API_BASE_URL + "items/get_items.php")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");

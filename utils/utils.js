@@ -24,146 +24,13 @@ var Utils = {
       ? document.getElementById("cartModal")
       : document.getElementById("myModal");
     modal.querySelector(".x").addEventListener("click", () => {
-      Utils.removeItemModal(removeeBtn, modal);
+      Utils.removeModal(removeeBtn, modal);
     });
 
     modal.querySelector(".checkout-btn").addEventListener("click", () => {
-      Utils.removeItemModal(removeeBtn, modal);
+      Utils.removeModal(removeeBtn, modal);
       Utils.appearSuccAlert(message);
     });
-  },
-  loadItems: function (
-    src,
-    content1,
-    content2,
-    content3,
-    content4,
-    modalTitle
-  ) {
-    fetch(src)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const items = document.querySelector(`.items.${modalTitle} .container`);
-        data.map((itemData) => {
-          const content =
-            content1 +
-            itemData.imgSrc +
-            content2 +
-            itemData.name +
-            content3 +
-            itemData.price +
-            content4;
-          items.innerHTML += content;
-        });
-
-        document
-          .querySelectorAll(`.items.${modalTitle} .container .pckbtn`)
-          .forEach((button, index) =>
-            button.addEventListener("click", () => {
-              const itemData = data[index];
-              Utils.itemModal(
-                modalTitle,
-                itemData.name,
-                itemData.imgSrc,
-                itemData.min,
-                itemData.max,
-                itemData.price,
-                itemData.quantity,
-                false
-              );
-            })
-          );
-
-        Utils.carouselSplide(`.splide.${modalTitle}-carousel`, 20);
-      });
-  },
-  packages: function (
-    src,
-    redirect,
-    sectionSelector,
-    carouselSelector,
-    gap,
-    sectionName
-  ) {
-    fetch(src)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const packages = document.querySelector(sectionSelector);
-        data.map((packageData) => {
-          // Origin
-          // `
-          //     <div class="item splide__slide">
-          //     <div class="box">
-          //       <div class="back face">
-          //         <button class="button" id="${packageData.id}-1">plan 1</button>
-          //         <button class="button" id="${packageData.id}-2">plan 2</button>
-          //         <button class="button" id="${packageData.id}-3">plan 3</button>
-          //         <button class="button" id="${packageData.id}-4">plan 4</button>
-          //       </div>
-          //       <div class="image face">
-          //         <img src="${packageData.imgSrc}" alt="" />
-          //       </div>
-          //     </div>
-          //     <div class="text">
-          //       <h3>${packageData.name}</h3>
-          //       <p>Price: ${packageData.price} KM</p>
-          //     </div>
-          //     <button class="pckbtn"></button>
-          //   </div>
-          //   `;
-          const packageCon = `
-          <div class="item splide__slide">
-            <a href="pages/item.html">
-              <div class="image item-img">
-                <img src="${packageData.imgSrc}" alt="" />
-              </div>
-            </a>
-              <div class="text">
-                <h3>${packageData.name}</h3>
-                <p>Price: ${packageData.price} KM</p>
-              </div>
-              <button class="pckbtn"></button>
-          </div>`;
-          packages.innerHTML += packageCon;
-        });
-
-        document
-          .querySelectorAll(`section#${sectionName} .pckbtn`)
-          .forEach((button, index) =>
-            button.addEventListener("click", () => {
-              const packageData = data[index];
-              Utils.itemModal(
-                "Package",
-                packageData.name,
-                packageData.imgSrc,
-                packageData.min,
-                packageData.max,
-                packageData.price,
-                packageData.quantity,
-                true
-              );
-            })
-          );
-
-        Utils.carouselSplide(carouselSelector, gap);
-
-        //redirect
-        document.querySelectorAll(".item .back .button").forEach((button) => {
-          button.addEventListener("click", () => {
-            window.location = redirect;
-          });
-        });
-      });
   },
   carouselSplide: function (carousel, gap = 25) {
     const splideTrack = document.querySelector(`${carousel} .splide__track`);
@@ -344,7 +211,7 @@ var Utils = {
     sumOfTotalModal[1].textContent = Math.floor(total);
     sumOfTotalModal[2].textContent = Utils.checkDec(total);
   },
-  removeItemModal: function (removeBtn, modal) {
+  removeModal: function (removeBtn, modal) {
     if (removeBtn) {
       const quantityBtns = Array.from(
         modal.querySelector(".master-container .cart .quantity").children
@@ -455,5 +322,49 @@ var Utils = {
     fields.forEach((field) => {
       Utils.fieldAnimation(field);
     });
+  },
+  submit: function (form_id, to, success_mge, block_id, loadTable, modal) {
+    const form = $("#" + form_id),
+      block = $("#" + block_id);
+
+    FormValidation.validate(form, {}, (data) => {
+      Utils.block_ui(block);
+      $.post(Constants.API_BASE_URL + to, data)
+        .done(function (data) {
+          form[0].reset();
+          Utils.unblock_ui(block);
+          if (modal) {
+            Utils.removeModal(false, modal);
+          }
+          Utils.appearSuccAlert(success_mge);
+          if (loadTable) {
+            loadTable();
+          }
+        })
+        .fail(function (xhr) {
+          Utils.unblock_ui(block);
+
+          if (modal) {
+            Utils.removeModal(false, modal);
+          }
+          Utils.appearFailAlert(xhr.responseText);
+        });
+    });
+  },
+  formSetup: (modal, submit) => {
+    Utils.formAnimation();
+    if (modal) {
+      modal.querySelector(".x").addEventListener("click", () => {
+        Utils.removeModal(false, modal);
+      });
+    }
+    Utils.appearModal(false);
+
+    if (submit) {
+      submit();
+    }
+  },
+  capitalizeFirstLetter: (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
   },
 };

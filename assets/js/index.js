@@ -1,48 +1,8 @@
-function articles(src, redirect, sectionSelector) {
-  fetch(src)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      const articles = document.querySelector(sectionSelector);
-      data.map((articleData) => {
-        const articleCon = `
-          <div class="col">
-            <a href="${redirect}">
-              <div class="card">
-                <img
-                  src="${articleData.imgSrc}"
-                  class="card-img-top"
-                  alt="Article Image"
-                />
-                <div class="card-body">
-                  <h3 class="card-title">${articleData.title}</h3>
-                  <p class="card-text">
-                  ${articleData.description}
-                  </p>
-                </div>
-                <div class="footer">
-                  <div class="category">
-                    <span>${articleData.category}</span>
-                    <span>${articleData.time}</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-        `;
-        articles.innerHTML += articleCon;
-      });
-    });
-}
 document.addEventListener("DOMContentLoaded", () => {
   //images in example
   const scrollers = document.querySelectorAll(".scroller");
-  addAnimation();
-  function addAnimation() {
+  examplesImageAnimation();
+  function examplesImageAnimation() {
     scrollers.forEach((scroller) => {
       const scrollerInner = scroller.querySelector(".scroller__inner");
       const scrollerConternt = Array.from(scrollerInner.children);
@@ -109,47 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function articlesArticle(src, redirect, sectionSelector) {
-    fetch(src)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const articles = document.querySelector(sectionSelector);
-        data.map((articleData) => {
-          const articleCon = `
-            <div class="col">
-              <a href="${redirect}">
-                <div class="card">
-                  <img
-                    src="${articleData.imgSrc}"
-                    class="card-img-top"
-                    alt="Article Image"
-                  />
-                  <div class="card-body">
-                    <h3 class="card-title">${articleData.title}</h3>
-                    <p class="card-text">
-                    ${articleData.description}
-                    </p>
-                  </div>
-                  <div class="footer">
-                    <div class="category">
-                      <span>${articleData.category}</span>
-                      <span>${articleData.time}</span>
-                    </div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          `;
-          articles.innerHTML += articleCon;
-        });
-      });
-  }
-
   const dashIcons = document.querySelectorAll(".main-header ul.tile-wrds li");
 
   let previous;
@@ -162,11 +81,14 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       dashIcons[previous].classList.remove("current-page");
     }
+    if (clickedIndex === null) {
+      return;
+    }
     dashIcons[clickedIndex].classList.add("current-page");
     previous = clickedIndex;
   }
 
-  var app = $.spapp({
+  const app = $.spapp({
     defaultView: "#home",
     templateDir: "pages/homePages/",
   });
@@ -187,12 +109,35 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
+  function resetForm() {
+    const textareas = document.querySelectorAll("textarea.field"),
+      fields = document.querySelectorAll(".form-control input"),
+      txtarLabels = document.querySelectorAll(".txtar-la");
+
+    textareas.forEach((textarea, index) => {
+      txtarLabels[index].classList.remove("active");
+      textarea.classList.remove("active");
+    });
+    fields.forEach((field) => {
+      field.classList.remove("active");
+    });
+  }
+
   app.route({
     view: "contact",
     load: "contact-us.html",
     onCreate: function () {
       mainTitleAnimation();
       Utils.formAnimation();
+      Utils.submit(
+        "contact-form",
+        "feedbacks/add_feedback.php",
+        "Feedback added successfully",
+        "contact-form .submit",
+        () => {
+          resetForm();
+        }
+      );
     },
     onReady: function () {
       switchButton(1);
@@ -203,9 +148,9 @@ document.addEventListener("DOMContentLoaded", () => {
     view: "articles",
     load: "articles.html",
     onCreate: function () {
-      ArticleService.articlesArticle("cities");
-      ArticleService.articlesArticle("Hotels");
-      ArticleService.articlesArticle("Tourism");
+      ArticleService.loadArticlesPage("cities");
+      ArticleService.loadArticlesPage("Hotels");
+      ArticleService.loadArticlesPage("Tourism");
     },
     onReady: function () {
       switchButton(2);
@@ -548,7 +493,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
     onReady: function () {
-      switchButton(4);
+      switchButton(null);
     },
   });
 

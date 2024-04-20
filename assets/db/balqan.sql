@@ -327,3 +327,12 @@ CREATE TABLE `friends`
     `friends` TEXT,
     CONSTRAINT `fk_friends_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
+CREATE TABLE `feedbacks`
+(	
+	`feedback_id`  INT AUTO_INCREMENT PRIMARY KEY,
+    `name` VARCHAR(255),
+    `email` VARCHAR(255),
+    `phone` VARCHAR(255),
+	`added_time`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `message` TEXT
+);

@@ -140,7 +140,8 @@ document.addEventListener("DOMContentLoaded", () => {
       ItemService.loadTable("tbl_packages");
       ItemService.loadTable("tbl_cars");
       ItemService.loadTable("tbl_hotels");
-      ArticleService.loadTable("tbl_articles");
+      ArticleService.loadTable();
+      FeedbackService.loadTable();
     },
     onReady: function () {
       switchButton(5);
@@ -155,6 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       document.getElementById("add-article").addEventListener("click", () => {
         ArticleService.addArticleModal();
+      });
+      document.getElementById("add-feedback").addEventListener("click", () => {
+        FeedbackService.addFeedbackModal();
       });
     },
   });

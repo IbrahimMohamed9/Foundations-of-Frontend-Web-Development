@@ -34,7 +34,6 @@ class ArticleDao extends BaseDao {
     }
     
     public function edit_article($article) {
-        // print_r($article_id);
         $query = "UPDATE articles SET 
             title = :title, 
             img_src = :img_src, 

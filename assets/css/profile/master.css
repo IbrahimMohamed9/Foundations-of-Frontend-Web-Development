@@ -673,7 +673,7 @@ textarea {
 .table-holder table tr td {
   padding: 10px;
 }
-.table-holder table tr:hover td::selection {
+.table-holder table tbody tr:hover td::selection {
   color: var(--secondary-background-color);
   background-color: #ecaf1c;
 }
