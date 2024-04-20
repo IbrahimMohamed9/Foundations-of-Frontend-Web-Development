@@ -162,6 +162,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ) {
       dashIcons[previous].classList.remove("current-page");
     }
+    if (clickedIndex === null) {
+      return;
+    }
     dashIcons[clickedIndex].classList.add("current-page");
     previous = clickedIndex;
   }
@@ -548,7 +551,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     },
     onReady: function () {
-      switchButton(4);
+      switchButton(null);
     },
   });
 
