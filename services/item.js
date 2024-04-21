@@ -27,11 +27,8 @@ var ItemService = {
       });
   },
   loadTableRow: function (tableBody, itemData) {
-    const intP = String(itemData.price).substring(
-        0,
-        String(itemData.price).indexOf(".")
-      ),
-      decP = Utils.checkDec(itemData.price);
+    const category = itemData.category,
+      price = Utils.checkDecWithInt(ItemService.price(category, itemData));
     tableBody.innerHTML += `
     <tr>
     <td class="table-image">
@@ -42,33 +39,47 @@ var ItemService = {
     </td>
     <td>${itemData.name}</td>
     ${
-      itemData.category === "package"
-        ? `<td>${itemData.days}</td>`
-        : `<td>${itemData.min_days}</td>
-      <td>${itemData.max_days}</td>`
+      category === "package"
+        ? `
+        <td>${itemData.days}</td>
+        `
+        : `
+        <td>${itemData.min_days}</td>
+      <td>${itemData.max_days}</td>
+      `
     }
     ${
-      itemData.category === "car"
-        ? `<td>${itemData.persons}</td>`
-        : `<td>${itemData.min_persons}</td>
-      <td>${itemData.max_persons}</td>`
+      category === "car"
+        ? `
+        <td>${itemData.persons}</td>
+        <td>$${price}</td>
+        `
+        : category === "package"
+        ? `
+        <td>${itemData.min_persons}</td>
+        <td>${itemData.max_persons}</td>
+        <td>$${price}</td>
+      `
+        : `
+        <td>${itemData.min_persons}</td>
+        <td>${itemData.max_persons}</td>
+        <td>$${Utils.checkDecWithInt(itemData.person_price)}</td>
+        <td>$${Utils.checkDecWithInt(itemData.day_price)}</td>
+      `
     }
-    <td>$${intP}${decP}</td>
     <td>${itemData.status}</td>
     <td>
       <button
         class="txt-c d-block fs-15 rad-6 bg-blue c-white w-81 btn-shape"
-        onClick="ItemService.openEditItemModal(${itemData.item_id}, '${
-      itemData.category
-    }')"
+        onClick="ItemService.openEditItemModal(${
+          itemData.item_id
+        }, '${category}')"
       >
         Edit
       </button>
       <button
         class="txt-c mt-10 d-block fs-15 rad-6 bg-red c-white w-81 btn-shape"
-        onClick="ItemService.removeItem(${itemData.item_id}, '${
-      itemData.category
-    }')"
+        onClick="ItemService.removeItem(${itemData.item_id}, '${category}')"
       >
         Remove
       </button>
@@ -109,50 +120,63 @@ var ItemService = {
     //       </div>
     //       <div class="image face">
     //         <img src="${ItemService.firstLink(itemData.imgs_srcs)
-    //         }" alt="${itemData.category} Image" /></div>
+    //         }" alt="${category} Image" /></div>
     //       </div>
     //     </div>
     //     <div class="text">
     //       <h3>${itemData.name}</h3>
-    //       <p>Price: ${intP}${decP} KM/day</p>
+    //       <p>Price: ${price} KM/day</p>
     //     </div>
     //     <button class="pckbtn"></button>
     //   </div>
     //   `;
-    const intP = String(itemData.price).substring(
-        0,
-        String(itemData.price).indexOf(".")
-      ),
-      decP = Utils.checkDec(itemData.price);
+    const category = itemData.category,
+      price = Utils.checkDecWithInt(ItemService.price(category, itemData));
+
     const content = `
       <div class="item splide__slide">
         <a href="pages/item.html?item_id=${itemData.item_id}"
           ><div class="image item-img">
-            <img src="${ItemService.firstLink(itemData.imgs_srcs)}" alt="${
-      itemData.category
-    } Image" /></div
+            <img src="${ItemService.firstLink(
+              itemData.imgs_srcs
+            )}" alt="${category} Image" /></div
         ></a>
         <div class="text">
           <h3>${itemData.name}</h3>
-          <p>Price: ${intP}${decP} KM/day</p>
+          <p>Price: ${price} KM/day</p>
         </div>
+        <!--
+        category,             done
+        name,                 done
+        imgSrc,               done
+        min,                  done
+        max,                  done
+        price,                done
+        quantity,             done
+        nameDescription,      done
+        quantityDescription,  done
+        quantity2,            done
+        quantityDescription2, done
+        min2,
+        max2,
+        price2
+        -->
         <button class="pckbtn" 
         onClick="Utils.itemModal(
-        '${itemData.category}',
+        '${category}',
         '${itemData.name}',
         '${ItemService.firstLink(itemData.imgs_srcs)}',
-        '1',
-        '12',
-        '${itemData.price}',
-        '3',
-        '${itemData.category == "car" ? "Persons: " + itemData.persons : ""}',
-        '${
-          itemData.category == "car"
-            ? "Days"
-            : itemData.category == "package"
-            ? "persons"
-            : ""
-        }'
+        '${category == "car" ? itemData.min_days : itemData.min_persons}',
+        '${category == "car" ? itemData.max_days : itemData.max_persons}',
+        '${category == "car" ? itemData.day_price : itemData.person_price}',
+        '${category == "car" ? itemData.max_days : itemData.max_persons}',
+        '${category == "car" ? "Persons: " + itemData.persons : ""}',
+        '${category == "car" ? "Days" : "persons"}',
+        '${category == "hotel" ? itemData.max_days : ""}',
+        '${category == "hotel" ? "Days" : ""}',
+        '${category == "hotel" ? itemData.min_days : ""}',
+        '${category == "hotel" ? itemData.max_days : ""}',
+        '${category == "hotel" ? itemData.day_price : ""}'
         )"
         ></button>
       </div>
@@ -293,18 +317,44 @@ var ItemService = {
                 </div>
                 `
     }
-                <div class="form-control">
-                  <input
-                    type="number"
-                    class="field"
-                    required
-                    id="price"
-                    name="price" 
-                  />
-                  <label for="price">
-                    Price
-                  </label>
-                </div>
+                ${
+                  category === "cars"
+                    ? `
+                  <div class="form-control">
+                    <input type="number" class="field" required id="day_price" name="day_price" />
+                    <label for="day_price"> Day Price </label>
+                  </div>
+                  `
+                    : category === "package"
+                    ? `
+                  <div class="form-control">
+                    <input
+                      type="number"
+                      class="field"
+                      required
+                      id="person_price"
+                      name="person_price"
+                    />
+                    <label for="person_price"> Person Price </label>
+                  </div>
+                  `
+                    : `
+                  <div class="form-control">
+                    <input type="number" class="field" required id="day_price" name="day_price" />
+                    <label for="day_price"> Day Price </label>
+                  </div>
+                  <div class="form-control">
+                    <input
+                      type="number"
+                      class="field"
+                      required
+                      id="person_price"
+                      name="person_price"
+                    />
+                    <label for="person_price"> Person Price </label>
+                  </div>
+                  `
+                }
                 <div class="form-control">
                   <input
                     type="number"
@@ -401,7 +451,6 @@ var ItemService = {
 
       $("#myModal input[name='item_id']").val(data.item_id);
       $("#myModal input[name='name']").val(data.name);
-      $("#myModal input[name='price']").val(data.price);
       $("#myModal input[name='stock_quantity']").val(data.stock_quantity);
       $("#myModal input[name='title']").val(data.title);
       $("#myModal input[name='status']").val(data.status);
@@ -409,6 +458,9 @@ var ItemService = {
       $("#myModal textarea[name='imgs_srcs']").val(data.imgs_srcs);
       $("#myModal textarea[name='description']").val(data.description);
       $("#myModal textarea[name='intro']").val(data.intro);
+
+      $("#myModal input[name='person_price']").val(data.person_price);
+      $("#myModal input[name='day_price']").val(data.day_price);
 
       $("#myModal input[name='days']").val(data.days);
       $("#myModal input[name='min_days']").val(data.min_days);
@@ -427,6 +479,13 @@ var ItemService = {
       });
     }
   },
+  price: (category, itemData) => {
+    return category === "package"
+      ? itemData.person_price
+      : category === "car"
+      ? itemData.day_price
+      : Number(itemData.day_price) + Number(itemData.person_price);
+  },
   loadItemPage: (id) => {
     fetch(Constants.API_BASE_URL + "items/get_item.php?item_id=" + id)
       .then((response) => {
@@ -436,9 +495,11 @@ var ItemService = {
         return response.json();
       })
       .then((itemData) => {
-        const itemWrapper = document.querySelector(".cart.item");
-        let decimalPart = Utils.checkDec(parseFloat(itemData.price));
-        const intPart = Math.floor(parseFloat(itemData.price));
+        const itemWrapper = document.querySelector(".cart.item"),
+          category = itemData.category,
+          price = ItemService.price(category, itemData),
+          intPart = Math.floor(parseFloat(price)),
+          decimalPart = Utils.checkDec(price);
 
         const itemCon1 = `
             <div class="cart item position-relative">

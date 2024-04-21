@@ -5,7 +5,7 @@
 .login .container .form-container .inputs .form-control {
   margin-top: 15px;
 }
-@media (min-width: 430px) and (max-width: 500px) {
+@media (min-width: 430px) and (max-width: 510px) {
   .login .container .form-container .inputs .form-control input {
     min-width: 85%;
     max-width: 85%;
@@ -21,6 +21,12 @@
 }
 #container h2 {
   text-align: center;
+}
+
+@media screen and (min-width: 576px) {
+  .login .container {
+    padding-left: 0;
+  }
 }
 #container p {
   font-size: 14px;
@@ -53,7 +59,7 @@
   transition: transform 80ms ease-in;
   margin: 15px 0;
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   #container button {
     padding: 10px 30px;
     margin: 15px 0;
@@ -79,7 +85,7 @@
   height: 100%;
   text-align: center;
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   .form-container form {
     padding: 0 20px;
   }
@@ -95,7 +101,7 @@
   transform-style: preserve-3d;
   transform-origin: center center;
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   #container {
     overflow: initial;
   }
@@ -114,7 +120,7 @@
     margin: 10px 0;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   .login .container .form-container .social-container {
     margin: 0;
   }
@@ -135,7 +141,7 @@
   z-index: 2;
   position: absolute;
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   #container {
     transition: 0.8s;
   }
@@ -148,7 +154,7 @@
 .container.right-panel-active .sign-in-container {
   transform: translateX(100%);
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   .container.right-panel-active .sign-in-container {
     transform: translateX(0);
   }
@@ -159,7 +165,7 @@
   opacity: 0;
   z-index: 1;
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   .sign-up-container {
     transform: translateX(0);
     width: 100%;
@@ -178,7 +184,7 @@
   font-size: 12px;
   bottom: -20px;
 }
-@media (min-width: 500px) {
+@media (min-width: 510px) {
   .container .container .form-container .have-account {
     display: none;
   }
@@ -200,7 +206,7 @@
   transition: transform 0.6s ease-in-out;
   z-index: 100;
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   .overlay-container {
     display: none;
   }
@@ -272,7 +278,7 @@
     min-width: 90%;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 510px) {
   .inputs {
     min-width: 90%;
   }

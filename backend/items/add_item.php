@@ -1,5 +1,5 @@
 <?php
-require_once '../rest/services/ItemService.class.php';
+require_once __DIR__ . '/../rest/services/ItemService.class.php';
 
 $payload = $_REQUEST;
 

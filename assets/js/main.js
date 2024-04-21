@@ -97,10 +97,6 @@ document.addEventListener("DOMContentLoaded", () => {
     closeNav();
   });
 
-  if (currentPage && window.matchMedia("(max-width:1000px)").matches) {
-    currentPage.addEventListener("click", closeNav);
-  }
-
   document.querySelectorAll(".main-header ul.tile-wrds li").forEach((icon) => {
     icon.addEventListener("click", closeNav);
   });
@@ -127,13 +123,13 @@ document.addEventListener("DOMContentLoaded", () => {
     disappearModal();
 
     setTimeout(() => {
-      headerWords.style.display = "none";
+      headerWords.classList.add("disappear");
     }, 300);
   }
   function openNav() {
     headerMenu.classList.add("active");
+    headerWords.classList.remove("disappear");
 
-    headerWords.style.display = "grid";
     setTimeout(() => {
       headerWords.classList.add("active");
       appearModal();

@@ -16,7 +16,6 @@ class ItemDao extends BaseDao {
             $entity = [
                 "name" => $item['name'],
                 "description" => $item['description'],
-                "price" => $item['price'],
                 "stock_quantity" => $item['stock_quantity'],
                 "imgs_srcs" => $item['imgs_srcs'],
                 "category" => $item['category'],
@@ -27,16 +26,20 @@ class ItemDao extends BaseDao {
 
             switch ($category) {
                 case 'package':
+                    $entity["person_price"] = $item['person_price'];
                     $entity["days"] = $item['days'];
                     $entity["min_persons"] = $item['min_persons'];
                     $entity["max_persons"] = $item['max_persons'];
                     break;
                 case 'car':
+                    $entity["day_price"] = $item['day_price'];
                     $entity["min_days"] = $item['min_days'];
                     $entity["max_days"] = $item['max_days'];
                     $entity["persons"] = $item['persons'];
                     break;
                 case 'hotel':
+                    $entity["person_price"] = $item['person_price'];
+                    $entity["day_price"] = $item['day_price'];
                     $entity["min_days"] = $item['min_days'];
                     $entity["max_days"] = $item['max_days'];
                     $entity["min_persons"] = $item['min_persons'];
@@ -78,7 +81,6 @@ class ItemDao extends BaseDao {
         $entity = [
             "name" => $item['name'],
             "description" => $item['description'],
-            "price" => $item['price'],
             "stock_quantity" => $item['stock_quantity'],
             "imgs_srcs" => $item['imgs_srcs'],
             "category" => $item['category'],
@@ -89,16 +91,20 @@ class ItemDao extends BaseDao {
     
         switch ($item['category']) {
             case 'package':
+                $entity["person_price"] = $item['person_price'];
                 $entity["days"] = $item['days'];
                 $entity["min_persons"] = $item['min_persons'];
                 $entity["max_persons"] = $item['max_persons'];
                 break;
             case 'car':
+                $entity["day_price"] = $item['day_price'];
                 $entity["min_days"] = $item['min_days'];
                 $entity["max_days"] = $item['max_days'];
                 $entity["persons"] = $item['persons'];
                 break;
             case 'hotel':
+                $entity["person_price"] = $item['person_price'];
+                $entity["day_price"] = $item['day_price'];
                 $entity["min_days"] = $item['min_days'];
                 $entity["max_days"] = $item['max_days'];
                 $entity["min_persons"] = $item['min_persons'];

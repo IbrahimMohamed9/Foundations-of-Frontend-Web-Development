@@ -60,7 +60,7 @@ var Utils = {
         });
       });
 
-      var splide = new Splide(carousel, {
+      const splide = new Splide(carousel, {
         type: "loop",
         perPage: Math.floor(splideTrack.offsetWidth / widthOfCol),
         perMove: 1,
@@ -92,7 +92,12 @@ var Utils = {
     price,
     quantity,
     nameDescription,
-    quantityDescription
+    quantityDescription,
+    quantity2,
+    quantityDescription2,
+    min2,
+    max2,
+    price2
     //plans
   ) {
     const modal = document.getElementById("myModal"),
@@ -106,41 +111,76 @@ var Utils = {
       itemImage = modal.querySelector(".modal-img"),
       itemPrice = modal.querySelector(".price.small"),
       itemCategory = modal.querySelector(".top-title .title"),
-      modalQuantity = modal.querySelector(".master-container .cart .quantity"),
-      quantityBtns = Array.from(modalQuantity.children);
+      quantityBtns = Array.from(
+        modal.querySelector(".master-container .cart .quantity").children
+      ),
+      quantityNumber = quantityBtns[1],
+      quantity2Parent = modal.querySelector(
+        ".master-container .cart .quantity-2"
+      ).parentElement;
+
     itemDescription.textContent = nameDescription;
     itemCategory.textContent = category;
-    quantityNumber = quantityBtns[1];
     itemName.textContent = name;
     itemImage.src = imgSrc;
-    itemPrice.textContent = `${price} KM`;
     quantityNumber.textContent = quantity;
     quantityLabel.textContent = quantityDescription;
 
-    const total = parseInt(quantityNumber.textContent) * Number(price);
-    sumOfTotalModal[1].textContent = Math.floor(total);
-    sumOfTotalModal[2].textContent = Utils.checkDec(total);
+    if (
+      quantity2 !== "" &&
+      quantity2 !== null &&
+      typeof quantity2 !== "undefined"
+    ) {
+      $(quantity2Parent).css("display", "block");
+      quantity2Parent.parentElement.classList.add("hotel");
+      const quantityBtns2 = Array.from(
+          quantity2Parent.querySelector(".master-container .cart .quantity-2")
+            .children
+        ),
+        quantityNumber2 = quantityBtns2[1];
 
-    quantityBtns[0].addEventListener("click", () => {
+      quantityNumber2.textContent = quantity2;
+
+      quantity2Parent.querySelector(".quantity-label-2").innerHTML =
+        quantityDescription2;
+
+      Utils.sumOfTotalModal(
+        parseInt(quantityNumber.textContent) * Number(price) +
+          parseInt(quantityNumber2.textContent) * Number(price2),
+        sumOfTotalModal,
+        itemPrice,
+        Number(price) + Number(price2)
+      );
+
+      quantityNumber2.textContent = quantity2;
       Utils.cartQuantityBtn(
         min,
         max,
-        0,
         price,
         quantityNumber,
-        sumOfTotalModal
+        sumOfTotalModal,
+        [quantityBtns[0], quantityBtns[2], quantityBtns2[0], quantityBtns2[2]],
+        min2,
+        max2,
+        price2,
+        quantityNumber2
       );
-    });
-    quantityBtns[2].addEventListener("click", () => {
-      Utils.cartQuantityBtn(
-        min,
-        max,
-        1,
-        price,
-        quantityNumber,
-        sumOfTotalModal
+    } else {
+      Utils.cartQuantityBtn(min, max, price, quantityNumber, sumOfTotalModal, [
+        quantityBtns[0],
+        quantityBtns[2],
+      ]);
+
+      $(quantity2Parent).css("display", "none");
+      quantity2Parent.parentElement.classList.remove("hotel");
+
+      Utils.sumOfTotalModal(
+        parseInt(quantityNumber.textContent) * Number(price),
+        sumOfTotalModal,
+        itemPrice,
+        price
       );
-    });
+    }
 
     // if (plans) {
     //   modal.querySelector(".select-container").style.display = "block";
@@ -158,6 +198,14 @@ var Utils = {
       modal.classList.add("active");
     }, 1);
   },
+  sumOfTotalModal: (total, sumOfTotalModal, itemPrice, price) => {
+    sumOfTotalModal[1].textContent = Math.floor(total);
+    sumOfTotalModal[2].textContent = Utils.checkDec(total);
+    itemPrice.textContent = `${price} KM`;
+  },
+  checkDecWithInt: (price) => {
+    return `${Math.floor(parseFloat(price))}${Utils.checkDec(price)}`;
+  },
   checkDec: function (number) {
     let decPartTest = Number(
       String((parseFloat(number) - Math.floor(number)).toFixed(2)).slice(3)
@@ -174,21 +222,79 @@ var Utils = {
 
     return Number(decPartTest) ? decPartTest : "";
   },
+
+  //       min,
+  //       max,
+  //       price,
+  //       quantityNumber,
+  //       sumOfTotalModal,
+  //       elements,
+  //       min2,
+  //       max2,
+  //       price2,
+  //       quantityNumber2,
   cartQuantityBtn: function (
     min,
     max,
-    plus,
     price,
     quantityNumber,
-    sumOfTotalModal
+    sumOfTotalModal,
+    elements,
+    min2,
+    max2,
+    price2,
+    quantityNumber2
   ) {
-    plus
-      ? parseInt(quantityNumber.textContent) < max
-        ? Utils.buttomFunction(plus, price, quantityNumber, sumOfTotalModal)
-        : Utils.appearFailAlert("This is the maximum number")
-      : parseInt(quantityNumber.textContent) > min
-      ? Utils.buttomFunction(plus, price, quantityNumber, sumOfTotalModal)
-      : Utils.appearFailAlert("This is the minimum number");
+    if (quantityNumber2) {
+      $.each(elements, (index, element) => {
+        const plus = index % 2,
+          quantityUsed = index <= 1 ? quantityNumber : quantityNumber2,
+          otherQuantity = index <= 1 ? quantityNumber2 : quantityNumber,
+          maxUsed = index <= 1 ? max : max2,
+          minUsed = index <= 1 ? min : min2,
+          priceUsed = index <= 1 ? price : price2,
+          priceOther = index <= 1 ? price2 : price;
+        $(element).click(() => {
+          const buttom = () => {
+            Utils.buttomFunction(
+              plus,
+              priceUsed,
+              quantityUsed,
+              sumOfTotalModal,
+              priceOther,
+              otherQuantity
+            );
+          };
+          if (plus && parseInt(quantityUsed.textContent) < maxUsed) {
+            buttom();
+          } else if (!plus && parseInt(quantityUsed.textContent) > minUsed) {
+            buttom();
+          } else {
+            Utils.appearFailAlert(
+              plus ? "This is the maximum number" : "This is the minimum number"
+            );
+          }
+        });
+      });
+    } else {
+      $.each(elements, (plus, element) => {
+        $(element).click(() => {
+          const buttom = () => {
+            Utils.buttomFunction(plus, price, quantityNumber, sumOfTotalModal);
+          };
+
+          if (plus && parseInt(quantityNumber.textContent) < max) {
+            buttom();
+          } else if (!plus && parseInt(quantityNumber.textContent) > min) {
+            buttom();
+          } else {
+            Utils.appearFailAlert(
+              plus ? "This is the maximum number" : "This is the minimum number"
+            );
+          }
+        });
+      });
+    }
   },
   appearFailAlert: function (message) {
     const quantityAlert = document.querySelector(
@@ -202,11 +308,20 @@ var Utils = {
       quantityAlert.classList.add("d-none");
     });
   },
-  buttomFunction: function (plus, price, quantityNumber, sumOfTotalModal) {
+  buttomFunction: function (
+    plus,
+    price,
+    quantityNumber,
+    sumOfTotalModal,
+    otherPrice,
+    otherQuantity
+  ) {
     quantityNumber.textContent =
       parseInt(quantityNumber.textContent) + (plus ? 1 : -1);
-
-    const total = parseInt(quantityNumber.textContent) * Number(price);
+    let total = parseInt(quantityNumber.textContent) * Number(price);
+    if (otherPrice) {
+      total += parseInt(otherQuantity.textContent) * Number(otherPrice);
+    }
 
     sumOfTotalModal[1].textContent = Math.floor(total);
     sumOfTotalModal[2].textContent = Utils.checkDec(total);
@@ -214,10 +329,15 @@ var Utils = {
   removeModal: function (removeBtn, modal) {
     if (removeBtn) {
       const quantityBtns = Array.from(
-        modal.querySelector(".master-container .cart .quantity").children
-      );
+          modal.querySelector(".master-container .cart .quantity").children
+        ),
+        quantityBtns2 = Array.from(
+          modal.querySelector(".master-container .cart .quantity-2").children
+        );
       Utils.removeAllEventListeners(quantityBtns[0]);
       Utils.removeAllEventListeners(quantityBtns[2]);
+      Utils.removeAllEventListeners(quantityBtns2[0]);
+      Utils.removeAllEventListeners(quantityBtns2[2]);
     }
 
     modal.classList.remove("active");

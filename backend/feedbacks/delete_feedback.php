@@ -1,5 +1,5 @@
 <?php
-require_once '../rest/services/FeedbackService.class.php';
+require_once __DIR__ . '/../rest/services/FeedbackService.class.php';
 
 $feedback_id = $_REQUEST['feedback_id'];
 
