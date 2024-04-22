@@ -81,13 +81,14 @@
   grid-template-columns: 100px 20% repeat(3, 1fr);
   gap: 10px;
   border-bottom: 1px solid var(--secondary-product-color);
+  max-width: 100%;
 }
 @media (max-width: 490px) {
   .cart .containerr .products .row {
     gap: 0;
   }
 }
-@media (max-width: 460px) {
+@media (max-width: 470px) {
   .cart .containerr .products .row {
     grid-template-columns: 100px repeat(3, 1fr);
   }
@@ -97,12 +98,17 @@
     grid-template-columns: 80px repeat(3, 1fr);
   }
 }
-@media (max-width: 300px) {
+@media (max-width: 360px) {
   .cart .containerr .products .row {
-    grid-template-columns: 60px repeat(3, 1fr);
+    grid-template-columns: 80px repeat(2, 1fr);
   }
 }
-.cart .containerr .products .row > *:not(:nth-child(2)) {
+@media (max-width: 300px) {
+  .cart .containerr .products .row {
+    grid-template-columns: 60px repeat(2, 1fr);
+  }
+}
+.cart .containerr .products .row > *:not(:nth-child(2)):not(.exception) {
   flex-shrink: 0;
   width: fit-content;
   padding: 0;
@@ -112,9 +118,34 @@
   align-items: center;
   justify-content: center;
 }
-@media (max-width: 460px) {
+.cart .containerr .products .row > .exception > div {
+  position: relative;
+  transform: translateX(-50%);
+  top: 5%;
+  left: 50%;
+}
+@media (max-width: 360px) {
+  .cart .containerr .products .row > .total {
+    display: none !important;
+  }
+}
+@media (max-width: 470px) {
   .cart .containerr .products .row > *:nth-child(3) {
-    display: none;
+    display: none !important;
+  }
+}
+.cart .products .product.hotel.btns {
+  z-index: 500;
+}
+@media screen and (max-width: 580px) {
+  .cart .products .product.hotel.btns {
+    grid-template-columns: repeat(2, 60px) !important;
+    gap: 5px !important;
+  }
+}
+@media screen and (max-width: 360px) {
+  .cart .products .product.hotel {
+    gap: 10px !important;
   }
 }
 .cart .containerr .products .row p {
@@ -152,15 +183,19 @@
   }
   .cart .containerr .products .row p .circle-minus {
     display: initial;
-    font-size: 12px;
+    font-size: 13px;
     position: absolute;
     bottom: -20px;
     left: 50%;
     transform: translateX(calc(-50% - 5px));
     color: var(--font-color);
   }
+  .cart .containerr .products .row p .circle-minus {
+    color: red;
+    text-align: right;
+  }
   .cart .containerr .products .row p .circle-minus::after {
-    content: "remove";
+    /* content: "remove"; */
     font-size: 15px;
     font-weight: normal;
     font-family: "Marcellus", "Prompt", sans-serif;
@@ -171,13 +206,15 @@
 }
 @media (min-width: 460px) and (max-width: 565px) {
   .cart .containerr .products .row p .circle-minus {
-    left: 40%;
+    /* left: 40%;     With REMOVE */
+    left: 77%;
   }
 }
 @media (max-width: 490px) {
   .cart .containerr .products .row p .circle-minus {
     font-size: 0.6rem;
-    left: 45%;
+    /* left: 45%;    With REMOVE */
+    left: 70%;
   }
   .cart .containerr .products .row p .circle-minus::after {
     font-size: 0.8rem;
@@ -266,8 +303,11 @@
   min-height: 100%;
   max-height: 100%;
 }
+.cart .containerr .products .row .quantity-label.center {
+  text-align: center;
+  display: block;
+}
 .cart .containerr .products .row .quantity {
-  min-width: 80px;
   max-width: 80px;
   height: var(--height);
   display: grid;
@@ -278,20 +318,20 @@
   overflow: hidden;
 }
 @media (max-width: 580px) {
-  .cart .containerr .products .row .quantity {
-    min-width: 60px;
+  .cart .containerr .products .row .quantity,
+  .cart .products .product.hotel .quantity-2 {
     max-width: 60px;
-    grid-template-columns: 20px 20px 20px;
+    grid-template-columns: 20px 20px 20px !important;
   }
 }
 @media (max-width: 325px) {
   .cart .containerr .products .row .quantity {
-    min-width: 40px;
-    max-width: 40px;
-    grid-template-columns: 14px 12px 14px;
+    max-width: 56px;
+    grid-template-columns: 14px 25px 14px !important;
+    justify-content: center;
   }
   .cart .quantity span {
-    font-size: 15px;
+    font-size: 13px !important;
   }
 }
 .cart .containerr .products .row .price p {
@@ -304,6 +344,7 @@
 }
 @media (max-width: 520px) {
   .cart .containerr .products .row .total p {
+    text-align: right;
     font-weight: normal;
     font-size: 1rem;
   }

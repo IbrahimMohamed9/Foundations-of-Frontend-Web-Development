@@ -50,12 +50,14 @@ CREATE TABLE `carts`
     `user_id`    INT,
     CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
+# DROP TABLE `cart_items`;
 CREATE TABLE `cart_items`
 (
     `cart_id`  INT,
     `item_id`  INT,
-    `days` INT,
-    `persons` INT,
+    `days_selected` INT,
+    `persons_selected` INT,
+    CONSTRAINT pk_cart_items PRIMARY KEY (cart_id, item_id),
     CONSTRAINT `fk_cart_item_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`cart_id`),
     CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 );
@@ -87,6 +89,7 @@ CREATE TABLE `projects`
     `progress`        TEXT,
     CONSTRAINT `fk_project_client` FOREIGN KEY (`client`) REFERENCES `users` (`user_id`)
 );
+DROP TABLE projects;
 CREATE TABLE `targets`
 (
     `target_id` INT AUTO_INCREMENT PRIMARY KEY,

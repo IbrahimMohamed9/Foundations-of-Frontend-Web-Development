@@ -231,8 +231,8 @@ VALUES ('Ibrahim Mohamed', 'Male', 'Ibrahim.Mohamed@balqan.net', '01110472777', 
         'Egyptian');
 INSERT INTO carts (cart_id, user_id)
 VALUES (1, 1);
-INSERT INTO cart_items(cart_id, item_id, days, persons)
-VALUES (1, 4, null, 4),
-       (1, 3, null, 4),
-       (1, 6, 4, null),
-       (1, 9, 4, 5);
+# INSERT INTO cart_items(cart_id, item_id, days_selected, persons_selected)
+# VALUES (1, 4, null, 4),
+#        (1, 3, null, 4),
+#        (1, 6, 4, null),
+#        (1, 9, 4, 5);

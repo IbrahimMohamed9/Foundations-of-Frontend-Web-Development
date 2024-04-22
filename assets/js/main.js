@@ -152,25 +152,5 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   });
-
-  shoppingCartCounter();
-  function shoppingCartCounter() {
-    const fileName = window.location.pathname.split("/").pop(),
-      src =
-        fileName === "" || fileName === "index.html"
-          ? "assets/json/cart.json"
-          : "../assets/json/cart.json";
-    fetch(src)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        document
-          .querySelector(".fa-solid.fa-cart-shopping.cart-shopping")
-          .setAttribute("data-counter", data.length);
-      });
-  }
+  CartService.shoppingCartCounter(1);
 });

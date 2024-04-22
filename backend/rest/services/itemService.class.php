@@ -25,7 +25,6 @@ class ItemService {
   public function edit_item($item) {
     $item_id = $item['item_id'];
     unset($item['item_id']);
-
     $this->item_dao->edit_item($item_id, $item);
   }
 }

@@ -12,14 +12,10 @@ var Utils = {
       },
     });
   },
-  unblock_ui: function (element) {
+  unblock_ui: (element) => {
     $(element).unblock({});
   },
-  setupModalActions: function (
-    message = "Cart: Item Added!",
-    removeeBtn = true,
-    cartModal = false
-  ) {
+  setupModalActions: (message, removeeBtn, cartModal) => {
     const modal = cartModal
       ? document.getElementById("cartModal")
       : document.getElementById("myModal");
@@ -32,7 +28,7 @@ var Utils = {
       Utils.appearSuccAlert(message);
     });
   },
-  carouselSplide: function (carousel, gap = 25) {
+  carouselSplide: (carousel, gap = 25) => {
     const splideTrack = document.querySelector(`${carousel} .splide__track`);
 
     const widthOfCol =
@@ -83,7 +79,11 @@ var Utils = {
       splideTrack.parentElement.classList.add("not-overflow");
     }
   },
-  itemModal: function (
+  itemModal: (
+    item_id,
+    // cart_id,
+    persons,
+    days,
     category,
     name,
     imgSrc,
@@ -99,9 +99,9 @@ var Utils = {
     max2,
     price2
     //plans
-  ) {
+  ) => {
     const modal = document.getElementById("myModal"),
-      sumOfTotalModal = modal.querySelector(
+      totalPriceModal = modal.querySelector(
         ".checkout .checkout--footer .price"
       ).children,
       body = document.body,
@@ -144,42 +144,69 @@ var Utils = {
       quantity2Parent.querySelector(".quantity-label-2").innerHTML =
         quantityDescription2;
 
-      Utils.sumOfTotalModal(
+      Utils.totalPriceModal(
         parseInt(quantityNumber.textContent) * Number(price) +
           parseInt(quantityNumber2.textContent) * Number(price2),
-        sumOfTotalModal,
+        totalPriceModal,
         itemPrice,
         Number(price) + Number(price2)
       );
 
       quantityNumber2.textContent = quantity2;
-      Utils.cartQuantityBtn(
+      Utils.quantityBtnFunction(
         min,
         max,
         price,
         quantityNumber,
-        sumOfTotalModal,
+        totalPriceModal,
         [quantityBtns[0], quantityBtns[2], quantityBtns2[0], quantityBtns2[2]],
         min2,
         max2,
         price2,
         quantityNumber2
       );
+
+      $("#myModal .checkout .checkout-btn").on("click", () => {
+        CartService.addToCart(
+          1,
+          item_id,
+          quantityNumber.textContent,
+          quantityNumber2.textContent
+        );
+      });
     } else {
-      Utils.cartQuantityBtn(min, max, price, quantityNumber, sumOfTotalModal, [
-        quantityBtns[0],
-        quantityBtns[2],
-      ]);
+      Utils.quantityBtnFunction(
+        min,
+        max,
+        price,
+        quantityNumber,
+        totalPriceModal,
+        [quantityBtns[0], quantityBtns[2]],
+        -1,
+        -1,
+        -1,
+        -1
+      );
 
       $(quantity2Parent).css("display", "none");
       quantity2Parent.parentElement.classList.remove("hotel");
 
-      Utils.sumOfTotalModal(
+      Utils.totalPriceModal(
         parseInt(quantityNumber.textContent) * Number(price),
-        sumOfTotalModal,
+        totalPriceModal,
         itemPrice,
         price
       );
+      $("#myModal .checkout .checkout-btn").on("click", () => {
+        category === "package"
+          ? CartService.addToCart(1, item_id, quantityNumber.textContent, days)
+          : CartService.addToCart(
+              1,
+              item_id,
+              persons,
+              quantityNumber.textContent
+            );
+      });
     }
 
     // if (plans) {
@@ -198,10 +225,17 @@ var Utils = {
       modal.classList.add("active");
     }, 1);
   },
-  sumOfTotalModal: (total, sumOfTotalModal, itemPrice, price) => {
-    sumOfTotalModal[1].textContent = Math.floor(total);
-    sumOfTotalModal[2].textContent = Utils.checkDec(total);
+  totalPriceModal: (total, totalPriceModal, itemPrice, price) => {
+    totalPriceModal[1].textContent = Math.floor(total);
+    totalPriceModal[2].textContent = Utils.checkDec(total);
     itemPrice.textContent = `${price} KM`;
+  },
+  getPrice: (category, itemData) => {
+    return category === "package"
+      ? itemData.person_price
+      : category === "car"
+      ? itemData.day_price
+      : Number(itemData.day_price) + Number(itemData.person_price);
   },
   checkDecWithInt: (price) => {
     return `${Math.floor(parseFloat(price))}${Utils.checkDec(price)}`;
@@ -222,81 +256,77 @@ var Utils = {
 
     return Number(decPartTest) ? decPartTest : "";
   },
-
-  //       min,
-  //       max,
-  //       price,
-  //       quantityNumber,
-  //       sumOfTotalModal,
-  //       elements,
-  //       min2,
-  //       max2,
-  //       price2,
-  //       quantityNumber2,
-  cartQuantityBtn: function (
+  counter: (() => {
+    let counter = 0;
+    return (restart) => {
+      restart ? (counter = 0) : counter++;
+      return counter;
+    };
+  })(),
+  quantityBtnFunction: (
     min,
     max,
     price,
     quantityNumber,
-    sumOfTotalModal,
+    totalPriceModal,
     elements,
     min2,
     max2,
     price2,
-    quantityNumber2
-  ) {
-    if (quantityNumber2) {
-      $.each(elements, (index, element) => {
-        const plus = index % 2,
-          quantityUsed = index <= 1 ? quantityNumber : quantityNumber2,
-          otherQuantity = index <= 1 ? quantityNumber2 : quantityNumber,
-          maxUsed = index <= 1 ? max : max2,
-          minUsed = index <= 1 ? min : min2,
+    quantityNumber2,
+    cart,
+    totalItemPriceCart,
+    quantityNumberCart,
+    otherQuantity2,
+    itemIndex
+  ) => {
+    $.each(elements, (index, element) => {
+      const plus = index % 2,
+        maxUsed = index <= 1 ? max : max2,
+        quantityUsed = index <= 1 ? quantityNumber : quantityNumber2,
+        minUsed = index <= 1 ? min : min2;
+      let buttom = () => {
+        const otherQuantity = index <= 1 ? quantityNumber2 : quantityNumber,
           priceUsed = index <= 1 ? price : price2,
-          priceOther = index <= 1 ? price2 : price;
-        $(element).click(() => {
-          const buttom = () => {
-            Utils.buttomFunction(
-              plus,
-              priceUsed,
-              quantityUsed,
-              sumOfTotalModal,
-              priceOther,
-              otherQuantity
-            );
-          };
-          if (plus && parseInt(quantityUsed.textContent) < maxUsed) {
-            buttom();
-          } else if (!plus && parseInt(quantityUsed.textContent) > minUsed) {
-            buttom();
-          } else {
-            Utils.appearFailAlert(
-              plus ? "This is the maximum number" : "This is the minimum number"
-            );
-          }
-        });
-      });
-    } else {
-      $.each(elements, (plus, element) => {
-        $(element).click(() => {
-          const buttom = () => {
-            Utils.buttomFunction(plus, price, quantityNumber, sumOfTotalModal);
-          };
+          otherPrice = index <= 1 ? price2 : price;
+        Utils.buttomFunction(
+          plus,
+          priceUsed,
+          quantityUsed,
+          totalPriceModal,
+          otherPrice,
+          otherQuantity,
+          cart,
+          totalItemPriceCart,
+          quantityNumberCart,
+          otherQuantity2,
+          itemIndex
+        );
+      };
 
-          if (plus && parseInt(quantityNumber.textContent) < max) {
-            buttom();
-          } else if (!plus && parseInt(quantityNumber.textContent) > min) {
-            buttom();
-          } else {
-            Utils.appearFailAlert(
-              plus ? "This is the maximum number" : "This is the minimum number"
-            );
-          }
-        });
+      $(element).click(() => {
+        if (plus && parseInt(quantityUsed.textContent) < maxUsed) {
+          buttom();
+        } else if (!plus && parseInt(quantityUsed.textContent) > minUsed) {
+          buttom();
+        } else {
+          Utils.appearFailAlert(
+            plus ? "This is the maximum number" : "This is the minimum number"
+          );
+        }
       });
-    }
+      if (cart && Utils.counter() === 1) {
+        $(window).on("hashchange", Utils.handleHashChange);
+        $(window).on("beforeunload", Utils.handleHashChange);
+      }
+    });
   },
-  appearFailAlert: function (message) {
+  handleHashChange: () => {
+    CartService.updateCart();
+    $(window).off("hashchange", Utils.handleHashChange);
+    $(window).off("beforeunload", Utils.handleHashChange);
+  },
+  appearFailAlert: (message) => {
     const quantityAlert = document.querySelector(
       ".alert.alert-danger.decrease"
     );
@@ -308,36 +338,73 @@ var Utils = {
       quantityAlert.classList.add("d-none");
     });
   },
-  buttomFunction: function (
+  buttomFunction: (
     plus,
     price,
-    quantityNumber,
-    sumOfTotalModal,
+    quantityNumberModal,
+    totalPriceModal,
     otherPrice,
-    otherQuantity
-  ) {
-    quantityNumber.textContent =
-      parseInt(quantityNumber.textContent) + (plus ? 1 : -1);
-    let total = parseInt(quantityNumber.textContent) * Number(price);
-    if (otherPrice) {
-      total += parseInt(otherQuantity.textContent) * Number(otherPrice);
+    otherQuantity,
+    cart,
+    totalItemPriceCart,
+    quantityNumberCart,
+    otherQuantity2,
+    itemIndex
+  ) => {
+    const parentOfParent = quantityNumberModal.parentElement;
+
+    quantityNumberModal.textContent =
+      parseInt(quantityNumberModal.textContent) + (plus ? 1 : -1);
+
+    if (cart && !parentOfParent.classList.contains("quantity-2")) {
+      quantityNumberCart.textContent = quantityNumberModal.textContent;
+    } else if (cart && parentOfParent.classList.contains("quantity-2")) {
+      otherQuantity2.textContent = quantityNumberModal.textContent;
     }
 
-    sumOfTotalModal[1].textContent = Math.floor(total);
-    sumOfTotalModal[2].textContent = Utils.checkDec(total);
+    let total = parseInt(quantityNumberModal.textContent) * Number(price);
+    if (otherPrice > -1) {
+      total += parseInt(otherQuantity.textContent) * Number(otherPrice);
+    }
+    if (cart) {
+      const storedArray = JSON.parse(localStorage.getItem("cart_items")),
+        selectedNumber = quantityNumberModal.textContent;
+
+      if (storedArray[itemIndex]["category"] === "hotel") {
+        storedArray[itemIndex]["persons_selected"] = selectedNumber;
+        storedArray[itemIndex]["days_selected"] = otherQuantity2.textContent;
+      } else {
+        storedArray[itemIndex]["category"] === "package"
+          ? (storedArray[itemIndex]["persons_selected"] = selectedNumber)
+          : (storedArray[itemIndex]["days_selected"] = selectedNumber);
+      }
+      localStorage.setItem("cart_items", JSON.stringify(storedArray));
+
+      totalItemPriceCart.children[1].textContent = Math.floor(total);
+      totalItemPriceCart.children[2].textContent = Utils.checkDec(total);
+      let currentTotal = Number(localStorage.getItem("totalPrice"));
+
+      currentTotal += plus ? parseFloat(price) : -parseFloat(price);
+      totalPriceModal[1].innerHTML = Math.floor(currentTotal);
+      totalPriceModal[2].innerHTML = Utils.checkDec(currentTotal);
+
+      localStorage.setItem("totalPrice", currentTotal);
+    } else {
+      totalPriceModal[1].textContent = Math.floor(total);
+      totalPriceModal[2].textContent = Utils.checkDec(total);
+    }
   },
-  removeModal: function (removeBtn, modal) {
+  removeModal: (removeBtn, modal) => {
     if (removeBtn) {
-      const quantityBtns = Array.from(
-          modal.querySelector(".master-container .cart .quantity").children
+      const quantityBtns = modal.querySelector(
+          ".master-container .cart .quantity"
         ),
-        quantityBtns2 = Array.from(
-          modal.querySelector(".master-container .cart .quantity-2").children
+        quantityBtns2 = modal.querySelector(
+          ".master-container .cart .quantity-2"
         );
-      Utils.removeAllEventListeners(quantityBtns[0]);
-      Utils.removeAllEventListeners(quantityBtns[2]);
-      Utils.removeAllEventListeners(quantityBtns2[0]);
-      Utils.removeAllEventListeners(quantityBtns2[2]);
+      Utils.removeAllEventListeners(quantityBtns);
+      Utils.removeAllEventListeners(quantityBtns2);
+      Utils.removeAllEventListeners($("#myModal .checkout .checkout-btn")[0]);
     }
 
     modal.classList.remove("active");
@@ -361,7 +428,7 @@ var Utils = {
       addItemAlert.classList.add("d-none");
     });
   },
-  appearModal: function (cartModal = true) {
+  appearModal: (cartModal) => {
     const selectedOptions = document.querySelectorAll(
         ".cart .containerr .products .row .select-container select option:checked"
       ),
@@ -385,15 +452,6 @@ var Utils = {
     document.body.classList.add("fix");
     setTimeout(() => {
       modal.classList.add("active");
-
-      // Check if the height of master container is more than the height of the customer
-      const masterContainerHeight = masterContainer.offsetHeight,
-        customerHeight = window.innerHeight;
-
-      if (masterContainerHeight > customerHeight) {
-        masterContainer.style.marginTop = "115px";
-        masterContainer.style.paddingBottom = "50px";
-      }
     }, 1);
   },
   fieldAnimation: function (field) {
@@ -450,23 +508,19 @@ var Utils = {
     FormValidation.validate(form, {}, (data) => {
       Utils.block_ui(block);
       $.post(Constants.API_BASE_URL + to, data)
-        .done(function (data) {
+        .done((data) => {
           form[0].reset();
           Utils.unblock_ui(block);
-          if (modal) {
-            Utils.removeModal(false, modal);
-          }
+          if (modal) Utils.removeModal(false, modal);
+
           Utils.appearSuccAlert(success_mge);
-          if (loadTable) {
-            loadTable();
-          }
+          if (loadTable) loadTable();
         })
-        .fail(function (xhr) {
+        .fail((xhr) => {
           Utils.unblock_ui(block);
 
-          if (modal) {
-            Utils.removeModal(false, modal);
-          }
+          if (modal) Utils.removeModal(false, modal);
+
           Utils.appearFailAlert(xhr.responseText);
         });
     });
@@ -486,5 +540,15 @@ var Utils = {
   },
   capitalizeFirstLetter: (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
+  },
+  firstLink: (imgs_srcs) => {
+    return `https${imgs_srcs.trim().split("https")[1]}`;
+  },
+  removeAllChildrenExcept: (parentElement, exceptionElements) => {
+    Array.from(parentElement.children).forEach((child) => {
+      if (!exceptionElements.includes(child)) {
+        parentElement.removeChild(child);
+      }
+    });
   },
 };

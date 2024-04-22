@@ -1070,12 +1070,14 @@ img {
 .master-container .cart {
   border-radius: 19px 19px 7px 7px;
 }
-.cart .products {
+.cart > .products {
   padding: 10px;
+  max-height: 279px;
+  overflow: auto;
 }
 @media (max-width: 360px) {
   .cart .products {
-    padding: 5px 1px;
+    padding: 3px 2px;
   }
 }
 .cart .products .product {
@@ -1088,6 +1090,7 @@ img {
   background-color: var(--secondary-background-color);
   padding: 5px;
   border-radius: 8px;
+  margin: 5px 0;
 }
 .cart .products .product:not(:last-child) {
   margin-bottom: 10px;
@@ -1117,15 +1120,30 @@ img {
 @media (max-width: 360px) {
   .cart .products .product.hotel {
     grid-template-columns: 60px 1fr repeat(2, 55px) 1fr;
-    --font-weight: 600;
-    --font-size: 14px;
   }
 }
 @media (max-width: 315px) {
   .cart .products .product.hotel {
     grid-template-columns: 60px 1fr repeat(2, 47px) 1fr;
-    --font-weight: 600;
-    --font-size: 14px;
+  }
+}
+.cart .products .product.hotel.btns {
+  background-color: transparent;
+  grid-template-columns: repeat(2, 80px);
+}
+@media (max-width: 415px) {
+  .cart .products .product.hotel.btns {
+    grid-template-columns: repeat(2, 65px);
+  }
+}
+@media (max-width: 360px) {
+  .cart .products .product.hotel.btns {
+    grid-template-columns: repeat(2, 55px);
+  }
+}
+@media (max-width: 315px) {
+  .cart .products .product.hotel.btns {
+    grid-template-columns: repeat(2, 47px);
   }
 }
 .cart .products .product img {
@@ -1250,10 +1268,11 @@ img {
     grid-template-columns: 15px 17px 15px;
   }
 }
-.cart .quantity span,
-.cart .quantity-2 span {
+.cart .products .product .quantity span,
+.cart .products .product.hotel .quantity-2 span,
+.cart .exception .quantity span {
   height: 30px;
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: center;
   padding-bottom: 2px;
@@ -1275,6 +1294,9 @@ img {
   background-color: var(--secondary-color);
 }
 @media (max-width: 315px) {
+  .cart .products .product {
+    --font-size: 13px;
+  }
   .cart .quantity button,
   .cart .quantity-2 button {
     font-size: 12px;
@@ -1445,7 +1467,7 @@ img {
   font-size: 13px;
   font-weight: 600;
   transition: all 0.3s cubic-bezier(0.15, 0.83, 0.66, 1);
-  cursor: pointer;
+  cursor: pointer !important;
 }
 .go-up-box {
   cursor: pointer;

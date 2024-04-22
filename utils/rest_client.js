@@ -24,7 +24,7 @@ var RestClient = {
         if (error_callback) {
           error_callback(jqXHR);
         } else {
-          toastr.error(jqXHR.responseJSON.message);
+          // toastr.error(jqXHR.responseJSON.message);
         }
       });
   },

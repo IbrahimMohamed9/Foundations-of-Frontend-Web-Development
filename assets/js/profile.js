@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ItemService.loadTable("tbl_hotels");
       ArticleService.loadTable();
       FeedbackService.loadTable();
+      // loadProjectsTable("../assets/json/dashboard.json");
     },
     onReady: function () {
       switchButton(5);
@@ -336,8 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let targetsWidget = "",
           ticketsWidget = "",
           progressWidget = "",
-          remindersWidget = "",
-          tableRows = "";
+          remindersWidget = "";
 
         data.targets.forEach((target) => {
           const achieved = Number(target.achieved.replace(/,/g, "")),
@@ -390,26 +390,6 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
         });
 
-        data.tableRows.forEach((row) => {
-          tableRows += `
-              <tr>
-                <td>${row.name}</td>
-                <td>${row.finish}</td>
-                <td>${row.client}</td>
-                <td>${row.price}</td>
-                <td class="team">
-                  ${row.team
-                    .map((image) => `<img src="${image}" alt="person image" />`)
-                    .join("")}
-                </td>
-                <td>
-                  <span class="label btn-shape ${row.background} c-white">${
-            row.status
-          }</span>
-                </td>
-              </tr>
-            `;
-        });
         document.querySelector(".screen.wrapper .welcome").innerHTML =
           welcomWidget;
         document.querySelector(".screen.wrapper .targets").innerHTML +=
@@ -421,9 +401,6 @@ document.addEventListener("DOMContentLoaded", () => {
           progressWidget;
         document.querySelector(".screen.wrapper .reminders ul").innerHTML =
           remindersWidget;
-        document.querySelector(
-          ".screen.wrapper .table-holder .table-container table tbody"
-        ).innerHTML = tableRows;
 
         document.getElementById("profile-btn").addEventListener("click", () => {
           switchButton(0);
@@ -556,6 +533,45 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch((error) => {
         console.error("Error fetching Friends data:", error);
+      });
+  }
+
+  function loadProjectsTable(src) {
+    fetch(src)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        let tableRows = "";
+
+        data.tableRows.forEach((row) => {
+          tableRows += `
+              <tr>
+                <td>${row.name}</td>
+                <td>${row.finish}</td>
+                <td>${row.client}</td>
+                <td>${row.price}</td>
+                <td class="team">
+                  ${row.team
+                    .map((image) => `<img src="${image}" alt="person image" />`)
+                    .join("")}
+                </td>
+                <td>
+                  <span class="label btn-shape ${row.background} c-white">${
+            row.status
+          }</span>
+                </td>
+              </tr>
+            `;
+        });
+        document.querySelector("table#tbl_projects tbody").innerHTML =
+          tableRows;
+      })
+      .catch((error) => {
+        console.error("Error fetching Dashboard data:", error);
       });
   }
 });

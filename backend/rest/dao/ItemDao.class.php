@@ -117,7 +117,6 @@ class ItemDao extends BaseDao {
         $query = "UPDATE items SET 
             name = :name, 
             description = :description, 
-            price = :price, 
             stock_quantity = :stock_quantity, 
             imgs_srcs = :imgs_srcs, 
             category = :category, 
@@ -127,13 +126,13 @@ class ItemDao extends BaseDao {
         
         switch ($item['category']) {
             case 'package':
-                $query .= ", days = :days, min_persons = :min_persons, max_persons = :max_persons";
+                $query .= ", days = :days, min_persons = :min_persons, max_persons = :max_persons, person_price = :person_price";
                 break;
             case 'car':
-                $query .= ", min_days = :min_days, max_days = :max_days, persons = :persons";
+                $query .= ", min_days = :min_days, max_days = :max_days, persons = :persons, day_price = :day_price";
                 break;
             case 'hotel':
-                $query .= ", min_days = :min_days, max_days = :max_days, min_persons = :min_persons, max_persons = :max_persons";
+                $query .= ", min_days = :min_days, max_days = :max_days, min_persons = :min_persons, max_persons = :max_persons, person_price = :person_price, day_price = :day_price";
                 break;
         }
         
