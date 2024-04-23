@@ -20,7 +20,7 @@ class FeedbackDao extends BaseDao {
 
     public function get_feedback_by_id($feedback_id) {
         $query = "SELECT * FROM feedbacks WHERE feedback_id = :feedback_id";
-        return $this->query_unique($query, ['feedback_id' => $feedback_id]);
+        return $this->query_unique_first($query, ['feedback_id' => $feedback_id]);
     }
 
     public function delete_feedback($feedback_id) {

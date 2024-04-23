@@ -47,28 +47,6 @@
       "achieved": "50"
     }
   ],
-  "progrProjs": [
-    {
-      "part": "Got The Project",
-      "status": "done"
-    },
-    {
-      "part": "Started The Project",
-      "status": "done"
-    },
-    {
-      "part": "The Project About To Finish",
-      "status": "done"
-    },
-    {
-      "part": "Test The Project",
-      "status": "current"
-    },
-    {
-      "part": "Finish The Project & Get Money",
-      "status": ""
-    }
-  ],
   "reminders": [
     {
       "title": "Check My Tasks List",
@@ -89,72 +67,6 @@
       "title": "Finish The Development Workshop",
       "date": "26/10/2022",
       "time": "12:00am"
-    }
-  ],
-  "tableRows": [
-    {
-      "name": "Package 4",
-      "finish": "2022-05-24",
-      "date": "2021-05-24",
-      "client": "Client A",
-      "price": "$500",
-      "background": "bg-orange",
-      "status": "Pending",
-      "team": ["https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-01.png", "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-02.png"]
-    },
-    {
-      "name": "Package 7",
-      "finish": "2023-08-15",
-      "date": "2021-06-12",
-      "client": "Client B",
-      "price": "$800",
-      "background": "bg-blue",
-      "status": "In Progress",
-      "team": [
-        "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-02.png",
-        "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-03.png",
-        "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-04.png"
-      ]
-    },
-    {
-      "name": "Package 14",
-      "finish": "2024-02-28",
-      "date": "2021-09-05",
-      "client": "Client C",
-      "price": "$1200",
-      "background": "bg-green",
-      "status": "Completed",
-      "team": ["https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-01.png", "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-03.png"]
-    },
-    {
-      "name": "Package 10",
-      "finish": "2023-11-10",
-      "date": "2021-12-30",
-      "client": "Client D",
-      "price": "$1000",
-      "background": "bg-red",
-      "status": "Rejected",
-      "team": ["https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-04.png"]
-    },
-    {
-      "name": "Package 4",
-      "finish": "2024-05-01",
-      "date": "2022-02-14",
-      "client": "Client E",
-      "price": "$700",
-      "background": "bg-orange",
-      "status": "Pending",
-      "team": ["https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-01.png", "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-02.png"]
-    },
-    {
-      "name": "Package 14",
-      "finish": "2023-07-20",
-      "date": "2022-11-07",
-      "client": "Client F",
-      "price": "$1500",
-      "background": "bg-green",
-      "status": "Completed",
-      "team": ["https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-03.png", "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/team-04.png"]
     }
   ]
 }

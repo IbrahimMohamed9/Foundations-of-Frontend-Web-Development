@@ -1380,7 +1380,7 @@ img {
   background-color: #0b0b0b;
   color: var(--font-color);
 }
-.coupons .form button {
+.coupons .form .applyBtn {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1399,7 +1399,7 @@ img {
   color: black;
 }
 @media (max-width: 360px) {
-  .coupons .form button {
+  .coupons .form .applyBtn {
     max-width: 50%;
     position: relative;
     left: 50%;

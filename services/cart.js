@@ -390,17 +390,24 @@ var CartService = {
             removeIconCounter += 0.5;
           }
         );
+        document
+          .querySelector(".coupons .form#coupon")
+          .addEventListener("click", () => {
+            CartService.coupon("coupon", sumOfTotalModal);
+          });
       });
   },
-  updateCart: () => {
+  updateCart: (removeLocalStorage) => {
+    // TODO: MAKE MORE SAFETY
     JSON.parse(localStorage.getItem("cart_items")).forEach((data) => {
       $.post(Constants.API_BASE_URL + "carts/update_item_cart.php", data)
-        .done((data) => {
-          localStorage.removeItem("cart_items");
-          localStorage.removeItem("totalPrice");
-        })
+        .done((data) => {})
         .fail((xhr) => {});
     });
+    if (removeLocalStorage) {
+      localStorage.removeItem("cart_items");
+      localStorage.removeItem("totalPrice");
+    }
   },
   removeItemCart: (cart_id, item_id, name) => {
     if (confirm("Do you want to delete " + name + "?") == true) {
@@ -413,6 +420,45 @@ var CartService = {
         }
       );
     }
+  },
+  coupon: (form_id, totalPriceModal) => {
+    const form = $("#" + form_id);
+
+    FormValidation.validate(form, {}, (data) => {
+      Utils.block_ui(form);
+      $.post(Constants.API_BASE_URL + "carts/check_coupon.php", data)
+        .done((data) => {
+          form[0].reset();
+          Utils.unblock_ui(form);
+
+          let currentTotal = Number(localStorage.getItem("totalPrice"));
+          currentTotal = data.amount
+            ? currentTotal - data.amount
+            : currentTotal - data.percentage * currentTotal;
+
+          totalPriceModal[1].innerHTML = Math.floor(currentTotal);
+          totalPriceModal[2].innerHTML = Utils.checkDec(currentTotal);
+
+          localStorage.setItem("totalPrice", currentTotal);
+        })
+        .fail((xhr) => {
+          Utils.unblock_ui(form);
+
+          Utils.appearFailAlert(xhr.responseText);
+        });
+    });
+  },
+  checkOut: () => {
+    CartService.updateCart(false);
+    // TODO: MAKE MORE SAFETY
+
+    JSON.parse(localStorage.getItem("cart_items")).forEach((data) => {
+      $.post(Constants.API_BASE_URL + "carts/check_out.php", data)
+        .done((data) => {})
+        .fail((xhr) => {});
+    });
+    localStorage.removeItem("cart_items");
+    localStorage.removeItem("totalPrice");
   },
 };
 /*

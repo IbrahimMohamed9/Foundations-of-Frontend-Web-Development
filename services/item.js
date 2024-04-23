@@ -466,7 +466,6 @@ var ItemService = {
       });
     }
   },
-
   loadItemPage: (id) => {
     fetch(Constants.API_BASE_URL + "items/get_item.php?item_id=" + id)
       .then((response) => {

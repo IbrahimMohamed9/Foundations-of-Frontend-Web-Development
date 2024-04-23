@@ -41,22 +41,25 @@
       General Information About Your Account
     </p>
     <div class="mb-15">
-      <label class="fs-14 c-grey d-block mb-10" for="first">First Name</label>
+      <label class="fs-14 c-grey d-block mb-10" for="name">Full Name</label>
       <input
         class="d-block rad-6 w-full p-10 bg-third c-main-font border-ccc"
         type="text"
-        id="first"
-        placeholder="First Name"
+        id="name"
+        name="name"
+        placeholder="Full Name"
         autocomplete="on"
       />
     </div>
     <div class="mb-15">
-      <label class="fs-14 c-grey d-block mb-5" for="last">Last Name</label>
+      <label class="fs-14 c-grey d-block mb-5" for="phone">Phone Number</label>
       <input
         class="d-block rad-6 w-full p-10 bg-third c-main-font border-ccc"
-        id="last"
+        id="phone"
+        name="phone"
+        pattern="[0-9]{6,18}"
         type="text"
-        placeholder="Last Name"
+        placeholder="Phone Name"
         autocomplete="on"
       />
     </div>
@@ -114,15 +117,15 @@
         <input type="checkbox" id="three" checked />
         <label for="three">Tickets Statistics</label>
       </div>
-      <div class="control d-flex align-center mb-15">
+      <div class="control d-flex align-center mb-15 d-none">
         <input type="checkbox" id="four" checked />
         <label for="four">Latest News</label>
       </div>
-      <div class="control d-flex align-center mb-15">
-        <input type="checkbox" id="five" />
+      <div class="control d-flex align-center mb-15 d-none">
+        <input type="checkbox" id="five" checked />
         <label for="five">Latest Tasks</label>
       </div>
-      <div class="control d-flex align-center mb-15">
+      <div class="control d-flex align-center mb-15 d-none">
         <input type="checkbox" id="six" checked />
         <label for="six">Top Search Items</label>
       </div>

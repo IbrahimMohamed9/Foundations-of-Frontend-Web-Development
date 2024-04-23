@@ -3,7 +3,7 @@
   padding: 50px 0;
 }
 .login .container .form-container .inputs .form-control {
-  margin-top: 15px;
+  margin-top: 22px;
 }
 @media (min-width: 430px) and (max-width: 510px) {
   .login .container .form-container .inputs .form-control input {
@@ -45,7 +45,8 @@
   margin: 15px 0;
   text-wrap: nowrap;
 }
-#container button {
+#container button,
+#container input[type="submit"] {
   text-wrap: nowrap;
   border-radius: 20px;
   border: 1px solid var(--main-color);

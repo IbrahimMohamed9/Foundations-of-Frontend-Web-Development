@@ -161,12 +161,18 @@
       <i class="fa-solid fa-chevron-up"></i>
     </div>
     <!-- End Go Up -->
+    <!-- Start Successful Message -->
+    <div class="alert alert-success add-item d-none" role="alert"></div>
+    <!-- End successful Message -->
+    <!-- Start Danger Message -->
+    <div class="alert alert-danger decrease d-none" role="alert"></div>
+    <!-- End Danger Message -->
     <!-- Start login -->
     <div class="login">
       <div class="container">
         <div class="container sign-component" id="container">
           <div class="form-container sign-up-container">
-            <form action="#">
+            <form id="sign_up_form">
               <h1>Create Account</h1>
               <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -192,25 +198,25 @@
                 <div class="form-control full">
                   <input
                     type="email"
-                    id="emailcreate"
-                    name="emailcreate"
+                    id="sign_up_email"
+                    name="sign_up_email"
                     required=""
                     class="field"
                   />
-                  <label for="emailcreate"> Email </label>
+                  <label for="sign_up_email"> Email </label>
                 </div>
                 <div class="form-control full">
                   <input
                     type="password"
-                    id="passwordcreate"
-                    name="passwordcreate"
+                    id="sign_up_password"
+                    name="sign_up_password"
                     required=""
                     class="field"
                   />
-                  <label for="passwordcreate"> Password </label>
+                  <label for="sign_up_password"> Password </label>
                 </div>
               </div>
-              <button>Sign Up</button>
+              <input type="submit" value="Sign Up" id="sign_up" />
               <div class="app-register have-account">
                 Do have an account?
                 <span class="end sign-component">Sign In</span>
@@ -218,7 +224,7 @@
             </form>
           </div>
           <div class="form-container sign-in-container">
-            <form action="#">
+            <form id="sign_in_form">
               <h1>Sign in</h1>
               <div class="social-container">
                 <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -234,26 +240,31 @@
                 <div class="form-control full">
                   <input
                     type="email"
-                    id="emailsignin"
-                    name="emailsignin"
+                    id="sign_email"
+                    name="sign_email"
                     required=""
                     class="field"
                   />
-                  <label for="emailsignin"> Email </label>
+                  <label for="sign_email"> Email </label>
                 </div>
                 <div class="form-control full">
                   <input
                     type="password"
-                    id="passwordsignin"
-                    name="passwordsignin"
+                    id="signin_password"
+                    name="signin_password"
                     required=""
                     class="field"
                   />
-                  <label for="passwordsignin"> Password </label>
+                  <label for="signin_password"> Password </label>
                 </div>
               </div>
               <a href="#">Forgot your password?</a>
-              <button>Sign In</button>
+              <input
+                type="submit"
+                value="Sign In"
+                name="sign_in"
+                id="sign_in"
+              />
               <div class="app-register have-account">
                 Don't have an account?
                 <span class="end sign-component">Sign Up</span>
@@ -328,48 +339,20 @@
     <!-- End Footer -->
     <!-- JavaScript -->
     <script src="../assets/js/login.js"></script>
+    <script src="../services/cart.js"></script>
+    <script src="../services/user.js"></script>
+    <script src="../utils/constants.js"></script>
+    <script src="../utils/utils.js"></script>
+    <script src="../utils/rest_client.js"></script>
+    <script src="../utils/form_validation.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script>
-      const textarea = document.getElementById("message"),
-        fields = document.querySelectorAll(".form-control"),
-        label = document.getElementById("txtar-la");
-      if (textarea) {
-        textarea.addEventListener("focus", () => {
-          label.classList.add("active", "delay");
-          textarea.classList.add("active");
-        });
-
-        textarea.addEventListener("blur", () => {
-          if (textarea.value.trim() == "") {
-            label.classList.remove("active");
-            textarea.classList.remove("active");
-            textarea.value = textarea.value.trim();
-            setTimeout(() => {
-              label.classList.remove("delay");
-            }, 500);
-          }
-        });
-      }
-
-      fields.forEach((field) => {
-        inputs = field.children;
-        fieldAnimation(inputs[0]);
-      });
-
-      function fieldAnimation(field) {
-        field.addEventListener("focus", (input) => {
-          input.target.classList.add("active", "delay");
-        });
-        field.addEventListener("blur", (input) => {
-          if (input.target.value.trim() == "") {
-            input.target.classList.remove("active");
-            input.target.value = input.target.value.trim();
-            setTimeout(() => {
-              input.target.classList.remove("delay");
-            }, 500);
-          }
-        });
-      }
-    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.min.js"
+      integrity="sha512-eYSzo+20ajZMRsjxB6L7eyqo5kuXuS2+wEbbOkpaur+sA2shQameiJiWEzCIDwJqaB0a4a6tCuEvCOBHUg3Skg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </body>
 </html>

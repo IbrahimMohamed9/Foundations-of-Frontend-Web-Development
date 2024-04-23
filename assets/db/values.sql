@@ -224,15 +224,31 @@ VALUES ('John Doe', 'john@example.com', '1234567890', 'Great food and service!')
        ('Michael Johnson', 'michael@example.com', '9876543210', 'The staff was friendly and the food was delicious.'),
        ('Emily Brown', 'emily@example.com', '4567890123', 'Had a fantastic time, highly recommend!'),
        ('David Lee', 'david@example.com', '3210987654', 'Everything was perfect, thank you!');
-INSERT INTO users (name, gender, email, phone, DOF, jobTitle, YOE, country, skills, ratingsStar, img, nationality)
-VALUES ('Ibrahim Mohamed', 'Male', 'Ibrahim.Mohamed@balqan.net', '01110472777', '2004-12-18', 'Web', -1,
-        'Bosnia', 'Arabic HTML CSS JS Drive', '1 5 4 3 5 4 1 0 2 5',
+INSERT INTO users (name, gender, email, phone, DOF, jobTitle, YOE, country, skills, ratings, img, nationality, level, password)
+VALUES ('Ibrahim Mohamed', 'Male', 'I@b.n', '01110472777', '2004-12-18', 'Web', -1,
+        'Bosnia', 'Arabic HTML CSS JS Drive MySQL', '1 5 4 3 5 4 1 0 2 5',
         'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/avatar.png',
-        'Egyptian');
+        'Egyptian', 30, '1234');
+
 INSERT INTO carts (cart_id, user_id)
 VALUES (1, 1);
-# INSERT INTO cart_items(cart_id, item_id, days_selected, persons_selected)
-# VALUES (1, 4, null, 4),
-#        (1, 3, null, 4),
-#        (1, 6, 4, null),
-#        (1, 9, 4, 5);
+
+INSERT INTO `coupon` (`max_times`, `code`, `amount`, `percentage`)
+VALUES (5, 'SAVE50', 0, 0.15),
+       (10, 'SALE20', 10, NULL),
+       (3, 'FOODIE15', 0, 0.75);
+
+INSERT INTO activities (user_id, img_src, name, description, date, time)
+VALUES (1,
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/activity-01.png',
+        'Store', 'Bought The Mastering JS Course', CURDATE() - INTERVAL 1 DAY, '18:10'),
+       (1,
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/activity-02.png',
+        'Academy', 'Got The PHP Certificate', CURDATE() - INTERVAL 1 DAY, '12:04'),
+       (1,
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/activity-03.png',
+        'Badges', 'Unlocked The 10 Skills Badge', '2021-02-10', '12:04'),
+       (1,
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/activity-01.png',
+        'Store', 'Bought The Typescript Course', '2012-02-01', '12:04');
+

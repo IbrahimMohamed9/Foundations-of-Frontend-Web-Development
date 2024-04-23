@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     view: "profile",
     load: "profile.html",
     onCreate: function () {
-      loadProfile("../assets/json/profile.json");
+      UserService.loadProfile(1);
     },
     onReady: function () {
       switchButton(0);
@@ -372,11 +372,11 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
         });
 
-        data.progrProjs.forEach((progrProj) => {
-          progressWidget += `
-          <li class="mt-25 d-flex align-center ${progrProj.status}">${progrProj.part}</li>
-          `;
-        });
+        // data.progrProjs.forEach((progrProj) => {
+        //   progressWidget += `
+        //   <li class="mt-25 d-flex align-center ${progrProj.status}">${progrProj.part}</li>
+        //   `;
+        // });
 
         data.reminders.forEach((reminder) => {
           remindersWidget += `

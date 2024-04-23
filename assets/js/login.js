@@ -24,4 +24,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
+
+  Utils.formAnimation();
+
+  document.getElementById("sign_up").addEventListener("click", () => {
+    Utils.submit("sign_up_form", "users/add_user.php", false, "sign_up", () => {
+      Utils.resetFormAnimation();
+    });
+  });
+
+  document.getElementById("sign_in").addEventListener("click", () => {
+    UserService.signIn("sign_in_form");
+  });
 });

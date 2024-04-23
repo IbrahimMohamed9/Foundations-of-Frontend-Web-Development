@@ -7,29 +7,51 @@ CREATE DATABASE `balqan` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `balqan`;
 CREATE TABLE `users`
 (
-    `user_id`      INT AUTO_INCREMENT PRIMARY KEY,
-    `name`    VARCHAR(255),
-    `password`     VARCHAR(255),
-    `email`        VARCHAR(255),
-    `img`          VARCHAR(255),
-    `DOF`          DATE,
-    `phone`        VARCHAR(255),
-    `country`      VARCHAR(255),
-    `jobTitle`     VARCHAR(255),
-    `YOE`          INT,
-    `gender`       VARCHAR(15),
-    `nationality`  VARCHAR(255),
-    `skills`       TEXT,
-    `ratingsStar`  TEXT,
-    `activities`   TEXT
+    `user_id`     INT AUTO_INCREMENT PRIMARY KEY,
+    `name`        VARCHAR(255),
+    `password`    VARCHAR(255),
+    `email`       VARCHAR(255) UNIQUE,
+    `img`         VARCHAR(255),
+    `DOF`         DATE,
+    `phone`       VARCHAR(30) UNIQUE,
+    `country`     VARCHAR(255),
+    `jobTitle`    VARCHAR(255),
+    `YOE`         INT,
+    `level`       INT,
+    `gender`      VARCHAR(15),
+    `nationality` VARCHAR(255),
+    `skills`      TEXT,
+    `ratings`     TEXT,
+    `friends`     TEXT
+);
+CREATE TABLE `activities`
+(
+    `activities_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id`       INT,
+    `img_src`       TEXT,
+    `name`          VARCHAR(255),
+    `description`   VARCHAR(255),
+    `date`          DATE,
+    `time`          TIME,
+    CONSTRAINT `fk_activities_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+);
+CREATE TABLE `draft`
+(
+    `draft_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id`  INT,
+    `title`    TEXT,
+    `content`  TEXT,
+    `date`     DATE,
+    `time`     TIME,
+    CONSTRAINT `fk_draft_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
 CREATE TABLE `items`
 (
     `item_id`        INT AUTO_INCREMENT PRIMARY KEY,
     `name`           VARCHAR(255),
     `description`    TEXT,
-    `day_price`          DECIMAL(10, 2),
-    `person_price`          DECIMAL(10, 2),
+    `day_price`      DECIMAL(10, 2),
+    `person_price`   DECIMAL(10, 2),
     `stock_quantity` INT,
     `imgs_srcs`      TEXT,
     `min_days`       INT,
@@ -46,16 +68,15 @@ CREATE TABLE `items`
 );
 CREATE TABLE `carts`
 (
-    `cart_id`    INT AUTO_INCREMENT PRIMARY KEY,
-    `user_id`    INT,
+    `cart_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id` INT,
     CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
-# DROP TABLE `cart_items`;
 CREATE TABLE `cart_items`
 (
-    `cart_id`  INT,
-    `item_id`  INT,
-    `days_selected` INT,
+    `cart_id`          INT,
+    `item_id`          INT,
+    `days_selected`    INT,
     `persons_selected` INT,
     CONSTRAINT pk_cart_items PRIMARY KEY (cart_id, item_id),
     CONSTRAINT `fk_cart_item_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`cart_id`),
@@ -89,7 +110,6 @@ CREATE TABLE `projects`
     `progress`        TEXT,
     CONSTRAINT `fk_project_client` FOREIGN KEY (`client`) REFERENCES `users` (`user_id`)
 );
-DROP TABLE projects;
 CREATE TABLE `targets`
 (
     `target_id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -109,18 +129,21 @@ CREATE TABLE `tickets`
     `achieved`  DECIMAL(10, 2),
     CONSTRAINT `fk_tickets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
-CREATE TABLE `friends`
-(
-    `user_id` INT,
-    `friends` TEXT,
-    CONSTRAINT `fk_friends_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-);
 CREATE TABLE `feedbacks`
 (
     `feedback_id` INT AUTO_INCREMENT PRIMARY KEY,
     `name`        VARCHAR(255),
     `email`       VARCHAR(255),
-    `phone`       VARCHAR(255),
+    `phone`       VARCHAR(30),
     `added_time`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `message`     TEXT
+);
+CREATE TABLE `coupon`
+(
+    `coupon_id`  INT AUTO_INCREMENT PRIMARY KEY,
+    `used_times` INT DEFAULT 0,
+    `max_times`  INT,
+    `code`       VARCHAR(255),
+    `amount`     INT,
+    `percentage` DECIMAL(5, 2)
 );

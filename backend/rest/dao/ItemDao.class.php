@@ -69,7 +69,7 @@ class ItemDao extends BaseDao {
 
     public function get_item_by_id($item_id) {
         $query = "SELECT * FROM items WHERE item_id = :item_id";
-        return $this->query_unique($query, ['item_id' => $item_id]);
+        return $this->query_unique_first($query, ['item_id' => $item_id]);
     }
 
     public function delete_item($item_id) {

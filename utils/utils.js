@@ -322,7 +322,7 @@ var Utils = {
     });
   },
   handleHashChange: () => {
-    CartService.updateCart();
+    CartService.updateCart(true);
     $(window).off("hashchange", Utils.handleHashChange);
     $(window).off("beforeunload", Utils.handleHashChange);
   },
@@ -465,13 +465,23 @@ var Utils = {
       if (input.target.value.trim() == "") {
         input.target.classList.remove("active");
         input.target.value = input.target.value.trim();
-        setTimeout(() => {
-          input.target.classList.remove("delay");
-        }, 500);
       }
     });
   },
-  formAnimation: function () {
+  resetFormAnimation: () => {
+    const textareas = document.querySelectorAll("textarea.field"),
+      fields = document.querySelectorAll(".form-control input"),
+      txtarLabels = document.querySelectorAll(".txtar-la");
+
+    textareas.forEach((textarea, index) => {
+      txtarLabels[index].classList.remove("active");
+      textarea.classList.remove("active");
+    });
+    fields.forEach((field) => {
+      field.classList.remove("active");
+    });
+  },
+  formAnimation: () => {
     const textareas = document.querySelectorAll("textarea.field"),
       fields = document.querySelectorAll(".form-control input"),
       txtarLabels = document.querySelectorAll(".txtar-la");
@@ -490,9 +500,6 @@ var Utils = {
           txtarLabels[index].classList.remove("active");
           textarea.classList.remove("active");
           textarea.value = textarea.value.trim();
-          setTimeout(() => {
-            txtarLabels[index].classList.remove("delay");
-          }, 900);
         }
       });
     });
@@ -501,7 +508,7 @@ var Utils = {
       Utils.fieldAnimation(field);
     });
   },
-  submit: function (form_id, to, success_mge, block_id, loadTable, modal) {
+  submit: function (form_id, to, success_mge, block_id, callBack, modal) {
     const form = $("#" + form_id),
       block = $("#" + block_id);
 
@@ -513,8 +520,8 @@ var Utils = {
           Utils.unblock_ui(block);
           if (modal) Utils.removeModal(false, modal);
 
-          Utils.appearSuccAlert(success_mge);
-          if (loadTable) loadTable();
+          if (success_mge) Utils.appearSuccAlert(success_mge);
+          if (callBack) callBack();
         })
         .fail((xhr) => {
           Utils.unblock_ui(block);

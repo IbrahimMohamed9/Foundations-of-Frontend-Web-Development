@@ -100,7 +100,6 @@ var FeedbackService = {
     </div>
     `;
     Utils.formSetup(modal, () => {
-      // form_id, to, success_mge, block_id, loadTable, modal
       Utils.submit(
         "feedback-form",
         "feedbacks/add_feedback.php",

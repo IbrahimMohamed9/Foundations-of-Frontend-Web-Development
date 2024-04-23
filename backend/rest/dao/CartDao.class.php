@@ -38,7 +38,8 @@ class CartDao extends BaseDao {
                 JOIN cart_items AS car_ite ON car_ite.cart_id = cart.cart_id
                 JOIN items AS ite ON ite.item_id = car_ite.item_id
                 WHERE cart.cart_id = :cart_id AND car_ite = :cart_ite";
-    return $this->query_unique($query, $ids);
+    
+    return $this->query_unique_first($query, $ids);
   }
 
   public function get_cart_items_number_by_id($cart_id) {
@@ -47,7 +48,7 @@ class CartDao extends BaseDao {
                 FROM carts AS cart
                 JOIN cart_items AS car_ite ON car_ite.cart_id = cart.cart_id
                 WHERE cart.cart_id = :cart_id";
-    return $this->query_unique($query, ['cart_id' => $cart_id]);
+    return $this->query_unique_first($query, ['cart_id' => $cart_id]);
   }
 
   public function delete_item_cart($ids) {
@@ -66,5 +67,12 @@ class CartDao extends BaseDao {
       SET days_selected = :days_selected, persons_selected = :persons_selected 
       WHERE cart_id = :cart_id AND item_id = :item_id";
     $this->execute($query, $cart);
+  }
+
+  public function check_coupon($code) {
+    $query = "SELECT amount, percentage 
+                FROM coupon
+                WHERE code = :code";
+    return $this->query_unique_first($query, $code);
   }
 }

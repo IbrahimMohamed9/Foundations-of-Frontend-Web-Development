@@ -109,20 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  function resetForm() {
-    const textareas = document.querySelectorAll("textarea.field"),
-      fields = document.querySelectorAll(".form-control input"),
-      txtarLabels = document.querySelectorAll(".txtar-la");
-
-    textareas.forEach((textarea, index) => {
-      txtarLabels[index].classList.remove("active");
-      textarea.classList.remove("active");
-    });
-    fields.forEach((field) => {
-      field.classList.remove("active");
-    });
-  }
-
   app.route({
     view: "contact",
     load: "contact-us.html",
@@ -135,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Feedback added successfully",
         "contact-form .submit",
         () => {
-          resetForm();
+          Utils.resetFormAnimation();
         }
       );
     },
