@@ -228,16 +228,20 @@
   transform: translateY(0);
 }
 form .submit {
-  border: 0;
   border-radius: 1rem;
-  background-color: var(--main-color);
+  background-color: transparent;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   color: var(--font-color);
   width: 100px;
   margin: 30px 0;
+  border: 1px solid var(--main-color);
+  transition: var(--main-transition);
 }
-
+form .submit:hover {
+  background-color: var(--main-color);
+  color: white;
+}
 /* 
 ====================================================================
 ====================================================================

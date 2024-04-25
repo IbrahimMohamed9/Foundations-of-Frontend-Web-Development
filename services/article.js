@@ -1,28 +1,14 @@
 var ArticleService = {
-  loadTable: function () {
-    fetch(Constants.API_BASE_URL + "articles/get_articles.php")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const tableBody = document.querySelector("#tbl_articles tbody");
-
-        tableBody.innerHTML = "";
-        data.map((articleData) => {
-          ArticleService.loadTableRow(tableBody, articleData);
-        });
-      })
-      .catch((error) => {
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
+  loadTable: () => {
+    RestClient.get("articles/get_articles.php", (data) => {
+      const tableBody = document.querySelector("#tbl_articles tbody");
+      tableBody.innerHTML = "";
+      data.forEach((articleData) => {
+        ArticleService.loadTableRow(tableBody, articleData);
       });
+    });
   },
-  loadTableRow: function (tableBody, articleData) {
+  loadTableRow: (tableBody, articleData) => {
     tableBody.innerHTML += `
     <tr>
     <td class="table-image">
@@ -55,7 +41,7 @@ var ArticleService = {
   </tr>
     `;
   },
-  addArticleModal: function (message = "Article added successfully") {
+  addArticleModal: (message) => {
     const modal = document.getElementById("myModal");
     modal.innerHTML = `
     <div class="master-container">
@@ -188,7 +174,6 @@ var ArticleService = {
         "article-form",
         "articles/add_article.php",
         message,
-        "article-form .submit",
         () => {
           ArticleService.loadTable("tbl_articles");
         },
@@ -196,30 +181,24 @@ var ArticleService = {
       );
     });
   },
-  openEditArticleModal: function (id) {
-    RestClient.get(
-      "articles/get_article.php?article_id=" + id,
-      function (data) {
-        ArticleService.addArticleModal("Article edit successfully");
+  openEditArticleModal: (id) => {
+    RestClient.get("articles/get_article.php?article_id=" + id, (data) => {
+      ArticleService.addArticleModal("Article edit successfully");
 
-        $("#myModal input[name='article_id']").val(data.article_id);
-        $("#myModal input[name='img_src']").val(data.img_src);
-        $("#myModal input[name='title']").val(data.title);
-        $("#myModal input[name='status']").val(data.status);
-        $("#myModal input[name='category']").val(data.category);
-        $("#myModal input[name='country']").val(data.country);
-        $("#myModal input[name='added_time']").val(data.added_time);
-        $("#myModal textarea[name='img_desc']").val(data.img_desc);
-        $("#myModal textarea[name='description']").val(data.description);
-        $("#myModal textarea[name='content']").val(data.content);
-        Utils.formAnimation();
-      },
-      function (error) {
-        console.error(error);
-      }
-    );
+      $("#myModal input[name='article_id']").val(data.article_id);
+      $("#myModal input[name='img_src']").val(data.img_src);
+      $("#myModal input[name='title']").val(data.title);
+      $("#myModal input[name='status']").val(data.status);
+      $("#myModal input[name='category']").val(data.category);
+      $("#myModal input[name='country']").val(data.country);
+      $("#myModal input[name='added_time']").val(data.added_time);
+      $("#myModal textarea[name='img_desc']").val(data.img_desc);
+      $("#myModal textarea[name='description']").val(data.description);
+      $("#myModal textarea[name='content']").val(data.content);
+      Utils.formAnimation();
+    });
   },
-  removeArticle: function (id) {
+  removeArticle: (id) => {
     if (
       confirm("Do you want to delete article with the id " + id + "?") == true
     ) {
@@ -232,106 +211,99 @@ var ArticleService = {
       );
     }
   },
-  loadArticleCrousel: function () {
-    fetch(Constants.API_BASE_URL + "articles/get_articles.php")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const articles = document.querySelector(
-          ".articles .splide__track .container.splide__list"
-        );
-        data.map((articleData) => {
-          const articleCon = `
-          <div class="article splide__slide">
-            <!-- <a href="pages/article.html?article_id=${articleData.article_id}"> -->
-              <div class="image">
-                <img src="${articleData.img_src}" alt="" />
+  loadArticleCrousel: () => {
+    RestClient.get("articles/get_articles.php", (data) => {
+      const articles = document.querySelector(
+        ".articles .splide__track .container.splide__list"
+      );
+      data.forEach((articleData) => {
+        const articleCon = `
+        <div class="article splide__slide">
+          <!-- <a href="pages/article.html?article_id=${articleData.article_id}"> -->
+            <div class="image">
+              <img src="${articleData.img_src}" alt="" />
+            </div>
+          <!-- </a> -->
+          <div class="card">
+            <div class="content">
+              <h3>${articleData.title}</h3>
+              <div class="icons">
+                <ul class="font-share-icons">
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-whatsapp whatsapp"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-facebook-messenger"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-telegram telegram"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-facebook-f facebook"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="" target="_blank"
+                      ><i class="fa-brands fa-instagram instagram"></i
+                    ></a>
+                  </li>
+                </ul>
+                <button class="share-btn">
+                  <i class="fa-solid fa-share share"></i>
+                </button>
               </div>
-            <!-- </a> -->
-            <div class="card">
-              <div class="content">
-                <h3>${articleData.title}</h3>
-                <div class="icons">
-                  <ul class="font-share-icons">
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-whatsapp whatsapp"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-facebook-messenger"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-telegram telegram"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-facebook-f facebook"></i
-                      ></a>
-                    </li>
-                    <li>
-                      <a href="" target="_blank"
-                        ><i class="fa-brands fa-instagram instagram"></i
-                      ></a>
-                    </li>
-                  </ul>
-                  <button class="share-btn">
-                    <i class="fa-solid fa-share share"></i>
-                  </button>
-                </div>
-                <p>${articleData.description}</p>
-                <a
-                  href="pages/article.html?article_id=${articleData.article_id}"
-                  class="read"
-                >
-                  Read More
-                </a>
-              </div>
+              <p>${articleData.description}</p>
+              <a
+                href="pages/article.html?article_id=${articleData.article_id}"
+                class="read"
+              >
+                Read More
+              </a>
             </div>
           </div>
-          `;
-          articles.innerHTML += articleCon;
-        });
-        Utils.carouselSplide(".articles .splide");
-        //share icon in article
-        const shareIcons = document.querySelectorAll(".share-btn"),
-          shareLists = document.querySelectorAll(".icons .font-share-icons");
+        </div>
+        `;
+        articles.innerHTML += articleCon;
+      });
+      Utils.carouselSplide(".articles .splide");
+      //share icon in article
+      const shareIcons = document.querySelectorAll(".share-btn"),
+        shareLists = document.querySelectorAll(".icons .font-share-icons");
 
-        shareIcons.forEach((shareIcon, index) => {
-          shareIcon.addEventListener("click", () => {
-            if (shareLists[index].style.display != "grid") {
-              shareLists[index].style.display = "grid";
-              shareLists[index].style.animation = "appear 0.2s linear forwards";
-            } else {
-              shareLists[index].style.animation =
-                "hidden var(--main-transition) linear forwards";
-              setTimeout(() => {
-                shareLists[index].style.display = "none";
-              }, 300);
-            }
-          });
-          shareIcon.addEventListener("blur", () => {
+      shareIcons.forEach((shareIcon, index) => {
+        shareIcon.addEventListener("click", () => {
+          if (shareLists[index].style.display != "grid") {
+            shareLists[index].style.display = "grid";
+            shareLists[index].style.animation = "appear 0.2s linear forwards";
+          } else {
             shareLists[index].style.animation =
               "hidden var(--main-transition) linear forwards";
             setTimeout(() => {
               shareLists[index].style.display = "none";
             }, 300);
-          });
+          }
+        });
+        shareIcon.addEventListener("blur", () => {
+          shareLists[index].style.animation =
+            "hidden var(--main-transition) linear forwards";
+          setTimeout(() => {
+            shareLists[index].style.display = "none";
+          }, 300);
         });
       });
+    });
   },
   loadArticlePage: (id) => {
     RestClient.get(
       "articles/get_article.php?article_id=" + id,
-      function (articleData) {
+      (articleData) => {
         const articleWrapper = document.querySelector("article"),
           moreArticleWrapper = document.querySelector(
             ".more-articles .container"
@@ -396,28 +368,21 @@ var ArticleService = {
 
         articleWrapper.innerHTML = article;
       },
-      function (error) {
+      (error) => {
         console.error(error);
       }
     );
   },
   loadMoreArticles: (id) => {
-    fetch(Constants.API_BASE_URL + "articles/get_articles.php")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
+    RestClient.get("articles/get_articles.php", (data) => {
+      const moreArticleWrapper = document.querySelector(
+        ".more-articles .container"
+      );
+      data.map((articleData) => {
+        if (articleData.article_id == id) {
+          return;
         }
-        return response.json();
-      })
-      .then((data) => {
-        const moreArticleWrapper = document.querySelector(
-          ".more-articles .container"
-        );
-        data.map((articleData) => {
-          if (articleData.article_id == id) {
-            return;
-          }
-          const moreArticle = `
+        const moreArticle = `
           <div class="col">
             <h2>${articleData.country}</h2>
             <a href="./article.html?article_id=${articleData.article_id}">
@@ -436,32 +401,17 @@ var ArticleService = {
             </div>
           </div>
         `;
-          moreArticleWrapper.innerHTML += moreArticle;
-        });
-      })
-      .catch((error) => {
-        console.error(
-          "There has been a problem with your fetch operation:",
-          error
-        );
+        moreArticleWrapper.innerHTML += moreArticle;
       });
+    });
   },
   loadArticlesPage: (category) => {
-    fetch(
-      Constants.API_BASE_URL + "articles/get_articles.php?category=" + category
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const articles = document.querySelector(
-          `.articles.${category.toLowerCase()} .container .row`
-        );
-        data.map((articleData) => {
-          const articleCon = `
+    RestClient.get("articles/get_articles.php?category=" + category, (data) => {
+      const articles = document.querySelector(
+        `.articles.${category.toLowerCase()} .container .row`
+      );
+      data.map((articleData) => {
+        const articleCon = `
             <div class="col">
               <a href="pages/article.html?article_id=${articleData.article_id}">
                 <div class="card">
@@ -486,8 +436,8 @@ var ArticleService = {
               </a>
             </div>
           `;
-          articles.innerHTML += articleCon;
-        });
+        articles.innerHTML += articleCon;
       });
+    });
   },
 };

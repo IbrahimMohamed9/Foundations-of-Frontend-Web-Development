@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../rest/services/UserService.class.php';
+require_once __DIR__ . '/../../rest/services/UserService.class.php';
 
 $email = $_REQUEST['sign_email'];
 $password = $_REQUEST['signin_password'];

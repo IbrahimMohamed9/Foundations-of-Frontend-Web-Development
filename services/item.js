@@ -1,5 +1,5 @@
 var ItemService = {
-  loadTable: function (id) {
+  loadTable: (id) => {
     const category =
       id === "tbl_packages"
         ? "package"
@@ -8,25 +8,18 @@ var ItemService = {
         : id === "tbl_hotels"
         ? "hotel"
         : alert("check the id");
-    fetch(Constants.API_BASE_URL + "items/get_items.php?category=" + category)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const tableBody = document.querySelector("#" + id + " tbody");
+    RestClient.get("items/get_items.php?category=" + category, (data) => {
+      const tableBody = document.querySelector("#" + id + " tbody");
 
-        tableBody.innerHTML = "";
-        data.map((itemData) => {
-          id === "tbl_packages" || id === "tbl_hotels" || id === "tbl_cars"
-            ? ItemService.loadTableRow(tableBody, itemData)
-            : alert("check the id");
-        });
+      tableBody.innerHTML = "";
+      data.map((itemData) => {
+        id === "tbl_packages" || id === "tbl_hotels" || id === "tbl_cars"
+          ? ItemService.loadTableRow(tableBody, itemData)
+          : alert("check the id");
       });
+    });
   },
-  loadTableRow: function (tableBody, itemData) {
+  loadTableRow: (tableBody, itemData) => {
     const category = itemData.category,
       price = Utils.checkDecWithInt(Utils.getPrice(category, itemData));
     tableBody.innerHTML += `
@@ -87,27 +80,21 @@ var ItemService = {
   </tr>
     `;
   },
-  loadCards: function (category) {
-    fetch(Constants.API_BASE_URL + "items/get_items.php?category=" + category)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        data.map((itemData) => {
-          category === "car" || category === "hotel" || category === "package"
-            ? ItemService.loadCard(itemData)
-            : alert("check the category");
-        });
-        // TODO SOOOlVE THIS
-        setTimeout(() => {
-          Utils.carouselSplide(`.splide.${category}s-carousel`, 20);
-        }, 100);
+  loadCards: (category) => {
+    RestClient.get("items/get_items.php?category=" + category, (data) => {
+      data.forEach((itemData) => {
+        category === "car" || category === "hotel" || category === "package"
+          ? ItemService.loadCard(itemData)
+          : alert("check the category");
       });
+      // TODO
+      /*
+      When open shop page from home it appear error
+      */
+      Utils.carouselSplide(`.splide.${category}s-carousel`, 20);
+    });
   },
-  loadCard: function (itemData) {
+  loadCard: (itemData) => {
     // Package design
     // `
     //     <div class="item splide__slide">
@@ -174,7 +161,7 @@ var ItemService = {
     );
     items.innerHTML += content;
   },
-  addItemModal: function (category, message = " added successfully") {
+  addItemModal: (category, edit) => {
     const modal = document.getElementById("myModal");
     modal.innerHTML = `
       <div class="master-container">
@@ -184,7 +171,7 @@ var ItemService = {
             <i class="fa-solid fa-xmark x"></i>
           </div>
           <div class="form">
-            <form id="${category}-form">
+          <form id="${category}-form" name="${category}-form">
               <div class="inputs">
                 <input
                   type="hidden"
@@ -305,7 +292,7 @@ var ItemService = {
                 `
     }
                 ${
-                  category === "cars"
+                  category !== "package"
                     ? `
                   <div class="form-control">
                     <input type="number" class="field" required id="day_price" name="day_price" />
@@ -325,11 +312,8 @@ var ItemService = {
                     <label for="person_price"> Person Price </label>
                   </div>
                   `
-                    : `
-                  <div class="form-control">
-                    <input type="number" class="field" required id="day_price" name="day_price" />
-                    <label for="day_price"> Day Price </label>
-                  </div>
+                    : category ===
+                      "hotel"`
                   <div class="form-control">
                     <input
                       type="number"
@@ -367,6 +351,9 @@ var ItemService = {
                   </label>
                 </div>
                 <div class="form-control full">
+                  <label for="added_time" class="d-none">
+                    Added Time
+                  </label>
                   <input type="datetime-local" id="added_time" name="added_time" />
                 </div>
               </div>
@@ -407,7 +394,7 @@ var ItemService = {
                     ></textarea>
                   </div>
 
-                  <label id="imgs_srcs" class="txtar-la">
+                  <label for="imgs_srcs" class="txtar-la">
                     Image Source
                   </label>
                 </div>
@@ -419,12 +406,13 @@ var ItemService = {
       </div>
     `;
     Utils.formSetup(modal, () => {
-      message = Utils.capitalizeFirstLetter(category) + message;
+      const message =
+        Utils.capitalizeFirstLetter(category) +
+        (edit ? " edited successfully" : " added successfully");
       Utils.submit(
         category + "-form",
         "items/add_item.php",
         message,
-        category + "-form .submit",
         () => {
           ItemService.loadTable("tbl_" + category + "s");
         },
@@ -432,9 +420,9 @@ var ItemService = {
       );
     });
   },
-  openEditItemModal: function (id) {
+  openEditItemModal: (id) => {
     RestClient.get("items/get_item.php?item_id=" + id, function (data) {
-      ItemService.addItemModal(data.category, " edited successfully");
+      ItemService.addItemModal(data.category, true);
 
       $("#myModal input[name='item_id']").val(data.item_id);
       $("#myModal input[name='name']").val(data.name);
@@ -459,7 +447,7 @@ var ItemService = {
       Utils.formAnimation();
     });
   },
-  removeItem: function (id, category) {
+  removeItem: (id, category) => {
     if (confirm("Do you want to delete item with the id " + id + "?") == true) {
       RestClient.delete("items/delete_item.php?item_id=" + id, {}, () => {
         ItemService.loadTable("tbl_" + category + "s");
@@ -467,21 +455,14 @@ var ItemService = {
     }
   },
   loadItemPage: (id) => {
-    fetch(Constants.API_BASE_URL + "items/get_item.php?item_id=" + id)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((itemData) => {
-        const itemWrapper = document.querySelector(".cart.item"),
-          category = itemData.category,
-          price = Utils.getPrice(category, itemData),
-          intPart = Math.floor(parseFloat(price)),
-          decimalPart = Utils.checkDec(price);
+    RestClient.get("items/get_item.php?item_id=" + id, (itemData) => {
+      const itemWrapper = document.querySelector(".cart.item"),
+        category = itemData.category,
+        price = Utils.getPrice(category, itemData),
+        intPart = Math.floor(parseFloat(price)),
+        decimalPart = Utils.checkDec(price);
 
-        const itemCon1 = `
+      const itemCon1 = `
             <div class="cart item position-relative">
               <div class="containerr">
                 <div class="right-corner">
@@ -534,8 +515,8 @@ var ItemService = {
                   <div class="list-container position-relative">
                     <div class="center list-img">
           `;
-        const srcsArray = itemData.imgs_srcs.split(" ");
-        let itemCon2 = `
+      const srcsArray = itemData.imgs_srcs.split(" ");
+      let itemCon2 = `
             <div class="img-container active">
               <img
                 src="${srcsArray[0]}"
@@ -543,11 +524,11 @@ var ItemService = {
               />
             </div>
           `;
-        srcsArray.forEach((imgSrc, index) => {
-          if (!index) {
-            return;
-          }
-          itemCon2 += `
+      srcsArray.forEach((imgSrc, index) => {
+        if (!index) {
+          return;
+        }
+        itemCon2 += `
               <div class="img-container">
                 <img
                   src="${imgSrc}"
@@ -555,8 +536,8 @@ var ItemService = {
                 />
               </div>
             `;
-        });
-        const itemCon3 = `
+      });
+      const itemCon3 = `
                     </div>
                   </div>
                 </div>
@@ -589,93 +570,83 @@ var ItemService = {
             </div>
           `;
 
-        itemWrapper.innerHTML = itemCon1 + itemCon2 + itemCon3;
+      itemWrapper.innerHTML = itemCon1 + itemCon2 + itemCon3;
 
-        // Main image
-        let previous = 0;
-        const mainImage = document.querySelector(
-            ".item-container .images .main img"
-          ),
-          imageList = document.querySelectorAll(
-            ".item-container .images .list-container .img-container"
-          );
-        imageList.forEach((image, index) => {
-          const imgElement = image.querySelector("img");
-          image.addEventListener("mouseover", () => {
-            mainImage.src = imgElement.src;
-            image.classList.add("active");
-            removeActive(index);
-            previous = index;
-          });
+      // Main image
+      let previous = 0;
+      const mainImage = document.querySelector(
+          ".item-container .images .main img"
+        ),
+        imageList = document.querySelectorAll(
+          ".item-container .images .list-container .img-container"
+        );
+      imageList.forEach((image, index) => {
+        const imgElement = image.querySelector("img");
+        image.addEventListener("mouseover", () => {
+          mainImage.src = imgElement.src;
+          image.classList.add("active");
+          removeActive(index);
+          previous = index;
         });
+      });
 
-        // remove class active in img
-        function removeActive(hoverdIndex) {
-          if (hoverdIndex != previous) {
-            imageList[previous].classList.remove("active");
-          }
+      // remove class active in img
+      function removeActive(hoverdIndex) {
+        if (hoverdIndex != previous) {
+          imageList[previous].classList.remove("active");
         }
-        //share icon
-        const shareIcon = document.querySelector(".share-btn"),
-          shareLists = document.querySelector(".icons .font-share-icons");
+      }
+      //share icon
+      const shareIcon = document.querySelector(".share-btn"),
+        shareLists = document.querySelector(".icons .font-share-icons");
 
-        shareIcon.addEventListener("click", () => {
-          if (
-            window.matchMedia("(max-width:500px)").matches &&
-            navigator.share
-          ) {
-            navigator
-              .share({
-                title: "10 Days",
-                text: "Come to stay with the best 10 Days",
-                url: "https://ibrahimmoatazmohamed.github.io/IT-207-Introduction-to-Web-Programming/assets/html/item.html",
-              })
-              .then(() => console.log("Successful share"))
-              .catch((error) => console.log("Error sharing", error));
+      shareIcon.addEventListener("click", () => {
+        if (window.matchMedia("(max-width:500px)").matches && navigator.share) {
+          navigator
+            .share({
+              title: "10 Days",
+              text: "Come to stay with the best 10 Days",
+              url: "https://ibrahimmoatazmohamed.github.io/IT-207-Introduction-to-Web-Programming/assets/html/item.html",
+            })
+            .then(() => console.log("Successful share"))
+            .catch((error) => console.log("Error sharing", error));
+        } else {
+          if (shareLists.style.display !== "grid") {
+            shareLists.style.display = "grid";
+            shareLists.style.animation =
+              "appear var(--main-transition) linear forwards";
           } else {
-            if (shareLists.style.display !== "grid") {
-              shareLists.style.display = "grid";
-              shareLists.style.animation =
-                "appear var(--main-transition) linear forwards";
-            } else {
-              shareLists.style.animation =
-                "hidden var(--main-transition) linear forwards";
-              setTimeout(() => {
-                shareLists.style.display = "none";
-              }, 300);
-            }
-          }
-        });
-
-        // Hide share list on blur
-        shareIcon.addEventListener("blur", () => {
-          if (shareLists.style.display === "grid") {
             shareLists.style.animation =
               "hidden var(--main-transition) linear forwards";
             setTimeout(() => {
               shareLists.style.display = "none";
             }, 300);
           }
-        });
+        }
       });
+
+      // Hide share list on blur
+      shareIcon.addEventListener("blur", () => {
+        if (shareLists.style.display === "grid") {
+          shareLists.style.animation =
+            "hidden var(--main-transition) linear forwards";
+          setTimeout(() => {
+            shareLists.style.display = "none";
+          }, 300);
+        }
+      });
+    });
   },
   loadMoreItems: () => {
-    fetch(Constants.API_BASE_URL + "items/get_items.php")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        const moreItemWrapper = document.querySelector(
-          ".more-items .splide .wrapper.splide__track .carousel.splide__list"
-        );
-        data.map((itemData) => {
-          let decimalPart = Utils.checkDec(parseFloat(itemData.price));
-          const intPart = Math.floor(parseFloat(itemData.price));
+    RestClient.get("items/get_items.php", (data) => {
+      const moreItemWrapper = document.querySelector(
+        ".more-items .splide .wrapper.splide__track .carousel.splide__list"
+      );
+      data.map((itemData) => {
+        let decimalPart = Utils.checkDec(parseFloat(itemData.price));
+        const intPart = Math.floor(parseFloat(itemData.price));
 
-          const moreItemCon = `
+        const moreItemCon = `
           <a
             href="./item.html?item_id=${itemData.item_id}"
             class="col splide__slide"
@@ -698,10 +669,13 @@ var ItemService = {
           </a>
         `;
 
-          moreItemWrapper.innerHTML += moreItemCon;
-          console.log(moreItemWrapper.innerHTML);
-        });
-        Utils.carouselSplide(".splide");
+        moreItemWrapper.innerHTML += moreItemCon;
+        console.log(moreItemWrapper.innerHTML);
       });
+      Utils.carouselSplide(".splide");
+    });
+  },
+  loadNewPackages: () => {
+    newPackageLimit;
   },
 };

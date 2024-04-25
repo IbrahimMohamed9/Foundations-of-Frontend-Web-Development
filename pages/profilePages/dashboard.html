@@ -2,9 +2,11 @@
 <!-- Start dashboard -->
 <div class="screen wrapper d-grid gap-20 mr-20 ml-20">
   <!-- Start Welcome Widget -->
-  <div
-    class="welcome bg-fourth pb-60 rad-10 block-mobile txt-c-mobile p-relative"
-  ></div>
+  <div>
+    <div
+      class="welcome bg-fourth pb-60 rad-10 block-mobile txt-c-mobile p-relative"
+    ></div>
+  </div>
   <!-- End Welcome Widget -->
   <!-- Start Quick Draft Widget -->
   <div
@@ -12,17 +14,24 @@
   >
     <h2 class="mt-0 mb-10">Quick Draft</h2>
     <p class="mt-0 mb-20 fs-15 c-grey">Write A Draft For Your Ideas</p>
-    <form action="">
+    <form id="draft-form">
       <input
         class="d-block border-ccc rad-6 w-full p-10 b-none bg-third c-main-font"
         type="text"
-        name="draft-title"
+        name="title"
+        id="title"
+        maxlength="40"
+        minlength="3"
+        required
         placeholder="Title"
       />
       <div class="textarea border-ccc mt-20 rad-6 w-full b-none">
         <textarea
           class="d-block rad-6 w-full p-10 b-none bg-third c-main-font"
-          name="draft-body"
+          name="content"
+          id="content"
+          minlength="3"
+          required
           placeholder="Your Thought"
         ></textarea>
       </div>
@@ -36,20 +45,24 @@
   </div>
   <!-- End Quick Draft Widget -->
   <!-- Start Targets -->
-  <div class="targets p-20 pl-10-f pr-10-f bg-fourth rad-10">
-    <h2 class="mt-0 mb-10">Yearly Targets</h2>
-    <p class="mt-0 mb-20 fs-15 c-grey">Targets Of The Year</p>
+  <div>
+    <div class="targets p-20 pl-10-f pr-10-f bg-fourth rad-10">
+      <h2 class="mt-0 mb-10">Yearly Targets</h2>
+      <p class="mt-0 mb-20 fs-15 c-grey">Targets Of The Year</p>
+    </div>
   </div>
   <!-- End Targets -->
   <!-- Start Ticket Wedget -->
-  <div class="tickets p-20 pl-10-f pr-10-f bg-fourth rad-10">
-    <h2 class="mt-0 mb-10">Tickets Statistics</h2>
-    <p class="mt-0 mb-20 fs-15 c-grey">Everything About Support Tickets</p>
-    <div class="tickets-wrapper d-flex f-wrap txt-c gap-20 gap-10-f"></div>
+  <div>
+    <div class="tickets p-20 pl-10-f pr-10-f bg-fourth rad-10">
+      <h2 class="mt-0 mb-10">Tickets Statistics</h2>
+      <p class="mt-0 mb-20 fs-15 c-grey">Everything About Support Tickets</p>
+      <div class="tickets-wrapper d-flex f-wrap txt-c gap-20 gap-10-f"></div>
+    </div>
   </div>
   <!-- End Ticket Wedget -->
   <!-- Start Latest Uploads Widget -->
-  <div class="d-none latest-uploads p-20 bg-fourth rad-10 p-10-f">
+  <div class="latest-uploads p-20 bg-fourth rad-10 p-10-f d-none">
     <h2 class="mt-0 mb-20">Latest Uploads</h2>
     <ul class="m-0">
       <li class="between-flex pb-10 mb-10">
@@ -116,23 +129,28 @@
   </div>
   <!-- End Latest Uploads Widget -->
   <!-- Start Last Project Progress Widget -->
-  <div class="last-project p-20 bg-fourth rad-10 p-relative p-10-f d-none">
-    <h2 class="mt-0 mb-20">Last Project Progress</h2>
-    <ul class="m-0 p-relative"></ul>
-    <img
-      class="launch-icon"
-      src="../assets/images/profile/project.png"
-      alt="launch image"
-    />
+  <div class="d-none">
+    <!-- 
+      TODO connect this with db
+     -->
+    <div class="last-project p-20 bg-fourth rad-10 p-relative p-10-f">
+      <h2 class="mt-0 mb-20">Last Project Progress</h2>
+      <ul class="m-0 p-relative"></ul>
+      <img
+        class="launch-icon"
+        src="../assets/images/profile/project.png"
+        alt="launch image"
+      />
+    </div>
   </div>
   <!-- End Last Project Progress Widget -->
-  <!-- Start Reminders Widget -->
+  <!-- Start Drafts Widget -->
   <div>
-    <div class="reminders p-20 bg-fourth rad-10 p-relative p-10-f">
-      <h2 class="mt-0 mb-25">Reminders</h2>
+    <div class="drafts p-20 bg-fourth rad-10 p-relative p-10-f">
+      <h2 class="mt-0 mb-25">Drafts</h2>
       <ul class="m-0"></ul>
     </div>
   </div>
-  <!-- End Reminders Widget -->
+  <!-- End Drafts Widget -->
 </div>
 <!-- End dashboard -->

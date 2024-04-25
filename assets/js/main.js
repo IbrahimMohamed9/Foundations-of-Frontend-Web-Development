@@ -152,5 +152,5 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   });
-  CartService.shoppingCartCounter(1);
+  CartService.shoppingCartCounter(1, 0);
 });

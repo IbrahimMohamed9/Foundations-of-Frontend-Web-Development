@@ -7,6 +7,4 @@ $ids = array(
 );
 
 $cart_service = new CartService();
-$cart = $cart_service->delete_item_cart($ids);
-
-echo json_encode($cart);
+$cart_service->delete_item_cart($ids);

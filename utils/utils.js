@@ -1,7 +1,9 @@
 var Utils = {
-  block_ui: function (element) {
+  block_ui: (element, small) => {
     $(element).block({
-      message: '<div class="loader"></div>',
+      message: small
+        ? '<div class="loader small"></div>'
+        : '<div class="loader"></div>',
       css: {
         backgroundColor: "transparent",
         border: "0",
@@ -22,11 +24,12 @@ var Utils = {
     modal.querySelector(".x").addEventListener("click", () => {
       Utils.removeModal(removeeBtn, modal);
     });
-
-    modal.querySelector(".checkout-btn").addEventListener("click", () => {
-      Utils.removeModal(removeeBtn, modal);
-      Utils.appearSuccAlert(message);
-    });
+    if (removeeBtn || cartModal) {
+      modal.querySelector(".checkout-btn").addEventListener("click", () => {
+        Utils.removeModal(removeeBtn, modal);
+        Utils.appearSuccAlert(message);
+      });
+    }
   },
   carouselSplide: (carousel, gap = 25) => {
     const splideTrack = document.querySelector(`${carousel} .splide__track`);
@@ -240,7 +243,7 @@ var Utils = {
   checkDecWithInt: (price) => {
     return `${Math.floor(parseFloat(price))}${Utils.checkDec(price)}`;
   },
-  checkDec: function (number) {
+  checkDec: (number) => {
     let decPartTest = Number(
       String((parseFloat(number) - Math.floor(number)).toFixed(2)).slice(3)
     );
@@ -330,7 +333,6 @@ var Utils = {
     const quantityAlert = document.querySelector(
       ".alert.alert-danger.decrease"
     );
-
     quantityAlert.classList.remove("d-none");
     quantityAlert.textContent = message;
     quantityAlert.style.animation = "alert 1.7s linear forwards";
@@ -369,7 +371,7 @@ var Utils = {
     if (cart) {
       const storedArray = JSON.parse(localStorage.getItem("cart_items")),
         selectedNumber = quantityNumberModal.textContent;
-
+      storedArray[itemIndex]["changed"] = true;
       if (storedArray[itemIndex]["category"] === "hotel") {
         storedArray[itemIndex]["persons_selected"] = selectedNumber;
         storedArray[itemIndex]["days_selected"] = otherQuantity2.textContent;
@@ -413,11 +415,11 @@ var Utils = {
       modal.classList.remove("d-block");
     }, 300);
   },
-  removeAllEventListeners: function (element) {
+  removeAllEventListeners: (element) => {
     const clone = element.cloneNode(true);
     element.parentNode.replaceChild(clone, element);
   },
-  appearSuccAlert: function (message) {
+  appearSuccAlert: (message) => {
     const addItemAlert = document.querySelector(
       ".alert.alert-success.add-item"
     );
@@ -454,7 +456,7 @@ var Utils = {
       modal.classList.add("active");
     }, 1);
   },
-  fieldAnimation: function (field) {
+  fieldAnimation: (field) => {
     if (field.value.trim() !== "") {
       field.classList.add("active", "delay");
     }
@@ -508,9 +510,9 @@ var Utils = {
       Utils.fieldAnimation(field);
     });
   },
-  submit: function (form_id, to, success_mge, block_id, callBack, modal) {
+  submit: (form_id, to, success_mge, callBack, modal) => {
     const form = $("#" + form_id),
-      block = $("#" + block_id);
+      block = form.find("input[type=submit]");
 
     FormValidation.validate(form, {}, (data) => {
       Utils.block_ui(block);

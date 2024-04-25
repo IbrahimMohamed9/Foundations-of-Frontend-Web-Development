@@ -224,20 +224,18 @@ VALUES ('John Doe', 'john@example.com', '1234567890', 'Great food and service!')
        ('Michael Johnson', 'michael@example.com', '9876543210', 'The staff was friendly and the food was delicious.'),
        ('Emily Brown', 'emily@example.com', '4567890123', 'Had a fantastic time, highly recommend!'),
        ('David Lee', 'david@example.com', '3210987654', 'Everything was perfect, thank you!');
-INSERT INTO users (name, gender, email, phone, DOF, jobTitle, YOE, country, skills, ratings, img, nationality, level, password)
-VALUES ('Ibrahim Mohamed', 'Male', 'I@b.n', '01110472777', '2004-12-18', 'Web', -1,
+INSERT INTO users (name, gender, email, phone, DOB, jobTitle, YOE, country, skills, ratings, img, nationality, level,
+                   password)
+VALUES ('Ibrahim Mohamed', 'Male', 'I@b.n', '01110472777', '2004-12-18', 'Web', 1,
         'Bosnia', 'Arabic HTML CSS JS Drive MySQL', '1 5 4 3 5 4 1 0 2 5',
         'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/avatar.png',
         'Egyptian', 30, '1234');
-
 INSERT INTO carts (cart_id, user_id)
 VALUES (1, 1);
-
 INSERT INTO `coupon` (`max_times`, `code`, `amount`, `percentage`)
 VALUES (5, 'SAVE50', 0, 0.15),
        (10, 'SALE20', 10, NULL),
        (3, 'FOODIE15', 0, 0.75);
-
 INSERT INTO activities (user_id, img_src, name, description, date, time)
 VALUES (1,
         'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/activity-01.png',
@@ -251,4 +249,18 @@ VALUES (1,
        (1,
         'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/activity-01.png',
         'Store', 'Bought The Typescript Course', '2012-02-01', '12:04');
-
+INSERT INTO tickets (user_id, label, icon, achieved)
+VALUES (1, 'Rented cars', 'fa-car', 300),
+       (1, 'Available Car', 'fa-car-tunnel', 5),
+       (1, 'Tourists', 'fa-person', 600),
+       (1, 'Tourist Group', 'fa-users-rays', 50);
+INSERT INTO targets (user_id, label, goal, icon, achieved)
+VALUES (1, 'Money', 20000.00, 'fa-euro-sign', 10000.00),
+       (1, 'Tourist Group', 100.00, 'fa-users-rays', 30.00),
+       (1, 'Project', 20.00, 'fa-bars-progress', 19.00);
+INSERT INTO drafts (user_id, title, content, time)
+VALUES
+    (1, 'Check My Tasks List', 'Review the tasks list and update as needed.', '2022-10-26 12:00:00'),
+    (1, 'Check My Projects', 'Review the project status and update tasks.', '2022-10-26 12:30:00'),
+    (1, 'Call All My Clients', 'Call all clients to discuss project progress.', '2022-10-26 13:00:00'),
+    (1, 'Finish The Development Workshop', 'Finalize the development workshop content.', '2022-10-26 13:30:00');

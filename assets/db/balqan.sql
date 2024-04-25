@@ -12,11 +12,11 @@ CREATE TABLE `users`
     `password`    VARCHAR(255),
     `email`       VARCHAR(255) UNIQUE,
     `img`         VARCHAR(255),
-    `DOF`         DATE,
+    `DOB`         DATE, # Date Of Birth
     `phone`       VARCHAR(30) UNIQUE,
     `country`     VARCHAR(255),
     `jobTitle`    VARCHAR(255),
-    `YOE`         INT,
+    `YOE`         INT,  # Years Of Experience
     `level`       INT,
     `gender`      VARCHAR(15),
     `nationality` VARCHAR(255),
@@ -35,15 +35,58 @@ CREATE TABLE `activities`
     `time`          TIME,
     CONSTRAINT `fk_activities_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
-CREATE TABLE `draft`
+CREATE TABLE `drafts`
 (
     `draft_id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id`  INT,
-    `title`    TEXT,
+    `title`    VARCHAR(40),
     `content`  TEXT,
-    `date`     DATE,
-    `time`     TIME,
+    `time`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT `fk_draft_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+);
+CREATE TABLE `targets`
+(
+    `target_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id`   INT,
+    `label`     VARCHAR(30),
+    `goal`      DECIMAL(10, 2),
+    `icon`      VARCHAR(30),
+    `achieved`  DECIMAL(10, 2),
+    `year`      YEAR DEFAULT (YEAR(CURDATE())),
+    CONSTRAINT `fk_targets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+);
+CREATE TABLE `tickets`
+(
+    `ticket_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `user_id`   INT,
+    `label`     VARCHAR(30),
+    `icon`      VARCHAR(30),
+    `achieved`  DECIMAL(10, 2),
+    CONSTRAINT `fk_tickets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+);
+CREATE TABLE `projects`
+(
+    `project_id`       INT AUTO_INCREMENT PRIMARY KEY,
+    `name`             VARCHAR(255),
+    `start_date`       TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `end_date`         TIMESTAMP,
+    `team`             TEXT,
+    `tasks`            TEXT,
+    `progress_persent` INT,
+    `status`           VARCHAR(255),
+    `client`           INT,
+    `price`            DECIMAL(10, 2),
+    `progress`         TEXT,
+    CONSTRAINT `fk_project_client` FOREIGN KEY (`client`) REFERENCES `users` (`user_id`)
+);
+CREATE TABLE `user_projects`
+(
+    `user_id`    INT,
+    `project_id` INT,
+    `price`      INT,
+    `position`   VARCHAR(30),
+    CONSTRAINT `fk_user_projects_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+    CONSTRAINT `fk_user_projects_project_id` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`)
 );
 CREATE TABLE `items`
 (
@@ -82,6 +125,15 @@ CREATE TABLE `cart_items`
     CONSTRAINT `fk_cart_item_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`cart_id`),
     CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
 );
+CREATE TABLE `coupon`
+(
+    `coupon_id`  INT AUTO_INCREMENT PRIMARY KEY,
+    `used_times` INT DEFAULT 0,
+    `max_times`  INT,
+    `code`       VARCHAR(255),
+    `amount`     INT,
+    `percentage` DECIMAL(5, 2)
+);
 CREATE TABLE `articles`
 (
     `article_id`  INT AUTO_INCREMENT PRIMARY KEY,
@@ -95,40 +147,6 @@ CREATE TABLE `articles`
     `content`     TEXT,
     `status`      VARCHAR(255)
 );
-CREATE TABLE `projects`
-(
-    `project_id`      INT AUTO_INCREMENT PRIMARY KEY,
-    `name`            VARCHAR(255),
-    `start_date`      TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `end_date`        TIMESTAMP,
-    `team`            TEXT,
-    `tasks`           TEXT,
-    `progressPersent` INT,
-    `status`          VARCHAR(255),
-    `client`          INT,
-    `price`           DECIMAL(10, 2),
-    `progress`        TEXT,
-    CONSTRAINT `fk_project_client` FOREIGN KEY (`client`) REFERENCES `users` (`user_id`)
-);
-CREATE TABLE `targets`
-(
-    `target_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `user_id`   INT,
-    `label`     VARCHAR(255),
-    `goal`      DECIMAL(10, 2),
-    `icon`      VARCHAR(255),
-    `achieved`  DECIMAL(10, 2),
-    CONSTRAINT `fk_targets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-);
-CREATE TABLE `tickets`
-(
-    `ticket_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `user_id`   INT,
-    `label`     VARCHAR(255),
-    `icon`      VARCHAR(255),
-    `achieved`  DECIMAL(10, 2),
-    CONSTRAINT `fk_tickets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
-);
 CREATE TABLE `feedbacks`
 (
     `feedback_id` INT AUTO_INCREMENT PRIMARY KEY,
@@ -137,13 +155,4 @@ CREATE TABLE `feedbacks`
     `phone`       VARCHAR(30),
     `added_time`  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `message`     TEXT
-);
-CREATE TABLE `coupon`
-(
-    `coupon_id`  INT AUTO_INCREMENT PRIMARY KEY,
-    `used_times` INT DEFAULT 0,
-    `max_times`  INT,
-    `code`       VARCHAR(255),
-    `amount`     INT,
-    `percentage` DECIMAL(5, 2)
 );

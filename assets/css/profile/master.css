@@ -404,13 +404,13 @@ textarea {
 ====================================================================
 ====================================================================
 */
-.targets .target-row:first-of-type {
+.targets .target-row:nth-of-type(3n + 1) {
   --row-color: 0 255 0;
 }
-.targets .target-row:nth-of-type(2) {
+.targets .target-row:nth-of-type(3n + 2) {
   --row-color: 0 150 255;
 }
-.targets .target-row:nth-of-type(3) {
+.targets .target-row:nth-of-type(3n + 3) {
   --row-color: 255 0 0;
 }
 .targets .target-row .icon {
@@ -467,16 +467,16 @@ textarea {
 .tickets .box {
   width: calc(50% - 10px);
 }
-.tickets > div .box:first-of-type {
+.tickets > div .box:nth-of-type(4n + 1) {
   --row-color: 0 255 0;
 }
-.tickets .box:nth-of-type(2) {
+.tickets > div .box:nth-of-type(4n + 2) {
   --row-color: 255 0 0;
 }
-.tickets .box:nth-of-type(3) {
+.tickets > div .box:nth-of-type(4n + 3) {
   --row-color: 0 150 255;
 }
-.tickets .box:nth-of-type(4) {
+.tickets > div .box:nth-of-type(4n + 4) {
   --row-color: 20 200 106;
 }
 .tickets > div .box i {
@@ -553,6 +553,9 @@ textarea {
 ====================================================================
 ====================================================================
 */
+.last-project {
+  min-height: 200px;
+}
 .last-project ul::before {
   content: "";
   position: absolute;
@@ -600,35 +603,52 @@ textarea {
 
 ====================================================================
 ====================================================================
-======================== Start Reminders =========================
+======================== Start drafts =========================
 ====================================================================
 ====================================================================
 */
-.reminders ul li:first-of-type {
+.drafts ul li {
+  cursor: pointer;
+}
+.drafts ul li:nth-of-type(4n + 1) {
   --row-color: #0075ff;
 }
-.reminders ul li:nth-of-type(2) {
+.drafts ul li:nth-of-type(4n + 2) {
   --row-color: #f59e0b;
 }
-.reminders ul li:nth-of-type(3) {
+.drafts ul li:nth-of-type(4n + 3) {
   --row-color: #22c55e;
 }
-.reminders ul li:nth-of-type(4) {
+.drafts ul li:nth-of-type(4n + 4) {
   --row-color: #f44336;
 }
-.reminders ul li .key {
+.drafts ul li .key {
+  width: 30px;
+  height: 50px;
+  position: relative;
+}
+.drafts ul li .key::before {
+  content: "";
   width: 15px;
   height: 15px;
   background-color: var(--row-color);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: var(--main-transition);
 }
-.reminders ul li > span + div {
+.drafts ul li:hover .key::before {
+  border-radius: 0;
+}
+.drafts ul li > span + div {
   border-left: 2px solid var(--row-color);
 }
-
 /* 
 ====================================================================
 ====================================================================
-======================== End Reminders ========================
+======================== End drafts ========================
 ====================================================================
 ====================================================================
 
@@ -645,7 +665,13 @@ textarea {
   max-width: fit-content;
   height: fit-content;
   padding: 5px 10px;
+  background-color: transparent;
+  border: 1px solid #d7a120;
+  color: var(--font-color);
+}
+.table-holder .data-table-header .add-btn:hover {
   background-color: #d7a120;
+  color: white;
 }
 @media (max-width: 300px) {
   .table-holder .data-table-header .add-btn {
@@ -940,8 +966,8 @@ textarea {
 .settings-page :disabled {
   cursor: no-drop;
   background-color: var(--disable-color);
-  /* 757576  f0f4f8*/
   color: #bbb;
+  text-overflow: ellipsis;
 }
 /* End Settings */
 /* 
@@ -1421,6 +1447,19 @@ textarea {
 }
 form .submit {
   margin: 0 5px 10px;
+  font-weight: bold;
+}
+form .submit.save {
+  border: 2px solid #0021ff;
+}
+form .submit.save:hover {
+  background-color: #0021ff;
+}
+form .submit.remove {
+  border: 1px solid red;
+}
+form .submit.remove:hover {
+  background-color: red;
 }
 /* 
 ====================================================================

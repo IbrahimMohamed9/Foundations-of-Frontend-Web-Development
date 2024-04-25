@@ -2436,7 +2436,10 @@ footer p {
   overflow: hidden;
   animation: l5-0 2s infinite linear;
 }
-
+.loader.small {
+  width: 20px;
+  height: 40px;
+}
 .loader::before,
 .loader::after {
   content: "";

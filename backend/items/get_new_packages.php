@@ -5,11 +5,7 @@ $payload = $_REQUEST;
 
 $item_service = new ItemService();
 
-if(isset($payload['category']) && $payload['category'] != ''){
-    $data = $item_service->get_items_by_category($payload['category']);
-} else {
-    $data = $item_service->get_items();
-}
+$data = $item_service->get_new_packages($payload['limit']);
 
 header('Content-Type: application/json');
 echo json_encode($data);

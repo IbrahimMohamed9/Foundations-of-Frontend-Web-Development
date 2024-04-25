@@ -5,5 +5,3 @@ $item_id = $_REQUEST['item_id'];
 
 $item_service = new ItemService();
 $item = $item_service->delete_item($item_id);
-
-echo json_encode($item);

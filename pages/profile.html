@@ -153,7 +153,7 @@
             </label>
           </div>
         </div>
-        <button class="menu">
+        <button class="menu" aria-label="Navbar Control">
           <!-- <i class="fa-solid fa-bars"></i> -->
           <span></span>
           <span></span>
@@ -207,39 +207,17 @@
             <li>
               <a
                 href="#settings"
-                class="d-none dash-icon d-flex align-center fs-14 c-main-font rad-6 p-10"
+                class="dash-icon d-flex align-center fs-14 c-main-font rad-6 p-10"
               >
                 <i class="fa-solid fa-gear fa-fw"></i>
                 <span class="fs-14 ml-10">Settings</span>
               </a>
             </li>
             <li>
-              <!-- 
-
-
-
-
-
-
-
-
-
-              -->
               <a
                 href="#projects"
                 class="dash-icon d-flex d-none align-center fs-14 c-main-font rad-6 p-10"
               >
-                <!-- 
-
-
-
-
-
-
-
-
-
-              -->
                 <i class="projects fa-solid fa-diagram-project fa-fw"></i>
                 <span class="fs-14 ml-10">Projects</span>
               </a>
@@ -311,7 +289,9 @@
       <div class="container">
         <div class="row">
           <div class="image">
-            <img src="../assets/images/logo/logo.png" alt="" />
+            <a href="../index.html" title="home">
+              <img src="../assets/images/logo/logo.png" alt="Logo Image" />
+            </a>
           </div>
           <div class="icons">
             <a
@@ -348,6 +328,7 @@
       </div>
     </footer>
     <!-- End Footer -->
+    <div id="myModal" class="modal"></div>
 
     <script src="../assets/js/main.js"></script>
     <script src="../assets/js/profile.js"></script>
