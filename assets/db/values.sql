@@ -224,14 +224,37 @@ VALUES ('John Doe', 'john@example.com', '1234567890', 'Great food and service!')
        ('Michael Johnson', 'michael@example.com', '9876543210', 'The staff was friendly and the food was delicious.'),
        ('Emily Brown', 'emily@example.com', '4567890123', 'Had a fantastic time, highly recommend!'),
        ('David Lee', 'david@example.com', '3210987654', 'Everything was perfect, thank you!');
-INSERT INTO users (name, gender, email, phone, DOB, jobTitle, YOE, country, skills, ratings, img, nationality, level,
-                   password)
-VALUES ('Ibrahim Mohamed', 'Male', 'I@b.n', '01110472777', '2004-12-18', 'Web', 1,
-        'Bosnia', 'Arabic HTML CSS JS Drive MySQL', '1 5 4 3 5 4 1 0 2 5',
+INSERT INTO `users` (`name`, `password`, `email`, `img`, `DOB`, `phone`, `country`, `job_title`, `YOE`, `level`,
+                     `gender`, `nationality`, `skills`, `ratings`)
+VALUES ('Ibrahim Mohamed', '1234', 'I@b.n',
         'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/avatar.png',
-        'Egyptian', 30, '1234');
-INSERT INTO carts (cart_id, user_id)
-VALUES (1, 1);
+        '2004-12-18', '01110472777', 'Bosnia', 'Web', 1, 30, 'Male', 'Egyptian', 'Arabic HTML CSS JS Drive MySQL',
+        '1 5 4 3 5 4 1 0 2 5'),
+       ('Ahmed Nasser', 'password1', 'ahmed@example.com',
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/friend-01.jpg',
+        '2000-01-11', '+1234567890', 'Kuwait', 'Tourist', 1, 10, 'Male', 'Lebanese', 'Bosnian Driving English',
+        '1 5 4 3 5 4 1 0 2 5'),
+       ('Omar Fathy', 'password2', 'omar@example.com',
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/friend-02.jpg',
+        '2000-01-11', '+987654321', 'Egypt', 'Driver', 3, 20, 'Male', 'Jordanian', 'Arabic German Bosnian',
+        '0 2 1 4 5'),
+       ('Omar Ahmed', 'password3', 'omar.ahmed@example.com',
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/friend-03.jpg',
+        '2000-01-11', '+555555555', 'Qatar', 'Tourist Guide', 4, 3, 'Male', 'Emirati', 'English Driving German',
+        '4 1 2 3 5'),
+       ('Shady Nabil', 'password4', 'shady@example.com',
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/friend-04.jpg',
+        '2000-01-11', '+444444444', 'Syria', 'Translator', 5, 53, 'Male', 'Qatari', 'German Driving English',
+        '5 4 1 0 2'),
+       ('Mohamed Ibrahim', 'password5', 'mohamed@example.com',
+        'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/friend-05.jpg',
+        '2000-01-11', '+111111111', 'Iraq', 'Tourist', 6, 4, 'Male', 'Iraqi', 'Bosnian Reading Arabic', '3 1 2 0 4');
+INSERT INTO carts (user_id)
+VALUES (1),
+       (2),
+       (3),
+       (4),
+       (5);
 INSERT INTO `coupon` (`max_times`, `code`, `amount`, `percentage`)
 VALUES (5, 'SAVE50', 0, 0.15),
        (10, 'SALE20', 10, NULL),
@@ -259,8 +282,17 @@ VALUES (1, 'Money', 20000.00, 'fa-euro-sign', 10000.00),
        (1, 'Tourist Group', 100.00, 'fa-users-rays', 30.00),
        (1, 'Project', 20.00, 'fa-bars-progress', 19.00);
 INSERT INTO drafts (user_id, title, content, time)
-VALUES
-    (1, 'Check My Tasks List', 'Review the tasks list and update as needed.', '2022-10-26 12:00:00'),
-    (1, 'Check My Projects', 'Review the project status and update tasks.', '2022-10-26 12:30:00'),
-    (1, 'Call All My Clients', 'Call all clients to discuss project progress.', '2022-10-26 13:00:00'),
-    (1, 'Finish The Development Workshop', 'Finalize the development workshop content.', '2022-10-26 13:30:00');
+VALUES (1, 'Check My Tasks List', 'Review the tasks list and update as needed.', '2022-10-26 12:00:00'),
+       (1, 'Check My Projects', 'Review the project status and update tasks.', '2022-10-26 12:30:00'),
+       (1, 'Call All My Clients', 'Call all clients to discuss project progress.', '2022-10-26 13:00:00'),
+       (1, 'Finish The Development Workshop', 'Finalize the development workshop content.', '2022-10-26 13:30:00');
+INSERT INTO `password_history` (`user_id`, `change_date`)
+VALUES (1, '2023-04-25 10:00:00'),
+       (1, CURRENT_TIMESTAMP),
+       (1, '2021-04-24 15:30:00');
+INSERT INTO `widgets` (`user_id`)
+VALUES (1),
+       (2),
+       (3),
+       (4),
+       (5);

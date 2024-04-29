@@ -1,27 +1,27 @@
 [
   {
     "name": "Ahmed Nasser",
-    "jobTitle": "Tourist",
+    "job_title": "Tourist",
     "friends": 99,
     "projects": 15,
     "articles": 25,
-    "vip": true,
+    "vip": false,
     "joined": "02/10/2021",
     "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/friend-01.jpg"
   },
   {
     "name": "Omar Fathy",
-    "jobTitle": "Driver",
+    "job_title": "Driver",
     "friends": 30,
     "projects": 11,
     "articles": 12,
-    "vip": false,
+    "vip": true,
     "joined": "02/08/2020",
     "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/friend-02.jpg"
   },
   {
     "name": "Omar Ahmed",
-    "jobTitle": "Tourist Guide",
+    "job_title": "Tourist Guide",
     "friends": 80,
     "projects": 20,
     "articles": 18,
@@ -31,7 +31,7 @@
   },
   {
     "name": "Shady Nabil",
-    "jobTitle": "Translator",
+    "job_title": "Translator",
     "friends": 70,
     "projects": 30,
     "articles": 18,
@@ -41,11 +41,11 @@
   },
   {
     "name": "Mohamed Ibrahim",
-    "jobTitle": "Tourist",
+    "job_title": "Tourist",
     "friends": 80,
     "projects": 30,
     "articles": 18,
-    "vip": false,
+    "vip": true,
     "joined": "28/08/2020",
     "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/friend-05.jpg"
   }

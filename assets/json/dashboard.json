@@ -1,52 +1,4 @@
 {
-  "imgSrc": "https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/avatar.png",
-  "name": "Ibrahim",
-  "surname": "Mohamed",
-  "jobTitle": "IT Manager",
-  "projects": "5",
-  "earned": "1000",
-  "targets": [
-    {
-      "name": "Money",
-      "goal": "20,000",
-      "icon": "fa-euro-sign",
-      "achieved": "10,000"
-    },
-    {
-      "name": "Tourist Group",
-      "goal": "100",
-      "icon": "fa-users-rays",
-      "achieved": "30"
-    },
-    {
-      "name": "Project",
-      "goal": "20",
-      "icon": "fa-bars-progress",
-      "achieved": "19"
-    }
-  ],
-  "tickets": [
-    {
-      "name": "Rented cars",
-      "icon": "fa-car",
-      "achieved": "300"
-    },
-    {
-      "name": "Available Car",
-      "icon": "fa-car-tunnel",
-      "achieved": "5"
-    },
-    {
-      "name": "Tourists",
-      "icon": "fa-person",
-      "achieved": "600"
-    },
-    {
-      "name": "Tourist Group",
-      "icon": "fa-users-rays",
-      "achieved": "50"
-    }
-  ],
   "progrProjs": [
     {
       "part": "Got The Project",
@@ -67,28 +19,6 @@
     {
       "part": "Finish The Project & Get Money",
       "status": ""
-    }
-  ],
-  "drafts": [
-    {
-      "title": "Check My Tasks List",
-      "date": "26/10/2022",
-      "time": "12:00am"
-    },
-    {
-      "title": "Check My Projects",
-      "date": "26/10/2022",
-      "time": "12:00am"
-    },
-    {
-      "title": "Call All My Clients",
-      "date": "26/10/2022",
-      "time": "12:00am"
-    },
-    {
-      "title": "Finish The Development Workshop",
-      "date": "26/10/2022",
-      "time": "12:00am"
     }
   ],
   "tableRows": [

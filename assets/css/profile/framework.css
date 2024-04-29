@@ -71,14 +71,14 @@
 .gap-5 {
   gap: 5px !important;
 }
+.gap-10 {
+  gap: 10px !important;
+}
 .gap-20 {
   gap: 20px;
 }
-.d-block {
-  display: block !important;
-}
-.d-none {
-  display: none !important;
+.col-2 {
+  grid-column: 2 span;
 }
 @media (max-width: 330px) {
   .center-f {
@@ -115,6 +115,9 @@
 */
 .p-0 {
   padding: 0;
+}
+.p-5 {
+  padding: 5px !important;
 }
 .p-10 {
   padding: 10px;
@@ -211,6 +214,9 @@
 .ml-20 {
   margin-left: 20px;
 }
+.mb-0 {
+  margin-bottom: 0 !important;
+}
 .mb-5 {
   margin-bottom: 5px !important;
 }
@@ -283,6 +289,9 @@
 .bg-eee {
   background-color: var(--eee-bg);
 }
+.bg-transparent {
+  background-color: transparent;
+}
 .c-main-font {
   color: var(--font-color);
 }
@@ -335,6 +344,9 @@
 */
 .txt-c {
   text-align: center;
+}
+.fs-0 {
+  font-size: 0 !important;
 }
 .fs-13 {
   font-size: 13px;
@@ -457,8 +469,10 @@
   justify-content: center;
 }
 .btn-shape {
-  padding: 4px 10px;
+  padding: 5px 10px;
   border-radius: 6px;
+  max-width: fit-content;
+  height: fit-content;
   transition: var(--main-transition);
 }
 .btn-position {
@@ -469,6 +483,30 @@
 }
 .btn-shape.btn-position:hover {
   background-color: var(--secondary-color);
+}
+.add-btn {
+  background-color: transparent;
+  border: 1px solid #d7a120;
+  color: var(--font-color);
+}
+.add-btn:hover {
+  background-color: #d7a120;
+  color: white;
+}
+@media (max-width: 300px) {
+  .add-btn {
+    font-size: 13px;
+  }
+}
+.hidden-by-width {
+  width: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
+  font-size: 0 !important;
+  overflow: hidden;
+}
+.transition {
+  transition: var(--main-transition);
 }
 /* 
 ====================================================================

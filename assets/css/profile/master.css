@@ -275,6 +275,9 @@ body .content + footer .container {
   margin: 20px 20px 40px;
   font-weight: bold;
 }
+.content .p-20 h1 {
+  margin: 0 0 20px;
+}
 .content h1::before,
 .content h1::after {
   content: "";
@@ -290,6 +293,22 @@ body .content + footer .container {
 .content h1::after {
   background-color: black;
   width: 40px;
+}
+.content div > .add-friend {
+  font-size: larger;
+  transition: var(--main-transition);
+  cursor: pointer;
+  padding: 20px;
+  position: relative;
+}
+.content div > .add-friend::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.content div > .add-friend:hover {
+  color: var(--main-color);
 }
 .content main {
   background-color: var(--main-background-color);
@@ -1258,11 +1277,16 @@ textarea {
 
 ====================================================================
 ====================================================================
-======================== Start  =========================
+======================== Start Friends =========================
 ====================================================================
 ====================================================================
 */
-/* Start Friends Page */
+#add-friend-form i.add-friend {
+  color: var(--font-color);
+}
+#add-friend-form i.add-friend:hover {
+  color: var(--main-color);
+}
 .friends-page {
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }

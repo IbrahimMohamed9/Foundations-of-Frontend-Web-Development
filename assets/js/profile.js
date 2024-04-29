@@ -83,11 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
     templateDir: "./profilePages/",
   });
 
+  const user_id = 1;
   app.route({
     view: "profile",
     load: "profile.html",
     onCreate: () => {
-      const user_id = 1;
       UserService.loadProfile(user_id);
     },
     onReady: () => {
@@ -98,19 +98,19 @@ document.addEventListener("DOMContentLoaded", () => {
     view: "dashboard",
     load: "dashboard.html",
     onCreate: () => {
-      const user_id = 1;
       UserService.loadDashboard(user_id);
       // loadDashboard("../assets/json/dashboard.json");
     },
     onReady: () => {
       switchButton(1);
+      UserService.loadDashboardWidgets(user_id);
     },
   });
   app.route({
     view: "settings",
     load: "settings.html",
     onCreate: () => {
-      loadSettings("../assets/json/profile.json");
+      UserService.loadSettings(user_id);
     },
     onReady: () => {
       switchButton(2);
@@ -130,7 +130,11 @@ document.addEventListener("DOMContentLoaded", () => {
     view: "friends",
     load: "friends.html",
     onCreate: () => {
-      loadFriends("../assets/json/friends.json");
+      UserService.addFriend(user_id);
+      $("#requests").click((el) => {
+        UserService.requestsFriendModal(user_id, el.currentTarget);
+      });
+      UserService.loadFriends(user_id);
     },
     onReady: () => {
       switchButton(4);
@@ -197,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <div class="body txt-c d-flex p-20 mt-20 mb-20 bg-fourth pl-10-f pr-10-f">
             <div class="fs-13-f">
               ${data.name} ${data.surname}
-              <span class="d-block c-grey fs-14 mt-10 fs-10-f">${data.jobTitle}</span>
+              <span class="d-block c-grey fs-14 mt-10 fs-10-f">${data.job_title}</span>
             </div>
             <div class="fs-13-f">
               ${data.projects}
@@ -293,22 +297,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  function loadSettings(src) {
-    fetch(src)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        document.querySelector(".settings-page .email").value = data.email;
-      })
-      .catch((error) => {
-        console.error("Error fetching Settings data:", error);
-      });
-  }
-
   function loadProjects(src) {
     fetch(src)
       .then((response) => {
@@ -357,64 +345,6 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .catch((error) => {
         console.error("Error fetching projects data:", error);
-      });
-  }
-
-  function loadFriends(src) {
-    fetch(src)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        return response.json();
-      })
-      .then((data) => {
-        let content = "";
-
-        data.forEach((friend) => {
-          content += `
-          <div class="friend bg-fourth rad-6 p-20 p-relative">
-          <div class="contact">
-            <i class="fa-solid fa-phone"></i>
-            <i class="fa-regular fa-envelope"></i>
-          </div>
-          <div class="txt-c">
-            <img
-              class="rad-half mt-10 mb-10 w-100 h-100"
-              src="${friend.imgSrc}"
-              alt=""
-            />
-            <h4 class="m-0">${friend.name}</h4>
-            <p class="c-grey fs-13 mt-5 mb-0">${friend.jobTitle}</p>
-          </div>
-          <div class="icons fs-14 p-relative">
-            <div class="mb-10">
-              <i class="fa-regular fa-face-smile fa-fw"></i>
-              <span>${friend.friends} Friends</span>
-            </div>
-            <div class="mb-10">
-              <i class="fa-solid fa-code-commit fa-fw"></i>
-              <span>${friend.projects} Projects</span>
-            </div>
-            <div>
-              <i class="fa-regular fa-newspaper fa-fw"></i>
-              <span>${friend.articles} Articles</span>
-            </div>
-          </div>
-          <div class="info between-flex fs-13">
-            <span class="c-grey">Joined ${friend.joined}</span>
-            <div class="d-flex gap-5">
-              <a class="bg-blue c-white btn-shape" href="profile.html">Profile</a>
-              <a class="bg-red c-white btn-shape" href="">Remove</a>
-            </div>
-          </div>
-        </div>
-      `;
-        });
-        document.querySelector(".screen.friends-page").innerHTML = content;
-      })
-      .catch((error) => {
-        console.error("Error fetching Friends data:", error);
       });
   }
 

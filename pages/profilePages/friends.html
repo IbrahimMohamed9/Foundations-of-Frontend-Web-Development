@@ -1,3 +1,38 @@
-<h1 class="p-relative">Friends</h1>
+<div class="between-flex p-20">
+  <h1 class="p-relative">Friends</h1>
+  <div class="between-flex gap-10">
+    <div class="between-flex gap-10">
+      <button
+        class="add-btn txt-c d-block fs-15 rad-6 c-white btn-shape"
+        id="add-friend"
+      >
+        Add friend
+      </button>
+      <button
+        class="add-btn txt-c d-block fs-15 rad-6 c-white btn-shape"
+        id="requests"
+      >
+        Requests
+      </button>
+    </div>
 
+    <form id="add-friend-form" class="d-none gap-10">
+      <input
+        type="number"
+        name="requested_id"
+        id="requested_id"
+        min="1"
+        required
+        class="transition d-block border-ccc rad-6 w-full p-10 bg-third c-main-font hidden-by-width"
+        placeholder="Enter friend ID"
+      />
+      <button type="submit" class="b-none bg-transparent">
+        <i
+          class="c-main-font transition fa-solid fa-user-plus fa-flip-horizontal fa-lg add-friend fs-0"
+        ></i>
+      </button>
+      <label for="requested_id" class="d-none">Friend ID</label>
+    </form>
+  </div>
+</div>
 <div class="screen friends-page d-grid m-20 gap-20"></div>

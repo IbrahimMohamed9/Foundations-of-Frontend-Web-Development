@@ -436,8 +436,7 @@ var Utils = {
       ),
       modal = cartModal
         ? document.getElementById("cartModal")
-        : document.getElementById("myModal"),
-      masterContainer = modal.querySelector(".master-container");
+        : document.getElementById("myModal");
     let selectedText = [];
     selectedOptions.forEach((option) => {
       if (option.selected) {
@@ -512,7 +511,7 @@ var Utils = {
   },
   submit: (form_id, to, success_mge, callBack, modal) => {
     const form = $("#" + form_id),
-      block = form.find("input[type=submit]");
+      block = form.find("*[type=submit]").first();
 
     FormValidation.validate(form, {}, (data) => {
       Utils.block_ui(block);
@@ -559,5 +558,8 @@ var Utils = {
         parentElement.removeChild(child);
       }
     });
+  },
+  dateOfTimestamp: (date) => {
+    return date.split(" ")[0];
   },
 };

@@ -50,7 +50,7 @@ var CartService = {
         );
       });
     } else {
-      counter = Number(JSON.parse(counter)) + (change ? change : 0);
+      counter = Number(JSON.parse(counter)) + change;
     }
 
     document
