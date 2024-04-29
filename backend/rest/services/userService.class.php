@@ -93,6 +93,10 @@ class UserService
     {
         $this->user_dao->delete_user($user_id);
     }
+    public function delete_friend($friendship_id)
+    {
+        $this->user_dao->delete_friend($friendship_id);
+    }
     public function user_login($email, $password)
     {
         return $this->user_dao->user_login($email, $password);

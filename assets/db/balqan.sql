@@ -35,7 +35,6 @@ CREATE TABLE `friend_requests`
     FOREIGN KEY (`requester_id`) REFERENCES `users` (`user_id`),
     FOREIGN KEY (`requested_id`) REFERENCES `users` (`user_id`)
 );
-
 CREATE TABLE `user_friends`
 (
     `friendship_id` INT AUTO_INCREMENT PRIMARY KEY,

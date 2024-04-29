@@ -468,7 +468,7 @@ var UserService = {
     Utils.block_ui(el.parentNode, true);
     RestClient.delete(
       "users/delete/delete_user_draft.php?draft_id=" + draft_id,
-      draft_id,
+      null,
       () => {
         Utils.appearFailAlert("Draft deleted successfully");
         UserService.loadDrafts(user_id);
@@ -647,14 +647,14 @@ var UserService = {
     // TODO user_id can't be same friend_id
     // const ids = localStorage.getItem("friendsId");
     // if ($(addFriendInput).val())
-      Utils.submit(
-        "add-friend-form",
-        "users/add/add_friend_request.php?requester_id=" + user_id,
-        "Friend added successfully",
-        () => {
-          addFriendBtnsAnimation();
-        }
-      );
+    Utils.submit(
+      "add-friend-form",
+      "users/add/add_friend_request.php?requester_id=" + user_id,
+      "Friend added successfully",
+      () => {
+        addFriendBtnsAnimation();
+      }
+    );
   },
   requestsFriendModal: (user_id, el) => {
     Utils.block_ui(el, true);
@@ -713,6 +713,7 @@ var UserService = {
       null
     ).done(() => {
       UserService.requestsFriendModal(requested_id);
+      if (status) UserService.loadFriends(requested_id);
     });
   },
   loadFriends: (user_id) => {
@@ -783,7 +784,12 @@ var UserService = {
               <button 
                 type="button" 
                 class="bg-red c-white btn-shape"
-                onclick="UserService.friendProfile(${friend})"
+                onclick="
+                UserService.removeFriend(
+                  ${friend.friendship_id},
+                  ${user_id},
+                  this
+                )"
               >
                 Remove
               </button>
@@ -843,5 +849,18 @@ var UserService = {
         }
       );
     });
+  },
+  removeFriend: (friendship_id, user_id, el) => {
+    Utils.block_ui(el, true);
+
+    RestClient.delete(
+      "users/delete/delete_friend.php?friendship_id=" + friendship_id,
+      null,
+      () => {
+        Utils.appearFailAlert("Friend deleted successfully");
+        UserService.loadFriends(user_id);
+        Utils.removeModal(false, $("#myModal")[0]);
+      }
+    );
   },
 };
