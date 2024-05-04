@@ -1185,29 +1185,31 @@ textarea {
     margin-top: 15px !important;
   }
 }
-
 .projects-page .project .team {
   position: relative;
-  min-height: 80px;
+  min-height: 50px;
 }
-.projects-page .project .team a {
+.projects-page .project .team span {
   position: absolute;
   left: 0;
-  bottom: 0;
+  bottom: 5px;
 }
-.projects-page .project .team a:nth-child(2) {
+/* 
+TODO is it good to use js instead of that
+.projects-page .project .team span:nth-child(2) {
   left: 25px;
 }
-.projects-page .project .team a:nth-child(3) {
+.projects-page .project .team span:nth-child(3) {
   left: 50px;
 }
-.projects-page .project .team a:nth-child(4) {
+.projects-page .project .team span:nth-child(4) {
   left: 75px;
 }
-.projects-page .project .team a:nth-child(5) {
+.projects-page .project .team span:nth-child(5) {
   left: 100px;
-}
-.projects-page .project .team a:hover {
+} 
+*/
+.projects-page .project .team span:hover {
   z-index: 1000;
 }
 .projects-page .project .team img {
@@ -1215,6 +1217,7 @@ textarea {
   height: 40px;
   border-radius: 50%;
   border: 2px solid white;
+  cursor: pointer;
 }
 .projects-page .project .do {
   justify-content: flex-end;

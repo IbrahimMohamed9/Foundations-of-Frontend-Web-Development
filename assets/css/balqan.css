@@ -29,6 +29,7 @@
   --third-background-color: #ffffff80;
   --grey-color: grey;
   --footer-color: #ededed;
+  --border-color: #303030;
 }
 .dark-theme {
   --main-color: #f7af01;
@@ -46,6 +47,7 @@
   --product-color: #e7e7e7;
   --secondary-product-color: #dbdbdb;
   --third-background-color: #161616;
+  --border-color: #eee;
 }
 /* 
 ====================================================================
@@ -514,20 +516,20 @@ img {
 .main-header .icons .heart:hover {
   color: var(--main-color);
 }
-.main-header .icons .cart-shopping {
+.main-header .icons .shopping-cart-icon {
   margin: 0 3px 0 15px;
   position: relative;
   cursor: pointer;
 }
-.main-header .icons .cart-shopping:hover {
+.main-header .icons .shopping-cart-icon:hover {
   color: var(--main-color);
 }
 @media (max-width: 1000px) {
-  .main-header .icons .cart-shopping {
+  .main-header .icons .shopping-cart-icon {
     margin: 0 3px 0 11px;
   }
 }
-.main-header .icons .cart-shopping::after {
+.main-header .icons .shopping-cart-icon::after {
   content: attr(data-counter);
   background-color: var(--font-color);
   color: var(--secondary-background-color);
@@ -543,7 +545,7 @@ img {
   left: -10px;
   transition: background-color 0.3s, color 0.3s;
 }
-.main-header .icons .cart-shopping:hover::after {
+.main-header .icons .shopping-cart-icon:hover::after {
   color: var(--font-color);
   background-color: var(--main-color);
   border-color: var(--main-color);
@@ -2504,7 +2506,9 @@ footer p {
 ====================================================================
 ====================================================================
 */
-
+main section {
+  min-height: calc(100vh - 332px);
+}
 section#articles .wrap {
   background-color: var(--secondary-background-color);
   padding: 50px 0 1px;

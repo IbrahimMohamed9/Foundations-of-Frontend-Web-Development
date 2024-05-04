@@ -84,6 +84,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   const user_id = 1;
+  // const user_id = 2;
+  // const user_id = 3;
+  // const user_id = 4;
+  // const user_id = 5;
+
+  UserService.mainImage(user_id);
   app.route({
     view: "profile",
     load: "profile.html",
@@ -120,7 +126,8 @@ document.addEventListener("DOMContentLoaded", () => {
     view: "projects",
     load: "projects.html",
     onCreate: () => {
-      loadProjects("../assets/json/projects.json");
+      // loadProjects("../assets/json/projects.json");
+      projectService.loadProjects();
     },
     onReady: () => {
       switchButton(3);
@@ -164,7 +171,7 @@ document.addEventListener("DOMContentLoaded", () => {
       $("#add-feedback").on("click", () => {
         FeedbackService.addFeedbackModal();
       });
-      loadProjectsTable("../assets/json/dashboard.json");
+      // loadProjectsTable("../assets/json/dashboard.json");
     },
     onReady: () => {
       switchButton(5);
@@ -314,29 +321,42 @@ document.addEventListener("DOMContentLoaded", () => {
               <h4 class="m-0">${project.name}</h4>
               <p class="c-grey mt-10 mb-10 fs-14">${project.description}</p>
               <div class="team">`;
-
+          // TODO is it good, use js for styling?
+          let left = 0;
           project.team.forEach((teamMember) => {
-            content += `<a href="#"><img src="${teamMember}" alt="" /></a>`;
+            content += `
+            <span 
+              style="left: ${left}px;"
+              onclick="UserService.friendProfile(0, this)"
+              >
+              <!--TODO add user id instead of zero-->
+              <img src="${teamMember}" alt="member image" />
+            </span>`;
+            left += 25;
           });
-
           content += `
               </div>
-              <div class="do d-flex">`;
-
-          project.tasks.forEach((task) => {
-            content += `<span class="fs-13 rad-6 bg-eee">${task}</span>`;
-          });
+              <!--<div class="do d-flex">`;
+          // project tasks (for example cities)
+          // project.tasks.forEach((task) => {
+          //   content += `<span class="fs-13 rad-6 bg-eee">${task}</span>`;
+          // });
 
           content += `
-              </div>
+              </div>-->
               <div class="info between-flex">
-                <div class="prog bg-eee">
+                <div class="prog bg-eee d-none">
                   <span class="bg-red" style="width: ${project.progress}%"></span>
                 </div>
                 <div class="fs-14 c-grey">
-                  <i class="fa-solid fa-dollar-sign"></i>
-                  ${project.price}
+                  KM ${project.price}
                 </div>
+                <button
+                  class="add-btn txt-c d-block fs-15 rad-6 c-white btn-shape"
+                  type="button"
+                >
+                  Add User
+                </button>
               </div>
             </div>`;
         });

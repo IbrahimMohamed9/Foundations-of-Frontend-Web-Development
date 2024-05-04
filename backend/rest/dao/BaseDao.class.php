@@ -23,6 +23,18 @@ class BaseDao
             throw $e;
         }
     }
+    public function beginTransaction()
+    {
+        return $this->connection->beginTransaction();
+    }
+    public function commit()
+    {
+        return $this->connection->commit();
+    }
+    public function rollBack()
+    {
+        return $this->connection->rollBack();
+    }
     protected function query($query, $params)
     {
         $statement = $this->connection->prepare($query);

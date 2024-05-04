@@ -8,7 +8,7 @@ USE `balqan`;
 CREATE TABLE `users`
 (
     `user_id`           INT AUTO_INCREMENT PRIMARY KEY,
-    `joined_date`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `joined_date`       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `name`              VARCHAR(255),
     `password`          VARCHAR(255),
     `email`             VARCHAR(255) UNIQUE,
@@ -16,10 +16,10 @@ CREATE TABLE `users`
     `DOB`               DATE, # Date Of Birth
     `phone`             VARCHAR(30) UNIQUE,
     `country`           VARCHAR(255),
-    `job_title`          VARCHAR(255),
+    `job_title`         VARCHAR(255),
     `YOE`               INT,  # Years Of Experience
     `level`             INT,
-    `number_of_friends` INT DEFAULT 0,
+    `number_of_friends` INT       DEFAULT 0,
     `gender`            VARCHAR(15),
     `nationality`       VARCHAR(255),
     `skills`            TEXT,
@@ -35,18 +35,16 @@ CREATE TABLE `friend_requests`
     FOREIGN KEY (`requester_id`) REFERENCES `users` (`user_id`),
     FOREIGN KEY (`requested_id`) REFERENCES `users` (`user_id`)
 );
-
 CREATE TABLE `user_friends`
 (
     `friendship_id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id`       INT, #requester
     `friend_id`     INT, #requested
-    `added_time`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `added_time`    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
     FOREIGN KEY (`friend_id`) REFERENCES `users` (`user_id`),
     CONSTRAINT `chk_different_users` CHECK (`user_id` <> `friend_id`)
 );
-
 CREATE TABLE `password_history`
 (
     `user_id`     INT,
@@ -102,30 +100,6 @@ CREATE TABLE `tickets`
     `achieved`  DECIMAL(10, 2),
     CONSTRAINT `fk_tickets_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 );
-CREATE TABLE `projects`
-(
-    `project_id`       INT AUTO_INCREMENT PRIMARY KEY,
-    `name`             VARCHAR(255),
-    `start_date`       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `end_date`         TIMESTAMP,
-    `team`             TEXT,
-    `tasks`            TEXT,
-    `progress_persent` INT,
-    `status`           VARCHAR(255),
-    `client`           INT,
-    `price`            DECIMAL(10, 2),
-    `progress`         TEXT,
-    CONSTRAINT `fk_project_client` FOREIGN KEY (`client`) REFERENCES `users` (`user_id`)
-);
-CREATE TABLE `user_projects`
-(
-    `user_id`    INT,
-    `project_id` INT,
-    `price`      INT,
-    `position`   VARCHAR(30),
-    CONSTRAINT `fk_user_projects_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
-    CONSTRAINT `fk_user_projects_project_id` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`)
-);
 CREATE TABLE `items`
 (
     `item_id`        INT AUTO_INCREMENT PRIMARY KEY,
@@ -155,13 +129,35 @@ CREATE TABLE `carts`
 );
 CREATE TABLE `cart_items`
 (
+    `cart_item_id`     INT AUTO_INCREMENT PRIMARY KEY,
     `cart_id`          INT,
     `item_id`          INT,
     `days_selected`    INT,
     `persons_selected` INT,
-    CONSTRAINT pk_cart_items PRIMARY KEY (cart_id, item_id),
     CONSTRAINT `fk_cart_item_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`cart_id`),
     CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
+);
+CREATE TABLE `projects`
+(
+    `project_id` INT AUTO_INCREMENT PRIMARY KEY,
+    `item_id`    INT,
+    `start_date` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
+    `end_date`   TIMESTAMP,
+    `status`     INT DEFAULT 0,
+    `price`      DECIMAL(10, 2),
+    CONSTRAINT fk_projects_item_id
+        FOREIGN KEY (item_id) REFERENCES cart_items (cart_item_id)
+            ON DELETE CASCADE
+);
+CREATE TABLE `user_projects`
+(
+    `user_id`    INT,
+    `project_id` INT,
+    `price`      DECIMAL(10, 2),
+    `position`   VARCHAR(30),
+    CONSTRAINT `fk_user_projects_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+    CONSTRAINT `fk_user_projects_project_id` FOREIGN KEY (`project_id`) REFERENCES `projects` (`project_id`) ON DELETE CASCADE,
+    PRIMARY KEY (user_id, project_id)
 );
 CREATE TABLE `coupon`
 (

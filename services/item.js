@@ -80,11 +80,11 @@ var ItemService = {
   </tr>
     `;
   },
-  loadCards: (category) => {
+  loadCards: (category, user_id) => {
     RestClient.get("items/get_items.php?category=" + category, (data) => {
       data.forEach((itemData) => {
         category === "car" || category === "hotel" || category === "package"
-          ? ItemService.loadCard(itemData)
+          ? ItemService.loadCard(itemData, user_id)
           : alert("check the category");
       });
       // TODO
@@ -94,7 +94,12 @@ var ItemService = {
       Utils.carouselSplide(`.splide.${category}s-carousel`, 20);
     });
   },
-  loadCard: (itemData) => {
+  loadCard: (itemData, user_id) => {
+    const items = document.querySelector(
+        `.items.${itemData.category}s .container`
+      ),
+      category = itemData.category,
+      price = Utils.checkDecWithInt(Utils.getPrice(category, itemData));
     // Package design
     // `
     //     <div class="item splide__slide">
@@ -117,8 +122,6 @@ var ItemService = {
     //     <button class="pckbtn"></button>
     //   </div>
     //   `;
-    const category = itemData.category,
-      price = Utils.checkDecWithInt(Utils.getPrice(category, itemData));
 
     const content = `
       <div class="item splide__slide">
@@ -135,6 +138,7 @@ var ItemService = {
         <button class="pckbtn" 
         onClick="Utils.itemModal(
         '${itemData.item_id}',
+        '${user_id}',
         '${itemData.persons}',
         '${itemData.days}',
         '${category}',
@@ -156,9 +160,6 @@ var ItemService = {
       </div>
     `;
 
-    const items = document.querySelector(
-      `.items.${itemData.category}s .container`
-    );
     items.innerHTML += content;
   },
   addItemModal: (category, edit) => {
@@ -670,7 +671,6 @@ var ItemService = {
         `;
 
         moreItemWrapper.innerHTML += moreItemCon;
-        console.log(moreItemWrapper.innerHTML);
       });
       Utils.carouselSplide(".splide");
     });

@@ -1,10 +1,6 @@
 <?php
 require_once __DIR__ . '/../rest/services/CartService.class.php';
 
-$ids = array(
-  'cart_id' => $_REQUEST['cart_id'],
-  'item_id' => $_REQUEST['item_id']
-);
-
+$cart_item_id = $_REQUEST['cart_item_id'];
 $cart_service = new CartService();
-$cart_service->delete_item_cart($ids);
+$cart_service->delete_item_cart($cart_item_id);

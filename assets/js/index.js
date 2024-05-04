@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const buttons = document.querySelectorAll(".info .row .content button");
 
     buttons.forEach((button, index) => {
-      button.addEventListener("click", function () {
+      button.addEventListener("click", () => {
         let span = this.querySelector("span");
         let paragraph = this.nextElementSibling;
 
@@ -92,18 +92,19 @@ document.addEventListener("DOMContentLoaded", () => {
     defaultView: "#home",
     templateDir: "pages/homePages/",
   });
+  const user_id = 2;
 
   app.route({
     view: "home",
     load: "home.html",
-    onCreate: function () {
+    onCreate: () => {
       mainTitleAnimation();
       switchButton(0);
-      ItemService.loadCards("package");
+      ItemService.loadCards("package", user_id);
       expandGraph();
       ArticleService.loadArticleCrousel();
     },
-    onReady: function () {
+    onReady: () => {
       Utils.setupModalActions("Item added successfully", true, false);
       switchButton(0);
     },
@@ -112,7 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
   app.route({
     view: "contact",
     load: "contact-us.html",
-    onCreate: function () {
+    onCreate: () => {
       mainTitleAnimation();
       Utils.formAnimation();
       Utils.submit(
@@ -124,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       );
     },
-    onReady: function () {
+    onReady: () => {
       switchButton(1);
     },
   });
@@ -132,12 +133,12 @@ document.addEventListener("DOMContentLoaded", () => {
   app.route({
     view: "articles",
     load: "articles.html",
-    onCreate: function () {
+    onCreate: () => {
       ArticleService.loadArticlesPage("cities");
       ArticleService.loadArticlesPage("Hotels");
       ArticleService.loadArticlesPage("Tourism");
     },
-    onReady: function () {
+    onReady: () => {
       switchButton(2);
     },
   });
@@ -145,26 +146,34 @@ document.addEventListener("DOMContentLoaded", () => {
   app.route({
     view: "shop",
     load: "shop.html",
-    onCreate: function () {
+    onCreate: () => {
       mainTitleAnimation();
       Utils.setupModalActions("Item added successfully", true, false);
 
-      ItemService.loadCards("package");
-      ItemService.loadCards("car");
-      ItemService.loadCards("hotel");
+      ItemService.loadCards("car", user_id);
+      ItemService.loadCards("package", user_id);
+      ItemService.loadCards("hotel", user_id);
     },
-    onReady: function () {
+    onReady: () => {
       switchButton(4);
     },
   });
-
   app.route({
     view: "cart",
     load: "cart.html",
-    onCreate: function () {},
-    onReady: function () {
-      CartService.loadCart(1);
+    onCreate: () => {},
+    onReady: () => {
+      const modalBtn = $("button.checkout-btn").eq(0);
+      CartService.loadRows(user_id);
       switchButton(null);
+      modalBtn.click(() => {
+        CartService.checkOut(user_id, "customer", modalBtn);
+      });
+      $(window).one("hashchange", () => {
+        localStorage.removeItem("coupons");
+        CartService.updateCart(user_id);
+        Utils.removeAllEventListeners(modalBtn[0]);
+      });
     },
   });
 

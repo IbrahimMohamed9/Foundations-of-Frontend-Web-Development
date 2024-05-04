@@ -471,7 +471,6 @@
 .btn-shape {
   padding: 5px 10px;
   border-radius: 6px;
-  max-width: fit-content;
   height: fit-content;
   transition: var(--main-transition);
 }

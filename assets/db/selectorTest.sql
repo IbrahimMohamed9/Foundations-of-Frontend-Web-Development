@@ -14,10 +14,22 @@ SELECT *
 FROM widgets;
 
 SELECT *
+FROM items;
+
+SELECT *
 FROM friend_requests;
 
 SELECT *
-FROM user_friends;
+FROM projects;
+
+SELECT *
+FROM carts;
+
+SELECT *
+FROM cart_items;
+
+SELECT *
+FROM user_projects;
 
 SELECT user_id, number_of_friends
 FROM users;
@@ -74,11 +86,35 @@ SELECT u.name,
 FROM user_friends AS uf
          JOIN users u ON u.user_id = uf.user_id OR u.user_id = uf.friend_id
          LEFT JOIN user_projects up ON u.user_id = up.user_id AND up.position != 'customer'
-WHERE (uf.user_id = :user_id OR uf.friend_id = :user_id) AND u.user_id != :user_id
+WHERE (uf.user_id = :user_id OR uf.friend_id = :user_id)
+  AND u.user_id != :user_id
 GROUP BY u.name,
-       u.email,
-       u.img,
-       u.joined_date,
-       u.level,
-       u.gender,
-       u.number_of_friends
+         u.email,
+         u.img,
+         u.joined_date,
+         u.level,
+         u.gender,
+         u.number_of_friends;
+
+
+SELECT p.project_id,
+       p.start_date,
+       p.status,
+       p.price                AS project_price,
+       i.name                 AS item_name,
+       i.intro                AS item_intro,
+       GROUP_CONCAT(
+               CONCAT_WS('|', u.user_id, up.position, u.name, u.img)
+               SEPARATOR ',') AS project_team
+FROM projects p
+         JOIN items i ON p.item_id = i.item_id
+         JOIN user_projects up ON p.project_id = up.project_id
+         JOIN users u ON u.user_id = up.user_id
+GROUP BY p.project_id,
+         p.start_date,
+         p.status,
+         project_price,
+         item_name,
+         item_intro
+ORDER BY p.status DESC;
+

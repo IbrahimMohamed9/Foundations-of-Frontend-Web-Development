@@ -2,7 +2,6 @@ var UserService = {
   fetchUserInfo: async (user_id) => {
     try {
       let data = localStorage.getItem("userInfo");
-      let widgets = localStorage.getItem("userWidgets");
       if (data === null) {
         data = await new Promise((resolve, reject) => {
           RestClient.get(
@@ -49,6 +48,10 @@ var UserService = {
     } catch (error) {
       console.error("Error fetching Profile data:", error);
     }
+  },
+  mainImage: async (user_id) => {
+    const data = await UserService.fetchUserInfo(user_id);
+    $($(".content .head .icons img")[0]).attr("src", data.img);
   },
   deleteUserInfoFormLocalStorage: () => {
     localStorage.removeItem("userInfo");
@@ -468,7 +471,7 @@ var UserService = {
     Utils.block_ui(el.parentNode, true);
     RestClient.delete(
       "users/delete/delete_user_draft.php?draft_id=" + draft_id,
-      draft_id,
+      null,
       () => {
         Utils.appearFailAlert("Draft deleted successfully");
         UserService.loadDrafts(user_id);
@@ -624,37 +627,35 @@ var UserService = {
     );
   },
   addFriend: (user_id) => {
-    const addFriendForm = $("#add-friend-form"),
-      addFriendBtn = $("#add-friend"),
-      addFriendInput = addFriendForm.find("#requested_id"),
-      addFriendIcon = addFriendForm.find("i.add-friend"),
-      addFriendBtnsAnimation = () => {
-        addFriendForm.hasClass("d-none")
-          ? addFriendForm.removeClass("d-none").addClass("between-flex")
-          : setTimeout(() => {
-              addFriendForm.addClass("d-none").removeClass("between-flex");
-            }, 300);
+    const addFriendForm = $("#add-friend-form");
+    const addFriendBtn = $("#add-friend");
+    const addFriendInput = addFriendForm.find("#requested_id");
+    const addFriendIcon = addFriendForm.find("i.add-friend");
 
-        addFriendBtn.toggleClass("hidden-by-width");
-
-        setTimeout(() => {
-          addFriendInput.toggleClass("hidden-by-width");
-          addFriendIcon.toggleClass("fs-0");
-        }, 0);
-      };
-
-    addFriendBtn.click(addFriendBtnsAnimation);
+    addFriendBtn.click(() => {
+      Utils.addBtnsAnimation(
+        addFriendForm,
+        addFriendBtn,
+        addFriendInput,
+        addFriendIcon
+      );
+    });
     // TODO user_id can't be same friend_id
     // const ids = localStorage.getItem("friendsId");
     // if ($(addFriendInput).val())
-      Utils.submit(
-        "add-friend-form",
-        "users/add/add_friend_request.php?requester_id=" + user_id,
-        "Friend added successfully",
-        () => {
-          addFriendBtnsAnimation();
-        }
-      );
+    Utils.submit(
+      "add-friend-form",
+      "users/add/add_friend_request.php?requester_id=" + user_id,
+      "Friend request sent successfully",
+      () => {
+        Utils.addBtnsAnimation(
+          addFriendForm,
+          addFriendBtn,
+          addFriendInput,
+          addFriendIcon
+        );
+      }
+    );
   },
   requestsFriendModal: (user_id, el) => {
     Utils.block_ui(el, true);
@@ -713,6 +714,7 @@ var UserService = {
       null
     ).done(() => {
       UserService.requestsFriendModal(requested_id);
+      if (status) UserService.loadFriends(requested_id);
     });
   },
   loadFriends: (user_id) => {
@@ -783,7 +785,12 @@ var UserService = {
               <button 
                 type="button" 
                 class="bg-red c-white btn-shape"
-                onclick="UserService.friendProfile(${friend})"
+                onclick="
+                UserService.removeFriend(
+                  ${friend.friendship_id},
+                  ${user_id},
+                  this
+                )"
               >
                 Remove
               </button>
@@ -843,5 +850,18 @@ var UserService = {
         }
       );
     });
+  },
+  removeFriend: (friendship_id, user_id, el) => {
+    Utils.block_ui(el, true);
+
+    RestClient.delete(
+      "users/delete/delete_friend.php?friendship_id=" + friendship_id,
+      null,
+      () => {
+        Utils.appearFailAlert("Friend deleted successfully");
+        UserService.loadFriends(user_id);
+        Utils.removeModal(false, $("#myModal")[0]);
+      }
+    );
   },
 };
