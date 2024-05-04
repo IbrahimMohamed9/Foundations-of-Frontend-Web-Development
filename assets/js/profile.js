@@ -83,6 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
     templateDir: "./profilePages/",
   });
 
+<<<<<<< HEAD
   const user_id = 1;
   // const user_id = 2;
   // const user_id = 3;
@@ -90,6 +91,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // const user_id = 5;
 
   UserService.mainImage(user_id);
+=======
+  // const user_id = 1;
+  // const user_id = 2;
+  // const user_id = 3;
+  // const user_id = 4;
+  const user_id = 5;
+>>>>>>> 1c79d095dc0f6bd8a5f80692b6dcfb33119b79eb
   app.route({
     view: "profile",
     load: "profile.html",
