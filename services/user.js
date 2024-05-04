@@ -646,7 +646,6 @@ var UserService = {
     Utils.submit(
       "add-friend-form",
       "users/add/add_friend_request.php?requester_id=" + user_id,
-<<<<<<< HEAD
       "Friend request sent successfully",
       () => {
         Utils.addBtnsAnimation(
@@ -655,11 +654,6 @@ var UserService = {
           addFriendInput,
           addFriendIcon
         );
-=======
-      "Friend added successfully",
-      () => {
-        addFriendBtnsAnimation();
->>>>>>> 1c79d095dc0f6bd8a5f80692b6dcfb33119b79eb
       }
     );
   },
