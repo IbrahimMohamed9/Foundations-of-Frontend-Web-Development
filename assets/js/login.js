@@ -27,11 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   Utils.formAnimation();
 
-  document.getElementById("sign_up").addEventListener("click", () => {
-    Utils.submit("sign_up_form", "users/add_user.php", false, () => {
-      Utils.resetFormAnimation();
-    });
-  });
+  $("#sign_up").click(UserService.signUp);
 
   document.getElementById("sign_in").addEventListener("click", () => {
     UserService.signIn("sign_in_form");

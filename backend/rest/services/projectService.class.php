@@ -21,6 +21,10 @@ class ProjectsService
     {
         return $this->projects_dao->get_projects();
     }
+    public function get_user_project($id)
+    {
+        return $this->projects_dao->get_user_project($id);
+    }
     public function get_projects_by_category($category)
     {
         return $this->projects_dao->get_projects_by_category($category);
@@ -35,7 +39,6 @@ class ProjectsService
     }
     public function edit_projects($projects)
     {
-
         $this->projects_dao->edit_project($projects);
     }
 }

@@ -24,6 +24,13 @@ var projectService = {
               <img src="${teamMember.img}"
                 alt="member image"
                 title="${teamMember.position}"
+                onclick="
+                  projectService.userProfile(
+                    ${teamMember.user_id},
+                    ${project.project_id},
+                    this
+                  );
+                "
               />
             </span>`;
             left += 25;
@@ -125,5 +132,32 @@ var projectService = {
     }
 
     return teamMembers;
+  },
+  userProfile: (user_id, project_id, el) => {
+    //TODO  make this and that friendProfile one function
+    //TODO  handle this error call back function
+    Utils.block_ui(el, true);
+    RestClient.get(
+      "projects/get_user_project.php?user_id=" +
+        user_id +
+        "&project_id=" +
+        project_id,
+      (data) => {
+        const content =
+          `<div class="master-container profile-page ">
+        <div class="card cart overview bg-fourth rad-10 d-flex align-center">
+                <div class="top-title">
+                  <span class="title">User</span>
+                  <i class="fa-solid fa-xmark x"></i>
+                </div>
+                ` +
+          UserService.loadMainProfileWidget(data, data.user_id, false) +
+          "</div>";
+        $("#myModal").html(content);
+        Utils.setupModalActions();
+        Utils.appearModal(false);
+        Utils.unblock_ui(el);
+      }
+    );
   },
 };

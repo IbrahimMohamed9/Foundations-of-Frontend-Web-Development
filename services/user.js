@@ -61,17 +61,24 @@ var UserService = {
   },
   loadProfile: async (user_id) => {
     UserService.deleteUserInfoFormLocalStorage();
-    const data = await UserService.fetchUserInfo(user_id),
-      content = UserService.loadMainProfileWidget(data, user_id, true);
-    const skills = data.skills.split(" ");
+    const data = await UserService.fetchUserInfo(user_id);
+    const content = UserService.loadMainProfileWidget(data, user_id, true);
+
+    let skills = data.skills;
     let skillsList = "";
-    for (let i = 0; i < skills.length; i += 3) {
-      skillsList += "<li>";
-      for (let j = 0; j < 3 && i + j < skills.length; j++) {
-        skillsList += `<span>${skills[i + j]}</span>`;
+    if (skills) {
+      skills = skills.split(" ");
+      for (let i = 0; i < skills.length; i += 3) {
+        skillsList += "<li>";
+        // TODO add skills validation it must be more than one letter
+        for (let j = 0; j < 3 && i + j < skills.length; j++) {
+          if (skills[i + j].length > 1)
+            skillsList += `<span>${skills[i + j]}</span>`;
+        }
+        skillsList += "</li>";
       }
-      skillsList += "</li>";
     }
+
     UserService.loadLatestActivity(user_id);
     document.querySelector(".other-data .skills-card ul").innerHTML +=
       skillsList;
@@ -87,15 +94,19 @@ var UserService = {
               <div class="level rad-6 bg-eee p-relative">
                 <span style="width: ${data.level}%"></span>
               </div>
-              <div class="rating mt-10 mb-10">
-                <i class="fa-solid fa-star c-orange fs-13"></i>
-                <i class="fa-solid fa-star c-orange fs-13"></i>
-                <i class="fa-solid fa-star c-orange fs-13"></i>
-                <i class="fa-solid fa-star c-orange fs-13"></i>
-                <i class="fa-solid fa-star c-orange fs-13"></i>
-              </div>
+              <!--
+                TODO take the average rate and represent it in stars
+
+                <div class="rating mt-10 mb-10">
+                  <i class="fa-solid fa-star c-orange fs-13"></i>
+                  <i class="fa-solid fa-star c-orange fs-13"></i>
+                  <i class="fa-solid fa-star c-orange fs-13"></i>
+                  <i class="fa-solid fa-star c-orange fs-13"></i>
+                  <i class="fa-solid fa-star c-orange fs-13"></i>
+                </div>
+              -->
               <p class="c-grey m-0 fs-13">${
-                data.ratings.split(" ").length
+                data.ratings ? data.ratings.split(" ").length : ""
               } Rating</p>
             </div>
             <div class="info-box w-full txt-c-mobile">
@@ -526,7 +537,9 @@ var UserService = {
     $(".security-widget .password-info").html(`
     <div>
       <span>Password</span>
-      <p class="c-grey mt-5 mb-0 fs-13">Last Change On ${data.last_change}</p>
+      <p class="c-grey mt-5 mb-0 fs-13 ${
+        data.last_change ? "" : "d-none"
+      }">Last Change On ${data.last_change}</p>
     </div>
     <button
       class="bg-main-color d-block c-white fs-15 rad-6 c-white w-fit btn-shape btn-position"
@@ -640,7 +653,7 @@ var UserService = {
         addFriendIcon
       );
     });
-    // TODO user_id can't be same friend_id
+    // TODO add form validation to make user_id can't be same friend_id
     // const ids = localStorage.getItem("friendsId");
     // if ($(addFriendInput).val())
     Utils.submit(
@@ -849,6 +862,12 @@ var UserService = {
           Utils.appearFailAlert(xhr.responseText);
         }
       );
+    });
+  },
+  signUp: () => {
+    Utils.submit("sign_up_form", "users/add/add_user.php", false, () => {
+      Utils.resetFormAnimation();
+      //TODO insert cart_id
     });
   },
   removeFriend: (friendship_id, user_id, el) => {

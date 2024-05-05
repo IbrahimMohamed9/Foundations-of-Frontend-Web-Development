@@ -152,6 +152,6 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth",
     });
   });
-  const user_id = 2;
+  const user_id = 1;
   CartService.shoppingCartCounter(user_id, 0);
 });

@@ -110,10 +110,10 @@ var CartService = {
       ".checkout .checkout--footer .price"
     ).children;
 
-    let content,
-      modalContent,
-      totalPricesCart,
-      totalPriceModal = 0;
+    let content;
+    let modalContent;
+    let totalPricesCart;
+    let totalPriceModal = 0;
 
     modalProducts.innerHTML = "";
     Utils.setupModalActions("Items Registered Successfully!", false, true);
@@ -126,14 +126,14 @@ var CartService = {
       $(".cart .containerr .products .footer")[0],
     ]);
     cartItems.forEach((itemData) => {
-      const category = itemData.category,
-        price = itemData.price,
-        decimalPart = Utils.checkDec(price),
-        totalPrice =
-          Number(itemData.person_price) * Number(itemData.persons_selected) +
-          Number(itemData.day_price) * Number(itemData.days_selected),
-        totalDecimalPart = Utils.checkDec(totalPrice),
-        imgSrc = Utils.firstLink(itemData.imgs_srcs);
+      const category = itemData.category;
+      const price = itemData.price;
+      const decimalPart = Utils.checkDec(price);
+      const [totalPrice, totalDecimalPart] = CartService.getTotalItemPrice(
+        itemData,
+        false
+      );
+      const imgSrc = Utils.firstLink(itemData.imgs_srcs);
       totalPriceModal = totalPrice + parseFloat(totalPriceModal);
       // add package plan here
       modalContent = `
@@ -418,6 +418,14 @@ var CartService = {
       CartService.coupon("coupon", sumOfTotalModal);
     });
   },
+  getTotalItemPrice: (data, oneNumber) => {
+    const totalPrice =
+      Number(data.person_price) * Number(data.persons_selected) +
+      Number(data.day_price) * Number(data.days_selected);
+    return oneNumber
+      ? Number(Utils.checkDecWithInt(totalPrice))
+      : [totalPrice, Utils.checkDec(totalPrice)];
+  },
   updateCart: async (user_id, removeLocalStorage) => {
     const items = await CartService.fetchCartItems(user_id);
     items.forEach((data) => {
@@ -523,12 +531,11 @@ var CartService = {
 
       const data = {
         user_id: user_id,
-        price: item.price,
+        price: CartService.getTotalItemPrice(item, true),
         position: position,
         item_id: item.cart_item_id,
         end_date: Utils.addDaysToDate(item.days_selected),
       };
-      console.log(data.end_date);
       RestClient.post("projects/add_project.php", data);
     });
     RestClient.post(

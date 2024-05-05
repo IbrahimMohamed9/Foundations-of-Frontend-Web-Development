@@ -42,8 +42,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     buttons.forEach((button, index) => {
       button.addEventListener("click", () => {
-        let span = this.querySelector("span");
-        let paragraph = this.nextElementSibling;
+        let span = button.querySelector("span");
+        let paragraph = button.nextElementSibling;
 
         paragraph.classList.toggle("show");
 
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     defaultView: "#home",
     templateDir: "pages/homePages/",
   });
-  const user_id = 2;
+  const user_id = 1;
 
   app.route({
     view: "home",

@@ -10,7 +10,24 @@ class UserDao extends BaseDao
     }
     public function add_user($user)
     {
-        $this->insert("users", $user);
+        //TODO insert cart_id
+
+        try {
+            $this->beginTransaction();
+            $this->insert("users", $user);
+
+            $query = "SELECT LAST_INSERT_ID() AS user_id FROM users";
+            $lastInserted = $this->query_unique_last($query, []);
+
+            if ($lastInserted && isset($lastInserted['user_id'])) {
+                $this->insert("carts", ['user_id' => $lastInserted['user_id']]);
+                $this->commit();
+            } else {
+                $this->rollBack();
+            }
+        } catch (PDOException $e) {
+            $this->rollBack();
+        }
     }
     public function add_friend_request($ids)
     {

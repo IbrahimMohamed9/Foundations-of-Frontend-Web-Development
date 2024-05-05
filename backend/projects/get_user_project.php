@@ -5,4 +5,8 @@ $payload = $_REQUEST;
 
 $projects_service = new ProjectsService();
 
-$projects = $projects_service->add_project($payload);
+
+$user = $projects_service->get_user_project($payload);
+
+header('Content-Type: application/json');
+echo json_encode($user);
