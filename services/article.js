@@ -1,6 +1,6 @@
 var ArticleService = {
   loadTable: () => {
-    RestClient.get("articles", (data) => {
+    RestClient.get("articles/all", (data) => {
       const tableBody = document.querySelector("#tbl_articles tbody");
       tableBody.innerHTML = "";
       data.forEach((articleData) => {
@@ -183,7 +183,7 @@ var ArticleService = {
     });
   },
   openEditArticleModal: (id) => {
-    RestClient.get("articles/get?article_id=" + id, (data) => {
+    RestClient.get("articles/get/" + id, (data) => {
       ArticleService.addArticleModal("Article edit successfully");
 
       $("#myModal input[name='article_id']").val(data.article_id);
@@ -209,7 +209,7 @@ var ArticleService = {
     }
   },
   loadArticleCrousel: () => {
-    RestClient.get("articles", (data) => {
+    RestClient.get("articles/all", (data) => {
       const articles = document.querySelector(
         ".articles .splide__track .container.splide__list"
       );
@@ -299,7 +299,7 @@ var ArticleService = {
   },
   loadArticlePage: (id) => {
     RestClient.get(
-      "articles/get?article_id=" + id,
+      "articles/get/" + id,
       (articleData) => {
         const articleWrapper = document.querySelector("article"),
           moreArticleWrapper = document.querySelector(
@@ -371,7 +371,7 @@ var ArticleService = {
     );
   },
   loadMoreArticles: (id) => {
-    RestClient.get("articles", (data) => {
+    RestClient.get("articles/all", (data) => {
       const moreArticleWrapper = document.querySelector(
         ".more-articles .container"
       );
@@ -403,7 +403,7 @@ var ArticleService = {
     });
   },
   loadArticlesPage: (category) => {
-    RestClient.get("articles?category=" + category, (data) => {
+    RestClient.get("articles/" + category, (data) => {
       const articles = document.querySelector(
         `.articles.${category.toLowerCase()} .container .row`
       );

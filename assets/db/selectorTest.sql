@@ -9,7 +9,7 @@ FROM items;
 
 SELECT *
 FROM balqan.users;
-
+SELECT * FROM articles WHERE article_id = :article_id;
 SELECT *
 FROM projects;
 

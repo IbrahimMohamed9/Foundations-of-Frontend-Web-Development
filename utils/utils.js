@@ -521,7 +521,9 @@ var Utils = {
 
     FormValidation.validate(form, {}, (data) => {
       Utils.block_ui(block);
-
+      if (data["added_time"]) {
+        data["added_time"] = Utils.formatDateTime(data["added_time"]);
+      }
       RestClient.request(
         to,
         post ? "POST" : "PUT",
@@ -656,5 +658,14 @@ var Utils = {
     } catch (error) {
       return "Error occurred while calculating the new timestamp.";
     }
+  },
+  formatDateTime: (isoDateTime) => {
+    let formattedDateTime = isoDateTime.replace("T", " ");
+
+    if (formattedDateTime.split(" ")[1].split(":").length === 2) {
+      formattedDateTime += ":00";
+    }
+
+    return formattedDateTime;
   },
 };
