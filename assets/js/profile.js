@@ -83,9 +83,9 @@ document.addEventListener("DOMContentLoaded", () => {
     templateDir: "./profilePages/",
   });
 
-  const user_id = 1;
+  // const user_id = 1;
   // const user_id = 2;
-  // const user_id = 3;
+  const user_id = 3;
   // const user_id = 4;
   // const user_id = 5;
 
@@ -166,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ItemService.addItemModal("hotel", false);
       });
       $("#add-article").on("click", () => {
-        ArticleService.addArticleModal("Article added successfully");
+        ArticleService.addArticleModal("Article added successfully", true);
       });
       $("#add-feedback").on("click", () => {
         FeedbackService.addFeedbackModal();

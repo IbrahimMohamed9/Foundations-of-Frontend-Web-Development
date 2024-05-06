@@ -100,7 +100,8 @@ document.addEventListener("DOMContentLoaded", () => {
     onCreate: () => {
       mainTitleAnimation();
       switchButton(0);
-      ItemService.loadCards("package", user_id);
+      // ItemService.loadCards("newPackages", user_id);
+      ItemService.loadCards("package", user_id, "home");
       expandGraph();
       ArticleService.loadArticleCrousel();
     },
@@ -117,8 +118,9 @@ document.addEventListener("DOMContentLoaded", () => {
       mainTitleAnimation();
       Utils.formAnimation();
       Utils.submit(
+        true,
         "contact-form",
-        "feedbacks/add_feedback.php",
+        "feedbacks/add",
         "Feedback added successfully",
         () => {
           Utils.resetFormAnimation();
@@ -150,9 +152,9 @@ document.addEventListener("DOMContentLoaded", () => {
       mainTitleAnimation();
       Utils.setupModalActions("Item added successfully", true, false);
 
-      ItemService.loadCards("car", user_id);
-      ItemService.loadCards("package", user_id);
-      ItemService.loadCards("hotel", user_id);
+      ItemService.loadCards("car", user_id, "shop");
+      ItemService.loadCards("package", user_id, "shop");
+      ItemService.loadCards("hotel", user_id, "shop");
     },
     onReady: () => {
       switchButton(4);
@@ -167,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
       CartService.loadRows(user_id);
       switchButton(null);
       modalBtn.click(() => {
-        CartService.checkOut(user_id, "customer", modalBtn);
+        CartService.checkout(user_id, "customer", modalBtn);
       });
       $(window).one("hashchange", () => {
         localStorage.removeItem("coupons");

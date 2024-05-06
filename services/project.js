@@ -1,6 +1,6 @@
 var projectService = {
   loadProjects: () => {
-    RestClient.get("projects/get_projects.php", (projects) => {
+    RestClient.get("projects", (projects) => {
       let content = "";
       projects.forEach((project) => {
         content += `
@@ -97,12 +97,12 @@ var projectService = {
             formChildren.eq(2).children().eq(0)
           );
         });
-        // form_id, to, success_mge, callBack, modal, formElement
 
         Utils.submit(
+          //TODO make it false
+          true,
           false,
-          "projects/add_user_project.php?project_id=" +
-            projects[index]["project_id"],
+          "projects/add_user?project_id=" + projects[index]["project_id"],
           "User added successfully",
           () => {
             Utils.addBtnsAnimation(
@@ -137,27 +137,21 @@ var projectService = {
     //TODO  make this and that friendProfile one function
     //TODO  handle this error call back function
     Utils.block_ui(el, true);
-    RestClient.get(
-      "projects/get_user_project.php?user_id=" +
-        user_id +
-        "&project_id=" +
-        project_id,
-      (data) => {
-        const content =
-          `<div class="master-container profile-page ">
+    RestClient.get("projects/get/" + user_id + "/" + project_id, (data) => {
+      const content =
+        `<div class="master-container profile-page ">
         <div class="card cart overview bg-fourth rad-10 d-flex align-center">
                 <div class="top-title">
                   <span class="title">User</span>
                   <i class="fa-solid fa-xmark x"></i>
                 </div>
                 ` +
-          UserService.loadMainProfileWidget(data, data.user_id, false) +
-          "</div>";
-        $("#myModal").html(content);
-        Utils.setupModalActions();
-        Utils.appearModal(false);
-        Utils.unblock_ui(el);
-      }
-    );
+        UserService.loadMainProfileWidget(data, data.user_id, false) +
+        "</div>";
+      $("#myModal").html(content);
+      Utils.setupModalActions();
+      Utils.appearModal(false);
+      Utils.unblock_ui(el);
+    });
   },
 };

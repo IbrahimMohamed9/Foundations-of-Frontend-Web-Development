@@ -256,10 +256,12 @@ VALUES (1),
        (4),
        (5),
        (1);
+# TODO when i put persantge sign in the code the php flight be crazy
 INSERT INTO `coupon` (`max_times`, `code`, `amount`, `percentage`)
-VALUES (5, '%50', NULL, 0.50),
+VALUES (5, '123vzx50', NULL, 0.50),
        (10, '10', 10, NULL),
-       (3, '%75', NULL, 0.75);
+       (10, 'maser', 10, NULL),
+       (3, 'bzxc375', NULL, 0.75);
 INSERT INTO activities (user_id, img_src, name, description, date, time)
 VALUES (1,
         'https://raw.githubusercontent.com/IbrahimMoatazMohamed/IT-207-Introduction-to-Web-Programming/main/assets/images/profile/activity-01.png',

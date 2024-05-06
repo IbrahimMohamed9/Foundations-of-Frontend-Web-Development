@@ -31,7 +31,6 @@ class ArticleService
     }
     public function edit_article($article)
     {
-
-        $this->article_dao->edit_article($article);
+        return $this->article_dao->edit_article($article);
     }
 }

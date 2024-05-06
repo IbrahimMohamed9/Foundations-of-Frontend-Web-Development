@@ -8,7 +8,7 @@ var ItemService = {
         : id === "tbl_hotels"
         ? "hotel"
         : alert("check the id");
-    RestClient.get("items/get_items.php?category=" + category, (data) => {
+    RestClient.get("items/" + category, (data) => {
       const tableBody = document.querySelector("#" + id + " tbody");
 
       tableBody.innerHTML = "";
@@ -80,23 +80,27 @@ var ItemService = {
   </tr>
     `;
   },
-  loadCards: (category, user_id) => {
-    RestClient.get("items/get_items.php?category=" + category, (data) => {
+  loadCards: (category, user_id, section) => {
+    //TODO  make it possible
+    // let url;
+    // if (category === "newPackages") {
+    //   category = "package";
+    //   url = "items/new_packages/3";
+    // } else {
+    //   url = "items/" + category;
+    // }
+    RestClient.get("items/" + category, (data) => {
       data.forEach((itemData) => {
         category === "car" || category === "hotel" || category === "package"
-          ? ItemService.loadCard(itemData, user_id)
+          ? ItemService.loadCard(itemData, user_id, section)
           : alert("check the category");
       });
-      // TODO
-      /*
-      When open shop page from home it appear error
-      */
-      Utils.carouselSplide(`.splide.${category}s-carousel`, 20);
+      Utils.carouselSplide(`#${section} .splide.${category}s-carousel`, 20);
     });
   },
-  loadCard: (itemData, user_id) => {
+  loadCard: (itemData, user_id, section) => {
     const items = document.querySelector(
-        `.items.${itemData.category}s .container`
+        `#${section} .items.${itemData.category}s .container`
       ),
       category = itemData.category,
       price = Utils.checkDecWithInt(Utils.getPrice(category, itemData));
@@ -411,8 +415,10 @@ var ItemService = {
         Utils.capitalizeFirstLetter(category) +
         (edit ? " edited successfully" : " added successfully");
       Utils.submit(
+        //TODO make it false
+        true,
         category + "-form",
-        "items/add_item.php",
+        "items/add",
         message,
         () => {
           ItemService.loadTable("tbl_" + category + "s");
@@ -422,7 +428,8 @@ var ItemService = {
     });
   },
   openEditItemModal: (id) => {
-    RestClient.get("items/get_item.php?item_id=" + id, function (data) {
+    RestClient.get("items/get/" + id, function (data) {
+      data = data.data;
       ItemService.addItemModal(data.category, true);
 
       $("#myModal input[name='item_id']").val(data.item_id);
@@ -450,13 +457,14 @@ var ItemService = {
   },
   removeItem: (id, category) => {
     if (confirm("Do you want to delete item with the id " + id + "?") == true) {
-      RestClient.delete("items/delete_item.php?item_id=" + id, {}, () => {
+      RestClient.delete("items/delete/" + id, {}, () => {
         ItemService.loadTable("tbl_" + category + "s");
       });
     }
   },
   loadItemPage: (id) => {
-    RestClient.get("items/get_item.php?item_id=" + id, (itemData) => {
+    RestClient.get("items/get/" + id, (itemData) => {
+      itemData = itemData.data;
       const itemWrapper = document.querySelector(".cart.item"),
         category = itemData.category,
         price = Utils.getPrice(category, itemData),
@@ -639,7 +647,7 @@ var ItemService = {
     });
   },
   loadMoreItems: () => {
-    RestClient.get("items/get_items.php", (data) => {
+    RestClient.get("items", (data) => {
       const moreItemWrapper = document.querySelector(
         ".more-items .splide .wrapper.splide__track .carousel.splide__list"
       );

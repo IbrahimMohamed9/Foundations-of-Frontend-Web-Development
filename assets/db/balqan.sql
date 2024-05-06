@@ -135,18 +135,19 @@ CREATE TABLE `cart_items`
     `days_selected`    INT,
     `persons_selected` INT,
     CONSTRAINT `fk_cart_item_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`cart_id`),
-    CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`)
+    CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
+    UNIQUE KEY `unique_item_cart` (`item_id`, `cart_id`)
 );
 CREATE TABLE `projects`
 (
     `project_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `item_id`    INT,
+    `cart_item_id`    INT,
     `start_date` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
     `end_date`   TIMESTAMP,
     `status`     INT DEFAULT 0,
     `price`      DECIMAL(10, 2),
     CONSTRAINT fk_projects_item_id
-        FOREIGN KEY (item_id) REFERENCES cart_items (cart_item_id)
+        FOREIGN KEY (cart_item_id) REFERENCES cart_items (cart_item_id)
             ON DELETE CASCADE
 );
 CREATE TABLE `user_projects`

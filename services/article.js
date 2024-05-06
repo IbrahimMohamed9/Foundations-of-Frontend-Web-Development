@@ -1,6 +1,6 @@
 var ArticleService = {
   loadTable: () => {
-    RestClient.get("articles/get_articles.php", (data) => {
+    RestClient.get("articles", (data) => {
       const tableBody = document.querySelector("#tbl_articles tbody");
       tableBody.innerHTML = "";
       data.forEach((articleData) => {
@@ -171,8 +171,9 @@ var ArticleService = {
     `;
     Utils.formSetup(modal, () => {
       Utils.submit(
+        true,
         "article-form",
-        "articles/add_article.php",
+        "articles/add",
         message,
         () => {
           ArticleService.loadTable("tbl_articles");
@@ -182,7 +183,7 @@ var ArticleService = {
     });
   },
   openEditArticleModal: (id) => {
-    RestClient.get("articles/get_article.php?article_id=" + id, (data) => {
+    RestClient.get("articles/get?article_id=" + id, (data) => {
       ArticleService.addArticleModal("Article edit successfully");
 
       $("#myModal input[name='article_id']").val(data.article_id);
@@ -202,17 +203,13 @@ var ArticleService = {
     if (
       confirm("Do you want to delete article with the id " + id + "?") == true
     ) {
-      RestClient.delete(
-        "articles/delete_article.php?article_id=" + id,
-        {},
-        () => {
-          ArticleService.loadTable("tbl_articles");
-        }
-      );
+      RestClient.delete("articles/delete/" + id, {}, () => {
+        ArticleService.loadTable("tbl_articles");
+      });
     }
   },
   loadArticleCrousel: () => {
-    RestClient.get("articles/get_articles.php", (data) => {
+    RestClient.get("articles", (data) => {
       const articles = document.querySelector(
         ".articles .splide__track .container.splide__list"
       );
@@ -302,7 +299,7 @@ var ArticleService = {
   },
   loadArticlePage: (id) => {
     RestClient.get(
-      "articles/get_article.php?article_id=" + id,
+      "articles/get?article_id=" + id,
       (articleData) => {
         const articleWrapper = document.querySelector("article"),
           moreArticleWrapper = document.querySelector(
@@ -374,7 +371,7 @@ var ArticleService = {
     );
   },
   loadMoreArticles: (id) => {
-    RestClient.get("articles/get_articles.php", (data) => {
+    RestClient.get("articles", (data) => {
       const moreArticleWrapper = document.querySelector(
         ".more-articles .container"
       );
@@ -406,7 +403,7 @@ var ArticleService = {
     });
   },
   loadArticlesPage: (category) => {
-    RestClient.get("articles/get_articles.php?category=" + category, (data) => {
+    RestClient.get("articles?category=" + category, (data) => {
       const articles = document.querySelector(
         `.articles.${category.toLowerCase()} .container .row`
       );

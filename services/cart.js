@@ -9,7 +9,7 @@ var CartService = {
 
     // TODO fix when add two same item to cart
     CartService.submit(
-      "carts/add_item_cart.php",
+      "carts/add_item",
       data,
       "Item added successfully",
       "#myModal .checkout .checkout-btn"
@@ -17,24 +17,26 @@ var CartService = {
   },
   submit: async (to, data, success_mge, block_selector, modal) => {
     const block = $(block_selector);
-    Utils.block_ui(block);
+    //TODO add unblock_ui and use remove modal in this time
+    // Utils.block_ui(block);
     modal = $("#myModal")[0];
     //TODO fix that to add
     localStorage.removeItem("cart_items");
-
-    $.post(Constants.API_BASE_URL + to, data)
-      .done(async (response) => {
-        Utils.unblock_ui(block);
+    RestClient.post(
+      to,
+      data,
+      async (response) => {
         if (modal) Utils.removeModal(true, modal);
 
         Utils.appearSuccAlert(success_mge);
         CartService.shoppingCartCounter(data.user_id, 1);
-      })
-      .fail((xhr) => {
+      },
+      (xhr) => {
         Utils.unblock_ui(block);
         if (modal) Utils.removeModal(true, modal);
         Utils.appearFailAlert(xhr.responseText);
-      });
+      }
+    );
   },
   shoppingCartCounter: async (user_id, change) => {
     // try {
@@ -44,7 +46,7 @@ var CartService = {
     // if (counter === null || counter === undefined) {
     // const counter = await new Promise((resolve, reject) => {
     RestClient.get(
-      "carts/get_cart_items_number_by_id.php?user_id=" + user_id,
+      "carts/counter/" + user_id,
       (data) => {
         $(".shopping-cart-icon").attr("data-counter", data.counter);
         // resolve(Number(data.counter));
@@ -76,8 +78,9 @@ var CartService = {
       if (data === null) {
         data = await new Promise((resolve, reject) => {
           RestClient.get(
-            "carts/get_cart_items_by_id.php?user_id=" + user_id,
+            "carts/get/" + user_id,
             (data) => {
+              data = data.data;
               resolve(
                 data.map((itemData) => ({
                   ...itemData,
@@ -414,7 +417,7 @@ var CartService = {
     });
     // TODO fix coupon part apply one times
     // and remove from local storage
-    $(".coupons .form#coupon").click(() => {
+    $(".coupons #coupon input[type=submit]").click(() => {
       CartService.coupon("coupon", sumOfTotalModal);
     });
   },
@@ -431,7 +434,7 @@ var CartService = {
     items.forEach((data) => {
       if (data.changed) {
         RestClient.put(
-          "carts/update_item_cart.php?cart_item_id=" +
+          "carts/item?cart_item_id=" +
             data.cart_item_id +
             "&persons_selected=" +
             data.persons_selected +
@@ -452,7 +455,7 @@ var CartService = {
       // callback_error instead of call back
 
       RestClient.delete(
-        "carts/delete_item_cart.php?cart_item_id=" + cart_item_id,
+        "carts/delete/" + cart_item_id,
         () => {},
         (error) => {
           // TODO make it withou remove from localStorage
@@ -465,13 +468,13 @@ var CartService = {
       );
     }
   },
+  //TODO fix when user open the modal in cart and go out
   coupon: (form_id, totalPriceModal) => {
     const form = $("#" + form_id);
     FormValidation.validate(form, {}, (data) => {
       Utils.block_ui(form);
-      RestClient.post(
-        "carts/check_coupon.php",
-        data,
+      RestClient.get(
+        "carts/coupon?code=" + data.code,
         (data) => {
           form[0].reset();
           Utils.unblock_ui(form);
@@ -500,7 +503,7 @@ var CartService = {
       );
     });
   },
-  checkOut: async (user_id, position, btn) => {
+  checkout: async (user_id, position, btn) => {
     Utils.block_ui(btn, true);
     CartService.updateCart(user_id);
 
@@ -517,30 +520,30 @@ var CartService = {
       : 0;
 
     items.forEach((item) => {
+      let price = CartService.getTotalItemPrice(item, true);
       if (coupons) {
         const percentageToAmount = totalPercentage.reduce((acc, percentage) => {
           if (acc === 0) {
-            return item.price * parseFloat(percentage);
+            return price * parseFloat(percentage);
           } else {
             return acc + acc * parseFloat(percentage);
           }
         }, 0);
 
-        item.price -= percentageToAmount + totalAmount / items.length;
+        price -= percentageToAmount + totalAmount / items.length;
       }
-
       const data = {
         user_id: user_id,
-        price: CartService.getTotalItemPrice(item, true),
+        price: price,
         position: position,
-        item_id: item.cart_item_id,
+        cart_item_id: item.cart_item_id,
         end_date: Utils.addDaysToDate(item.days_selected),
       };
-      RestClient.post("projects/add_project.php", data);
+      RestClient.post("projects/add", data);
     });
     RestClient.post(
-      "carts/add_new_cart_for_user.php",
-      { user_id: user_id },
+      "carts/insert_cart/" + user_id,
+      null,
       (data) => {
         // TODO make it more logic remove one by one
         localStorage.removeItem("coupons");

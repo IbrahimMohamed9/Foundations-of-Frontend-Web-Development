@@ -15,7 +15,7 @@ class ProjectsDao extends BaseDao
             $this->insert("projects", [
                 'price' => $payload['price'],
                 'end_date' => $payload['end_date'],
-                'item_id' => $payload['item_id']
+                'cart_item_id' => $payload['cart_item_id']
             ]);
 
             $query = "SELECT LAST_INSERT_ID() AS project_id FROM projects";
@@ -39,13 +39,8 @@ class ProjectsDao extends BaseDao
             $this->rollBack();
         }
     }
-    public function add_user_project($payload)
+    public function add_user_project($user_project)
     {
-        $user_project = [
-            'user_id' => $payload['user_id'],
-            'project_id' => $payload['project_id'],
-            'position' => $payload['position']
-        ];
         $query = "INSERT INTO user_projects (user_id, project_id, position)
             VALUES (:user_id, :project_id, :position)";
         $this->execute($query, $user_project);
@@ -62,7 +57,8 @@ class ProjectsDao extends BaseDao
                             CONCAT_WS('|', u.user_id, up.position, u.name, u.img)
                             SEPARATOR ',') AS project_team
                     FROM projects p
-                            JOIN items i ON p.item_id = i.item_id
+                            JOIN cart_items ci ON p.cart_item_id = ci.cart_item_id
+                            JOIN items i ON i.item_id = ci.item_id
                             JOIN user_projects up ON p.project_id = up.project_id
                             JOIN users u ON u.user_id = up.user_id
                     GROUP BY p.project_id,
@@ -74,11 +70,6 @@ class ProjectsDao extends BaseDao
                     ORDER BY p.status DESC";
 
         return $this->query($query, []);
-    }
-    public function get_projects_by_category($category)
-    {
-        $query = "SELECT * FROM projects WHERE category = :category";
-        return $this->query($query, ['category' => $category]);
     }
     public function get_project_by_id($project_id)
     {

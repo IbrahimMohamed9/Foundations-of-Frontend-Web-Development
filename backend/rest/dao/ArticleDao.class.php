@@ -41,11 +41,14 @@ class ArticleDao extends BaseDao
             country = :country, 
             category = :category, 
             img_desc = :img_desc, 
-            status = :status, 
+            `status` = :status, 
             added_time = :added_time, 
-            description = :description, 
+            `description` = :description, 
             content = :content 
             WHERE article_id = :article_id";
+
         $this->execute($query, $article);
+
+        return $article;
     }
 }

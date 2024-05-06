@@ -5,7 +5,7 @@ var UserService = {
       if (data === null) {
         data = await new Promise((resolve, reject) => {
           RestClient.get(
-            "users/get/get_user_by_id.php?user_id=" + user_id,
+            "users/get/user/" + user_id,
             (data) => {
               resolve(data);
             },
@@ -30,7 +30,7 @@ var UserService = {
       if (widgets === null) {
         widgets = await new Promise((resolve, reject) => {
           RestClient.get(
-            "users/get/get_user_widgets_by_id.php?user_id=" + user_id,
+            "users/get/widgets/" + user_id,
             (data) => {
               resolve(data);
             },
@@ -187,9 +187,9 @@ var UserService = {
   },
   loadLatestActivity: (user_id) => {
     RestClient.get(
-      "users/get/get_user_latest_activity.php?user_id=" +
+      "users/get/latest_activity/" +
         user_id +
-        "&limit=" +
+        "/" +
         Constants.latestActivitiesLimit,
       (data) => {
         const activitiesList = data
@@ -280,7 +280,7 @@ var UserService = {
     $("profile-btn").click(() => {
       switchButton(0);
     });
-    UserService.addDraft(user_id);
+    UserService.operateDraft(user_id, true);
   },
   loadDashboardWidgets: async (user_id) => {
     const widgets = await UserService.fetchUserWidgets(user_id);
@@ -306,18 +306,16 @@ var UserService = {
     $("#dashboard .screen div:has(.targets)").removeClass("d-none");
 
     Utils.block_ui(targetWidget);
-    RestClient.get(
-      "users/get/get_user_targets.php?user_id=" + user_id,
-      (data) => {
-        let targetsWidget = "";
-        targetWidget.html("");
+    RestClient.get("users/get/targets/" + user_id, (data) => {
+      let targetsWidget = "";
+      targetWidget.html("");
 
-        data.forEach((target) => {
-          const achieved = Number(target.achieved),
-            goal = Number(target.goal),
-            percentageAchieved = ((achieved / goal) * 100).toFixed(0);
+      data.forEach((target) => {
+        const achieved = Number(target.achieved),
+          goal = Number(target.goal),
+          percentageAchieved = ((achieved / goal) * 100).toFixed(0);
 
-          targetsWidget += `
+        targetsWidget += `
               <div class="target-row mb-20 mb-25-f d-flex align-center">
                 <div class="icon center-flex">
                   <i class="fa-solid ${target.icon} fa-lg"></i>
@@ -333,25 +331,22 @@ var UserService = {
                 </div>
               </div>
             `;
-        });
-        targetWidget.append(targetsWidget);
-        Utils.unblock_ui(targetWidget);
-      }
-    );
+      });
+      targetWidget.append(targetsWidget);
+      Utils.unblock_ui(targetWidget);
+    });
   },
   loadTicketsStatistics: (user_id) => {
     $("#dashboard .screen div:has(.tickets)").removeClass("d-none");
 
     const ticketWidget = $(".screen.wrapper .tickets .tickets-wrapper");
     Utils.block_ui(ticketWidget);
-    RestClient.get(
-      "users/get/get_user_tickets.php?user_id=" + user_id,
-      (data) => {
-        let ticketsWidget = "";
-        ticketWidget.html("");
+    RestClient.get("users/get/tickets/" + user_id, (data) => {
+      let ticketsWidget = "";
+      ticketWidget.html("");
 
-        data.forEach((ticket) => {
-          ticketsWidget += `
+      data.forEach((ticket) => {
+        ticketsWidget += `
               <div class="box border-ccc p-20 p-10-f pr-10-f fs-13 c-grey">
                 <i class="fa-solid ${ticket.icon} fa-2x mb-10"></i>
                 <span class="d-block c-main-font fw-bold fs-25 mb-5">${Utils.checkDecWithInt(
@@ -360,11 +355,10 @@ var UserService = {
                 ${ticket.label}
               </div>
             `;
-        });
-        ticketWidget.append(ticketsWidget);
-        Utils.unblock_ui(ticketWidget);
-      }
-    );
+      });
+      ticketWidget.append(ticketsWidget);
+      Utils.unblock_ui(ticketWidget);
+    });
   },
   loadDrafts: (user_id) => {
     $("#dashboard .screen div:has(.drafts)").removeClass("d-none");
@@ -372,16 +366,14 @@ var UserService = {
     const draftWidget = $(".screen.wrapper .drafts ul");
     draftWidget.html("");
     Utils.block_ui(draftWidget);
-    RestClient.get(
-      "users/get/get_user_drafts.php?user_id=" + user_id,
-      (data) => {
-        let draftsWidget = "";
-        Utils.unblock_ui(draftWidget);
-        data.forEach((draft) => {
-          const [datePart, timePart] = draft.time.split(" "),
-            [hour, minute] = timePart.split(":").slice(0, 2);
+    RestClient.get("users/get/drafts/" + user_id, (data) => {
+      let draftsWidget = "";
+      Utils.unblock_ui(draftWidget);
+      data.forEach((draft) => {
+        const [datePart, timePart] = draft.time.split(" "),
+          [hour, minute] = timePart.split(":").slice(0, 2);
 
-          draftsWidget += `
+        draftsWidget += `
                   <li class="d-flex align-center mt-15" onclick="UserService.getDraft(${user_id}, ${draft.draft_id}, this)">
                     <span class="key d-block"></span>
                     <div class="pl-15">
@@ -390,40 +382,34 @@ var UserService = {
                     </div>
                   </li>
                 `;
-        });
-        draftWidget.append(draftsWidget);
-        Utils.unblock_ui(draftWidget);
-      }
-    );
+      });
+      draftWidget.append(draftsWidget);
+      Utils.unblock_ui(draftWidget);
+    });
   },
-  addDraft: (user_id) => {
-    Utils.submit(
-      "draft-form",
-      "users/add/add_draft.php?user_id=" + user_id,
-      "Draft added successfully",
-      () => {
-        UserService.loadDrafts(user_id);
-      }
-    );
-  },
-  editDraft: (user_id, draft_id, modal) => {
-    Utils.submit(
-      "edit-draft-form",
-      "users/add/add_draft.php?draft_id=" + draft_id,
-      "Draft edited successfully",
-      () => {
-        UserService.loadDrafts(user_id);
+  operateDraft: (user_id, add, modal) => {
+    const form_id = add ? "draft-form" : "edit-draft-form";
+
+    const url =
+      `users/${add ? "add" : "edit"}/draft` +
+      (add ? "?user_id=" + user_id : "");
+
+    const message = `Draft ${add ? "added" : "edited"} successfully`;
+
+    // TODO make true to be add
+    Utils.submit(true, form_id, url, message, () => {
+      UserService.loadDrafts(user_id);
+      if (!add) {
         Utils.removeModal(false, modal);
       }
-    );
+    });
   },
+
   getDraft: (user_id, draft_id, el) => {
     Utils.block_ui(el);
-    RestClient.get(
-      "users/get/get_user_draft_by_id.php?draft_id=" + draft_id,
-      (data) => {
-        const modal = $("#myModal")[0];
-        const modalContent = `
+    RestClient.get("users/get/draft/" + draft_id, (data) => {
+      const modal = $("#myModal")[0];
+      const modalContent = `
           <div class="master-container">
             <div class="card cart">
               <div class="top-title">
@@ -469,26 +455,21 @@ var UserService = {
               </div>
             </div>
           </div>`;
-        $(modal).html(modalContent);
-        Utils.formAnimation();
-        Utils.setupModalActions();
-        Utils.appearModal(false);
-        Utils.unblock_ui(el);
-        UserService.editDraft(user_id, data.draft_id, modal);
-      }
-    );
+      $(modal).html(modalContent);
+      Utils.formAnimation();
+      Utils.setupModalActions();
+      Utils.appearModal(false);
+      Utils.unblock_ui(el);
+      UserService.operateDraft(user_id, false, modal);
+    });
   },
   removeDraft: (user_id, draft_id, el) => {
     Utils.block_ui(el.parentNode, true);
-    RestClient.delete(
-      "users/delete/delete_user_draft.php?draft_id=" + draft_id,
-      null,
-      () => {
-        Utils.appearFailAlert("Draft deleted successfully");
-        UserService.loadDrafts(user_id);
-        Utils.removeModal(false, $("#myModal")[0]);
-      }
-    );
+    RestClient.delete("users/delete/draft/" + draft_id, null, () => {
+      Utils.appearFailAlert("Draft deleted successfully");
+      UserService.loadDrafts(user_id);
+      Utils.removeModal(false, $("#myModal")[0]);
+    });
   },
   loadSettings: async (user_id) => {
     const data = await UserService.fetchUserInfo(user_id);
@@ -497,8 +478,10 @@ var UserService = {
     UserService.loadWidgetsControl(user_id);
 
     Utils.submit(
+      //TODO make it false
+      true,
       "edit-user-info-form",
-      "users/edit/edit_user_info.php?user_id=" + user_id,
+      "users/edit/user?user_id=" + user_id,
       "Info edited successfully",
       async () => {
         UserService.deleteUserInfoFormLocalStorage();
@@ -511,22 +494,24 @@ var UserService = {
     Utils.block_ui($("#" + widgetName), true);
     const widgets = await UserService.fetchUserWidgets(user_id),
       widgetValue = !widgets[widgetName] ? 1 : 0;
-    $.post(
-      Constants.API_BASE_URL +
-        "users/get/get_user_widgets_by_id.php?user_id=" +
+
+    //TODO fix this call back error
+    RestClient.put(
+      "users/edit/widgets?user_id=" +
         user_id +
         "&" +
         widgetName +
         "=" +
         widgetValue,
-      null
-    ).done(() => {
-      widgets[widgetName] = widgetValue;
-      UserService.deleteUserWidgetsFormLocalStorage();
-      localStorage.setItem("userWidget", JSON.stringify(widgets));
-      UserService.loadWidgetsControl(user_id);
-    });
-    Utils.unblock_ui($("#" + widgetName));
+      () => {},
+      () => {
+        widgets[widgetName] = widgetValue;
+        UserService.deleteUserWidgetsFormLocalStorage();
+        localStorage.setItem("userWidget", JSON.stringify(widgets));
+        UserService.loadWidgetsControl(user_id);
+        Utils.unblock_ui($("#" + widgetName));
+      }
+    );
   },
   settingsGeneralForm: (data) => {
     $(".settings-page input[type=email]").val(data.email);
@@ -628,10 +613,13 @@ var UserService = {
     Utils.appearModal(false);
     Utils.unblock_ui(el);
     Utils.submit(
+      //TODO make it false
+      true,
       "edit-password-form",
-      "users/edit/edit_user_password.php",
+      "users/edit/password",
       "Password edited successfully",
       async () => {
+        //TODO create localstorage for password
         UserService.deleteUserInfoFormLocalStorage();
         const data = await UserService.fetchUserInfo(userID);
         UserService.loadSecurityWidget(data);
@@ -657,8 +645,9 @@ var UserService = {
     // const ids = localStorage.getItem("friendsId");
     // if ($(addFriendInput).val())
     Utils.submit(
+      true,
       "add-friend-form",
-      "users/add/add_friend_request.php?requester_id=" + user_id,
+      "users/add/friend_request?requester_id=" + user_id,
       "Friend request sent successfully",
       () => {
         Utils.addBtnsAnimation(
@@ -672,11 +661,9 @@ var UserService = {
   },
   requestsFriendModal: (user_id, el) => {
     Utils.block_ui(el, true);
-    RestClient.get(
-      "users/get/get_friend_requests.php?user_id=" + user_id,
-      (data) => {
-        const modal = $("#myModal")[0];
-        let modalContent = `
+    RestClient.get("users/get/requests/" + user_id, (data) => {
+      const modal = $("#myModal")[0];
+      let modalContent = `
         <div class="master-container">
               <div class="card cart">
                 <div class="top-title">
@@ -685,8 +672,8 @@ var UserService = {
                 </div>
                 <div class="products p-5">
         `;
-        data.map((requester) => {
-          modalContent += `
+      data.map((requester) => {
+        modalContent += `
             <div class="product mb-0">
               <img class="modal-img" src="${requester.img}" alt="friend image" title="${requester.name}"/>
               <div class="col-2 w-full">
@@ -707,31 +694,32 @@ var UserService = {
               </div>
             </div>
           `;
-        });
-        modalContent += `</div></div></div>`;
-        $(modal).html(modalContent);
-        Utils.setupModalActions();
-        Utils.appearModal(false);
-        Utils.unblock_ui(el);
+      });
+      modalContent += `</div></div></div>`;
+      $(modal).html(modalContent);
+      Utils.setupModalActions();
+      Utils.appearModal(false);
+      Utils.unblock_ui(el);
+    });
+  },
+  editFriendRequestStatus: (requested_id, requester_id, status) => {
+    //TODO make it put and fix this bug
+    RestClient.post(
+      "users/edit/friend_request?requested_id=" +
+        requested_id +
+        "&requester_id=" +
+        requester_id +
+        "&status=" +
+        status,
+      () => {},
+      () => {
+        UserService.requestsFriendModal(requested_id);
+        if (status) UserService.loadFriends(requested_id);
       }
     );
   },
-  editFriendRequestStatus: (requested_id, requester_id, status) => {
-    $.post(
-      Constants.API_BASE_URL +
-        "users/edit/edit_friend_request_status.php?requested_id=" +
-        requested_id +
-        "&requester_id=" +
-        requester_id,
-      "&status=" + status,
-      null
-    ).done(() => {
-      UserService.requestsFriendModal(requested_id);
-      if (status) UserService.loadFriends(requested_id);
-    });
-  },
   loadFriends: (user_id) => {
-    RestClient.get("users/get/get_friends.php?user_id=" + user_id, (data) => {
+    RestClient.get("users/get/friends/" + user_id, (data) => {
       let content = "",
         friendStorage = [],
         friendsId = "";
@@ -841,10 +829,10 @@ var UserService = {
     FormValidation.validate(form, {}, (data) => {
       Utils.block_ui(block);
       RestClient.get(
-        "users/user_login.php?sign_email=" +
-          data.sign_email +
+        "users/login?sign_email=" +
+          data.email +
           "&signin_password=" +
-          data.signin_password,
+          data.password,
         (data) => {
           Utils.unblock_ui(block);
           if (data["counter"]) {
@@ -865,7 +853,7 @@ var UserService = {
     });
   },
   signUp: () => {
-    Utils.submit("sign_up_form", "users/add/add_user.php", false, () => {
+    Utils.submit(true, "sign_up_form", "users/add/user", false, () => {
       Utils.resetFormAnimation();
       //TODO insert cart_id
     });
@@ -873,14 +861,10 @@ var UserService = {
   removeFriend: (friendship_id, user_id, el) => {
     Utils.block_ui(el, true);
 
-    RestClient.delete(
-      "users/delete/delete_friend.php?friendship_id=" + friendship_id,
-      null,
-      () => {
-        Utils.appearFailAlert("Friend deleted successfully");
-        UserService.loadFriends(user_id);
-        Utils.removeModal(false, $("#myModal")[0]);
-      }
-    );
+    RestClient.delete("users/delete/friend/" + friendship_id, null, () => {
+      Utils.appearFailAlert("Friend deleted successfully");
+      UserService.loadFriends(user_id);
+      Utils.removeModal(false, $("#myModal")[0]);
+    });
   },
 };

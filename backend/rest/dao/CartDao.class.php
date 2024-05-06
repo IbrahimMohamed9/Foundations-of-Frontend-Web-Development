@@ -97,6 +97,6 @@ class CartDao extends BaseDao
     $query = "SELECT amount, percentage 
                 FROM coupon
                 WHERE code = :code";
-    return $this->query_unique_first($query, $code);
+    return $this->query_unique_last($query, ['code' => $code]);
   }
 }

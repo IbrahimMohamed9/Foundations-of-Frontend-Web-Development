@@ -25,11 +25,7 @@ class ProjectsService
     {
         return $this->projects_dao->get_user_project($id);
     }
-    public function get_projects_by_category($category)
-    {
-        return $this->projects_dao->get_projects_by_category($category);
-    }
-    public function get_projects_by_id($projects_id)
+    public function get_project_by_id($projects_id)
     {
         return $this->projects_dao->get_project_by_id($projects_id);
     }

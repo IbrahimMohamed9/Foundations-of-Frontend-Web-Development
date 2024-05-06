@@ -1,6 +1,6 @@
 var FeedbackService = {
   loadTable: () => {
-    RestClient.get("feedbacks/get_feedbacks.php", (data) => {
+    RestClient.get("feedbacks/", (data) => {
       const tableBody = document.querySelector("#tbl_feedbacks tbody");
 
       tableBody.innerHTML = "";
@@ -94,8 +94,10 @@ var FeedbackService = {
     `;
     Utils.formSetup(modal, () => {
       Utils.submit(
+        //TODO make it false
+        true,
         "feedback-form",
-        "feedbacks/add_feedback.php",
+        "feedbacks/add",
         message,
         () => {
           FeedbackService.loadTable("tbl_feedbacks");
@@ -105,33 +107,27 @@ var FeedbackService = {
     });
   },
   openEditFeedbackModal: (feedback_id) => {
-    RestClient.get(
-      "feedbacks/get_feedback.php?feedback_id=" + feedback_id,
-      (data) => {
-        FeedbackService.addFeedbackModal("Feedback edited successfully");
+    RestClient.get("feedbacks/get/" + feedback_id, (data) => {
+      data = data.data;
+      FeedbackService.addFeedbackModal("Feedback edited successfully");
 
-        $("#myModal input[name='feedback_id']").val(data.feedback_id);
-        $("#myModal input[name='name']").val(data.name);
-        $("#myModal input[name='phone']").val(data.phone);
-        $("#myModal input[name='email']").val(data.email);
-        $("#myModal input[name='added_time']").val(data.added_time);
-        $("#myModal textarea[name='message']").val(data.message);
-        // $("#myModal input[name='country']").val(data.country);
-        Utils.formAnimation();
-      }
-    );
+      $("#myModal input[name='feedback_id']").val(data.feedback_id);
+      $("#myModal input[name='name']").val(data.name);
+      $("#myModal input[name='phone']").val(data.phone);
+      $("#myModal input[name='email']").val(data.email);
+      $("#myModal input[name='added_time']").val(data.added_time);
+      $("#myModal textarea[name='message']").val(data.message);
+      // $("#myModal input[name='country']").val(data.country);
+      Utils.formAnimation();
+    });
   },
   removeFeedback: (id) => {
     if (
       confirm("Do you want to delete feedback with the id " + id + "?") == true
     ) {
-      RestClient.delete(
-        "feedbacks/delete_feedback.php?feedback_id=" + id,
-        {},
-        () => {
-          FeedbackService.loadTable("tbl_feedbacks");
-        }
-      );
+      RestClient.delete("feedbacks/delete/" + id, {}, () => {
+        FeedbackService.loadTable("tbl_feedbacks");
+      });
     }
   },
 };
