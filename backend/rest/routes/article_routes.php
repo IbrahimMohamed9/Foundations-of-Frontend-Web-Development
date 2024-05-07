@@ -12,7 +12,11 @@ Flight::group("/articles", function () {
    *      summary="Get all articles",
    *      @OA\Response(
    *           response=200,
-   *           description="Array of all articles in the databases"
+   *           description="Array of all articles in the databases",
+   *           @OA\JsonContent(
+   *               type="array",
+   *               @OA\Items(ref="#/components/schemas/Article")
+   *           )
    *      )
    * )
    */
@@ -159,7 +163,7 @@ Flight::group("/articles", function () {
 /**
  * @OA\Schema(
  *     schema="Article",
- *     title="Article",
+ *     description="Article table",
  *     required={"article_id", "title", "img_src", "country", "category", "status", "content", "description", "img_desc"},
  *     @OA\Property(property="article_id", type="string", example="1", description="Article ID"),
  *     @OA\Property(property="title", type="string", example="Some title", description="Article title"),

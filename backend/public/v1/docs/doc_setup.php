@@ -2,8 +2,8 @@
 
 /**
  * @OA\Info(
- *   title="Balqan API ",
- *   description="tourist web site",
+ *   title="Balqan API",
+ *   description="Tourist website API",
  *   version="1.0",
  *   @OA\Contact(
  *     email="Ibrahim.Mohamed@stu.ibu.edu.ba",

@@ -1,7 +1,3 @@
--- DROP DATABASE IF EXISTS `sql11699000`;
--- CREATE DATABASE `sql11699000` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- USE `sql11699000`;
-
 DROP DATABASE IF EXISTS `balqan`;
 CREATE DATABASE `balqan` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `balqan`;
@@ -135,17 +131,17 @@ CREATE TABLE `cart_items`
     `days_selected`    INT,
     `persons_selected` INT,
     CONSTRAINT `fk_cart_item_cart_id` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`cart_id`),
-    CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`),
+    CONSTRAINT `fk_cart_item_item_id` FOREIGN KEY (`item_id`) REFERENCES `items` (`item_id`) ON DELETE CASCADE,
     UNIQUE KEY `unique_item_cart` (`item_id`, `cart_id`)
 );
 CREATE TABLE `projects`
 (
-    `project_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `cart_item_id`    INT,
-    `start_date` TIMESTAMP   DEFAULT CURRENT_TIMESTAMP,
-    `end_date`   TIMESTAMP,
-    `status`     INT DEFAULT 0,
-    `price`      DECIMAL(10, 2),
+    `project_id`   INT AUTO_INCREMENT PRIMARY KEY,
+    `cart_item_id` INT,
+    `start_date`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    `end_date`     TIMESTAMP,
+    `status`       INT       DEFAULT 0,
+    `price`        DECIMAL(10, 2),
     CONSTRAINT fk_projects_item_id
         FOREIGN KEY (cart_item_id) REFERENCES cart_items (cart_item_id)
             ON DELETE CASCADE

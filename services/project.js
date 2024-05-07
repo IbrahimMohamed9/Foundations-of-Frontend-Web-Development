@@ -135,7 +135,7 @@ var projectService = {
   },
   userProfile: (user_id, project_id, el) => {
     //TODO  make this and that friendProfile one function
-    //TODO  handle this error call back function
+    //TODO  add error call back function
     Utils.block_ui(el, true);
     RestClient.get("projects/get/" + user_id + "/" + project_id, (data) => {
       const content =
