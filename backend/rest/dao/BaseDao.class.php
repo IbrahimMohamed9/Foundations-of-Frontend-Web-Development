@@ -20,7 +20,7 @@ class BaseDao
                 ]
             );
         } catch (PDOException $e) {
-            throw $e;
+            //TODO return try again later
         }
     }
     public function beginTransaction()

@@ -10,8 +10,6 @@ class UserDao extends BaseDao
     }
     public function add_user($user)
     {
-        //TODO insert cart_id
-
         try {
             $this->beginTransaction();
             $this->insert("users", $user);
@@ -22,6 +20,7 @@ class UserDao extends BaseDao
             if ($lastInserted && isset($lastInserted['user_id'])) {
                 $this->insert("carts", ['user_id' => $lastInserted['user_id']]);
                 $this->commit();
+                return $this->get_user_by_id($lastInserted['user_id']);
             } else {
                 $this->rollBack();
             }

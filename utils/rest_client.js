@@ -3,10 +3,26 @@ var RestClient = {
     $.ajax({
       url: Constants.API_BASE_URL + url,
       type: "GET",
+      beforeSend: (xhr) => {
+        if (Utils.get_from_localstorage("user")) {
+          xhr.setRequestHeader(
+            "Authentication",
+            Utils.get_from_localstorage("user").token
+          );
+        }
+      },
       success: (response) => {
+        if (!Utils.get_from_localstorage("user")) {
+          Utils.loginModal();
+        }
+
         if (callback) callback(response);
       },
       error: (jqXHR, textStatus, errorThrown) => {
+        if (!Utils.get_from_localstorage("user")) {
+          Utils.loginModal();
+        }
+
         if (error_callback) {
           error_callback(jqXHR);
         } else {
@@ -21,11 +37,26 @@ var RestClient = {
       url: Constants.API_BASE_URL + url,
       type: method,
       data: data,
+      beforeSend: (xhr) => {
+        if (Utils.get_from_localstorage("user")) {
+          xhr.setRequestHeader(
+            "Authentication",
+            Utils.get_from_localstorage("user").token
+          );
+        }
+      },
     })
       .done((response, status, jqXHR) => {
+        if (!Utils.get_from_localstorage("user")) {
+          Utils.loginModal();
+        }
+
         if (callback) callback(response);
       })
       .fail((jqXHR, textStatus, errorThrown) => {
+        if (!Utils.get_from_localstorage("user")) {
+          Utils.loginModal();
+        }
         if (error_callback) {
           error_callback(jqXHR, textStatus, errorThrown);
         } else {

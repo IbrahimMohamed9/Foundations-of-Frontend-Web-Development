@@ -51,8 +51,8 @@ var CartService = {
         $(".shopping-cart-icon").attr("data-counter", data.counter);
         // resolve(Number(data.counter));
       },
-      (data) => {
-        $(".shopping-cart-icon").attr("data-counter", data.counter);
+      () => {
+        $(".shopping-cart-icon").attr("data-counter", 0);
         // resolve(Number(data.counter));
       }
       // (error) => {

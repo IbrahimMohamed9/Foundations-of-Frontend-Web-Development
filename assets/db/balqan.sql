@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS `balqan`;
-CREATE DATABASE `balqan` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `balqan`;
+DROP DATABASE IF EXISTS `balqgivg_main`;
+CREATE DATABASE `balqgivg_main` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE `balqgivg_main`;
 CREATE TABLE `users`
 (
     `user_id`           INT AUTO_INCREMENT PRIMARY KEY,
@@ -121,7 +121,8 @@ CREATE TABLE `carts`
 (
     `cart_id` INT AUTO_INCREMENT PRIMARY KEY,
     `user_id` INT,
-    CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+    CONSTRAINT `fk_cart_user_id` FOREIGN KEY (`user_id`)
+    REFERENCES `users` (`user_id`) ON DELETE CASCADE
 );
 CREATE TABLE `cart_items`
 (
@@ -139,7 +140,8 @@ CREATE TABLE `projects`
     `project_id`   INT AUTO_INCREMENT PRIMARY KEY,
     `cart_item_id` INT,
     `start_date`   TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    `end_date`     TIMESTAMP,
+#     TODO important i dont want default value here
+    `end_date`     TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     `status`       INT       DEFAULT 0,
     `price`        DECIMAL(10, 2),
     CONSTRAINT fk_projects_item_id

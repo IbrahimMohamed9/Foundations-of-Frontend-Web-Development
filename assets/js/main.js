@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ".main-header .container button.menu"
     ),
     headerWords = document.querySelector(".main-header ul.tile-wrds"),
-    globalModal = document.getElementById("headerModal"),
+    globalModal = document.getElementById("globalModal"),
     currentPage = document.getElementById("current-page");
 
   headerMenu.addEventListener("click", () => {

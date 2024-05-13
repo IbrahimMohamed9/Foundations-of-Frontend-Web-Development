@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/balqan.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/selectorTest.sql" dialect="MySQL" />
-    <file url="file://$PROJECT_DIR$/values.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/balqan.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/selectorTest.sql" dialect="MariaDB" />
+    <file url="file://$PROJECT_DIR$/values.sql" dialect="MariaDB" />
     <file url="PROJECT" dialect="MySQL" />
   </component>
 </project>

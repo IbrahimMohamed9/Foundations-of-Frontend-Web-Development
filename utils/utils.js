@@ -461,6 +461,51 @@ var Utils = {
       modal.classList.add("active");
     }, 1);
   },
+  loginModal: () => {
+    const modal = $("#loginModal");
+
+    modal.html(Components.loginModal);
+    $(modal).addClass("d-block");
+    $("body").addClass("fix");
+    Utils.formAnimation();
+    setTimeout(() => {
+      $(modal).addClass("active");
+    }, 1);
+
+    const signComponents = Array.from(
+      document.querySelectorAll(".sign-component")
+    );
+    container = signComponents.shift();
+    signComponents.forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        switch (index) {
+          case 0:
+            container.style.transform = "rotateY(0deg)";
+            break;
+          case 1:
+            container.style.transform = "rotateY(-180deg)";
+            break;
+          case 2:
+            container.classList.remove("right-panel-active");
+            break;
+          case 3:
+            container.classList.add("right-panel-active");
+            break;
+          default:
+            console.log("You add new sign-btn without event");
+            break;
+        }
+      });
+    });
+
+    document.getElementById("sign_up").addEventListener("click", () => {
+      UserService.signUp("sign_up_form", modal);
+    });
+
+    document.getElementById("sign_in").addEventListener("click", () => {
+      UserService.signIn("sign_in_form", modal);
+    });
+  },
   fieldAnimation: (field) => {
     if (field.value.trim() !== "") {
       field.classList.add("active", "delay");
@@ -475,6 +520,7 @@ var Utils = {
       }
     });
   },
+
   resetFormAnimation: () => {
     const textareas = document.querySelectorAll("textarea.field"),
       fields = document.querySelectorAll(".form-control input"),
@@ -516,8 +562,8 @@ var Utils = {
     });
   },
   submit: (post, form_id, to, success_mge, callBack, modal, formElement) => {
-    const form = formElement ? formElement : $("#" + form_id),
-      block = form.find("*[type=submit]").first();
+    const form = formElement ? formElement : $("#" + form_id);
+    const block = form.find("*[type=submit]").first();
 
     FormValidation.validate(form, {}, (data) => {
       Utils.block_ui(block);
@@ -534,13 +580,11 @@ var Utils = {
           if (modal) Utils.removeModal(false, modal);
 
           if (success_mge) Utils.appearSuccAlert(success_mge);
-          if (callBack) callBack();
+          if (callBack) callBack(data);
         },
         (xhr) => {
           Utils.unblock_ui(block);
-
           if (modal) Utils.removeModal(false, modal);
-
           Utils.appearFailAlert(xhr.responseText);
         }
       );
@@ -613,6 +657,11 @@ var Utils = {
   capitalizeFirstLetter: (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   },
+  capitalizeWords: (str) => {
+    return str.replace(/\b\w/g, function (char) {
+      return char.toUpperCase();
+    });
+  },
   firstLink: (imgs_srcs) => {
     return `https${imgs_srcs.trim().split("https")[1]}`;
   },
@@ -667,5 +716,31 @@ var Utils = {
     }
 
     return formattedDateTime;
+  },
+  get_from_localstorage: (key) => {
+    return JSON.parse(localStorage.getItem(key));
+  },
+  set_to_localstorage: (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  },
+  showImage: (imgSrc) => {
+    modal = $("#loginModal");
+
+    modal.html(`<img src="${imgSrc}" alt="" class="img-modal">`);
+    $(modal).addClass("d-block");
+    $("body").addClass("fix");
+    setTimeout(() => {
+      $(modal).addClass("active");
+    }, 1);
+
+    $(modal).click(() => {
+      $(modal).removeClass("active");
+
+      $("body").removeClass("fix");
+
+      setTimeout(() => {
+        $(modal).removeClass("d-block");
+      }, 300);
+    });
   },
 };

@@ -1,8 +1,11 @@
 <?php
 require_once __DIR__ . '/../services/projectService.class.php';
+require_once __DIR__ . '/AuthClass.class.php';
 
+Flight::set('token', new AuthClass());
 Flight::set('project_service', new ProjectsService());
 
+$decoded_token = Flight::get('token')->decodeToken();
 Flight::group("/projects", function () {
 
   /**

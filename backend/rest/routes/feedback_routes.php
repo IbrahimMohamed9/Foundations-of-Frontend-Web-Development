@@ -1,8 +1,11 @@
 <?php
 require_once __DIR__ . '/../services/FeedbackService.class.php';
 
+require_once __DIR__ . '/AuthClass.class.php';
+Flight::set('token', new AuthClass());
 Flight::set('feedback_service', new FeedbackService());
 
+$decoded_token = Flight::get('token')->decodeToken();
 Flight::group("/feedbacks", function () {
 
   /**

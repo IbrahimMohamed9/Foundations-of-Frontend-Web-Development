@@ -404,6 +404,14 @@ header + .cart.item {
     font-size: 1.3rem;
   }
 }
+/* modal */
+.img-modal {
+  max-width: 95%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% - 50px));
+}
 @keyframes move {
   100% {
     transform: translateX(-225px);

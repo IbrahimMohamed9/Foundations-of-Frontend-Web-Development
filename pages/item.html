@@ -12,11 +12,15 @@
       href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="../assets/css/contact.css" />
     <link rel="stylesheet" href="../assets/css/cart.css" />
     <link rel="stylesheet" href="../assets/css/balqan.css" />
     <link rel="stylesheet" href="../assets/css/item.css" />
     <!-- Font Awesome Library -->
-    <link rel="stylesheet" href="../assets/css/all.min.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      rel="stylesheet"
+    />
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -158,7 +162,7 @@
           <span class="close"></span>
           <span class="close"></span>
         </button>
-        <div class="modal" id="headerModal"></div>
+        <div class="modal" id="globalModal"></div>
       </div>
     </header>
     <!-- End Header -->
@@ -275,10 +279,12 @@
         <p>Copyright &#169; 2024</p>
       </div>
     </footer>
+    <div id="loginModal" class="modal"></div>
     <!-- End Footer -->
     <!-- JavaScript -->
     <script src="../services/item.js"></script>
     <script src="../services/cart.js"></script>
+    <script src="../utils/htmlComponent.js"></script>
     <script src="../utils/rest_client.js"></script>
     <script src="../utils/constants.js"></script>
     <script src="../utils/utils.js"></script>

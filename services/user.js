@@ -5,7 +5,7 @@ var UserService = {
       if (data === null) {
         data = await new Promise((resolve, reject) => {
           RestClient.get(
-            "users/get/user/" + user_id,
+            "users/get/user/",
             (data) => {
               resolve(data);
             },
@@ -661,7 +661,7 @@ var UserService = {
   },
   requestsFriendModal: (user_id, el) => {
     Utils.block_ui(el, true);
-    RestClient.get("users/get/requests/" + user_id, (data) => {
+    RestClient.get("users/get/requests/", (data) => {
       const modal = $("#myModal")[0];
       let modalContent = `
         <div class="master-container">
@@ -719,7 +719,7 @@ var UserService = {
     );
   },
   loadFriends: (user_id) => {
-    RestClient.get("users/get/friends/" + user_id, (data) => {
+    RestClient.get("users/get/friends/", (data) => {
       let content = "",
         friendStorage = [],
         friendsId = "";
@@ -823,39 +823,45 @@ var UserService = {
     Utils.appearModal(false);
     Utils.unblock_ui(el);
   },
-  signIn: (form_id) => {
+  signIn: (form_id, modal) => {
     const form = $("#" + form_id),
       block = $(form).find("input[type=submit]");
     FormValidation.validate(form, {}, (data) => {
       Utils.block_ui(block);
-      RestClient.get(
-        "users/login?sign_email=" +
-          data.email +
-          "&signin_password=" +
-          data.password,
+      RestClient.post(
+        "auth/login?email=" + data.email + "&password=" + data.password,
+        null,
         (data) => {
           Utils.unblock_ui(block);
-          if (data["counter"]) {
-            window.location.pathname =
-              "/IT-207-Introduction-to-Web-Programming";
-            Utils.appearFailAlert("Done.");
-          } else {
-            Utils.appearFailAlert(
-              "Invalid email or password. Please try again."
-            );
-          }
+          Utils.set_to_localstorage("user", data.user);
+          Utils.removeModal(false, modal[0]);
         },
         (xhr) => {
           Utils.unblock_ui(block);
-          Utils.appearFailAlert(xhr.responseText);
+          Utils.appearFailAlert("Try again please");
         }
       );
     });
   },
-  signUp: () => {
-    Utils.submit(true, "sign_up_form", "users/add/user", false, () => {
-      Utils.resetFormAnimation();
-      //TODO insert cart_id
+  signUp: (form_id, modal) => {
+    const form = $("#" + form_id);
+    const block = $(form).find("input[type=submit]");
+
+    FormValidation.validate(form, {}, (data) => {
+      Utils.block_ui(block);
+      RestClient.post(
+        "auth/signUp",
+        data,
+        (data) => {
+          Utils.unblock_ui(block);
+          Utils.set_to_localstorage("user", data.user);
+          Utils.removeModal(false, modal[0]);
+        },
+        (xhr) => {
+          Utils.unblock_ui(block);
+          Utils.appearFailAlert("Try again please");
+        }
+      );
     });
   },
   removeFriend: (friendship_id, user_id, el) => {

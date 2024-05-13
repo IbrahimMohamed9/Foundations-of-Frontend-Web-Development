@@ -1,8 +1,11 @@
 <?php
 require_once __DIR__ . '/../services/itemService.class.php';
+require_once __DIR__ . '/AuthClass.class.php';
 
+Flight::set('token', new AuthClass());
 Flight::set('item_service', new ItemService());
 
+$decoded_token = Flight::get('token')->decodeToken();
 Flight::group("/items", function () {
 
   /**
@@ -154,7 +157,6 @@ Flight::group("/items", function () {
       'limit' => $limit,
       'category' => 'package'
     ];
-    //TODO fix this
     $data = Flight::get('item_service')->get_new_packages(
       $limit
     );
