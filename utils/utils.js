@@ -561,11 +561,21 @@ var Utils = {
       Utils.fieldAnimation(field);
     });
   },
-  submit: (post, form_id, to, success_mge, callBack, modal, formElement) => {
+  submit: (
+    post,
+    form_id,
+    to,
+    success_mge,
+    callBack,
+    modal,
+    formElement,
+    validate,
+    messages
+  ) => {
     const form = formElement ? formElement : $("#" + form_id);
     const block = form.find("*[type=submit]").first();
 
-    FormValidation.validate(form, {}, (data) => {
+    FormValidation.validate(form, validate, messages, (data) => {
       Utils.block_ui(block);
       if (data["added_time"]) {
         data["added_time"] = Utils.formatDateTime(data["added_time"]);
@@ -594,7 +604,7 @@ var Utils = {
     const form = formElement ? formElement : $("#" + form_id),
       block = form.find("*[type=submit]").first();
 
-    FormValidation.validate(form, {}, (data) => {
+    FormValidation.validate(form, {}, {}, (data) => {
       Utils.block_ui(block);
       $.post(Constants.API_BASE_URL + to, data)
         .done((data) => {
@@ -618,7 +628,7 @@ var Utils = {
     const form = formElement ? formElement : $("#" + form_id),
       block = form.find("*[type=submit]").first();
 
-    FormValidation.validate(form, {}, (data) => {
+    FormValidation.validate(form, {}, {}, (data) => {
       Utils.block_ui(block);
       RestClient.put(
         to,

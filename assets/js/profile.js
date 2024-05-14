@@ -85,9 +85,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // const user_id = 1;
   // const user_id = 2;
-  const user_id = 3;
+  // const user_id = 3;
   // const user_id = 4;
   // const user_id = 5;
+  const user_id = Utils.get_from_localstorage("user").user_id;
 
   UserService.mainImage(user_id);
   app.route({

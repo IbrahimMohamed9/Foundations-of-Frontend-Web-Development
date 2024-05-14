@@ -471,7 +471,7 @@ var CartService = {
   //TODO fix when user open the modal in cart and go out
   coupon: (form_id, totalPriceModal) => {
     const form = $("#" + form_id);
-    FormValidation.validate(form, {}, (data) => {
+    FormValidation.validate(form, {}, {}, (data) => {
       Utils.block_ui(form);
       RestClient.get(
         "carts/coupon?code=" + data.code,

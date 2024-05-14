@@ -243,7 +243,7 @@ img {
 }
 .accordion-menu {
   position: absolute;
-  background-color: #0c0c0d;
+  background-color: #ffffff;
   top: 33%;
   left: 20px;
   right: 20px;
@@ -251,6 +251,9 @@ img {
   border-radius: 7px;
   opacity: 0;
   transition: var(--main-transition);
+}
+.dark-theme .accordion-menu {
+  background-color: #161616;
 }
 @media (max-width: 1000px) {
   .accordion-menu li {
@@ -271,9 +274,12 @@ img {
   content: "";
   position: absolute;
   border: 15px solid transparent;
-  border-bottom-color: #0c0c0d;
-  top: -30px;
+  border-bottom-color: #ffffff;
+  top: -27px;
   left: calc(50% - 15px);
+}
+.dark-theme .accordion-menu::before {
+  border-bottom-color: #161616;
 }
 .accordion-menu li {
   width: 70%;

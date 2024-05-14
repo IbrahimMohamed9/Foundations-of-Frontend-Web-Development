@@ -123,6 +123,37 @@ document.addEventListener("DOMContentLoaded", () => {
         "Feedback added successfully",
         () => {
           Utils.resetFormAnimation();
+        },
+        false,
+        false,
+        {
+          name: {
+            required: true,
+          },
+          phone: {
+            required: true,
+            digits: true,
+            minlength: 6,
+            maxlength: 18,
+          },
+          email: {
+            required: true,
+            email: true,
+          },
+          message: {
+            required: true,
+          },
+        },
+        {
+          name: "Please enter your full name",
+          phone: {
+            required: "Please enter your phone number",
+            digits: "Please enter only digits",
+            minlength: "Your phone number must be at least 6 digits",
+            maxlength: "Your phone number must not exceed 18 digits",
+          },
+          email: "Please enter a valid email address",
+          message: "Please enter your message",
         }
       );
     },

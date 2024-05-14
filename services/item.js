@@ -45,19 +45,19 @@ var ItemService = {
       category === "car"
         ? `
         <td>${itemData.persons}</td>
-        <td>$${price}</td>
+        <td>KM ${price}</td>
         `
         : category === "package"
         ? `
         <td>${itemData.min_persons}</td>
         <td>${itemData.max_persons}</td>
-        <td>$${price}</td>
+        <td>KM ${price}</td>
       `
         : `
         <td>${itemData.min_persons}</td>
         <td>${itemData.max_persons}</td>
-        <td>$${Utils.checkDecWithInt(itemData.person_price)}</td>
-        <td>$${Utils.checkDecWithInt(itemData.day_price)}</td>
+        <td>KM ${Utils.checkDecWithInt(itemData.person_price)}</td>
+        <td>KM ${Utils.checkDecWithInt(itemData.day_price)}</td>
       `
     }
     <td>${itemData.status}</td>
