@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const dashIcons = document.querySelectorAll(".main-header ul.tile-wrds li");
 
   let previous;
-  //dashboard
   function switchButton(clickedIndex) {
     if (
       previous !== null &&

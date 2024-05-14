@@ -103,14 +103,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // header
   const headerMenu = document.querySelector(
-      ".main-header .container button.menu"
-    ),
-    headerWords = document.querySelector(".main-header ul.tile-wrds"),
-    globalModal = document.getElementById("globalModal"),
-    currentPage = document.getElementById("current-page");
+    ".main-header .container button.menu"
+  );
+  const headerWords = document.querySelector(".main-header ul.tile-wrds");
+  const globalModal = document.getElementById("globalModal");
 
-  headerMenu.addEventListener("click", () => {
+  headerMenu.addEventListener("click", (el) => {
     if (headerWords.classList.contains("active")) {
+      console.log($(el.target).closest(".tile-wrds").length);
       closeNav();
     } else {
       openNav();
@@ -121,7 +121,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelectorAll(".main-header ul.tile-wrds li").forEach((icon) => {
-    icon.addEventListener("click", closeNav);
+    if (!icon.classList.contains("profile")) {
+      icon.addEventListener("click", closeNav);
+    }
   });
 
   function appearModal() {
