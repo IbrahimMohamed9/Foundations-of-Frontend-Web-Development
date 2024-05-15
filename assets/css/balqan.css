@@ -242,14 +242,14 @@ img {
   z-index: 700;
 }
 .accordion-menu {
+  display: none;
   position: absolute;
-  background-color: #ffffff;
-  top: 33%;
-  left: 20px;
-  right: 20px;
+  background-color: #ececec;
+  top: 355px;
   padding: 10px;
   border-radius: 7px;
   opacity: 0;
+  width: 70%;
   transition: var(--main-transition);
 }
 .dark-theme .accordion-menu {
@@ -259,13 +259,15 @@ img {
   .accordion-menu li {
     min-width: 100%;
   }
+  .main-header ul.tile-wrds .accordion-menu > li {
+    margin: 0;
+  }
 }
 @media (min-width: 1000px) {
   .accordion-menu {
     top: calc(100% + 20px);
-    left: 335px;
+    right: -35px;
     padding: 10px;
-    right: 0;
     border-radius: 7px;
     width: 150px;
   }
@@ -274,7 +276,7 @@ img {
   content: "";
   position: absolute;
   border: 15px solid transparent;
-  border-bottom-color: #ffffff;
+  border-bottom-color: #ececec;
   top: -27px;
   left: calc(50% - 15px);
 }
@@ -289,6 +291,58 @@ img {
   text-align: center;
   width: 100%;
   height: 100%;
+}
+.select-container {
+  position: relative;
+  max-width: 80px;
+  height: var(--height);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.select-container.big {
+  max-width: 110px;
+}
+@media (max-width: 360px) {
+  .select-container:not(.big) {
+    min-width: 65px;
+  }
+}
+@media (max-width: 360px) {
+  .select-container:not(.big) {
+    min-width: 55px;
+  }
+}
+.select-container select {
+  border: none;
+  appearance: none;
+  background: linear-gradient(
+    90deg,
+    var(--main-color) 77%,
+    var(--secondary-color) 77%
+  );
+  width: 100%;
+  height: 100%;
+  padding: 1px 5px;
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+}
+.select-container select option {
+  background-color: var(--main-color);
+}
+.select-container i {
+  position: absolute;
+  font-size: 18px;
+  right: 4px;
+  max-height: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+  pointer-events: none;
+}
+@media (max-width: 360px) {
+  .select-container:not(.big) i {
+    font-size: 10px;
+  }
 }
 /* 
 ====================================================================
@@ -321,7 +375,7 @@ img {
   display: grid;
   justify-content: space-between;
   align-items: center;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr auto 1fr;
   grid-template-rows: 50px;
   grid-template-areas: "logo menu icons";
 }
@@ -443,9 +497,16 @@ img {
   }
   .main-header ul.tile-wrds.active {
     left: 0;
+    gap: 7px;
     z-index: 1000;
     opacity: 1;
-    justify-content: end;
+    display: flex;
+    justify-content: normal;
+    align-items: center;
+  }
+  .main-header .tile-wrds li {
+    max-width: 80%;
+    max-height: 80%;
   }
 }
 @media (max-width: 600px) {
@@ -454,21 +515,12 @@ img {
   }
 }
 .main-header ul.tile-wrds li {
-  margin: 0 20px;
+  margin: 0 15px;
   position: relative;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.main-header .tile-wrds li {
-  color: var(--font-color);
-  min-height: 50px;
-  max-height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 0;
 }
 .main-header .tile-wrds li:hover {
   color: var(--main-color);
@@ -478,20 +530,15 @@ img {
   color: inherit;
   min-height: 50px;
   cursor: pointer;
+  align-items: center;
 }
 @media (min-width: 1000px) {
-  .main-header ul.tile-wrds li > div,
-  .main-header ul.tile-wrds li > a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .main-header ul.tile-wrds li {
+    min-height: 50px;
   }
-}
-@media (min-width: 1000px) {
   .main-header .tile-wrds li::before {
     content: "";
     position: absolute;
-    opacity: 0;
     width: 120%;
     height: 2px;
     background-color: var(--main-color);
@@ -503,18 +550,26 @@ img {
     opacity: 1;
     left: -10%;
   }
-}
-.main-header ul.tile-wrds li i {
-  display: none;
+  .main-header ul.tile-wrds li > div,
+  .main-header ul.tile-wrds li > a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5px;
+  }
+  .main-header ul.tile-wrds li i {
+    display: none;
+  }
 }
 @media (max-width: 1000px) {
   .main-header ul.tile-wrds {
     padding: 10px 5px;
   }
-  .main-header ul.tile-wrds li {
+  .main-header ul.tile-wrds li:not(.accordion-menu li) {
+    min-width: 85%;
+    border-radius: 10px;
     margin: 0 0;
     overflow: hidden;
-    display: flex;
     justify-content: flex-start;
   }
   .main-header .tile-wrds li > * {
@@ -526,9 +581,6 @@ img {
     font-size: 16px;
     gap: 10px;
     border-radius: 6px;
-  }
-  .main-header ul.tile-wrds li i {
-    display: initial;
   }
   .main-header ul.tile-wrds li > * {
     transition: var(--main-transition);
@@ -1232,66 +1284,6 @@ img {
 .cart .products .product p.active {
   font-size: 14px;
   margin-top: 10px;
-}
-.cart .select-container {
-  position: relative;
-  max-width: 80px;
-  height: var(--height);
-  border-radius: 7px;
-  overflow: hidden;
-}
-@media (max-width: 360px) {
-  .cart .select-container {
-    min-width: 65px;
-  }
-}
-@media (max-width: 360px) {
-  .cart .select-container {
-    min-width: 55px;
-  }
-}
-.cart .select-container select {
-  border: none;
-  appearance: none;
-  background: linear-gradient(
-    90deg,
-    var(--main-color) 77%,
-    var(--secondary-color) 77%
-  );
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100%;
-  max-height: 100%;
-  padding: 1px 5px;
-  font-size: var(--font-size);
-  font-weight: var(--font-weight);
-}
-.cart .select-container select option {
-  background-color: var(--main-color);
-}
-@media (max-width: 360px) {
-  .cart .select-container {
-    min-width: 55px;
-  }
-}
-.cart .select-container i {
-  position: absolute;
-  right: 1px;
-  max-height: 100%;
-  top: 50%;
-  transform: translateY(-50%);
-  color: black;
-  pointer-events: none;
-}
-@media (max-width: 360px) {
-  .cart .select-container i {
-    font-size: 13px;
-  }
-}
-@media (max-width: 360px) {
-  .cart .select-container i {
-    font-size: 10px;
-  }
 }
 .cart .products .product .quantity,
 .cart .products .product.hotel .quantity-2 {

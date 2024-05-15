@@ -163,6 +163,108 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   app.route({
+    view: "pray-times",
+    load: "pray-times.html",
+    onCreate: () => {
+      mainTitleAnimation();
+      Utils.formAnimation();
+
+      const form = $("#pray-times-form");
+      FormValidation.validate(
+        form,
+        {
+          day: {
+            required: true,
+            range: [1, 31],
+          },
+          month: {
+            required: true,
+            range: [1, 12],
+          },
+          year: {
+            required: true,
+            minlength: 4,
+            maxlength: 4,
+          },
+          city: {
+            required: true,
+          },
+        },
+        {
+          day: {
+            required: "Please enter the day (1-31)",
+            range: "Day must be between 1 and 31",
+          },
+          month: {
+            required: "Please enter the month (1-12)",
+            range: "Month must be between 1 and 12",
+          },
+          year: {
+            required: "Please enter a valid year",
+            minlength: "Year must be 4 digits",
+            maxlength: "Year must be 4 digits",
+          },
+          city: "Please select a city",
+        },
+        (data) => {
+          $.ajax({
+            url: `https://api.aladhan.com/v1/calendarByCity/${data.year}/${data.month}?city=${data.city}&country=Bosnia%20and%20Herzegovina`,
+            type: "GET",
+          })
+            .done((response) => {
+              console.log(response.data[data.day - 1].date.hijri.date);
+              console.log(response.data[data.day - 1].date.hijri.month.en);
+              console.log(response.data[data.day - 1].date.hijri.weekday.en);
+
+              const prayTimes = response.data[data.day - 1].timings;
+
+              const timesTable = $("#pray-time-table");
+              timesTable.addClass("p-20 rad-10 p-10-f center-flex f-column");
+              timesTable.removeClass("d-none");
+
+              const getTime = (name) => {
+                return prayTimes[name].split(" ")[0];
+              };
+
+              $(timesTable).find("table").html(`
+                    <thead>
+                      <tr>
+                        <td>Fajr</td>
+                        <td>Sunrise</td>
+                        <td>Dhuhr</td>
+                        <td>Asr</td>
+                        <td>Maghrib</td>
+                        <td>Isha</td>
+                        <td>Midnight</td>
+                        <td>First Third</td>
+                        <td class="w-120">Last Third</td>
+                      </tr>
+                    </thead>
+                    <tr class="not-me">
+                      <td>${getTime("Fajr")}</td>
+                      <td>${getTime("Sunrise")}</td>
+                      <td>${getTime("Dhuhr")}</td>
+                      <td>${getTime("Asr")}</td>
+                      <td>${getTime("Maghrib")}</td>
+                      <td>${getTime("Isha")}</td>
+                      <td>${getTime("Midnight")}</td>
+                      <td>${getTime("Firstthird")}</td>
+                      <td>${getTime("Lastthird")}</td>
+                    </tr>
+              `);
+            })
+            .fail((jqXHR) => {
+              Utils.appearFailAlert("There is problem, try again please.");
+            });
+        }
+      );
+    },
+    onReady: () => {
+      switchButton(3);
+    },
+  });
+
+  app.route({
     view: "articles",
     load: "articles.html",
     onCreate: () => {
