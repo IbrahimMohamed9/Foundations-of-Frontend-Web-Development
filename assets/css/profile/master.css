@@ -704,8 +704,10 @@ textarea {
   overflow-x: auto;
   border-radius: 12px;
 }
+.table-holder .responsive-table:not(.w-full) {
+  max-width: fit-content;
+}
 .table-holder table {
-  min-width: 1000px;
   border-spacing: 0;
 }
 .table-holder thead td {
@@ -718,10 +720,6 @@ textarea {
 .table-holder table tr td {
   padding: 10px;
 }
-.table-holder table tbody tr:hover td::selection {
-  color: var(--secondary-background-color);
-  background-color: #ecaf1c;
-}
 .table-holder tbody td {
   border-bottom: 1px solid #eee;
   border-left: 1px solid #eee;
@@ -733,8 +731,18 @@ textarea {
 .table-holder table tr td:last-child {
   width: 100px;
 }
-.table-holder tbody tr:hover td {
+.table-holder tbody tr:not(.not-me):hover td {
   background-color: var(--secondary-color);
+}
+.table-holder tbody tr:hover td:hover {
+  background-color: #f1c661;
+}
+.dark-theme .table-holder tbody tr td:hover {
+  background-color: #ffb300;
+}
+.table-holder table tbody tr:hover td::selection {
+  color: var(--secondary-background-color);
+  background-color: #ecaf1c;
 }
 .table-holder table .team img {
   width: 32px;

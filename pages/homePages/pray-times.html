@@ -1,0 +1,54 @@
+<!-- Start Form -->
+<div class="form-section">
+  <div class="container">
+    <h2 class="main-title">Prayer Times Form</h2>
+    <p class="prag">
+      Select city, day, month, and year for accurate prayer times.
+    </p>
+    <div class="form">
+      <form id="pray-times-form">
+        <div class="inputs">
+          <div class="form-control">
+            <input type="number" id="day" name="day" class="field" />
+            <label for="day">Day</label>
+          </div>
+
+          <div class="form-control">
+            <input type="number" id="month" name="month" class="field" />
+            <label for="month">Month</label>
+          </div>
+
+          <div class="form-control">
+            <input type="number" id="year" name="year" class="field" />
+            <label for="year">Year</label>
+          </div>
+
+          <div class="form-control">
+            <div class="select-container big">
+              <select id="city" name="city">
+                <option value="sarajevo">Sarajevo</option>
+                <option value="banja luka">Banja Luka</option>
+                <option value="mostar">Mostar</option>
+                <option value="tuzla">Tuzla</option>
+                <option value="zenica">Zenica</option>
+                <option value="bijeljina">Bijeljina</option>
+                <option value="brcko">Brčko</option>
+              </select>
+              <i class="fa-solid fa-chevron-down"></i>
+            </div>
+          </div>
+        </div>
+
+        <input type="submit" class="submit" value="Submit" />
+      </form>
+    </div>
+  </div>
+</div>
+<!-- End Form -->
+<div class="table-holder d-none" id="pray-time-table">
+  <h2 class="main-title">Prayer Times</h2>
+  <div class="table-container rad-10">
+    <div class="responsive-table rad-10"></div>
+    <table class="fs-15 txt-c"></table>
+  </div>
+</div>

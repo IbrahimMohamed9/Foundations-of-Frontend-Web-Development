@@ -1,0 +1,19 @@
+PDOException: SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '5-9' for key 'cart_items.unique_item_cart' in C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\rest\dao\BaseDao.class.php:62
+Stack trace:
+#0 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\rest\dao\BaseDao.class.php(62): PDOStatement->execute()
+#1 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\rest\dao\CartDao.class.php(85): BaseDao->execute('INSERT INTO car...', Array)
+#2 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\rest\services\CartService.class.php(34): CartDao->add_item_cart(Object(flight\util\Collection))
+#3 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\rest\routes\cart_routes.php(39): CartService->add_item_cart(Object(flight\util\Collection))
+#4 [internal function]: {closure}()
+#5 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\core\Dispatcher.php(354): call_user_func_array(Object(Closure), Array)
+#6 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\core\Dispatcher.php(287): flight\core\Dispatcher->invokeCallable(Object(Closure), Array)
+#7 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\Engine.php(522): flight\core\Dispatcher->execute(Object(Closure), Array)
+#8 [internal function]: flight\Engine->_start()
+#9 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\core\Dispatcher.php(379): call_user_func_array(Array, Array)
+#10 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\core\Dispatcher.php(287): flight\core\Dispatcher->invokeCallable(Array, Array)
+#11 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\core\Dispatcher.php(131): flight\core\Dispatcher->execute(Array, Array)
+#12 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\core\Dispatcher.php(95): flight\core\Dispatcher->runEvent('start', Array)
+#13 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\Engine.php(113): flight\core\Dispatcher->run('start', Array)
+#14 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\vendor\flightphp\core\flight\Flight.php(119): flight\Engine->__call('start', Array)
+#15 C:\xampp\htdocs\IT-207-Introduction-to-Web-Programming\backend\index.php(13): Flight::__callStatic('start', Array)
+#16 {main}

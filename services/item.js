@@ -45,19 +45,19 @@ var ItemService = {
       category === "car"
         ? `
         <td>${itemData.persons}</td>
-        <td>$${price}</td>
+        <td>KM ${price}</td>
         `
         : category === "package"
         ? `
         <td>${itemData.min_persons}</td>
         <td>${itemData.max_persons}</td>
-        <td>$${price}</td>
+        <td>KM ${price}</td>
       `
         : `
         <td>${itemData.min_persons}</td>
         <td>${itemData.max_persons}</td>
-        <td>$${Utils.checkDecWithInt(itemData.person_price)}</td>
-        <td>$${Utils.checkDecWithInt(itemData.day_price)}</td>
+        <td>KM ${Utils.checkDecWithInt(itemData.person_price)}</td>
+        <td>KM ${Utils.checkDecWithInt(itemData.day_price)}</td>
       `
     }
     <td>${itemData.status}</td>
@@ -324,14 +324,51 @@ var ItemService = {
                 <div class="add">
                   <div class="wrapper">
                     <div class="price"><sup>km</sup>${intPart}<sub>${decimalPart}</sub></div>
-                    <label for="count">people:</label>
+                    <!--<label for="count">people:</label>
                     <select name="peopleCount" id="count" class="btn">
                       <option value="1">1</option>
                       <option value="2">2</option>
                       <option value="3">3</option>
                       <option value="4">4</option>
-                    </select>
-                    <button class="pckbtn btn">Add to cart</button>
+                    </select>-->
+                    <button class="pckbtn btn" onClick="Utils.itemModal(
+                      '${itemData.item_id}',
+                      '${Utils.get_from_localstorage("user").user_id}',
+                      '${itemData.persons}',
+                      '${itemData.days}',
+                      '${category}',
+                      '${itemData.name}',
+                      '${Utils.firstLink(itemData.imgs_srcs)}',
+                      '${
+                        category == "car"
+                          ? itemData.min_days
+                          : itemData.min_persons
+                      }',
+                      '${
+                        category == "car"
+                          ? itemData.max_days
+                          : itemData.max_persons
+                      }',
+                      '${
+                        category == "car"
+                          ? itemData.day_price
+                          : itemData.person_price
+                      }',
+                      '${
+                        category == "car"
+                          ? itemData.max_days
+                          : itemData.max_persons
+                      }',
+                      '${
+                        category == "car" ? "Persons: " + itemData.persons : ""
+                      }',
+                      '${category == "car" ? "Days" : "persons"}',
+                      '${category == "hotel" ? itemData.max_days : ""}',
+                      '${category == "hotel" ? "Days" : ""}',
+                      '${category == "hotel" ? itemData.min_days : ""}',
+                      '${category == "hotel" ? itemData.max_days : ""}',
+                      '${category == "hotel" ? itemData.day_price : ""}'
+                      )">Add to cart</button>
                     <button class="pckbtn btn pay d-none">Pay Now</button>
                   </div>
                 </div>
@@ -407,16 +444,21 @@ var ItemService = {
       });
     });
   },
-  loadMoreItems: () => {
+  loadMoreItems: (item_id) => {
     RestClient.get("items", (data) => {
       const moreItemWrapper = document.querySelector(
         ".more-items .splide .wrapper.splide__track .carousel.splide__list"
       );
       data.map((itemData) => {
-        let decimalPart = Utils.checkDec(parseFloat(itemData.price));
-        const intPart = Math.floor(parseFloat(itemData.price));
+        if (itemData.item_id != item_id) {
+          const price = Utils.checkDecWithInt(
+            Utils.getPrice(itemData.category, itemData)
+          );
 
-        const moreItemCon = `
+          let decimalPart = Utils.checkDec(price);
+          const intPart = Math.floor(price);
+
+          const moreItemCon = `
           <a
             href="./item.html?item_id=${itemData.item_id}"
             class="col splide__slide"
@@ -439,7 +481,8 @@ var ItemService = {
           </a>
         `;
 
-        moreItemWrapper.innerHTML += moreItemCon;
+          moreItemWrapper.innerHTML += moreItemCon;
+        }
       });
       Utils.carouselSplide(".splide");
     });

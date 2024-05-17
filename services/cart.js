@@ -471,7 +471,7 @@ var CartService = {
   //TODO fix when user open the modal in cart and go out
   coupon: (form_id, totalPriceModal) => {
     const form = $("#" + form_id);
-    FormValidation.validate(form, {}, (data) => {
+    FormValidation.validate(form, {}, {}, (data) => {
       Utils.block_ui(form);
       RestClient.get(
         "carts/coupon?code=" + data.code,
@@ -492,6 +492,7 @@ var CartService = {
             coupons.push(data);
             localStorage.setItem("coupons", JSON.stringify(coupons));
             localStorage.setItem("totalPrice", currentTotal);
+            Utils.appearSuccAlert("Coupon applied successfully");
           } else {
             Utils.appearFailAlert("Invalid coupon");
           }

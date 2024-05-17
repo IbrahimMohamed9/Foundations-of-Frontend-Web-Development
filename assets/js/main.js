@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!$(event.target).is(el) && event.target !== el2) {
         el.css("opacity", 0);
         setTimeout(() => {
-          el.css("display", "none");
+          el.addClass("d-none");
         }, 300);
         $(window).off("click");
         menuCounter = 0;
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let menuCounter = 0;
   $(".main-header ul.tile-wrds li.profile").click((el) => {
     const profileMenu = $(".main-header ul.tile-wrds ul.accordion-menu");
-    profileMenu.css("display", "block");
+    profileMenu.removeClass("d-none");
     profileMenu.css("opacity", 1);
     if (!menuCounter) closeWhenNotMe(profileMenu, el.target);
     menuCounter++;
@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  icon.addEventListener("click", toggleTheme);
+  $(icon).click(toggleTheme);
 
   function applyThemeFromLocalStorage() {
     const savedTheme = localStorage.getItem("theme");

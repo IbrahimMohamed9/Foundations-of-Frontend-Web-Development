@@ -703,7 +703,6 @@ var UserService = {
     });
   },
   editFriendRequestStatus: (requested_id, requester_id, status) => {
-    //TODO make it put and fix this bug
     RestClient.post(
       "users/edit/friend_request?requested_id=" +
         requested_id +
@@ -826,7 +825,7 @@ var UserService = {
   signIn: (form_id, modal) => {
     const form = $("#" + form_id),
       block = $(form).find("input[type=submit]");
-    FormValidation.validate(form, {}, (data) => {
+    FormValidation.validate(form, {}, {}, (data) => {
       Utils.block_ui(block);
       RestClient.post(
         "auth/login?email=" + data.email + "&password=" + data.password,
@@ -847,7 +846,7 @@ var UserService = {
     const form = $("#" + form_id);
     const block = $(form).find("input[type=submit]");
 
-    FormValidation.validate(form, {}, (data) => {
+    FormValidation.validate(form, {}, {}, (data) => {
       Utils.block_ui(block);
       RestClient.post(
         "auth/signUp",

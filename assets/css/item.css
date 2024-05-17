@@ -54,13 +54,10 @@
 ====================================================================
 ====================================================================
 */
-/* .p-relative {
-  position: relative;
-} */
 .right-corner {
   margin: 10px 0 20px;
 }
-.center {
+.center-me {
   position: absolute;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -207,6 +204,7 @@ header + .cart.item {
   display: flex;
   max-height: var(--image-height);
   gap: 10px;
+  justify-content: center;
 }
 .cart.item .item-container .images .list-img .img-container {
   max-height: var(--image-height);
