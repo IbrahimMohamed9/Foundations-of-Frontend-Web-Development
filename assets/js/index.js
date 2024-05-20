@@ -91,8 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
     defaultView: "#home",
     templateDir: "pages/homePages/",
   });
-  const user_id = 1;
-
+  let user_id = 2;
   app.route({
     view: "home",
     load: "home.html",
@@ -100,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       mainTitleAnimation();
       switchButton(0);
       // ItemService.loadCards("newPackages", user_id);
-      ItemService.loadCards("package", user_id, "home");
+      ItemService.loadCards("package", "home");
       expandGraph();
       ArticleService.loadArticleCrousel();
     },
@@ -284,28 +283,29 @@ document.addEventListener("DOMContentLoaded", () => {
       mainTitleAnimation();
       Utils.setupModalActions("Item added successfully", true, false);
 
-      ItemService.loadCards("car", user_id, "shop");
-      ItemService.loadCards("package", user_id, "shop");
-      ItemService.loadCards("hotel", user_id, "shop");
+      ItemService.loadCards("car", "shop");
+      ItemService.loadCards("package", "shop");
+      ItemService.loadCards("hotel", "shop");
     },
     onReady: () => {
       switchButton(4);
     },
   });
+
   app.route({
     view: "cart",
     load: "cart.html",
     onCreate: () => {},
     onReady: () => {
       const modalBtn = $("button.checkout-btn").eq(0);
-      CartService.loadRows(user_id);
+      CartService.loadRows();
       switchButton(null);
       modalBtn.click(() => {
         CartService.checkout(user_id, "customer", modalBtn);
       });
       $(window).one("hashchange", () => {
         localStorage.removeItem("coupons");
-        CartService.updateCart(user_id);
+        CartService.updateCart();
         Utils.removeAllEventListeners(modalBtn[0]);
       });
     },

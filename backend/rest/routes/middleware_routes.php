@@ -6,18 +6,23 @@ use Firebase\JWT\Key;
 Flight::route('/*', function () {
   $noTokenNeed = [
     '/auth/signUp', '/auth/logout',
+
     '/feedbacks/add',
-    '/items', '/items/hotel',
-    '/items/car', '/items/package',
+
+    '/items',
+
     '/articles/all',
-    '/articles/cities', '/articles/Hotels',
-    '/articles/Tourism'
   ];
+
   $regixArray = [
+    '#^/auth/login\?email=[^&]+&password=[^&]+$#',
+
     '#^/items/get/(\d{1,5})$#',
     '#^/items/new_packages/(\d{1,5})$#',
-    '#^/auth/login\?email=[^&]+&password=[^&]+$#',
-    '#^/articles/get/(\d{1,5})$#'
+    '#^/items/(hotel|car|package)$#',
+
+    '#^/articles/get/(\d{1,5})$#',
+    '#^/articles/(cities|Hotels|Tourism)$#'
   ];
   $url = Flight::request()->url;
 

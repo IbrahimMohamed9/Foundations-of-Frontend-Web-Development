@@ -80,7 +80,7 @@ var ItemService = {
   </tr>
     `;
   },
-  loadCards: (category, user_id, section) => {
+  loadCards: (category, section) => {
     //TODO  make it possible
     // let url;
     // if (category === "newPackages") {
@@ -92,13 +92,13 @@ var ItemService = {
     RestClient.get("items/" + category, (data) => {
       data.forEach((itemData) => {
         category === "car" || category === "hotel" || category === "package"
-          ? ItemService.loadCard(itemData, user_id, section)
+          ? ItemService.loadCard(itemData, section)
           : alert("check the category");
       });
       Utils.carouselSplide(`#${section} .splide.${category}s-carousel`, 20);
     });
   },
-  loadCard: (itemData, user_id, section) => {
+  loadCard: (itemData, section) => {
     const items = document.querySelector(
         `#${section} .items.${itemData.category}s .container`
       ),
@@ -142,7 +142,6 @@ var ItemService = {
         <button class="pckbtn" 
         onClick="Utils.itemModal(
         '${itemData.item_id}',
-        '${user_id}',
         '${itemData.persons}',
         '${itemData.days}',
         '${category}',
@@ -333,7 +332,6 @@ var ItemService = {
                     </select>-->
                     <button class="pckbtn btn" onClick="Utils.itemModal(
                       '${itemData.item_id}',
-                      '${Utils.get_from_localstorage("user").user_id}',
                       '${itemData.persons}',
                       '${itemData.days}',
                       '${category}',

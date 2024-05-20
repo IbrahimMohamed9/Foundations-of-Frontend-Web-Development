@@ -6,12 +6,12 @@ var Components = {
         <div class="form-container sign-up-container">
           <form id="sign_up_form">
             <h1>Create Account</h1>
-            <div class="social-container">
+            <div class="social-container d-none">
               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
               <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
               <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <span>or use your email for registration</span>
+            <span class="d-none">or use your email for registration</span>
             <div class="inputs">
               <div class="form-control full">
                 <input
@@ -56,12 +56,12 @@ var Components = {
         <div class="form-container sign-in-container">
           <form id="sign_in_form">
             <h1>Sign in</h1>
-            <div class="social-container">
+            <div class="social-container d-none">
               <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
               <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
               <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
             </div>
-            <span>or use your account</span>
+            <span class="d-none">or use your account</span>
             <div class="inputs">
               <div class="form-control full">
                 <input
@@ -85,7 +85,7 @@ var Components = {
                 <label for="signin_password"> Password </label>
               </div>
             </div>
-            <a href="#">Forgot your password?</a>
+            <a href="#" class="d-none">Forgot your password?</a>
             <input type="submit" value="Sign In" name="sign_in" id="sign_in" />
             <div class="app-register have-account">
               Don't have an account?

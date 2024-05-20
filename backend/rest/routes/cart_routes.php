@@ -1,11 +1,8 @@
 <?php
 require_once __DIR__ . '/../services/CartService.class.php';
 
-require_once __DIR__ . '/AuthClass.class.php';
-Flight::set('token', new AuthClass());
 Flight::set('cart_service', new CartService());
 
-$decoded_token = Flight::get('token')->decodeToken();
 Flight::group("/carts", function () {
 
   /**
@@ -13,6 +10,9 @@ Flight::group("/carts", function () {
    *      path="/carts/add_item",
    *      tags={"carts"},
    *      summary="Add an item to the cart",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Response(
    *           response=200,
    *           description="Item successfully added to cart",
@@ -23,9 +23,8 @@ Flight::group("/carts", function () {
    *       ),
    *      @OA\RequestBody(
    *          description="Add item data payload",
-   *          required={"item_id", "user_id","days_selected", "persons_selected"},
+   *          required={"item_id", "days_selected", "persons_selected"},
    *          @OA\JsonContent(
-   *              @OA\Property(property="user_id", type="integer", example=1),
    *              @OA\Property(property="item_id", type="integer", example=1),
    *              @OA\Property(property="days_selected", type="integer", example=3),
    *              @OA\Property(property="persons_selected", type="integer", example=2)
@@ -33,8 +32,9 @@ Flight::group("/carts", function () {
    *       )
    * )
    */
-  Flight::route('POST /add_item', function () {
+  Flight::route('POST /add_item/', function () {
     $payload = Flight::request()->data;
+    $payload['user_id'] = Flight::get('user')->user_id;
 
     Flight::get('cart_service')->add_item_cart($payload);
 
@@ -47,27 +47,21 @@ Flight::group("/carts", function () {
 
   /**
    * @OA\Post(
-   *      path="/carts/insert_cart/{user_id}",
+   *      path="/carts/insert_cart/",
    *      tags={"carts"},
    *      summary="Create a new cart for a user",
-   *      @OA\Parameter(
-   *          name="user_id",
-   *          in="path",
-   *          required=true,
-   *          description="ID of the user",
-   *          @OA\Schema(type="integer")
-   *      ),
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Response(
    *           response=200,
    *           description="Cart created successfully",
-   *           @OA\JsonContent(
-   *               type="object",
-   *               @OA\Property(property="message", type="string", example="Cart created successfully")
-   *           )
    *       ),
    * )
    */
-  Flight::route('POST /insert_cart/@user_id', function ($user_id) {
+  Flight::route('POST /insert_cart/', function () {
+    $user_id = Flight::get('user')->user_id;
+
     Flight::get('cart_service')->add_new_cart_for_user(['user_id' => $user_id]);
   });
 
@@ -76,6 +70,9 @@ Flight::group("/carts", function () {
    *      path="/carts/coupon",
    *      tags={"carts"},
    *      summary="Check coupon code",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Parameter(
    *          name="code",
    *          in="query",
@@ -104,16 +101,12 @@ Flight::group("/carts", function () {
 
   /**
    * @OA\Get(
-   *      path="/carts/get/{user_id}",
+   *      path="/carts/get/",
    *      tags={"carts"},
    *      summary="Get items in the cart for a user",
-   *      @OA\Parameter(
-   *          name="user_id",
-   *          in="path",
-   *          required=true,
-   *          description="ID of the user",
-   *          @OA\Schema(type="integer")
-   *      ),
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Response(
    *           response=200,
    *           description="Items fetched successfully",
@@ -125,7 +118,9 @@ Flight::group("/carts", function () {
    *       ),
    * )
    */
-  Flight::route('GET /get/@user_id', function ($user_id) {
+  Flight::route('GET /get/', function () {
+    $user_id = Flight::get('user')->user_id;
+
     $cart =  Flight::get('cart_service')->get_cart_items_by_id($user_id);
     Flight::json(
       [
@@ -137,16 +132,12 @@ Flight::group("/carts", function () {
 
   /**
    * @OA\Get(
-   *      path="/carts/counter/{user_id}",
+   *      path="/carts/counter",
    *      tags={"carts"},
    *      summary="Get number of items in the cart for a user",
-   *      @OA\Parameter(
-   *          name="user_id",
-   *          in="path",
-   *          required=true,
-   *          description="ID of the user",
-   *          @OA\Schema(type="integer")
-   *      ),
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Response(
    *           response=200,
    *           description="Count fetched successfully",
@@ -157,7 +148,9 @@ Flight::group("/carts", function () {
    *       ),
    * )
    */
-  Flight::route('GET /counter/@user_id', function ($user_id) {
+  Flight::route('GET /counter', function () {
+    $user_id = Flight::get('user')->user_id;
+
     $counter =  Flight::get('cart_service')->get_cart_items_number_by_id($user_id);
     Flight::json($counter);
   });
@@ -167,6 +160,9 @@ Flight::group("/carts", function () {
    *      path="/carts/delete/{cart_item_id}",
    *      tags={"carts"},
    *      summary="Delete an item from the cart",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Parameter(
    *          name="cart_item_id",
    *          in="path",
@@ -204,6 +200,9 @@ Flight::group("/carts", function () {
    *      path="/carts/item",
    *      tags={"carts"},
    *      summary="Update an item in the cart",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Parameter(
    *          name="cart_item_id",
    *          in="query",

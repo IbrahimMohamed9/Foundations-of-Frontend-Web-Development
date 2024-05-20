@@ -85,7 +85,6 @@ var Utils = {
   },
   itemModal: (
     item_id,
-    user_id,
     persons,
     days,
     category,
@@ -104,135 +103,138 @@ var Utils = {
     price2
     //plans
   ) => {
-    const modal = document.getElementById("myModal"),
-      totalPriceModal = modal.querySelector(
-        ".checkout .checkout--footer .price"
-      ).children,
-      body = document.body,
-      itemName = modal.querySelector(".item-name"),
-      itemDescription = itemName.nextElementSibling,
-      quantityLabel = modal.querySelector(".quantity-label"),
-      itemImage = modal.querySelector(".modal-img"),
-      itemPrice = modal.querySelector(".price.small"),
-      itemCategory = modal.querySelector(".top-title .title"),
-      quantityBtns = Array.from(
-        modal.querySelector(".master-container .cart .quantity").children
-      ),
-      quantityNumber = quantityBtns[1],
-      quantity2Parent = modal.querySelector(
-        ".master-container .cart .quantity-2"
-      ).parentElement;
-
-    itemDescription.textContent = nameDescription;
-    itemCategory.textContent = category;
-    itemName.textContent = name;
-    itemImage.src = imgSrc;
-    quantityNumber.textContent = quantity;
-    quantityLabel.textContent = quantityDescription;
-
-    if (
-      quantity2 !== "" &&
-      quantity2 !== null &&
-      typeof quantity2 !== "undefined"
-    ) {
-      $(quantity2Parent).css("display", "block");
-      quantity2Parent.parentElement.classList.add("hotel");
-      const quantityBtns2 = Array.from(
-          quantity2Parent.querySelector(".master-container .cart .quantity-2")
-            .children
-        ),
-        quantityNumber2 = quantityBtns2[1];
-
-      quantityNumber2.textContent = quantity2;
-
-      quantity2Parent.querySelector(".quantity-label-2").innerHTML =
-        quantityDescription2;
-
-      Utils.totalPriceModal(
-        parseInt(quantityNumber.textContent) * Number(price) +
-          parseInt(quantityNumber2.textContent) * Number(price2),
-        totalPriceModal,
-        itemPrice,
-        Number(price) + Number(price2)
-      );
-
-      quantityNumber2.textContent = quantity2;
-      Utils.quantityBtnFunction(
-        min,
-        max,
-        price,
-        quantityNumber,
-        totalPriceModal,
-        [quantityBtns[0], quantityBtns[2], quantityBtns2[0], quantityBtns2[2]],
-        min2,
-        max2,
-        price2,
-        quantityNumber2
-      );
-
-      $("#myModal .checkout .checkout-btn").click(() => {
-        CartService.addToCart(
-          user_id,
-          item_id,
-          quantityNumber.textContent,
-          quantityNumber2.textContent
-        );
-      });
+    console.log();
+    if (Utils.get_from_localstorage("user") === null) {
+      Utils.loginModal();
     } else {
-      Utils.quantityBtnFunction(
-        min,
-        max,
-        price,
-        quantityNumber,
-        totalPriceModal,
-        [quantityBtns[0], quantityBtns[2]],
-        -1,
-        -1,
-        -1,
-        -1
-      );
+      const modal = document.getElementById("myModal"),
+        totalPriceModal = modal.querySelector(
+          ".checkout .checkout--footer .price"
+        ).children,
+        body = document.body,
+        itemName = modal.querySelector(".item-name"),
+        itemDescription = itemName.nextElementSibling,
+        quantityLabel = modal.querySelector(".quantity-label"),
+        itemImage = modal.querySelector(".modal-img"),
+        itemPrice = modal.querySelector(".price.small"),
+        itemCategory = modal.querySelector(".top-title .title"),
+        quantityBtns = Array.from(
+          modal.querySelector(".master-container .cart .quantity").children
+        ),
+        quantityNumber = quantityBtns[1],
+        quantity2Parent = modal.querySelector(
+          ".master-container .cart .quantity-2"
+        ).parentElement;
 
-      $(quantity2Parent).css("display", "none");
-      quantity2Parent.parentElement.classList.remove("hotel");
+      itemDescription.textContent = nameDescription;
+      itemCategory.textContent = category;
+      itemName.textContent = name;
+      itemImage.src = imgSrc;
+      quantityNumber.textContent = quantity;
+      quantityLabel.textContent = quantityDescription;
 
-      Utils.totalPriceModal(
-        parseInt(quantityNumber.textContent) * Number(price),
-        totalPriceModal,
-        itemPrice,
-        price
-      );
-      $("#myModal .checkout .checkout-btn").on("click", () => {
-        category === "package"
-          ? CartService.addToCart(
-              user_id,
-              item_id,
-              quantityNumber.textContent,
-              days
-            )
-          : CartService.addToCart(
-              user_id,
-              item_id,
-              persons,
-              quantityNumber.textContent
-            );
-      });
+      if (
+        quantity2 !== "" &&
+        quantity2 !== null &&
+        typeof quantity2 !== "undefined"
+      ) {
+        $(quantity2Parent).css("display", "block");
+        quantity2Parent.parentElement.classList.add("hotel");
+        const quantityBtns2 = Array.from(
+            quantity2Parent.querySelector(".master-container .cart .quantity-2")
+              .children
+          ),
+          quantityNumber2 = quantityBtns2[1];
+
+        quantityNumber2.textContent = quantity2;
+
+        quantity2Parent.querySelector(".quantity-label-2").innerHTML =
+          quantityDescription2;
+
+        Utils.totalPriceModal(
+          parseInt(quantityNumber.textContent) * Number(price) +
+            parseInt(quantityNumber2.textContent) * Number(price2),
+          totalPriceModal,
+          itemPrice,
+          Number(price) + Number(price2)
+        );
+
+        quantityNumber2.textContent = quantity2;
+        Utils.quantityBtnFunction(
+          min,
+          max,
+          price,
+          quantityNumber,
+          totalPriceModal,
+          [
+            quantityBtns[0],
+            quantityBtns[2],
+            quantityBtns2[0],
+            quantityBtns2[2],
+          ],
+          min2,
+          max2,
+          price2,
+          quantityNumber2
+        );
+
+        $("#myModal .checkout .checkout-btn").click(() => {
+          CartService.addToCart(
+            item_id,
+            quantityNumber.textContent,
+            quantityNumber2.textContent
+          );
+        });
+      } else {
+        Utils.quantityBtnFunction(
+          min,
+          max,
+          price,
+          quantityNumber,
+          totalPriceModal,
+          [quantityBtns[0], quantityBtns[2]],
+          -1,
+          -1,
+          -1,
+          -1
+        );
+
+        $(quantity2Parent).css("display", "none");
+        quantity2Parent.parentElement.classList.remove("hotel");
+
+        Utils.totalPriceModal(
+          parseInt(quantityNumber.textContent) * Number(price),
+          totalPriceModal,
+          itemPrice,
+          price
+        );
+        $("#myModal .checkout .checkout-btn").on("click", () => {
+          category === "package"
+            ? CartService.addToCart(item_id, quantityNumber.textContent, days)
+            : CartService.addToCart(
+                item_id,
+                persons,
+                quantityNumber.textContent
+              );
+        });
+      }
+
+      // if (plans) {
+      //   modal.querySelector(".select-container").style.display = "block";
+      //   modal
+      //     .querySelector(".cart .products .product p")
+      //     .classList.remove("active");
+      // } else {
+      // modal.querySelector(".select-container").style.display = "none";
+      // modal.querySelector(".cart .products .product p").classList.add("active");
+      // }
+
+      modal.classList.add("d-block");
+      body.classList.add("fix");
+      setTimeout(() => {
+        modal.classList.add("active");
+      }, 1);
     }
-
-    // if (plans) {
-    //   modal.querySelector(".select-container").style.display = "block";
-    //   modal
-    //     .querySelector(".cart .products .product p")
-    //     .classList.remove("active");
-    // } else {
-    // modal.querySelector(".select-container").style.display = "none";
-    // modal.querySelector(".cart .products .product p").classList.add("active");
-    // }
-
-    modal.classList.add("d-block");
-    body.classList.add("fix");
-    setTimeout(() => {
-      modal.classList.add("active");
-    }, 1);
   },
   totalPriceModal: (total, totalPriceModal, itemPrice, price) => {
     totalPriceModal[1].textContent = Math.floor(total);

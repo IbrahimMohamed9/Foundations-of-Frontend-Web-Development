@@ -217,7 +217,7 @@ var UserService = {
   },
   loadDashboard: async (user_id) => {
     const welcomWidget = $(".screen.wrapper .welcome");
-    Utils.block_ui(welcomWidget);
+    Utils.block_ui(welcomWidget, true);
 
     UserService.deleteUserInfoFormLocalStorage();
     const data = await UserService.fetchUserInfo(user_id),
@@ -832,8 +832,10 @@ var UserService = {
         null,
         (data) => {
           Utils.unblock_ui(block);
+          localStorage.clear();
           Utils.set_to_localstorage("user", data.user);
           Utils.removeModal(false, modal[0]);
+          location.reload();
         },
         (xhr) => {
           Utils.unblock_ui(block);
@@ -853,8 +855,10 @@ var UserService = {
         data,
         (data) => {
           Utils.unblock_ui(block);
+          localStorage.clear();
           Utils.set_to_localstorage("user", data.user);
           Utils.removeModal(false, modal[0]);
+          location.reload();
         },
         (xhr) => {
           Utils.unblock_ui(block);
