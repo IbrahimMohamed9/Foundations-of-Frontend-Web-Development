@@ -1,7 +1,6 @@
 var CartService = {
-  addToCart: (user_id, item_id, persons, days) => {
+  addToCart: (item_id, persons, days) => {
     const data = {
-      user_id: user_id,
       item_id: item_id,
       persons_selected: persons ?? 0,
       days_selected: days ?? 0,
@@ -29,7 +28,7 @@ var CartService = {
         if (modal) Utils.removeModal(true, modal);
 
         Utils.appearSuccAlert(success_mge);
-        CartService.shoppingCartCounter(data.user_id, 1);
+        CartService.shoppingCartCounter(1);
       },
       (xhr) => {
         Utils.unblock_ui(block);
@@ -38,27 +37,31 @@ var CartService = {
       }
     );
   },
-  shoppingCartCounter: async (user_id, change) => {
+  shoppingCartCounter: async (change) => {
     // try {
     // TODO make it in localstorage
     // const cart_items = JSON.parse(localStorage.getItem("cart_items"));
     // let counter = localStorage.getItem("counter");
     // if (counter === null || counter === undefined) {
     // const counter = await new Promise((resolve, reject) => {
-    RestClient.get(
-      "carts/counter/" + user_id,
-      (data) => {
-        $(".shopping-cart-icon").attr("data-counter", data.counter);
-        // resolve(Number(data.counter));
-      },
-      () => {
-        $(".shopping-cart-icon").attr("data-counter", 0);
-        // resolve(Number(data.counter));
-      }
-      // (error) => {
-      // reject(error);
-      // }
-    );
+    if (Utils.get_from_localstorage("user")) {
+      RestClient.get(
+        "carts/counter/",
+        (data) => {
+          $(".shopping-cart-icon").attr("data-counter", data.counter);
+          // resolve(Number(data.counter));
+        },
+        () => {
+          $(".shopping-cart-icon").attr("data-counter", 0);
+          // resolve(Number(data.counter));
+        }
+        // (error) => {
+        // reject(error);
+        // }
+      );
+    } else {
+      $(".shopping-cart-icon").attr("data-counter", 0);
+    }
     // });
     // } else {
     //   if (change && counter.filter)
@@ -71,14 +74,14 @@ var CartService = {
     //   console.error("Error fetching cart items count:", error);
     // }
   },
-  fetchCartItems: async (user_id) => {
+  fetchCartItems: async () => {
     try {
       let data = localStorage.getItem("cart_items");
 
       if (data === null) {
         data = await new Promise((resolve, reject) => {
           RestClient.get(
-            "carts/get/" + user_id,
+            "carts/get/",
             (data) => {
               data = data.data;
               resolve(
@@ -86,7 +89,6 @@ var CartService = {
                   ...itemData,
                   price: Utils.getPrice(itemData.category, itemData),
                   changed: false,
-                  user_id: user_id,
                 }))
               );
             },
@@ -104,9 +106,9 @@ var CartService = {
       console.error("Error fetching cart data:", error);
     }
   },
-  loadRows: async (user_id) => {
+  loadRows: async () => {
     const items = $(".cart.shopping .cart-rows")[0];
-    const cartItems = await CartService.fetchCartItems(user_id);
+    const cartItems = await CartService.fetchCartItems();
     const modal = document.getElementById("cartModal");
     const modalProducts = modal.querySelector(".products");
     const sumOfTotalModal = modal.querySelector(
@@ -409,7 +411,6 @@ var CartService = {
       $(icon).click(() => {
         CartService.removeItemCart(
           currentItem["cart_item_id"],
-          currentItem["user_id"],
           currentItem["name"]
         );
       });
@@ -429,8 +430,8 @@ var CartService = {
       ? Number(Utils.checkDecWithInt(totalPrice))
       : [totalPrice, Utils.checkDec(totalPrice)];
   },
-  updateCart: async (user_id, removeLocalStorage) => {
-    const items = await CartService.fetchCartItems(user_id);
+  updateCart: async (removeLocalStorage) => {
+    const items = await CartService.fetchCartItems();
     items.forEach((data) => {
       if (data.changed) {
         RestClient.put(
@@ -449,7 +450,7 @@ var CartService = {
       localStorage.removeItem("totalPrice");
     }
   },
-  removeItemCart: (cart_item_id, user_id, name) => {
+  removeItemCart: (cart_item_id, name) => {
     if (confirm("Do you want to delete " + name + "?") == true) {
       // TODO: fix this amazing error the function call
       // callback_error instead of call back
@@ -461,9 +462,9 @@ var CartService = {
           // TODO make it withou remove from localStorage
           localStorage.removeItem("cart_items");
           console.log(error);
-          CartService.loadRows(user_id);
+          CartService.loadRows();
           Utils.appearFailAlert(name + " was deleted");
-          CartService.shoppingCartCounter(user_id, -1);
+          CartService.shoppingCartCounter(-1);
         }
       );
     }
@@ -492,6 +493,7 @@ var CartService = {
             coupons.push(data);
             localStorage.setItem("coupons", JSON.stringify(coupons));
             localStorage.setItem("totalPrice", currentTotal);
+            Utils.appearSuccAlert("Coupon applied successfully");
           } else {
             Utils.appearFailAlert("Invalid coupon");
           }
@@ -505,10 +507,10 @@ var CartService = {
   },
   checkout: async (user_id, position, btn) => {
     Utils.block_ui(btn, true);
-    CartService.updateCart(user_id);
+    CartService.updateCart();
 
     const couponsString = localStorage.getItem("coupons");
-    const items = await CartService.fetchCartItems(user_id);
+    const items = await CartService.fetchCartItems();
     let coupons;
     if (couponsString) coupons = JSON.parse(couponsString);
 
@@ -542,15 +544,15 @@ var CartService = {
       RestClient.post("projects/add", data);
     });
     RestClient.post(
-      "carts/insert_cart/" + user_id,
+      "carts/insert_cart/",
       null,
       (data) => {
         // TODO make it more logic remove one by one
         localStorage.removeItem("coupons");
         localStorage.removeItem("totalPrice");
         localStorage.removeItem("cart_items");
-        CartService.loadRows(user_id);
-        CartService.shoppingCartCounter(user_id, 0);
+        CartService.loadRows();
+        CartService.shoppingCartCounter(0);
         Utils.unblock_ui(btn);
       },
       (error) => {

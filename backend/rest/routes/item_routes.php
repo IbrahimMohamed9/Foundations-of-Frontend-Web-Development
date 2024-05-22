@@ -1,11 +1,8 @@
 <?php
-require_once __DIR__ . '/../services/itemService.class.php';
-require_once __DIR__ . '/AuthClass.class.php';
+require_once __DIR__ . '/../services/ItemService.class.php';
 
-Flight::set('token', new AuthClass());
 Flight::set('item_service', new ItemService());
 
-$decoded_token = Flight::get('token')->decodeToken();
 Flight::group("/items", function () {
 
   /**
@@ -13,6 +10,9 @@ Flight::group("/items", function () {
    *      path="/items/add",
    *      tags={"items"},
    *      summary="Add or edit an item",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\RequestBody(
    *          required=true,
    *          @OA\JsonContent(
@@ -169,6 +169,9 @@ Flight::group("/items", function () {
    *      path="/items/delete/{item_id}",
    *      tags={"items"},
    *      summary="Delete an item by ID",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Parameter(
    *          name="item_id",
    *          in="path",

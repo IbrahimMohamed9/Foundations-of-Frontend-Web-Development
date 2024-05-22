@@ -2,7 +2,11 @@
 
 require __DIR__ . '/../../../vendor/autoload.php';
 
-define('BASE_URL', 'http://localhost/IT-207-Introduction-to-Web-Programming/backend/');
+if ($_SERVER['SERVER_NAME'] == 'localhost' || $_SERVER['SERVER_NAME'] == '127.0.0.1') {
+  define('BASE_URL', 'http://localhost/IT-207-Introduction-to-Web-Programming/backend/');
+} else {
+  define('BASE_URL', 'https://balqan.net/backend/');
+}
 
 error_reporting(0);
 

@@ -2,22 +2,28 @@
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
+require_once dirname(__FILE__) . "/../config.php";
 
 Flight::route('/*', function () {
   $noTokenNeed = [
     '/auth/signUp', '/auth/logout',
+
     '/feedbacks/add',
-    '/items', '/items/hotel',
-    '/items/car', '/items/package',
+
+    '/items',
+
     '/articles/all',
-    '/articles/cities', '/articles/Hotels',
-    '/articles/Tourism'
   ];
+
   $regixArray = [
+    '#^/auth/login\?email=[^&]+&password=[^&]+$#',
+
     '#^/items/get/(\d{1,5})$#',
     '#^/items/new_packages/(\d{1,5})$#',
-    '#^/auth/login\?email=[^&]+&password=[^&]+$#',
-    '#^/articles/get/(\d{1,5})$#'
+    '#^/items/(hotel|car|package)$#',
+
+    '#^/articles/get/(\d{1,5})$#',
+    '#^/articles/(cities|Hotels|Tourism)$#'
   ];
   $url = Flight::request()->url;
 
@@ -36,7 +42,7 @@ Flight::route('/*', function () {
       if (!$token)
         Flight::halt(401, "Unauthorized access. This will be reported to administrator!");
 
-      $decoded_token = JWT::decode($token, new Key(JWT_SECRET, 'HS256'));
+      $decoded_token = JWT::decode($token, new Key(Config::JWT_SECRET(), 'HS256'));
       Flight::set('user', $decoded_token->user);
       Flight::set('jwt_token', $token);
       return TRUE;

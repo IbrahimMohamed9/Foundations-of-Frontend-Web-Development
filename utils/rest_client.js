@@ -1,7 +1,7 @@
 var RestClient = {
   get: (url, callback, error_callback) => {
     $.ajax({
-      url: Constants.API_BASE_URL + url,
+      url: Constants.get_api_base_url() + url,
       type: "GET",
       beforeSend: (xhr) => {
         if (Utils.get_from_localstorage("user")) {
@@ -34,7 +34,7 @@ var RestClient = {
   },
   request: (url, method, data, callback, error_callback) => {
     $.ajax({
-      url: Constants.API_BASE_URL + url,
+      url: Constants.get_api_base_url() + url,
       type: method,
       data: data,
       beforeSend: (xhr) => {

@@ -1,10 +1,11 @@
 <?php
 
 require_once __DIR__ . '/../services/AuthService.class.php';
-require_once __DIR__ . '/AuthClass.class.php';
+require_once dirname(__FILE__) . "/../config.php";
+
+use Firebase\JWT\JWT;
 
 Flight::set('auth_service', new AuthService());
-Flight::set('token', new AuthClass());
 Flight::set('user_service', new UserService());
 
 Flight::group('/auth', function () {
@@ -47,7 +48,7 @@ Flight::group('/auth', function () {
     if (!$user || $payload['password'] !== $user['password'])
       Flight::halt(500, "Invalid username or password");
 
-    $token = Flight::get('token')->generateToken($user);
+    $token = generateToken($user);
 
     Flight::json([
       'user' => array_merge($user, ['token' => $token])
@@ -87,32 +88,28 @@ Flight::group('/auth', function () {
 
     $user = Flight::get('user_service')->add_user($data);
 
-    $token = Flight::get('token')->generateToken($user);
+    $token = generateToken($user);
 
     Flight::json([
       'user' => array_merge($user, ['token' => $token])
     ]);
   });
-
-  /**
-   * @OA\Post(
-   *      path="/auth/logout",
-   *      tags={"auth"},
-   *      summary="Logout from system",
-   *      security={
-   *          {"ApiKey": {}}
-   *      },
-   *      @OA\Response(
-   *           response=200,
-   *           description="Success response or 'Try again please' "
-   *      ),
-   * )
-   */
-  Flight::route('POST /logout', function () {
-    $decoded_token = Flight::get('token')->decodeToken();
-
-    Flight::json([
-      'jwt_decoded' => $decoded_token
-    ]);
-  });
 });
+
+function generateToken($user)
+{
+  unset($user['password']);
+  $payload = [
+    'user' => $user,
+    'iat' => time(),
+    'exp' => time() + 1296000
+  ];
+
+  $token = JWT::encode(
+    $payload,
+    Config::JWT_SECRET(),
+    'HS256'
+  );
+
+  return $token;
+}

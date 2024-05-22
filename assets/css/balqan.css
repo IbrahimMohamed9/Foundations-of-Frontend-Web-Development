@@ -235,14 +235,13 @@ img {
 .alert {
   right: 10px;
   position: fixed;
-  z-index: 100;
+  z-index: 10000;
   top: 60px;
 }
 .alert.decrease {
   z-index: 700;
 }
 .accordion-menu {
-  display: none;
   position: absolute;
   background-color: #ececec;
   top: 355px;
@@ -1104,7 +1103,7 @@ img {
 }
 .modal.active {
   opacity: 1;
-  z-index: 650;
+  z-index: 10000;
 }
 .modal#globalModal.active,
 .modal.animation.active {
@@ -1427,7 +1426,7 @@ img {
   color: var(--font-color);
 }
 .input_field:focus {
-  background-color: #0b0b0b;
+  background-color: var(--se);
   color: var(--font-color);
 }
 .coupons .form .applyBtn {
@@ -1625,6 +1624,8 @@ img {
   line-height: 1.4;
 }
 .info .row .content button {
+  max-width: fit-content;
+  margin: auto;
   border: 0;
   background-color: var(--main-color);
   border-radius: 20px;
@@ -2941,4 +2942,8 @@ section#articles .articles .container .row .col .card .card-body .card-text {
   .form-control label {
     padding-left: 0;
   }
+}
+
+#pray-time-table {
+  background-color: var(--third-background-color);
 }

@@ -19,6 +19,7 @@ class UserDao extends BaseDao
 
             if ($lastInserted && isset($lastInserted['user_id'])) {
                 $this->insert("carts", ['user_id' => $lastInserted['user_id']]);
+                $this->insert("widgets", ['user_id' => $lastInserted['user_id']]);
                 $this->commit();
                 return $this->get_user_by_id($lastInserted['user_id']);
             } else {

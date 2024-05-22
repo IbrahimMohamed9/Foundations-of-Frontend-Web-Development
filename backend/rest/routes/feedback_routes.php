@@ -1,11 +1,8 @@
 <?php
 require_once __DIR__ . '/../services/FeedbackService.class.php';
 
-require_once __DIR__ . '/AuthClass.class.php';
-Flight::set('token', new AuthClass());
 Flight::set('feedback_service', new FeedbackService());
 
-$decoded_token = Flight::get('token')->decodeToken();
 Flight::group("/feedbacks", function () {
 
   /**
@@ -60,6 +57,9 @@ Flight::group("/feedbacks", function () {
    *      path="/feedbacks",
    *      tags={"feedbacks"},
    *      summary="Get all feedbacks",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Response(
    *           response=200,
    *           description="Array of all feedbacks",
@@ -80,6 +80,9 @@ Flight::group("/feedbacks", function () {
    *      path="/feedbacks/get/{feedback_id}",
    *      tags={"feedbacks"},
    *      summary="Get feedback by ID",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Parameter(
    *          name="feedback_id",
    *          in="path",
@@ -115,6 +118,9 @@ Flight::group("/feedbacks", function () {
    *      path="/feedbacks/delete/{feedback_id}",
    *      tags={"feedbacks"},
    *      summary="Delete a feedback",
+   *      security={
+   *          {"ApiKey": {}}
+   *      },
    *      @OA\Parameter(
    *          name="feedback_id",
    *          in="path",

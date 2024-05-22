@@ -20,7 +20,6 @@ var projectService = {
             <span
               style="left: ${left}px;"
               >
-              <!--TODO appear modal with profile info-->
               <img src="${teamMember.img}"
                 alt="member image"
                 title="${teamMember.position}"
@@ -120,15 +119,17 @@ var projectService = {
     });
   },
   separateTeam: (teamString) => {
-    teamString += ",";
-    const regex =
-      /(?<id>\d+)\|(?<role>[A-Za-z ]+)\|(?<name>[A-Za-z -]+)\|(?<url>https:\/\/[^,]+),/g;
+    const teams = teamString.split(",,,,");
     const teamMembers = [];
+    const regex =
+      /(?<id>\d+)\|(?<role>[A-Za-z0-9 ]+)\|(?<name>[A-Za-z -]+)\|(?<url>https:\/\/[^,]+)/;
 
-    let match;
-    while ((match = regex.exec(teamString)) !== null) {
-      const { id, role, name, url } = match.groups;
-      teamMembers.push({ user_id: id, name, position: role, img: url });
+    for (const team of teams) {
+      const match = regex.exec(team);
+      if (match) {
+        const { id, role, name, url } = match.groups;
+        teamMembers.push({ user_id: id, name, position: role, img: url });
+      }
     }
 
     return teamMembers;

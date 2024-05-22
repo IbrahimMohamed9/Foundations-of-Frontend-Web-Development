@@ -217,7 +217,7 @@ var UserService = {
   },
   loadDashboard: async (user_id) => {
     const welcomWidget = $(".screen.wrapper .welcome");
-    Utils.block_ui(welcomWidget);
+    Utils.block_ui(welcomWidget, true);
 
     UserService.deleteUserInfoFormLocalStorage();
     const data = await UserService.fetchUserInfo(user_id),
@@ -285,19 +285,19 @@ var UserService = {
   loadDashboardWidgets: async (user_id) => {
     const widgets = await UserService.fetchUserWidgets(user_id);
 
-    widgets.targets
+    parseInt(widgets.targets)
       ? UserService.loadYearlyTarget(user_id)
       : $("#dashboard .screen div:has(.targets)").addClass("d-none");
 
-    widgets.tickets
+    parseInt(widgets.tickets)
       ? UserService.loadTicketsStatistics(user_id)
       : $("#dashboard .screen div:has(.tickets)").addClass("d-none");
 
-    widgets.drafts
+    parseInt(widgets.drafts)
       ? UserService.loadDrafts(user_id)
       : $("#dashboard .screen div:has(.drafts)").addClass("d-none");
 
-    widgets.quick_draft
+    parseInt(widgets.quick_draft)
       ? $("#dashboard .screen div:has(.quick-draft)").removeClass("d-none")
       : $("#dashboard .screen div:has(.quick-draft)").addClass("d-none");
   },
@@ -404,7 +404,6 @@ var UserService = {
       }
     });
   },
-
   getDraft: (user_id, draft_id, el) => {
     Utils.block_ui(el);
     RestClient.get("users/get/draft/" + draft_id, (data) => {
@@ -507,7 +506,7 @@ var UserService = {
       () => {
         widgets[widgetName] = widgetValue;
         UserService.deleteUserWidgetsFormLocalStorage();
-        localStorage.setItem("userWidget", JSON.stringify(widgets));
+        localStorage.setItem("userWidgets", JSON.stringify(widgets));
         UserService.loadWidgetsControl(user_id);
         Utils.unblock_ui($("#" + widgetName));
       }
@@ -832,8 +831,10 @@ var UserService = {
         null,
         (data) => {
           Utils.unblock_ui(block);
+          localStorage.clear();
           Utils.set_to_localstorage("user", data.user);
           Utils.removeModal(false, modal[0]);
+          location.reload();
         },
         (xhr) => {
           Utils.unblock_ui(block);
@@ -853,8 +854,10 @@ var UserService = {
         data,
         (data) => {
           Utils.unblock_ui(block);
+          localStorage.clear();
           Utils.set_to_localstorage("user", data.user);
           Utils.removeModal(false, modal[0]);
+          location.reload();
         },
         (xhr) => {
           Utils.unblock_ui(block);

@@ -110,8 +110,8 @@
               <span>Profile</span>
             </div>
           </li>
-          <ul class="accordion-menu">
-            <li><a href="./profile.html#dashboard">Profile</a></li>
+          <ul class="accordion-menu d-none">
+            <li><a href="./profile.html#profile">Profile</a></li>
             <li><a href="./profile.html#dashboard">Dashboard</a></li>
             <li><a href="./profile.html#settings">Settings</a></li>
             <li><a href="./profile.html#projects">Projects</a></li>
@@ -191,57 +191,6 @@
     <!-- Start Danger Message -->
     <div class="alert alert-danger decrease d-none" role="alert"></div>
     <!-- End Danger Message -->
-    <!-- Start Item Modal -->
-    <div id="myModal" class="modal zindex-tooltip">
-      <div class="master-container">
-        <div class="card cart">
-          <div class="top-title">
-            <span class="title">Package</span>
-            <i class="fa-solid fa-xmark x"></i>
-          </div>
-          <div class="products">
-            <div class="product">
-              <img class="modal-img" src="" alt="item image" />
-              <div>
-                <!-- <span>Package</span> -->
-                <p class="item-name"></p>
-                <div class="select-container">
-                  <select name="plans" id="plans">
-                    <option value="plan1">Plan 1</option>
-                    <option value="plan2">Plan 2</option>
-                    <option value="plan3">Plan 3</option>
-                    <option value="plan4">Plan 4</option>
-                  </select>
-                  <i class="fa-solid fa-chevron-down"></i>
-                </div>
-              </div>
-              <div class="quantity">
-                <button>
-                  <i class="fa-solid fa-minus"></i>
-                </button>
-                <span>2</span>
-                <button>
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </div>
-              <span class="price small"></span>
-            </div>
-          </div>
-        </div>
-        <div class="card checkout">
-          <span class="title top-title">Total</span>
-          <div class="details">
-            <span>Your total:</span>
-            <span>47.98$</span>
-          </div>
-          <div class="checkout--footer">
-            <span class="price"><sup>KM</sup><span></span><sub></sub></span>
-            <button class="checkout-btn">Register</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Item Modal -->
     <div class="cart item position-relative"></div>
     <!-- Start More Items -->
     <div class="more-items">
@@ -295,6 +244,70 @@
     </footer>
     <div id="loginModal" class="modal"></div>
     <!-- End Footer -->
+    <div id="myModal" class="modal">
+      <div class="master-container">
+        <div class="card cart">
+          <div class="top-title">
+            <span class="title"></span>
+            <i class="fa-solid fa-xmark x"></i>
+          </div>
+          <div class="products">
+            <div class="product">
+              <img class="modal-img" src="" alt="item image" />
+              <div>
+                <p class="item-name"></p>
+                <p class="item-description"></p>
+                <!-- <div class="select-container">
+                  <select name="plans" id="plans">
+                    <option value="plan1">Plan 1</option>
+                    <option value="plan2">Plan 2</option>
+                    <option value="plan3">Plan 3</option>
+                    <option value="plan4">Plan 4</option>
+                  </select>
+                  <i class="fa-solid fa-chevron-down"></i>
+                </div> -->
+              </div>
+              <div>
+                <span class="quantity-label-2 center"></span>
+                <div class="quantity-2">
+                  <button>
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <span></span>
+                  <button>
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <div>
+                <span class="quantity-label center"></span>
+                <div class="quantity">
+                  <button>
+                    <i class="fa-solid fa-minus"></i>
+                  </button>
+                  <span></span>
+                  <button>
+                    <i class="fa-solid fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+              <span class="price small center"></span>
+            </div>
+          </div>
+        </div>
+        <div class="card checkout">
+          <span class="title top-title">Total</span>
+          <div class="details">
+            <span>Your total:</span>
+            <span></span>
+          </div>
+          <div class="checkout--footer">
+            <span class="price"><sup>KM</sup><span></span><sub></sub></span>
+            <button class="checkout-btn">Register</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- JavaScript -->
     <script src="../services/item.js"></script>
     <script src="../services/cart.js"></script>

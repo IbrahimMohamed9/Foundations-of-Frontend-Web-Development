@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/../../config.php";
+require_once dirname(__FILE__) . "/../config.php";
 
 class BaseDao
 {
@@ -11,12 +11,12 @@ class BaseDao
         $this->table = $table;
         try {
             $this->connection = new PDO(
-                "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";port=" . DB_PORT,
-                DB_USER,
-                DB_PASSWORD,
+                "mysql:host=" . Config::DB_HOST() . ";dbname=" . Config::DB_NAME() . ";charset=utf8;port=" . Config::DB_PORT(),
+                Config::DB_USER(),
+                Config::DB_PASS(),
                 [
                     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
                 ]
             );
         } catch (PDOException $e) {

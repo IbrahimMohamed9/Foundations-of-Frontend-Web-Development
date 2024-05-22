@@ -55,7 +55,7 @@ class ProjectsDao extends BaseDao
                     i.intro AS item_intro,
                     GROUP_CONCAT(
                             CONCAT_WS('|', u.user_id, up.position, u.name, u.img)
-                            SEPARATOR ',') AS project_team
+                            SEPARATOR ',,,,') AS project_team
                     FROM projects p
                             JOIN cart_items ci ON p.cart_item_id = ci.cart_item_id
                             JOIN items i ON i.item_id = ci.item_id
