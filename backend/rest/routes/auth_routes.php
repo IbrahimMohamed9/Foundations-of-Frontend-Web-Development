@@ -1,7 +1,10 @@
 <?php
 
 require_once __DIR__ . '/../services/AuthService.class.php';
+<<<<<<< HEAD
 require_once dirname(__FILE__) . "/../config.php";
+=======
+>>>>>>> b9b581474e6269158400662329cfb4ed2d73ee37
 
 use Firebase\JWT\JWT;
 
@@ -107,7 +110,11 @@ function generateToken($user)
 
   $token = JWT::encode(
     $payload,
+<<<<<<< HEAD
     Config::JWT_SECRET(),
+=======
+    JWT_SECRET,
+>>>>>>> b9b581474e6269158400662329cfb4ed2d73ee37
     'HS256'
   );
 
