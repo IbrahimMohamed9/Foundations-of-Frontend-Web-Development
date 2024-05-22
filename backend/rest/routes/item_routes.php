@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 require_once __DIR__ . '/../services/ItemService.class.php';
-=======
-require_once __DIR__ . '/../services/itemService.class.php';
->>>>>>> b9b581474e6269158400662329cfb4ed2d73ee37
 
 Flight::set('item_service', new ItemService());
 

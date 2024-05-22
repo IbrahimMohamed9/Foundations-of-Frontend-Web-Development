@@ -1,9 +1,5 @@
 <?php
-<<<<<<< HEAD
 require_once __DIR__ . '/../services/ProjectService.class.php';
-=======
-require_once __DIR__ . '/../services/projectService.class.php';
->>>>>>> b9b581474e6269158400662329cfb4ed2d73ee37
 
 Flight::set('project_service', new ProjectsService());
 
