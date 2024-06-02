@@ -262,9 +262,6 @@
 ====================================================================
 ====================================================================
 */
-.bg-third {
-  background-color: var(--third-background-color);
-}
 .bg-fourth {
   background-color: var(--footer-icon);
 }

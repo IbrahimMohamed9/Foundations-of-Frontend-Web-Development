@@ -83,11 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
     templateDir: "./profilePages/",
   });
 
-  // const user_id = 1;
-  // const user_id = 2;
-  // const user_id = 3;
-  // const user_id = 4;
-  // const user_id = 5;
   let user_id;
   if (Utils.get_from_localstorage("user"))
     user_id = Utils.get_from_localstorage("user").user_id;
@@ -188,6 +183,57 @@ document.addEventListener("DOMContentLoaded", () => {
     onReady: () => {
       switchButton(6);
     },
+  });
+  app.route({
+    view: "chat",
+    load: "chat.html",
+    onCreate: () => {
+      const ws = new WebSocket("ws://balqan.net:8080");
+      const messages = document.getElementById("messages");
+      const messageInput = document.getElementById("messageInput");
+
+      $("#messageButton").click(sendMessage);
+
+      function sendMessage() {
+        if (ws.readyState === WebSocket.OPEN) {
+          ws.send(messageInput.value);
+          appendMessage("Me: " + messageInput.value);
+        } else {
+          Utils.appearFailAlert("The connection is lost");
+        }
+        messageInput.value = "";
+      }
+
+      function appendMessage(message) {
+        const messageElement = document.createElement("div");
+        messageElement.textContent = message;
+        messages.appendChild(messageElement);
+      }
+
+      ws.onopen = () => {
+        ws.send(
+          JSON.stringify({
+            token: Utils.get_from_localstorage("user").token,
+            message: "has joined the chat",
+          })
+        );
+
+        appendMessage("Connection open");
+      };
+
+      ws.onmessage = (event) => {
+        appendMessage(event.data);
+      };
+
+      ws.onclose = () => {
+        appendMessage("Connection closed");
+      };
+
+      ws.onerror = (event) => {
+        appendMessage("Error: " + event.message);
+      };
+    },
+    onReady: () => {},
   });
   app.run();
 

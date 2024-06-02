@@ -1,0 +1,24 @@
+<div class="p-20 bg-black-s h-full">
+  <div class="pb-10">
+    <input
+      class="border-ccc rad-6 w-150 p-10 bg-third c-main-font"
+      type="text"
+      id="messageInput"
+      placeholder="Type a message"
+    />
+    <button
+      id="messageButton"
+      class="add-btn txt-c fs-15 rad-6 c-white btn-shape"
+    >
+      Send
+    </button>
+  </div>
+  <div id="messages" class="p-10 bg-fourth rad-6"></div>
+</div>
+
+<style>
+  #messages {
+    height: calc(100vh - 393px);
+    overflow: auto;
+  }
+</style>
