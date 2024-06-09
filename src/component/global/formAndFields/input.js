@@ -1,7 +1,19 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "./formAndFields.module.css";
+import ErrorLabel from "./errorLabel";
 
-const InputField = ({ full, id, type, name, autoComplete, label }) => {
+const InputField = ({
+  full,
+  id,
+  type,
+  name,
+  autoComplete,
+  label,
+  value,
+  onChange,
+  error,
+  helperText,
+}) => {
   const inputRef = useRef(null);
 
   useEffect(() => {
@@ -38,8 +50,13 @@ const InputField = ({ full, id, type, name, autoComplete, label }) => {
         autoComplete={autoComplete ? "on" : "off"}
         className={styles.field}
         ref={inputRef}
+        onChange={onChange}
+        value={value}
       />
       <label htmlFor={id}>{label}</label>
+      {error && (
+        <ErrorLabel id={id} message={helperText} style={styles.error} />
+      )}
     </div>
   );
 };

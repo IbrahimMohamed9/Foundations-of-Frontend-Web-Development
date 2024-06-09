@@ -1,7 +1,16 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import styles from "./formAndFields.module.css";
+import ErrorLabel from "./errorLabel";
 
-const TexAreaField = ({ id, name, label }) => {
+const TexAreaField = ({
+  id,
+  name,
+  label,
+  value,
+  onChange,
+  error,
+  helperText,
+}) => {
   const textAreaRef = useRef(null);
 
   useEffect(() => {
@@ -41,11 +50,16 @@ const TexAreaField = ({ id, name, label }) => {
           name={name}
           className={styles.field}
           ref={textAreaRef}
+          onChange={onChange}
+          value={value}
         ></textarea>
       </div>
       <label htmlFor={id} className={styles.txtarLabel}>
         {label}
       </label>
+      {error && (
+        <ErrorLabel id={id} message={helperText} style={styles.error} />
+      )}
     </div>
   );
 };
