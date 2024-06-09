@@ -1,0 +1,39 @@
+.itemBut {
+  background-color: var(--main-color);
+  width: 100%;
+  border: 20px solid var(--main-color);
+  border-radius: 15px;
+  position: relative;
+  cursor: pointer;
+}
+.itemBut::before {
+  content: "Add to cart";
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: var(--main-transition);
+}
+.itemBut:hover::before {
+  top: -15px;
+  opacity: 0;
+}
+.itemBut::after {
+  content: "";
+  background-image: url("../../../assets/images/addToCart.svg");
+  position: absolute;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 15px;
+  opacity: 0;
+  transition: var(--main-transition);
+  width: 23px;
+  height: 20px;
+}
+.itemBut:hover::after {
+  top: 50%;
+  opacity: 1;
+}

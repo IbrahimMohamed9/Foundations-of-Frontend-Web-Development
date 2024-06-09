@@ -1,0 +1,35 @@
+.formSection {
+  background-color: var(--secondary-background-color);
+  padding: 75px 0 var(--main-padding);
+}
+.formSection .span {
+  max-width: 110%;
+  min-width: 110%;
+  position: relative;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: var(--font-color);
+  transition: var(--main-transition);
+}
+.formSection .span {
+  transition-delay: var(--main-transition);
+  color: var(--main-color);
+}
+.formSection .prag {
+  text-align: center;
+  font-weight: bold;
+}
+.formSection .form {
+  max-width: 70%;
+  box-shadow: 0 0 15px 2px var(--box-shadow);
+  border-radius: 1rem;
+  margin: 40px auto;
+  background-color: var(--main-background-color);
+}
+@media (max-width: 768px) {
+  .formSection .form {
+    max-width: 100%;
+  }
+}

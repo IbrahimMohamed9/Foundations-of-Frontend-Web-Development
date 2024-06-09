@@ -1,0 +1,27 @@
+.tourist {
+  background-color: var(--secondary-background-color);
+}
+.tourist .images {
+  overflow: hidden;
+  mask: linear-gradient(90deg, transparent, white 5%, white 95%, transparent);
+}
+.tourist .images .imagesList {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  animation: scroll 40s linear infinite;
+}
+.tourist .images .imagesList li {
+  width: 250px;
+  margin: 0 10px;
+}
+.tourist .images .imagesList li img {
+  max-width: 100%;
+  min-width: 250px;
+  max-height: 175px;
+}
+@keyframes scroll {
+  to {
+    transform: translate(-50%);
+  }
+}

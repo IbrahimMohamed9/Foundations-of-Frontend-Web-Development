@@ -1,0 +1,78 @@
+.simpleCenter {
+  max-width: fit-content;
+  margin: auto;
+}
+footer {
+  background-color: var(--footer-color);
+}
+footer .container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 0;
+}
+footer .row .image img {
+  max-width: 220px;
+}
+footer .container .row:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+footer .row .icons {
+  margin: 15px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+footer .row .icons .instagram {
+  --hover-color: #cc39a4;
+}
+footer .row .icons .snapchat {
+  --hover-color: yellow;
+}
+footer .row .icons .whatsapp {
+  --hover-color: #128c7e;
+}
+footer .row .icons a {
+  background-color: var(--footer-icon);
+  color: var(--footer-font);
+  border-radius: 15px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  transition: var(--main-transition);
+}
+footer .row .icons a:hover {
+  background-color: var(--hover-color);
+}
+footer .row.location {
+  max-width: 25%;
+}
+footer ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+footer ul li:nth-of-type(2) {
+  display: none;
+}
+footer ul li a {
+  color: var(--font-color);
+  font-size: 20px;
+  transition: color var(--main-transition);
+}
+footer ul li:hover a {
+  color: var(--main-color);
+}
+footer p {
+  text-align: center;
+  margin-bottom: 0;
+}

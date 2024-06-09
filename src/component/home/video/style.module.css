@@ -1,0 +1,15 @@
+.videoWrapper {
+  background-color: var(--secondary-background-color);
+}
+.video {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.video video {
+  min-width: 100%;
+  max-width: 100%;
+  max-height: calc(100vh - 50px);
+  object-fit: fill;
+  overflow: hidden;
+}
