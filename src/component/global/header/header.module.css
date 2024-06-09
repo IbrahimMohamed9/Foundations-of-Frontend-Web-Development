@@ -1,0 +1,297 @@
+.mainHeader {
+  background-color: var(--secondary-background-color);
+  transition: background-color 0.5s, color 0.3s;
+  position: sticky;
+  top: 0;
+  z-index: 600;
+  --bs-navbar-padding-y: 0;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.08);
+}
+.darkTheme .mainHeader {
+  border-bottom: 0.1px solid #4c4c4cb1;
+  box-shadow: 0 10px 30px 0px rgba(255, 255, 255, 0.1);
+}
+.mainHeader .container {
+  display: grid;
+  justify-content: space-between;
+  align-items: center;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 50px;
+  grid-template-areas: "logo menu icons";
+}
+.mainHeader .logo {
+  grid-area: logo;
+  height: 35px;
+  width: 150px;
+  position: relative;
+  cursor: pointer;
+  caret-color: transparent;
+  --height: 40px;
+  --dot-animation-duration: 0.3s;
+  --q-position: 42%;
+}
+@media (max-width: 345px) {
+  .mainHeader .logo {
+    width: 105px;
+    height: 30px;
+    --height: 30px;
+  }
+}
+.mainHeader .logo .letter {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-60%);
+  height: var(--height);
+}
+.mainHeader .logo .b {
+  --left: 0;
+  left: var(--left);
+}
+.mainHeader .logo .firstA {
+  --left: 16%;
+  left: var(--left);
+}
+.mainHeader .logo .l {
+  --left: 32%;
+  left: var(--left);
+}
+.mainHeader .logo .letterDiv {
+  --left: 42%;
+  left: var(--left);
+  top: 50%;
+  transform-origin: 50% 50%;
+  z-index: 10;
+}
+.mainHeader .logo .letterQDiv {
+  height: var(--height);
+  z-index: 10;
+}
+.mainHeader .logo .letterQDiv img {
+  max-height: 100%;
+  z-index: 10;
+}
+.mainHeader .logo .dot {
+  --size: 6px;
+  background-color: #f9c163;
+  position: absolute;
+  border-radius: 50%;
+  width: var(--size);
+  height: var(--size);
+  left: 44%;
+  top: -15%;
+  transition: var(--main-transition);
+}
+@media (max-width: 345px) {
+  .mainHeader .logo .dot {
+    --size: 5px;
+    top: -9%;
+  }
+}
+.mainHeader .logo .dot.right {
+  left: 50%;
+}
+.mainHeader .logo .secondA {
+  --left: 58%;
+  left: var(--left);
+}
+.mainHeader .logo .n {
+  --left: 75%;
+  left: var(--left);
+}
+.mainHeader ul.tileWords {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  max-width: 100%;
+}
+.mainHeader ul.tileWords li {
+  margin: 0 15px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 600px) {
+  .mainHeader ul.tileWords li {
+    margin: 0 5px;
+  }
+}
+.mainHeader .tileWords li:hover {
+  color: var(--main-color);
+}
+.mainHeader ul.tileWords li > div,
+.mainHeader ul.tileWords li > a {
+  color: inherit;
+  min-height: 50px;
+  cursor: pointer;
+  align-items: center;
+}
+.mainHeader ul.tileWords li {
+  min-height: 50px;
+}
+.mainHeader .tileWords li::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 2px;
+  background-color: var(--main-color);
+  top: 0;
+  left: -120%;
+  transition: left var(--main-transition) linear;
+}
+.mainHeader .tileWords li:hover::before {
+  opacity: 1;
+  left: -10%;
+}
+.mainHeader ul.tileWords li > div,
+.mainHeader ul.tileWords li > a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 5px;
+}
+.mainHeader ul.tileWords li i {
+  display: none;
+}
+.mainHeader .icons {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  grid-area: icons;
+}
+.mainHeader .icons a {
+  color: var(--font-color);
+}
+.mainHeader .icons .heart {
+  cursor: pointer;
+  display: none;
+}
+.mainHeader .icons .heart:hover {
+  color: var(--main-color);
+}
+.shoppingCartIcon {
+  margin: 0 3px 0 15px;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  transition: var(--main-transition);
+}
+.shoppingCartIcon:hover {
+  color: var(--main-color);
+}
+.shoppingCartIcon::before {
+  content: attr(data-counter);
+  background-color: var(--font-color);
+  color: var(--secondary-background-color);
+  font-size: 9px;
+  position: absolute;
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: -20px;
+  left: -10px;
+  transition: var(--main-transition);
+}
+.shoppingCartIcon:hover::before {
+  color: var(--font-color);
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+.mainHeader .icons a + span {
+  display: none;
+  font-size: 10px;
+  cursor: default;
+}
+.mainHeader .icons a + span:hover {
+  color: var(--main-color);
+}
+@media (max-width: 510px) {
+  .mainHeader .icons a + span {
+    display: none;
+  }
+}
+.toggle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  line-height: 1;
+  margin-left: 10px;
+}
+.input {
+  display: none;
+}
+.icon {
+  grid-column: 1 / 1;
+  grid-row: 1 / 1;
+  transition: transform 500ms;
+}
+.iconMoon {
+  transition-delay: 200ms;
+  color: #4984b7;
+}
+.iconSun {
+  transform: scale(0);
+  color: rgb(255, 255, 0);
+}
+#switch:checked + .iconMoon {
+  transform: rotate(360deg) scale(0);
+}
+#switch:checked ~ .iconSun {
+  transition-delay: 200ms;
+  transform: scale(1) rotate(360deg);
+}
+.mainHeader .container button.menu {
+  max-width: 35px;
+  min-width: 35px;
+  min-height: 35px;
+  background-color: transparent;
+  display: none;
+  padding: 7px;
+  border-radius: 8px;
+  border: none;
+  margin-left: 0px;
+  flex-direction: column;
+  position: relative;
+  cursor: pointer;
+}
+.mainHeader .container button.menu:focus {
+  background-color: var(--main-background-color);
+}
+.mainHeader .container button.menu span {
+  position: absolute;
+  width: 90%;
+  height: 2px;
+  background-color: var(--font-color);
+  transition: var(--main-transition);
+  transform-origin: center;
+}
+.mainHeader .container button.menu span:first-child {
+  transform: translateY(-8px);
+}
+.mainHeader .container button.menu span:nth-child(2) {
+  transform: translateY(8px);
+}
+.mainHeader .container button.menu.active span:not(.close) {
+  width: 0;
+}
+.mainHeader .container button.menu.active span.close {
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.mainHeader .container button.menu.active span.close:nth-child(3) {
+  transform: rotate(50deg);
+}
+.mainHeader .container button.menu.active span.close:nth-of-type(4) {
+  transform: rotate(-50deg);
+}

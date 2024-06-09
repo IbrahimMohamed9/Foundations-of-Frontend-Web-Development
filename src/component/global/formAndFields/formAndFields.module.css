@@ -1,0 +1,154 @@
+form {
+  max-width: 95%;
+  margin: 0 auto;
+}
+form .inputs {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  row-gap: 23px;
+  column-gap: 45px;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+@media (max-width: 992px) {
+  form .inputs {
+    column-gap: 20px;
+  }
+}
+form .inputs .formControl.full {
+  grid-column: 1 / span 2;
+}
+@media (max-width: 555px) {
+  form .inputs .formControl {
+    grid-column: 1 / span 2;
+  }
+}
+form .inputs .formControl:has(label.error) {
+  margin-bottom: 20px;
+}
+/* input */
+input {
+  border: solid 1.5px #9e9e9e;
+  border-radius: 1rem;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--font-color);
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+}
+.formControl:has(label.error) input {
+  border: solid 1.5px red;
+}
+@media (max-width: 992px) {
+  .formControl.full input {
+    min-width: 101%;
+  }
+}
+.formControl input.active {
+  outline: 0;
+  border-color: var(--main-color);
+}
+.formControl input.active ~ label:not(label.error) {
+  color: var(--main-color);
+  transform: translateY(-37px);
+}
+.formControl:has(label.error) input ~ label:not(label.error) {
+  color: red;
+}
+/* Textarea and input */
+.formControl {
+  position: relative;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  transition: var(--main-transition);
+}
+.formControl:has(label.error) {
+  margin-bottom: 20px;
+}
+.formControl label:not(label.error) {
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+.formControl label:not(label.error) {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 25px;
+  pointer-events: none;
+  width: fit-content;
+  background-color: var(--main-background-color);
+  display: inline-block;
+  font-size: 18px;
+  border-left: 1px solid var(--main-background-color);
+  color: var(--font-color);
+}
+.formControl label.error {
+  position: absolute;
+  bottom: -25px;
+  left: 15px;
+  text-wrap: nowrap;
+  pointer-events: none;
+  width: fit-content;
+  font-size: 15px;
+  color: red;
+}
+/* textarea */
+.textarea {
+  min-width: 100%;
+  min-height: 205px;
+  max-width: 100%;
+  max-height: 205px;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+.formControl .textarea textarea {
+  border: solid 1.5px #9e9e9e;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  font-size: 1rem;
+  color: var(--font-color);
+  transition: border 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  resize: none;
+  min-width: 100%;
+  min-height: 200px;
+  max-width: 100%;
+  max-height: 200px;
+}
+.formControl:has(label.error) .textarea textarea {
+  border: solid 1.5px red;
+}
+.formControl textarea.active {
+  outline: 0;
+  border-color: var(--main-color);
+}
+.formControl .textarea + label.txtarLabel {
+  top: 5px;
+  transform: translateY(0);
+}
+.formControl .textarea + label.txtarLabel.active {
+  color: var(--main-color);
+  transform: translateY(-22.5px);
+}
+.formControl:has(label.error) .textarea + label.txtarLabel {
+  color: red;
+}
+/* submit button */
+.submit {
+  border-radius: 1rem;
+  background-color: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--font-color);
+  width: 100px;
+  margin: 30px 0;
+  border: 1px solid var(--main-color);
+  transition: var(--main-transition);
+  font-weight: bold;
+}
+.submit:hover {
+  background-color: var(--main-color);
+  color: white;
+}

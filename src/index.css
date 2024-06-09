@@ -1,0 +1,158 @@
+@import url("https://fonts.googleapis.com/css2?family=Marcellus&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+/* 
+====================================================================
+====================================================================
+==========================Start Variables===========================
+====================================================================
+====================================================================
+*/
+:root {
+  --main-color: #f7af01;
+  --secondary-color: #c1a362;
+  --main-background-color: #ececec;
+  --secondary-background-color: white;
+  --font-color: black;
+  --secondary-font-color: #696969;
+  --third-font-color: #a09ba03d;
+  --third-color: #f8c347;
+  --scrollbar-color: #77777736;
+  --main-transition: 0.3s;
+  --main-padding: 50px;
+  --footer-icon: #fff;
+  --footer-font: #333;
+  --box-shadow: rgba(0, 0, 0, 0.2);
+  --box-shadow-2: rgb(255 254 254/ 90%);
+  --product-color: #47484b;
+  --secondary-product-color: #7a7c81;
+  --third-background-color: #ffffff80;
+  --grey-color: grey;
+  --footer-color: #ededed;
+  --border-color: #303030;
+}
+.dark-theme {
+  --main-color: #f7af01;
+  --secondary-color: #bb8501;
+  --main-background-color: #212121;
+  --footer-color: #0e0d0d;
+  --secondary-background-color: black;
+  --secondary-font-color: #e2e2e2;
+  --third-font-color: #313131;
+  --font-color: white;
+  --footer-icon: #313131;
+  --footer-font: #b9b9b9;
+  --box-shadow: rgba(255, 255, 255, 0.4);
+  --box-shadow-2: rgba(255, 255, 255, 0.1);
+  --product-color: #e7e7e7;
+  --secondary-product-color: #dbdbdb;
+  --third-background-color: #161616;
+  --border-color: #eee;
+}
+/* 
+====================================================================
+====================================================================
+===========================End Variables============================
+====================================================================
+====================================================================
+
+====================================================================
+====================================================================
+=================Start Global RulesStart Components=================
+====================================================================
+====================================================================
+*/
+* {
+  font-family: "Marcellus", "Prompt", sans-serif;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  letter-spacing: 0.3px;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--main-background-color);
+  color: var(--font-color);
+  transition: background-color 0.5s, color 0.5s;
+}
+::-webkit-scrollbar {
+  background-color: var(--scrollbar-color);
+  width: 15px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--main-color);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--secondary-color);
+}
+::selection {
+  color: white;
+  background: var(--secondary-color);
+}
+body.fix {
+  height: 100%;
+  overflow: hidden;
+}
+body.fix-2 {
+  height: 100%;
+  overflow: hidden;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+a {
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+}
+p {
+  word-spacing: -2px;
+  letter-spacing: 1px;
+}
+img {
+  color: black;
+}
+.newSection {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+/* Medium devices */
+@media (min-width: 576px) {
+  .container {
+    width: 540px;
+  }
+}
+/* Large devices */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* Extra large devices */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* Extra Extra large devices */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+/* 
+====================================================================
+====================================================================
+==========================End Global Rules==========================
+====================================================================
+====================================================================
+*/
