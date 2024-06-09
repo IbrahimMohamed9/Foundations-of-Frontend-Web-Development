@@ -19,21 +19,21 @@ const Footer = () => {
           <div className={style.icons}>
             <a
               href="https://www.instagram.com/balqan01?igsh=YTQwZjQ0NmI0OA%3D%3D&utm_source=qr"
-              className="instagram"
+              className={style.instagram}
               target="_blank"
             >
               <CgInstagram />
             </a>
             <a
               href="https://wa.me/message/XX3SX2GZKPV2K1?src=qr"
-              className="whatsapp"
+              className={style.whatsapp}
               target="_blank"
             >
               <AiOutlineWhatsApp />
             </a>
             <a
               href="https://t.snapchat.com/CcJTjXmZ"
-              className="snapchat"
+              className={style.snapchat}
               target="_blank"
             >
               <BsSnapchat />
