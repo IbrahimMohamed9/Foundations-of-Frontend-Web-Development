@@ -50,7 +50,7 @@ const FormSection = () => {
 
   return (
     <div className={styles.formSection}>
-      <div className={styles.container}>
+      <div className={`${styles.container} container`}>
         <MainTitle
           title={
             <>
