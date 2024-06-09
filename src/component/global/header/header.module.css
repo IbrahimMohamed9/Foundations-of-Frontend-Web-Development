@@ -107,11 +107,6 @@
   position: relative;
   max-width: 100%;
 }
-@media (max-width: 600px) {
-  .mainHeader ul.tileWords {
-    min-width: 200px;
-  }
-}
 .mainHeader ul.tileWords li {
   margin: 0 15px;
   position: relative;
@@ -119,6 +114,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+@media (max-width: 600px) {
+  .mainHeader ul.tileWords li {
+    margin: 0 5px;
+  }
 }
 .mainHeader .tileWords li:hover {
   color: var(--main-color);
