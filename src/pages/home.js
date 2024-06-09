@@ -15,6 +15,13 @@ const items = [
     category: "Package",
     name: "10 Day ",
   },
+  {
+    id: "1",
+    imgSrc: package10,
+    price: "55",
+    category: "Package",
+    name: "10 Day ",
+  },
 ];
 
 const Home = () => {
@@ -28,7 +35,7 @@ const Home = () => {
           direction="row"
           justifyContent="center"
           alignItems="center"
-          style={{ marginTop: "-30px" }}
+          style={{ marginTop: "-30px", rowGap: "15px" }}
         >
           {items.map((item) => (
             <ItemCard
